@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462c02630ab2f79489f31ff941aa8508, type: 3}
+  m_Name: ChasingTestLinker
+  m_EditorClassIdentifier: 
+  links:
+  - tagName: suspicious
+    triggeredOn: {fileID: 11400000, guid: 4ed067348f11eb341a4d0086b5eae33b, type: 2}
+    invert: 0
+    action:
+      actionType: 0
+      transitionToState: {fileID: 11400000, guid: d24212bd6d3de6b40862a8418a13acbc,
+        type: 2}

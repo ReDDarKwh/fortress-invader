@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462c02630ab2f79489f31ff941aa8508, type: 3}
+  m_Name: GlobalLinker
+  m_EditorClassIdentifier: 
+  links:
+  - tagName: global
+    triggeredOn: {fileID: 11400000, guid: f769c344a5334034bacfc4973ffc51fc, type: 2}
+    invert: 0
+    action:
+      actionType: 0
+      transitionToState: {fileID: 11400000, guid: 85f28cdd3198c534aa2b97f5bd0dd6c3,
+        type: 2}
+      addStates: []
+  - tagName: global
+    triggeredOn: {fileID: 11400000, guid: 796b2e90fd86dba4fa253bbc4b87c42a, type: 2}
+    invert: 0
+    action:
+      actionType: 3
+      transitionToState: {fileID: 11400000, guid: c247c4bed5e5fa94a8d4827d0aadb4c8,
+        type: 2}
+      addStates: []
+  - tagName: behavior
+    triggeredOn: {fileID: 11400000, guid: 796b2e90fd86dba4fa253bbc4b87c42a, type: 2}
+    invert: 0
+    action:
+      actionType: 2
+      transitionToState: {fileID: 0}
+      addStates: []
+  - tagName: global
+    triggeredOn: {fileID: 11400000, guid: 20fa78c0f1801f1498dac66f8b92a3fd, type: 2}
+    invert: 0
+    action:
+      actionType: 3
+      transitionToState: {fileID: 11400000, guid: 4e5ea01ba8198bd4282f7b717def2485,
+        type: 2}
+      addStates: []
+  - tagName: behavior
+    triggeredOn: {fileID: 11400000, guid: 20fa78c0f1801f1498dac66f8b92a3fd, type: 2}
+    invert: 0
+    action:
+      actionType: 2
+      transitionToState: {fileID: 0}
+      addStates: []
+  - tagName: on_fire
+    triggeredOn: {fileID: 11400000, guid: ca20c9a8db723ac46bfa6dc60e116b0b, type: 2}
+    invert: 0
+    action:
+      actionType: 2
+      transitionToState: {fileID: 0}
+      addStates: []
+  - tagName: stunned
+    triggeredOn: {fileID: 11400000, guid: ca20c9a8db723ac46bfa6dc60e116b0b, type: 2}
+    invert: 0
+    action:
+      actionType: 2
+      transitionToState: {fileID: 0}
+      addStates: []
+  - tagName: taking_damage
+    triggeredOn: {fileID: 11400000, guid: 4ed067348f11eb341a4d0086b5eae33b, type: 2}
+    invert: 0
+    action:
+      actionType: 2
+      transitionToState: {fileID: 0}
+      addStates: []
+  - tagName: global
+    triggeredOn: {fileID: 11400000, guid: 94cb8310e8a19a747b4878020a7360a5, type: 2}
+    invert: 0
+    action:
+      actionType: 3
+      transitionToState: {fileID: 0}
+      addStates:
+      - {fileID: 11400000, guid: c4a490958c2d19543a07c584ab352119, type: 2}
+      - {fileID: 11400000, guid: cbbbf4cd8db87f7488737ab236a04f2b, type: 2}
+  - tagName: pushed
+    triggeredOn: {fileID: 11400000, guid: 4ed067348f11eb341a4d0086b5eae33b, type: 2}
+    invert: 0
+    action:
+      actionType: 2
+      transitionToState: {fileID: 0}
+      addStates: []

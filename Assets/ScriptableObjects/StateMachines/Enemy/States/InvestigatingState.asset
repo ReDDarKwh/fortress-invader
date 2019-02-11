@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873e48b9f6962834280c7251f9af4d8b, type: 3}
+  m_Name: InvestigatingState
+  m_EditorClassIdentifier: 
+  tags:
+  - global
+  - searching_group
+  - behavior
+  stateName: investigating
+  lookAroundAngle: 60
+  rotationSpeed: 1
