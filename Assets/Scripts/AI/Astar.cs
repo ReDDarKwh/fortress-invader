@@ -52,6 +52,10 @@ namespace Scripts.AI
             System.Collections.Generic.IList<Nav2dNode> result = new List<Nav2dNode>();
             Nav2dNode current = null;
 
+            var startTime = Time.time;
+
+
+
             if (start == null || end == null || !start.accessible || !end.accessible)
                 return null;
 
@@ -67,6 +71,13 @@ namespace Scripts.AI
 
             while (!opened.IsEmpty)
             {
+
+                // timout
+                if (Time.time - startTime > 5)
+                {
+                    return null;
+                }
+
                 current = opened.DeleteMin();
 
                 if (current == end)

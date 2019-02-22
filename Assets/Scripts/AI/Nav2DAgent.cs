@@ -82,7 +82,9 @@ namespace Scripts.AI
             switch (mode)
             {
                 case NavAgentMode.PATH_FINDING:
-                    navGrid.RequestPath(transform.position, worldPos, PathCallback);
+
+                    Debug.Log("Requested path");
+                    navGrid.RequestPath(transform.position, worldPos, this.gameObject.GetInstanceID(), PathCallback);
                     break;
 
                 case NavAgentMode.DIRECT:
@@ -94,9 +96,9 @@ namespace Scripts.AI
             this.moving = true;
         }
 
-        public void PathCallback(IEnumerable<Nav2dNode> path)
+        public void PathCallback(IEnumerable<Nav2dNode> newPath)
         {
-            if (path == null)
+            if (newPath == null)
             {
                 this.moving = false;
                 return;
@@ -104,7 +106,7 @@ namespace Scripts.AI
 
             this.path.Clear();
 
-            foreach (var pos in path.Select(x => x.worldPos))
+            foreach (var pos in newPath.Select(x => x.worldPos))
             {
                 this.path.Push(pos);
             }
@@ -145,7 +147,24 @@ namespace Scripts.AI
         // Update is called once per frame
         void Update()
         {
-            Debug.Log("update agent");
+
+
+            if (this.path != null)
+            {
+
+                var last = this.transform.position;
+                foreach (var i in this.path)
+                {
+
+                    Debug.DrawLine(last, i, Color.red);
+
+                    last = i;
+                }
+            }
+
+
+
+
             Vector2 desiredVelocity = ((isMoving() ? (currentTarget - transform.position).normalized : Vector3.zero) +
              computeSeparation()) * Time.deltaTime * speed;
 

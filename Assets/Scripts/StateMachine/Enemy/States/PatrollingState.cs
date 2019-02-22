@@ -45,6 +45,8 @@ public class PatrollingState : BaseState
 
         if (!npc.nav2DAgent.isMoving())
         {
+            Debug.Log("moving is false");
+
             var colliders = Physics2D.OverlapCircleAll(stateMachine.transform.position,
              findClosestBuildingRadius, LayerMask.GetMask(buildingFindLayers));
 

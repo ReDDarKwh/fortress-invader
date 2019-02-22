@@ -7,8 +7,19 @@ using UnityEditor;
 using System.Threading;
 using System.Linq;
 
+
+
+
 namespace Scripts.AI
 {
+
+    public class PathRequest
+    {
+        public Vector3 Start { get; set; }
+        public Vector3 End { get; set; }
+        public int AgentGameObjectID { get; set; }
+        public Action<IEnumerable<Nav2dNode>> PathCallback { get; set; }
+    }
 
     public class Nav2D : MonoBehaviour
     {
@@ -25,16 +36,22 @@ namespace Scripts.AI
         private List<Nav2dNode> debugPath;
         private List<Nav2dNode> nodes;
 
+        private int maxRunningTreadNum = 2;
+
+        private Dictionary<int, int> waitingThreadNumberById;
+        private Queue<PathRequest> waitingThreads;
+        private Dictionary<int, Thread> runningThreads;
 
 
-        public List<Nav2dNode> GetNodesInCircle(Vector3 point, float radius) {
+        public List<Nav2dNode> GetNodesInCircle(Vector3 point, float radius)
+        {
 
-            return Physics2D.OverlapCircleAll(point, radius, 
+            return Physics2D.OverlapCircleAll(point, radius,
             LayerMask.GetMask(nav2dNodeLayer)
                 ).Select(
-            x=>x.GetComponent<NodeController>().node
+            x => x.GetComponent<NodeController>().node
                 ).ToList();
-        
+
         }
 
 
@@ -42,12 +59,19 @@ namespace Scripts.AI
         void Start()
         {
             nodes = new List<Nav2dNode>();
+
+
+            waitingThreads = new Queue<PathRequest>();
+            runningThreads = new Dictionary<int, Thread>();
+            waitingThreadNumberById = new Dictionary<int, int>();
+
             GenerateNavMesh();
         }
         // Update is called once per frame
         void Update()
         {
             if (showNodeConnections)
+            {
                 for (int y = 0; y < height; y++)
                 {
                     for (int x = 0; x < width; x++)
@@ -56,6 +80,49 @@ namespace Scripts.AI
                         cellsArray[x, y].getNode(-1, -1).drawConnections();
                     }
                 }
+            }
+
+            Debug.Log("Running threads : " + runningThreads.Count);
+
+            // path request logic
+            if (runningThreads.Count < maxRunningTreadNum && waitingThreads.Count > 0)
+            {
+
+                PathRequest pathRequest;
+                do
+                {
+                    pathRequest = waitingThreads.Dequeue();
+                    waitingThreadNumberById[pathRequest.AgentGameObjectID]--;
+                } while (
+                    waitingThreadNumberById[pathRequest.AgentGameObjectID] != 0
+                );
+
+                // remove to save memory
+                waitingThreadNumberById.Remove(pathRequest.AgentGameObjectID);
+
+
+
+
+                // create thread
+
+                var startCellPos = grid.LocalToCell(grid.WorldToLocal(pathRequest.Start));
+                var endCellPos = grid.LocalToCell(grid.WorldToLocal(pathRequest.End));
+
+                ThreadStart threadStart = delegate
+                {
+
+                    pathRequest.PathCallback(Astar.findShortestPath(
+                        findClosestAccessibleNodeInGrid(startCellPos, pathRequest.End),
+                        findClosestAccessibleNodeInGrid(endCellPos, pathRequest.End)
+                    ));
+                };
+
+                runningThreads.Add(pathRequest.AgentGameObjectID, new Thread(threadStart));
+
+                // run it
+                runningThreads[pathRequest.AgentGameObjectID].Start();
+            }
+
         }
         void OnDrawGizmos()
         {
@@ -90,9 +157,6 @@ namespace Scripts.AI
                 grid.transform.position + new Vector3(grid.cellSize.x * width, 0, 0));
 
         }
-
-
-
 
 
 
@@ -212,21 +276,39 @@ namespace Scripts.AI
         //     return path;
         // }
 
-        internal void RequestPath(Vector3 start, Vector3 end, Action<IEnumerable<Nav2dNode>> pathCallback)
+        internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>> pathCallback)
         {
 
-            var startCellPos = grid.LocalToCell(grid.WorldToLocal(start));
-            var endCellPos = grid.LocalToCell(grid.WorldToLocal(end));
-
-            ThreadStart threadStart = delegate
+            // check if thread running for agent
+            if (runningThreads.ContainsKey(agentGameObjectID))
             {
-                pathCallback(Astar.findShortestPath(
-                    findClosestAccessibleNodeInGrid(startCellPos, end),
-                    findClosestAccessibleNodeInGrid(endCellPos, end)
-                ));
-            };
+                runningThreads[agentGameObjectID].Abort();
+                runningThreads.Remove(agentGameObjectID);
+                // runningThreads[agentGameObjectID] = new Thread(threadStart);
+                // runningThreads[agentGameObjectID].Start(threadStart);
+            }
 
-            new Thread(threadStart).Start();
+            // add it to waiting dictionnary
+            if (waitingThreadNumberById.ContainsKey(agentGameObjectID))
+            {
+                waitingThreadNumberById[agentGameObjectID]++;
+            }
+            else
+            {
+                waitingThreadNumberById.Add(agentGameObjectID, 1);
+            }
+
+            // add it to waiting queue
+
+            waitingThreads.Enqueue(
+                new PathRequest
+                {
+                    Start = start,
+                    End = end,
+                    AgentGameObjectID = agentGameObjectID,
+                    PathCallback = pathCallback
+                });
+
         }
 
 
