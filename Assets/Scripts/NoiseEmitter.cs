@@ -31,6 +31,8 @@ public class NoiseEmitter : MonoBehaviour
             var stateMachine = collider.GetComponent<StateMachine>();
             var message = new EventMessage() { target = this.gameObject };
             stateMachine.TriggerEvent(soundHeardEvent, message);
+
+            Debug.Log("Emit noise");
         }
     }
 }

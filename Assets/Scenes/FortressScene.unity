@@ -349,6 +349,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 50193245341775546, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 50193245341775546, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf738f2482c0118419dc851c50de25ce, type: 3}
 --- !u!1 &250230649
@@ -2359,7 +2369,7 @@ Transform:
 --- !u!199 &1250429868
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 199283083859466204, guid: bf738f2482c0118419dc851c50de25ce,
     type: 3}
   m_PrefabInstance: {fileID: 0}

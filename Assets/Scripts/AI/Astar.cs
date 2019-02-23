@@ -17,6 +17,8 @@ namespace Scripts.AI
         private const float DiagonalCost = 2.12f;
         private const float NonDiagonalCost = 3;
 
+        private const int maxPathLength = 1000; // nodes
+
 
         private static float getHcost(Nav2dNode node, Nav2dNode end)
         {
@@ -52,9 +54,6 @@ namespace Scripts.AI
             System.Collections.Generic.IList<Nav2dNode> result = new List<Nav2dNode>();
             Nav2dNode current = null;
 
-            var startTime = Time.time;
-
-
 
             if (start == null || end == null || !start.accessible || !end.accessible)
                 return null;
@@ -72,11 +71,6 @@ namespace Scripts.AI
             while (!opened.IsEmpty)
             {
 
-                // timout
-                if (Time.time - startTime > 5)
-                {
-                    return null;
-                }
 
                 current = opened.DeleteMin();
 
@@ -113,7 +107,7 @@ namespace Scripts.AI
             do
             {
                 result.Add(current);
-            } while (parent.TryGetValue(current, out current));
+            } while (parent.TryGetValue(current, out current) && result.Count < maxPathLength);
 
             return result;
         }

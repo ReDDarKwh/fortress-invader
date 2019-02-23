@@ -40,7 +40,7 @@ namespace Scripts.AI
 
         private Dictionary<int, int> waitingThreadNumberById;
         private Queue<PathRequest> waitingThreads;
-        private Dictionary<int, Thread> runningThreads;
+        private List<Thread> runningThreads;
 
 
         public List<Nav2dNode> GetNodesInCircle(Vector3 point, float radius)
@@ -62,7 +62,7 @@ namespace Scripts.AI
 
 
             waitingThreads = new Queue<PathRequest>();
-            runningThreads = new Dictionary<int, Thread>();
+            runningThreads = new List<Thread>();
             waitingThreadNumberById = new Dictionary<int, int>();
 
             GenerateNavMesh();
@@ -82,26 +82,22 @@ namespace Scripts.AI
                 }
             }
 
+
+
+
             Debug.Log("Running threads : " + runningThreads.Count);
+
+
+            runningThreads = runningThreads.Where(x => x.IsAlive).ToList();
+
 
             // path request logic
             if (runningThreads.Count < maxRunningTreadNum && waitingThreads.Count > 0)
             {
 
                 PathRequest pathRequest;
-                do
-                {
-                    pathRequest = waitingThreads.Dequeue();
-                    waitingThreadNumberById[pathRequest.AgentGameObjectID]--;
-                } while (
-                    waitingThreadNumberById[pathRequest.AgentGameObjectID] != 0
-                );
 
-                // remove to save memory
-                waitingThreadNumberById.Remove(pathRequest.AgentGameObjectID);
-
-
-
+                pathRequest = waitingThreads.Dequeue();
 
                 // create thread
 
@@ -117,10 +113,15 @@ namespace Scripts.AI
                     ));
                 };
 
-                runningThreads.Add(pathRequest.AgentGameObjectID, new Thread(threadStart));
 
-                // run it
-                runningThreads[pathRequest.AgentGameObjectID].Start();
+                var t = new Thread(threadStart);
+                runningThreads.Add(t);
+
+                // run the thread
+                t.Start();
+
+
+
             }
 
         }
@@ -278,25 +279,6 @@ namespace Scripts.AI
 
         internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>> pathCallback)
         {
-
-            // check if thread running for agent
-            if (runningThreads.ContainsKey(agentGameObjectID))
-            {
-                runningThreads[agentGameObjectID].Abort();
-                runningThreads.Remove(agentGameObjectID);
-                // runningThreads[agentGameObjectID] = new Thread(threadStart);
-                // runningThreads[agentGameObjectID].Start(threadStart);
-            }
-
-            // add it to waiting dictionnary
-            if (waitingThreadNumberById.ContainsKey(agentGameObjectID))
-            {
-                waitingThreadNumberById[agentGameObjectID]++;
-            }
-            else
-            {
-                waitingThreadNumberById.Add(agentGameObjectID, 1);
-            }
 
             // add it to waiting queue
 
