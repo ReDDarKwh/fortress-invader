@@ -85,7 +85,7 @@ namespace Scripts.AI
 
 
 
-            Debug.Log("Running threads : " + runningThreads.Count);
+            //Debug.Log("Running threads : " + runningThreads.Count);
 
 
             runningThreads = runningThreads.Where(x => x.IsAlive).ToList();
@@ -97,7 +97,18 @@ namespace Scripts.AI
 
                 PathRequest pathRequest;
 
-                pathRequest = waitingThreads.Dequeue();
+                do
+                {
+                    pathRequest = waitingThreads.Dequeue();
+                    waitingThreadNumberById[pathRequest.AgentGameObjectID]--;
+                } while (
+                   waitingThreadNumberById[pathRequest.AgentGameObjectID] != 0
+                );
+
+                // remove to save memory
+                waitingThreadNumberById.Remove(pathRequest.AgentGameObjectID);
+
+
 
                 // create thread
 
@@ -119,8 +130,6 @@ namespace Scripts.AI
 
                 // run the thread
                 t.Start();
-
-
 
             }
 
@@ -279,6 +288,19 @@ namespace Scripts.AI
 
         internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>> pathCallback)
         {
+
+
+
+            // add it to waiting dictionnary
+            if (waitingThreadNumberById.ContainsKey(agentGameObjectID))
+            {
+                waitingThreadNumberById[agentGameObjectID]++;
+            }
+            else
+            {
+                waitingThreadNumberById.Add(agentGameObjectID, 1);
+            }
+
 
             // add it to waiting queue
 

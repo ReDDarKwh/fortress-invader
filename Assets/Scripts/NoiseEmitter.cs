@@ -32,7 +32,7 @@ public class NoiseEmitter : MonoBehaviour
             var message = new EventMessage() { target = this.gameObject };
             stateMachine.TriggerEvent(soundHeardEvent, message);
 
-            Debug.Log("Emit noise");
+            //Debug.Log("Emit noise");
         }
     }
 }

@@ -26,7 +26,8 @@ namespace Scripts.Spells
         public float emissionChance;
         //public SpellEffectType emissionType;
         public bool emitOnStart;
-        public List<BaseEvent> effectEntryEvents;
+
+        public List<BaseState> effectEntryStates;
         public float noiseRadius;
 
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
+using UnityEditor;
 
 namespace Scripts.AI
 {
@@ -49,6 +50,12 @@ namespace Scripts.AI
             }
         }
 
+        public bool isWaitingForPath { get; private set; }
+
+
+        public bool isMoving { get; private set; }
+
+
         private float targetsRadius;
         private bool neightborAvoidance = true;
         private float speed;
@@ -62,7 +69,8 @@ namespace Scripts.AI
         private Rigidbody2D rb;
         private float yVelocity = 0.0f;
         private Vector2 velocity = Vector2.zero;
-        private bool moving = false;
+
+
 
 
 
@@ -83,26 +91,31 @@ namespace Scripts.AI
             {
                 case NavAgentMode.PATH_FINDING:
 
-                    Debug.Log("Requested path");
+                    //Debug.Log("Requested path");
+
+                    isWaitingForPath = true;
                     navGrid.RequestPath(transform.position, worldPos, this.gameObject.GetInstanceID(), PathCallback);
                     break;
 
                 case NavAgentMode.DIRECT:
                     this.currentTarget = worldPos;
-
+                    this.isMoving = true;
                     break;
             }
 
-            this.moving = true;
         }
 
         public void PathCallback(IEnumerable<Nav2dNode> newPath)
         {
+
+            isWaitingForPath = false;
+
             if (newPath == null)
             {
-                this.moving = false;
                 return;
             }
+
+            this.isMoving = true;
 
             this.path.Clear();
 
@@ -116,14 +129,10 @@ namespace Scripts.AI
             setNextTarget();
         }
 
-        public bool isMoving()
-        {
-            return this.moving;
-        }
 
         public void endMovement()
         {
-            this.moving = false;
+            this.isMoving = false;
         }
 
         private void setNextTarget()
@@ -133,7 +142,7 @@ namespace Scripts.AI
                 path.TryPop(out currentTarget);
                 return;
             }
-            this.moving = false;
+            this.isMoving = false;
         }
 
         // Use this for initialization
@@ -148,24 +157,17 @@ namespace Scripts.AI
         void Update()
         {
 
-
             if (this.path != null)
             {
-
-                var last = this.transform.position;
-                foreach (var i in this.path)
+                for (var i = 1; i < this.path.Count; i++)
                 {
 
-                    Debug.DrawLine(last, i, Color.red);
-
-                    last = i;
+                    Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
                 }
             }
 
 
-
-
-            Vector2 desiredVelocity = ((isMoving() ? (currentTarget - transform.position).normalized : Vector3.zero) +
+            Vector2 desiredVelocity = ((isMoving ? (currentTarget - transform.position).normalized : Vector3.zero) +
              computeSeparation()) * Time.deltaTime * speed;
 
             var sterring = Vector2.ClampMagnitude((desiredVelocity - velocity), maxSteeringForce) / mass;
@@ -174,7 +176,7 @@ namespace Scripts.AI
 
             rb.MovePosition(rb.position + velocity);
 
-            if (isMoving())
+            if (isMoving)
             {
                 var angle = Mathf.SmoothDampAngle(
                     rb.transform.rotation.eulerAngles.z,

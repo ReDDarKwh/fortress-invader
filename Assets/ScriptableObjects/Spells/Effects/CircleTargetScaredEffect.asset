@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46b9e75b50c62a043ae8cf6ba1f003f2, type: 3}
-  m_Name: ExplosionEffect
+  m_Name: CircleTargetScaredEffect
   m_EditorClassIdentifier: 
-  effectName: explosion
-  circleEffect: {fileID: 1532170719443450, guid: a8defaabaae5fdb4bb2e027df3144d89,
-    type: 3}
+  effectName: circle target scared
+  circleEffect: {fileID: 0}
   duration: 1
   intervalTime: 2
   emissionChance: 1
   emitOnStart: 1
   effectEntryStates:
-  - {fileID: 11400000, guid: cbbbf4cd8db87f7488737ab236a04f2b, type: 2}
-  - {fileID: 11400000, guid: c4a490958c2d19543a07c584ab352119, type: 2}
-  - {fileID: 11400000, guid: c247c4bed5e5fa94a8d4827d0aadb4c8, type: 2}
-  noiseRadius: 50
+  - {fileID: 11400000, guid: cc4dc6bb4a2c34929acdb95fe440b079, type: 2}
+  noiseRadius: 0

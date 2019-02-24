@@ -66,6 +66,7 @@ namespace Scripts.NPC
 
         public void MoveToOrFollow(Vector3 target)
         {
+
             nav2DAgent.setTarget(
                 target,
                 NavAgentMode.PATH_FINDING,

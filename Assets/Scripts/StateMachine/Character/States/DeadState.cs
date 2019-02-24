@@ -23,8 +23,12 @@ public class DeadState : BaseState
 
         // disable agent2d for pushing around
 
+
+
         var agent = stateMachine.GetComponent<Nav2DAgent>();
-        agent.enabled = false;
+
+        if (agent != null)
+            agent.enabled = false;
     }
 
     public override void Leave(StateMachine stateMachine)

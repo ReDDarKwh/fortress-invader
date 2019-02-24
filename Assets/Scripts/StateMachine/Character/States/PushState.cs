@@ -28,6 +28,6 @@ public class PushState : BaseState
             activeLinking.GetValueOrDefault<GameObject>("push_position").transform.position - rb.transform.position
             ).normalized * force, ForceMode2D.Impulse
         );
-        Debug.Log("Added force");
+        //Debug.Log("Added force");
     }
 }

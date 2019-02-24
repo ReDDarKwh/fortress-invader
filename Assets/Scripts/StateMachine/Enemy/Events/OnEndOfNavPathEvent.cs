@@ -14,7 +14,7 @@ namespace Scripts.NPC
             var npc = character.GetComponent<NonPlayerCharacter>();
             message = EventMessage.EmptyMessage;
 
-            return !npc.nav2DAgent.isMoving();
+            return !npc.nav2DAgent.isMoving;
         }
 
         public override void Init(ActiveLinking activeLinking)

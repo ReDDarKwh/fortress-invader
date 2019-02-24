@@ -32,7 +32,7 @@ public class StunnedState : BaseState
         var agent = stateMachine.GetComponent<Nav2DAgent>();
         agent.enabled = false;
 
-        Debug.Log("disabled agent");
+        //Debug.Log("disabled agent");
 
     }
 
@@ -46,7 +46,7 @@ public class StunnedState : BaseState
         agent.enabled = true;
 
 
-        Debug.Log("enabled agent");
+        //Debug.Log("enabled agent");
 
     }
     public override void StateUpdate(StateMachine stateMachine, ActiveLinking activeLinking)

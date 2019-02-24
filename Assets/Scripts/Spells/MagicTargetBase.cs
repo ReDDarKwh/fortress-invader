@@ -5,6 +5,8 @@ using System.Linq;
 using Scripts.Spells;
 using System;
 using Scripts.AI;
+using Random = UnityEngine.Random;
+using Scripts.Characters;
 
 namespace Scripts.Spells
 {
@@ -13,7 +15,6 @@ namespace Scripts.Spells
         public Spell spell;
         public Nav2D nav2D;
 
-        public float radius;
 
         public float addedNodeTravelCost = 10;
 
@@ -25,10 +26,11 @@ namespace Scripts.Spells
         private List<SpellEffect> activeSpellEffects;
         private Dictionary<SpellEffect, float> lastEmissionTimes;
 
-        private List<Nav2dNode> affectedNodes;
-
-
+        protected List<Nav2dNode> affectedNodes;
         public abstract void Cast();
+
+        public bool spellDone = false;
+
 
 
         public abstract void OnEmitEffect(SpellEffect effect);
@@ -39,19 +41,28 @@ namespace Scripts.Spells
         {
             foreach (var c in selectedCharacters)
             {
-                var stateMachine = c.GetComponent<StateMachine>();
-                var msg = new EventMessage { target = this.gameObject };
+                if (Random.value < effect.emissionChance)
+                {
+                    var stateMachine = c.GetComponent<StateMachine>();
+                    var msg = new EventMessage { target = this.gameObject };
 
-                foreach (var e in effect.effectEntryEvents)
-                    stateMachine.TriggerEvent(e, msg);
+                    foreach (var s in effect.effectEntryStates)
+                    {
+                        stateMachine.StartState(s, new EventStateLinking
+                        {
+                            eventResponse = new EventMessage
+                            {
+                                target = this.gameObject
+                            }
+                        }, false);
+                    }
+                }
             }
-
             OnEmitEffect(effect);
         }
 
         protected void BaseStart()
         {
-
 
             // if null magic target is for selection only (doest have effects)
             if (spell == null)
@@ -72,16 +83,6 @@ namespace Scripts.Spells
             }
 
 
-            // apply travel cost to nav2d nodes under circle target
-
-            affectedNodes = nav2D.GetNodesInCircle(transform.position, radius);
-
-            foreach(var item in affectedNodes) {
-
-                item.travelCost += addedNodeTravelCost;
-            }
-
-            //
 
 
 
@@ -91,7 +92,8 @@ namespace Scripts.Spells
         protected void UpdateActiveEffects()
         {
 
-            if (spell == null)
+            // if target as no spell or spell is over. skip update
+            if (spell == null || spellDone)
                 return;
 
             // update active spell effects;
@@ -100,6 +102,7 @@ namespace Scripts.Spells
 
             if (activeSpellEffects.Count < 1)
             {
+                this.spellDone = true;
                 BeforeDispell();
                 Dispell();
                 return;
@@ -110,7 +113,10 @@ namespace Scripts.Spells
                 if (Time.time - lastEmissionTimes[effect] >= effect.intervalTime)
                 {
                     lastEmissionTimes[effect] = Time.time;
+
+
                     EmitEffect(effect);
+
                 }
             }
 
@@ -126,10 +132,11 @@ namespace Scripts.Spells
         private void BeforeDispell()
         {
             //remove nav2d nodes cost
-            foreach(var item in affectedNodes) {
+            foreach (var item in affectedNodes)
+            {
 
-                item.travelCost -= addedNodeTravelCost;            
-            
+                item.travelCost -= addedNodeTravelCost;
+
             }
         }
     }

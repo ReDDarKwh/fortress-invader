@@ -16,14 +16,34 @@ namespace Scripts.Spells
 
         public bool active = true;
 
+        public float radius;
+
+
 
         //public ParticleSystem particlesSystemParent;
-       
+
         void Start()
         {
             BaseStart();
             setRadius(radius);
             selectedCharacters = new List<Character>();
+
+
+            if (spell != null)
+            {
+
+                // apply travel cost to nav2d nodes under circle target
+
+                affectedNodes = nav2D.GetNodesInCircle(transform.position, radius);
+                foreach (var item in affectedNodes)
+                {
+                    item.travelCost += addedNodeTravelCost;
+                }
+                //
+
+            }
+
+
         }
 
         void UpdateRadius()
@@ -98,24 +118,24 @@ namespace Scripts.Spells
             circleTarget.caster = caster;
             circleTarget.spell = caster.selectedSpell.Value;
 
-            circleTarget.effects = circleTarget.spell.spellEffects.Select(effect =>
-                  {
+            circleTarget.effects = circleTarget.spell.spellEffects.Where(x => x.circleEffect != null).Select(effect =>
+                    {
 
                       // init each particleSystems of each spell effect.
 
                       var particleSystem = Instantiate(effect.circleEffect, circleTarget.transform.position, Quaternion.identity)
-                      .GetComponent<ParticleSystem>();
+                        .GetComponent<ParticleSystem>();
 
-                      particleSystem.transform.SetParent(circleTarget.transform);
+                        particleSystem.transform.SetParent(circleTarget.transform);
 
-                      var main = particleSystem.main;
+                        var main = particleSystem.main;
 
-                      main.startLifetime = main.duration = Mathf.Max(1, effect.duration);
+                        main.startLifetime = main.duration = Mathf.Max(1, effect.duration);
 
-                      particleSystem.Play();
+                        particleSystem.Play();
 
-                      return particleSystem;
-                  }).ToList();
+                        return particleSystem;
+                    }).ToList();
 
             circleTarget.follow = circleTarget.transform;
             circleTarget.radius = this.radius;

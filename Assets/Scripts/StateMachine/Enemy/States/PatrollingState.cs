@@ -43,9 +43,9 @@ public class PatrollingState : BaseState
         character.currentSpeed = CharacterSpeed.SLOW;
 
 
-        if (!npc.nav2DAgent.isMoving())
+        if (!npc.nav2DAgent.isMoving && !npc.nav2DAgent.isWaitingForPath)
         {
-            Debug.Log("moving is false");
+            //Debug.Log("moving is false");
 
             var colliders = Physics2D.OverlapCircleAll(stateMachine.transform.position,
              findClosestBuildingRadius, LayerMask.GetMask(buildingFindLayers));
