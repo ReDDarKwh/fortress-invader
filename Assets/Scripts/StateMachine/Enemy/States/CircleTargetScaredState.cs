@@ -26,7 +26,10 @@ public class CircleTargetScaredState : BaseState
 
         npc.character.currentSpeed = CharacterSpeed.FAST;
 
-        var moveVec = target.transform.position + (npc.transform.position - target.transform.position).normalized * (target.radius + runDistanceFromOuterRadius);
+        var moveVec = target.transform.position + ((npc.transform.position - target.transform.position).normalized * (target.radius + runDistanceFromOuterRadius));
+
+
+        Debug.DrawLine(target.transform.position, moveVec, Color.green, 10);
 
         npc.MoveToOrFollow(moveVec);
 

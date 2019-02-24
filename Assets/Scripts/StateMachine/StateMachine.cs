@@ -135,7 +135,7 @@ public partial class StateMachine : MonoBehaviour
     }
 
 
-    // find the first event with the same name in the active state and trigger it
+    // find the events with the same name in the active states and trigger them
     public void TriggerEvent(BaseEvent e, EventMessage message)
     {
 

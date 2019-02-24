@@ -49,3 +49,11 @@ MonoBehaviour:
       actionType: 2
       transitionToState: {fileID: 0}
       addStates: []
+  - tagName: behavior
+    triggeredOn: {fileID: 11400000, guid: d80dce4d8549f48f9ab367bdff8d4f3d, type: 2}
+    invert: 0
+    action:
+      actionType: 0
+      transitionToState: {fileID: 11400000, guid: cc4dc6bb4a2c34929acdb95fe440b079,
+        type: 2}
+      addStates: []

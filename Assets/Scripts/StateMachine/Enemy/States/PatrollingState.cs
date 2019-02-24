@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
 using Scripts.NPC;
+using Scripts.Spells;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,7 @@ public class PatrollingState : BaseState
 {
     public float findClosestBuildingRadius = 30;
     public string[] buildingFindLayers = new String[] { "Nav2DObstacle" };
+    public string[] spellTargetLayers = new String[] { "SpellTarget" };
 
     public PatrollingState()
     {
@@ -79,7 +81,27 @@ public class PatrollingState : BaseState
                 }
 
 
-                var corners = new List<Vector2>(buildingQueue.Dequeue());
+                var corners = new List<Vector2>(buildingQueue.Dequeue())
+                .Where(x =>
+                {
+
+                    // only take corners that are not inside a active spell
+
+                    var c = Physics2D.OverlapPointAll(x, LayerMask.GetMask(spellTargetLayers));
+
+                    foreach (var collider in c)
+                    {
+
+                        var target = collider.GetComponent<MagicTargetBase>();
+                        if (!target.spellDone)
+                        {
+
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }).ToList();
 
 
                 // patrolling around building can be clockwise or anticlockwise

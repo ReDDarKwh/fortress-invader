@@ -84,6 +84,8 @@ namespace Scripts.Spells
         public void setRadius(float radius)
         {
             this.radius = radius;
+
+            // update inner effects radius
             foreach (var effect in effects)
             {
                 foreach (var child in effect.GetComponentsInChildren<ParticleSystem>().Where(
@@ -94,6 +96,11 @@ namespace Scripts.Spells
                     shape.radius = radius;
                 }
             }
+
+
+            // update collider radius
+
+            this.GetComponent<CircleCollider2D>().radius = radius;
         }
 
         void OnDestroy()
@@ -121,10 +128,10 @@ namespace Scripts.Spells
             circleTarget.effects = circleTarget.spell.spellEffects.Where(x => x.circleEffect != null).Select(effect =>
                     {
 
-                      // init each particleSystems of each spell effect.
+                        // init each particleSystems of each spell effect.
 
-                      var particleSystem = Instantiate(effect.circleEffect, circleTarget.transform.position, Quaternion.identity)
-                        .GetComponent<ParticleSystem>();
+                        var particleSystem = Instantiate(effect.circleEffect, circleTarget.transform.position, Quaternion.identity)
+                          .GetComponent<ParticleSystem>();
 
                         particleSystem.transform.SetParent(circleTarget.transform);
 
@@ -155,7 +162,12 @@ namespace Scripts.Spells
         public override void OnEmitEffect(SpellEffect effect)
         {
             var noiseEmitter = GetComponent<NoiseEmitter>();
-            noiseEmitter.EmitNoise(radius + effect.noiseRadius);
+
+            if (effect.noiseRadius > 0)
+            {
+
+                noiseEmitter.EmitNoise(radius + effect.noiseRadius);
+            }
         }
     }
 

@@ -21,4 +21,5 @@ MonoBehaviour:
   emitOnStart: 0
   effectEntryStates:
   - {fileID: 11400000, guid: 4e5ea01ba8198bd4282f7b717def2485, type: 2}
-  noiseRadius: 2
+  effectEntryEvents: []
+  noiseRadius: 0

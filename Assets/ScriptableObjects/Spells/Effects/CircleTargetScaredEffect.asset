@@ -18,6 +18,7 @@ MonoBehaviour:
   intervalTime: 2
   emissionChance: 1
   emitOnStart: 1
-  effectEntryStates:
-  - {fileID: 11400000, guid: cc4dc6bb4a2c34929acdb95fe440b079, type: 2}
+  effectEntryStates: []
+  effectEntryEvents:
+  - {fileID: 11400000, guid: d80dce4d8549f48f9ab367bdff8d4f3d, type: 2}
   noiseRadius: 0

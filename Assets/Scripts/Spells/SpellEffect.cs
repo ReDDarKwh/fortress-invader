@@ -28,8 +28,8 @@ namespace Scripts.Spells
         public bool emitOnStart;
 
         public List<BaseState> effectEntryStates;
+        public List<BaseEvent> effectEntryEvents;
         public float noiseRadius;
-
     }
 
     // public enum SpellEffectType

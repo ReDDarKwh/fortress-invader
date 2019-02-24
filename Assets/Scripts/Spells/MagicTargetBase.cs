@@ -46,16 +46,22 @@ namespace Scripts.Spells
                     var stateMachine = c.GetComponent<StateMachine>();
                     var msg = new EventMessage { target = this.gameObject };
 
+
+                    // start states directly 
                     foreach (var s in effect.effectEntryStates)
                     {
                         stateMachine.StartState(s, new EventStateLinking
                         {
-                            eventResponse = new EventMessage
-                            {
-                                target = this.gameObject
-                            }
+                            eventResponse = msg
+
                         }, false);
                     }
+
+                    // start states indirecly through events
+                    foreach (var e in effect.effectEntryEvents)
+                        stateMachine.TriggerEvent(e, msg);
+
+
                 }
             }
             OnEmitEffect(effect);
