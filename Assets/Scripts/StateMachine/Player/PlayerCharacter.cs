@@ -34,6 +34,7 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject circleTargetEffectPrefab;
 
     public Transform mouseTransform;
+    private Vector2 moveVector;
 
 
     // Use this for initialization
@@ -174,11 +175,18 @@ public class PlayerCharacter : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
+        this.character.LookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
     }
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + input * this.character.GetSpeed() * Time.fixedDeltaTime);
+
+        moveVector = input * this.character.GetSpeed() * Time.fixedDeltaTime;
+
+        character.MoveDirection = Quaternion.Euler(0, 0, Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg);
+
+        Debug.DrawRay(transform.position, moveVector, Color.red);
+
+        rb.MovePosition(rb.position + moveVector);
     }
     private Vector2 GetMousePos()
     {
