@@ -25,6 +25,11 @@ namespace Scripts.NPC
 
             npc.nav2DAgent.addSeparationIgnored(eventResponse.target);
 
+
+            //clear any character target;
+            npc.characterTarget = null;
+
+
             npc.searchingPosition = eventResponse.target != null ?
                 eventResponse.target.transform.position : (
                     npc.characterTarget == null ?

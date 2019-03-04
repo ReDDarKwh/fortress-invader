@@ -64,6 +64,28 @@ namespace Scripts.NPC
             nav2DAgent.addSeparationIgnored(GameObject.FindWithTag("Player"));
         }
 
+
+        void Update()
+        {
+
+            var angle = Mathf.Atan2(nav2DAgent.velocity.y, nav2DAgent.velocity.x) * Mathf.Rad2Deg;
+            character.moveDirection = Quaternion.Euler(0, 0, angle);
+
+            if (characterTarget != null)
+            {
+                var vec = characterTarget.transform.position - transform.position;
+                character.lookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg);
+            }
+            else
+            {
+                if (nav2DAgent.isMoving)
+                {
+                    character.lookDirection = Quaternion.Euler(0, 0, angle);
+                }
+            }
+
+        }
+
         public void MoveToOrFollow(Vector3 target)
         {
 
@@ -105,7 +127,7 @@ namespace Scripts.NPC
 
             // if is in view cone
             if (!(Quaternion.Angle(
-                  Quaternion.LookRotation(transform.right, Vector3.forward),
+                  Quaternion.LookRotation(character.head.transform.right, Vector3.forward),
                   Quaternion.LookRotation(
                      EnemyToTargetVec.normalized, Vector3.forward)
                     ) < VisionAngle / 2
@@ -113,6 +135,8 @@ namespace Scripts.NPC
                 )
                 return null;
 
+
+            // if not blocked by any walls
             var hit = Physics2D.Raycast(
                 transform.position,
                 EnemyToTargetVec,

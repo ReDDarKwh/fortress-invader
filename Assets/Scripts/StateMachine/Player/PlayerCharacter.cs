@@ -27,13 +27,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private Vector3 lastNoisePosition;
 
-    private GameObject spellTarget;
 
-
-    public GameObject circleTargetPrefab;
-    public GameObject circleTargetEffectPrefab;
-
-    public Transform mouseTransform;
     private Vector2 moveVector;
 
 
@@ -43,48 +37,6 @@ public class PlayerCharacter : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
-
-        spellCaster.selectedSpell.Subscribe(spell =>
-        {
-
-            if (spellTarget != null)
-            {
-                Destroy(spellTarget);
-                spellTarget = null;
-            }
-
-            if (spell == null)
-                return;
-
-            switch (spell.spellTarget)
-            {
-                case SpellTarget.CIRCLE:
-                case SpellTarget.AURA:
-
-                    spellTarget = Instantiate(
-                        circleTargetPrefab);
-
-                    var circleTarget = spellTarget.GetComponent<MagicTargetCircleController>();
-
-                    circleTarget.targetPrefab = circleTargetPrefab;
-                    circleTarget.caster = spellCaster;
-
-
-                    circleTarget.effects = new List<GameObject>() { circleTargetEffectPrefab }.Select(x =>
-                    {
-                        var effectCopy = Instantiate(x);
-                        effectCopy.transform.SetParent(circleTarget.transform);
-                        return effectCopy.GetComponent<ParticleSystem>();
-                    }).ToList();
-
-
-                    circleTarget.follow = spell.spellTarget == SpellTarget.CIRCLE ? mouseTransform : transform;
-                    circleTarget.radius = 2;
-
-                    break;
-
-            }
-        });
 
     }
 
@@ -116,76 +68,32 @@ public class PlayerCharacter : MonoBehaviour
         }
 
 
-        if (spellTarget != null)
+        // change radius for area spells
+        if (spellCaster.spellRadius + Input.GetAxis("Mouse ScrollWheel") * 5 != spellCaster.spellRadius)
         {
-            switch (spellCaster.selectedSpell.Value.spellTarget)
-            {
-                case SpellTarget.CIRCLE:
-                case SpellTarget.AURA:
-
-                    var magicCircleTarget = spellTarget.GetComponent<MagicTargetCircleController>();
-
-                    if (magicCircleTarget.radius + Input.GetAxis("Mouse ScrollWheel") * 5 != magicCircleTarget.radius)
-                    {
-                        // update effect radiuses
-
-                        magicCircleTarget.setRadius(
-                            magicCircleTarget.radius + Input.GetAxis("Mouse ScrollWheel") * 5
-                        );
-
-                    }
-
-                    break;
-            }
-
-
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                var magicTarget = spellTarget.GetComponent<MagicTargetBase>();
-
-
-
-                // if (spellCaster.currentMana.Value > 0)
-                // {
-
-                magicTarget.Cast();
-
-                // }
-                // else
-                // {
-
-                //     Debug.Log("NOT ENOUGH MANA");
-                // }
-
-            }
-
-            // if (Input.GetKeyDown(KeyCode.P) && Time.timeScale == 0)
-            // {
-            //     Time.timeScale = 1;
-            // }
-
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Time.timeScale = 0;
-            }
-
+            // update effect radiuses
+            spellCaster.spellRadius = spellCaster.spellRadius + Input.GetAxis("Mouse ScrollWheel") * 5;
         }
+
+        // cast spell on click;
+        if (Input.GetMouseButtonUp(0))
+        {
+            spellCaster.Cast();
+        }
+
     }
 
     void LateUpdate()
     {
-        this.character.LookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
-    }
-    void FixedUpdate()
-    {
-
         moveVector = input * this.character.GetSpeed() * Time.fixedDeltaTime;
 
-        character.MoveDirection = Quaternion.Euler(0, 0, Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg);
+        character.moving = moveVector.magnitude > 0;
+        character.lookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
+        character.moveDirection = Quaternion.Euler(0, 0, Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg);
+    }
 
-        Debug.DrawRay(transform.position, moveVector, Color.red);
-
+    void FixedUpdate()
+    {
         rb.MovePosition(rb.position + moveVector);
     }
     private Vector2 GetMousePos()

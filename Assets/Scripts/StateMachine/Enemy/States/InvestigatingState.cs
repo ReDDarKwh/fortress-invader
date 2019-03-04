@@ -25,7 +25,9 @@ public class InvestigatingState : BaseState
     override public void StateUpdate(StateMachine stateMachine, ActiveLinking activeLinking)
     {
 
-        stateMachine.transform.rotation = Quaternion.Euler(
+        var c = stateMachine.GetComponent<Character>();
+
+        c.lookDirection = Quaternion.Euler(
             activeLinking.GetValueOrDefault<Quaternion>("start_rotation").eulerAngles +
             Vector3.forward * Mathf.Lerp(-lookAroundAngle, lookAroundAngle, (Mathf.Sin((Time.time - activeLinking.timeStarted) * rotationSpeed) + 1) / 2)
         );

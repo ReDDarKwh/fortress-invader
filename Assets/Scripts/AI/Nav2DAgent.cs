@@ -68,9 +68,11 @@ namespace Scripts.AI
         private Vector3 startPos;
         private Rigidbody2D rb;
         private float yVelocity = 0.0f;
-        private Vector2 velocity = Vector2.zero;
 
 
+        public Vector2 velocity = Vector2.zero;
+
+        private Character character;
 
 
 
@@ -92,9 +94,14 @@ namespace Scripts.AI
                 case NavAgentMode.PATH_FINDING:
 
                     //Debug.Log("Requested path");
-
                     isWaitingForPath = true;
-                    navGrid.RequestPath(transform.position, worldPos, this.gameObject.GetInstanceID(), PathCallback);
+                    navGrid.RequestPath(
+                        transform.position,
+                        worldPos,
+                        this.gameObject.GetInstanceID(),
+                        PathCallback
+                    );
+
                     break;
 
                 case NavAgentMode.DIRECT:
@@ -151,6 +158,8 @@ namespace Scripts.AI
             rb = GetComponent<Rigidbody2D>();
             navGrid = GameObject.FindGameObjectWithTag("MainNavGrid").GetComponent<Nav2D>();
             path = new ConcurrentStack<Vector3>();
+
+            character = GetComponent<Character>();
         }
 
         // Update is called once per frame
@@ -176,21 +185,27 @@ namespace Scripts.AI
 
             rb.MovePosition(rb.position + velocity);
 
+
+            // set if character is moving for animations
+            character.moving = isMoving;
+
+
+            // set rotation if moving
             if (isMoving)
             {
-                var angle = Mathf.SmoothDampAngle(
-                    rb.transform.rotation.eulerAngles.z,
-                    Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg,
-                    ref yVelocity,
-                    smoothAngleTime
-                );
-                rb.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                //rb.transform.rotation = Quaternion.Euler(0, 0, angle);
+
 
                 if ((transform.position - currentTarget).magnitude < targetsRadius)
                 {
                     setNextTarget();
                 }
             }
+
+
+
+
         }
 
 

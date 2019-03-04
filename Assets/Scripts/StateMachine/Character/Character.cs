@@ -51,14 +51,14 @@ public class Character : MonoBehaviour
     [System.NonSerialized]
     public EffectIndicatorController effectIndicators;
 
+    [System.NonSerialized]
+    public Quaternion lookDirection;
 
     [System.NonSerialized]
-    public Quaternion LookDirection;
-
-
+    public Quaternion moveDirection;
 
     [System.NonSerialized]
-    public Quaternion MoveDirection;
+    public bool moving;
 
 
 
@@ -152,25 +152,59 @@ public class Character : MonoBehaviour
     {
 
         // rotate head and body
-        this.head.transform.rotation = LookDirection;
+        this.head.transform.rotation = lookDirection;
 
 
         // rotate body
 
-        float zAngle = Mathf.SmoothDampAngle(this.bodyObject.transform.eulerAngles.z, LookDirection.eulerAngles.z, ref zBodyVelocity, bodyRotationSmoothness);
+        float zAngle = Mathf.SmoothDampAngle(this.bodyObject.transform.eulerAngles.z, lookDirection.eulerAngles.z, ref zBodyVelocity, bodyRotationSmoothness);
 
         this.bodyObject.transform.rotation = Quaternion.Euler(0, 0, zAngle);
 
 
+
+        // compare look and moving direction to choose appropriate leg animation
+
+        var moveAndLookDirectionDifference = Quaternion.Euler(moveDirection.eulerAngles - lookDirection.eulerAngles);
+
+
+        var legAngle = moveDirection.eulerAngles.z;
+
+
+        if (moving)
+        {
+            legsAnimator.SetBool("Walking", true);
+            if (
+                moveAndLookDirectionDifference.eulerAngles.z >= 135
+                && moveAndLookDirectionDifference.eulerAngles.z <= 225
+            )
+            {
+                legAngle += 180;
+                legsAnimator.SetBool("Reversed", true);
+            }
+            else
+            {
+                legsAnimator.SetBool("Reversed", false);
+            }
+
+            zAngle = Mathf.SmoothDampAngle(this.legsObject.transform.eulerAngles.z, legAngle, ref zLegsVelocity, legsRotationSmoothness);
+        }
+        else
+        {
+
+            legsAnimator.SetBool("Walking", false);
+        }
+
+
         // rotate legs
-
-
-        zAngle = Mathf.SmoothDampAngle(this.legsObject.transform.eulerAngles.z, MoveDirection.eulerAngles.z, ref zLegsVelocity, legsRotationSmoothness);
 
         this.legsObject.transform.rotation = Quaternion.Euler(0, 0, zAngle);
 
 
+        // set leg animation speed
 
+
+        this.legsAnimator.speed = GetSpeed() / baseMovementSpeed;
 
 
     }

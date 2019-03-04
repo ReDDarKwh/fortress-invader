@@ -10,10 +10,15 @@ using Scripts.Characters;
 
 namespace Scripts.Spells
 {
+
+
+
+
     public abstract class MagicTargetBase : MonoBehaviour
     {
         public Spell spell;
         public Nav2D nav2D;
+
 
 
         public float addedNodeTravelCost = 10;
