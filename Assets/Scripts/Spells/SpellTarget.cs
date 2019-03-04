@@ -9,10 +9,10 @@ namespace Scripts.Spells
 {
     public enum SpellTarget
     {
-        MISSILE,
-        SELF, // relative to player
+        MISSILE, // todo
+        SELF, // todo; relative to player
         AURA, // relative to player
-        CONE,
+        CONE, // doto
         CIRCLE,
         SQUARE,
         LASER, // relative to player
