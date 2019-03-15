@@ -83,6 +83,9 @@ namespace Scripts.Spells
         protected void BaseStart()
         {
 
+
+            selectedCharacters = new List<Character>();
+
             // if null magic target is for selection only (doest have effects)
             if (spell == null)
                 return;
@@ -93,7 +96,7 @@ namespace Scripts.Spells
             activeSpellEffects = new List<SpellEffect>(spell.spellEffects);
             lastEmissionTimes = new Dictionary<SpellEffect, float>();
 
-            selectedCharacters = new List<Character>();
+
 
             foreach (var effect in activeSpellEffects)
             {

@@ -28,6 +28,8 @@ public class PlayerHUDController : MonoBehaviour
 
     public GameObject spellSlotPrefab;
 
+    public GameObject spellMouseUI;
+
 
     private float vel = 0.0f;
 
@@ -75,6 +77,10 @@ public class PlayerHUDController : MonoBehaviour
             playerCharacter.character.currentHealth.Value / playerCharacter.character.maxHealth.Value,
             ref vel, 0.1f
        );
+
+
+
+
 
     }
 }

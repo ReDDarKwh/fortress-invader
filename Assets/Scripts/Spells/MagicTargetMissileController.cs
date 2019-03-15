@@ -16,9 +16,7 @@ namespace Scripts.Spells
             BaseStart();
         }
 
-        void UpdateRadius()
-        {
-        }
+
 
         // Update is called once per frame
         void Update()
@@ -63,6 +61,11 @@ namespace Scripts.Spells
         // used when controller is for selection only
         public override void Cast()
         {
+
+
+
+
+
 
         }
 
