@@ -19,6 +19,8 @@ namespace Scripts.Spells
         public List<Spell> spells;
 
 
+
+        public GameObject missileTargetPrefab;
         public GameObject circleTargetPrefab;
         public GameObject circleTargetEffectPrefab;
         public Transform targetTransform;
@@ -46,6 +48,12 @@ namespace Scripts.Spells
                     case SpellTarget.CIRCLE:
                     case SpellTarget.AURA:
                         bodyAnimator.SetTrigger("CastSpell");
+                        break;
+
+                    case SpellTarget.MISSILE:
+
+                        bodyAnimator.SetTrigger("CastSpell");
+
                         break;
 
                 }
@@ -101,6 +109,17 @@ namespace Scripts.Spells
 
                         circleTarget.follow = spell.spellTarget == SpellTarget.CIRCLE ? targetTransform : transform;
                         circleTarget.radius = 2;
+
+                        break;
+                    case SpellTarget.MISSILE:
+
+                        spellTarget = Instantiate(missileTargetPrefab);
+
+                        var missileTarget = spellTarget.GetComponent<MagicTargetMissileController>();
+
+                        missileTarget.follow = targetTransform;
+                        missileTarget.caster = this;
+                        missileTarget.targetPrefab = missileTargetPrefab;
 
                         break;
 

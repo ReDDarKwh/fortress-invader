@@ -18,6 +18,14 @@ namespace Scripts.Spells
     {
         public Spell spell;
         public Nav2D nav2D;
+        public SpellCaster caster;
+
+        public Transform follow;
+
+        public GameObject targetPrefab;
+
+
+        public bool active = true;
 
 
 
@@ -84,6 +92,8 @@ namespace Scripts.Spells
             startTime = Time.time;
             activeSpellEffects = new List<SpellEffect>(spell.spellEffects);
             lastEmissionTimes = new Dictionary<SpellEffect, float>();
+
+            selectedCharacters = new List<Character>();
 
             foreach (var effect in activeSpellEffects)
             {

@@ -165,7 +165,6 @@ namespace Scripts.AI
         // Update is called once per frame
         void Update()
         {
-
             if (this.path != null)
             {
                 for (var i = 1; i < this.path.Count; i++)
@@ -175,15 +174,14 @@ namespace Scripts.AI
                 }
             }
 
-
             Vector2 desiredVelocity = ((isMoving ? (currentTarget - transform.position).normalized : Vector3.zero) +
-             computeSeparation()) * Time.deltaTime * speed;
+             computeSeparation()) * Time.fixedDeltaTime * speed;
 
             var sterring = Vector2.ClampMagnitude((desiredVelocity - velocity), maxSteeringForce) / mass;
 
             velocity = Vector2.ClampMagnitude(velocity + sterring, maxSteeringSpeed);
 
-            rb.MovePosition(rb.position + velocity);
+
 
 
             // set if character is moving for animations
@@ -202,10 +200,11 @@ namespace Scripts.AI
                     setNextTarget();
                 }
             }
+        }
 
-
-
-
+        void FixedUpdate()
+        {
+            rb.MovePosition(rb.position + velocity);
         }
 
 

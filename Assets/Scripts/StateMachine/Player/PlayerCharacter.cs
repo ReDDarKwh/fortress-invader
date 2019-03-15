@@ -81,6 +81,15 @@ public class PlayerCharacter : MonoBehaviour
             spellCaster.Cast();
         }
 
+        if (Input.GetAxisRaw("Pause") == 1)
+        {
+            Time.timeScale = 0.05f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
     }
 
     void LateUpdate()

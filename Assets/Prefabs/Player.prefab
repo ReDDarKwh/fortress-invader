@@ -6474,7 +6474,7 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -6511,6 +6511,9 @@ MonoBehaviour:
   spells:
   - {fileID: 11400000, guid: 743ab4f3e410e3141b9a9c03a742ec42, type: 2}
   - {fileID: 11400000, guid: 8619047fcfcf146f0b0b5dd95137ed5b, type: 2}
+  - {fileID: 11400000, guid: 1523449fb151d994787ff0ed8b4e52b9, type: 2}
+  missileTargetPrefab: {fileID: 7064697634167123902, guid: 5e5f4a7cb3e1fc948861b3d9dfb3c90a,
+    type: 3}
   circleTargetPrefab: {fileID: 1747648239025686, guid: 67026083b70947e43b5d3f0ae68e5040,
     type: 3}
   circleTargetEffectPrefab: {fileID: 1589824754939224, guid: 91ea7bee455489a4a9f7cd319a72c2f8,

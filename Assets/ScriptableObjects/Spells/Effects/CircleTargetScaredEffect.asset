@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: circle target scared
   circleEffect: {fileID: 0}
-  duration: 1
-  intervalTime: 2
+  duration: 2
+  intervalTime: 1
   emissionChance: 1
-  emitOnStart: 1
+  emitOnStart: 0
   effectEntryStates: []
   effectEntryEvents:
   - {fileID: 11400000, guid: d80dce4d8549f48f9ab367bdff8d4f3d, type: 2}

@@ -9,13 +9,9 @@ namespace Scripts.Spells
     public class MagicTargetCircleController : MagicTargetBase
     {
 
-        public Transform follow;
-        public SpellCaster caster;
-        public GameObject targetPrefab;
+
+
         public List<ParticleSystem> effects;
-
-        public bool active = true;
-
         public float radius;
 
 
