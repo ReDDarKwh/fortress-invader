@@ -79,8 +79,35 @@ public class PlayerHUDController : MonoBehaviour
        );
 
 
+        if (playerCharacter.spellCaster.selectedSpell.Value != null && playerCharacter.spellCaster.selectedSpell.Value.spellTarget == SpellTarget.MISSILE)
+        {
+
+
+            // if (playerCharacter.spellCaster.spellTarget != null)
+            // {
+
+
+            // }
+
+            var missileTarget = playerCharacter.spellCaster.spellTarget.GetComponent<MagicTargetMissileController>();
+
+            var missileTargetSelectedText = spellMouseUI.GetComponent<Text>();
+
+            missileTargetSelectedText.text = $"{missileTarget.selectedCharacters.Count}/{missileTarget.maxTargets}";
+
+
+            spellMouseUI.transform.position = Input.mousePosition;
+            spellMouseUI.SetActive(true);
+        }
+        else
+        {
+
+            spellMouseUI.SetActive(false);
+        }
 
 
 
     }
+
+
 }

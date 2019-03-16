@@ -32,7 +32,8 @@ namespace Scripts.Spells
         public float addedNodeTravelCost = 10;
 
 
-        protected List<Character> selectedCharacters;
+        [System.NonSerialized]
+        public HashSet<Character> selectedCharacters;
         protected float startTime;
 
 
@@ -84,7 +85,7 @@ namespace Scripts.Spells
         {
 
 
-            selectedCharacters = new List<Character>();
+            selectedCharacters = new HashSet<Character>();
 
             // if null magic target is for selection only (doest have effects)
             if (spell == null)

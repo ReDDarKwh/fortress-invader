@@ -22,7 +22,6 @@ namespace Scripts.Spells
         {
             BaseStart();
             setRadius(radius);
-            selectedCharacters = new List<Character>();
 
 
             if (spell != null)

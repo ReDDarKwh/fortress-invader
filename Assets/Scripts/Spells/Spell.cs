@@ -19,7 +19,15 @@ namespace Scripts.Spells
         public List<SpellEffect> spellEffects;
         public SpellTarget spellTarget;
 
+
         public float manaCost;
+
+        [Header("Missile target settings")]
+        public int maxTargets;
+
+        [Header("Circle/Aura target settings")]
+        public float maxRadius;
+
     }
 }
 

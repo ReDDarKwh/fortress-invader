@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: EnemySelectedMaterial
   m_Shader: {fileID: 4800000, guid: 305dc7b3b181de549ac2348714cbcc40, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -79,6 +80,7 @@ Material:
     - Vector1_257C7224: 2
     - Vector1_37DAC0D6: 1
     - Vector1_7AF5E7DB: 0.2
+    - Vector1_C4BF1058: 20.65
     - Vector1_E165A05C: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5

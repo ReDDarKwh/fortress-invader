@@ -31,7 +31,8 @@ namespace Scripts.Spells
         public float spellRadius;
 
 
-        private GameObject spellTarget;
+
+        public GameObject spellTarget { private set; get; }
 
 
         public void Cast()
@@ -52,7 +53,7 @@ namespace Scripts.Spells
 
                     case SpellTarget.MISSILE:
 
-                        bodyAnimator.SetTrigger("CastSpell");
+                        //bodyAnimator.SetTrigger("CastSpell");
 
                         break;
 
@@ -120,6 +121,8 @@ namespace Scripts.Spells
                         missileTarget.follow = targetTransform;
                         missileTarget.caster = this;
                         missileTarget.targetPrefab = missileTargetPrefab;
+
+                        missileTarget.maxTargets = spell.maxTargets;
 
                         break;
 

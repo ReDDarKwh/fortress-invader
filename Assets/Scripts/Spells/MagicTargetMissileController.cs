@@ -11,6 +11,8 @@ namespace Scripts.Spells
 
         //public ParticleSystem particlesSystemParent;
 
+        public int maxTargets;
+
         void Start()
         {
             BaseStart();
@@ -21,7 +23,7 @@ namespace Scripts.Spells
         // Update is called once per frame
         void Update()
         {
-            // transform.position = follow.position;
+            transform.position = follow.position;
 
             // // update spell selected characters
 
@@ -62,11 +64,23 @@ namespace Scripts.Spells
         public override void Cast()
         {
 
+            var collider = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("AI", "Player"));
 
+            if (collider != null)
+            {
+                var character = collider.GetComponent<Character>();
 
+                if (selectedCharacters.Contains(character))
+                {
+                    selectedCharacters.Remove(character);
+                }
+                else
+                {
+                    selectedCharacters.Add(character);
+                }
 
-
-
+                character.IsSelected.Value = !character.IsSelected.Value;
+            }
         }
 
         public override void Dispell()
