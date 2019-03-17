@@ -15,6 +15,8 @@ MonoBehaviour:
   effectName: explosion
   circleEffect: {fileID: 1532170719443450, guid: a8defaabaae5fdb4bb2e027df3144d89,
     type: 3}
+  missileEffect: {fileID: 4532959935960884359, guid: 34147821240d451458bab2d9f1f40ed8,
+    type: 3}
   duration: 1
   intervalTime: 2
   emissionChance: 1
@@ -23,4 +25,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbbbf4cd8db87f7488737ab236a04f2b, type: 2}
   - {fileID: 11400000, guid: c4a490958c2d19543a07c584ab352119, type: 2}
   - {fileID: 11400000, guid: c247c4bed5e5fa94a8d4827d0aadb4c8, type: 2}
+  effectEntryEvents: []
   noiseRadius: 50

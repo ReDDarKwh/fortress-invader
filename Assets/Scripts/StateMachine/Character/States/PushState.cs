@@ -15,7 +15,7 @@ public class PushState : BaseState
 
     public override void Enter(StateMachine stateMachine, EventMessage eventResponse, ActiveLinking activeLinking)
     {
-        activeLinking.linkingProperties.Add("push_position", eventResponse.target);
+        activeLinking.linkingProperties.Add("push_position", eventResponse.pos);
     }
     public override void Leave(StateMachine stateMachine)
     {
@@ -25,7 +25,7 @@ public class PushState : BaseState
     {
         var rb = stateMachine.GetComponent<Rigidbody2D>();
         rb.AddForce((
-            activeLinking.GetValueOrDefault<GameObject>("push_position").transform.position - rb.transform.position
+            activeLinking.GetValueOrDefault<Vector3>("push_position") - rb.transform.position
             ).normalized * force, ForceMode2D.Impulse
         );
         //Debug.Log("Added force");

@@ -34,9 +34,17 @@ namespace Scripts.Spells
 
         [System.NonSerialized]
         public HashSet<Character> selectedCharacters;
+
+
+        // used by effects to know where spell came from (ex: for explosion push direction)
+        [System.NonSerialized]
+        public Vector3 SpellOrigin;
+
+
         protected float startTime;
 
 
+        public List<ParticleSystem> effects;
         private List<SpellEffect> activeSpellEffects;
         private Dictionary<SpellEffect, float> lastEmissionTimes;
 
@@ -51,6 +59,8 @@ namespace Scripts.Spells
 
         public abstract void Dispell();
 
+
+
         private void EmitEffect(SpellEffect effect)
         {
             foreach (var c in selectedCharacters)
@@ -58,7 +68,7 @@ namespace Scripts.Spells
                 if (Random.value < effect.emissionChance)
                 {
                     var stateMachine = c.GetComponent<StateMachine>();
-                    var msg = new EventMessage { target = this.gameObject };
+                    var msg = new EventMessage { pos = SpellOrigin };
 
 
                     // start states directly 
@@ -74,8 +84,6 @@ namespace Scripts.Spells
                     // start states indirecly through events
                     foreach (var e in effect.effectEntryEvents)
                         stateMachine.TriggerEvent(e, msg);
-
-
                 }
             }
             OnEmitEffect(effect);
@@ -84,8 +92,11 @@ namespace Scripts.Spells
         protected void BaseStart()
         {
 
+            if (selectedCharacters == null)
+            {
+                selectedCharacters = new HashSet<Character>();
+            }
 
-            selectedCharacters = new HashSet<Character>();
 
             // if null magic target is for selection only (doest have effects)
             if (spell == null)
@@ -106,10 +117,6 @@ namespace Scripts.Spells
                     effect.emitOnStart ? float.MinValue : startTime
                 );
             }
-
-
-
-
 
         }
 
@@ -139,9 +146,7 @@ namespace Scripts.Spells
                 {
                     lastEmissionTimes[effect] = Time.time;
 
-
                     EmitEffect(effect);
-
                 }
             }
 
@@ -157,12 +162,11 @@ namespace Scripts.Spells
         private void BeforeDispell()
         {
             //remove nav2d nodes cost
-            foreach (var item in affectedNodes)
-            {
-
-                item.travelCost -= addedNodeTravelCost;
-
-            }
+            if (affectedNodes != null)
+                foreach (var item in affectedNodes)
+                {
+                    item.travelCost -= addedNodeTravelCost;
+                }
         }
     }
 }

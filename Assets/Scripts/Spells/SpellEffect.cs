@@ -16,6 +16,8 @@ namespace Scripts.Spells
         public string effectName;
         public GameObject circleEffect;
 
+        public GameObject missileEffect;
+
         [Tooltip("Total time the effect can be emitted")]
         public float duration;
 

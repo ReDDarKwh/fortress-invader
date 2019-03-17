@@ -30,6 +30,10 @@ public class PlayerHUDController : MonoBehaviour
 
     public GameObject spellMouseUI;
 
+    public GameObject castSpellText;
+
+    public GameObject spellSelectionImage;
+
 
     private float vel = 0.0f;
 
@@ -45,6 +49,23 @@ public class PlayerHUDController : MonoBehaviour
         });
 
 
+        playerCharacter.spellCaster.selectedSpell.Subscribe(x =>
+        {
+            switch (x?.spellTarget)
+            {
+                case SpellTarget.MISSILE:
+                    spellMouseUI.SetActive(true);
+                    castSpellText.SetActive(true);
+
+                    break;
+
+                default:
+                    spellMouseUI.SetActive(false);
+                    castSpellText.SetActive(false);
+
+                    break;
+            }
+        });
 
 
         for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
@@ -79,33 +100,42 @@ public class PlayerHUDController : MonoBehaviour
        );
 
 
+        // missile number selected display logic
         if (playerCharacter.spellCaster.selectedSpell.Value != null && playerCharacter.spellCaster.selectedSpell.Value.spellTarget == SpellTarget.MISSILE)
         {
-
-
-            // if (playerCharacter.spellCaster.spellTarget != null)
-            // {
-
-
-            // }
-
             var missileTarget = playerCharacter.spellCaster.spellTarget.GetComponent<MagicTargetMissileController>();
-
             var missileTargetSelectedText = spellMouseUI.GetComponent<Text>();
 
             missileTargetSelectedText.text = $"{missileTarget.selectedCharacters.Count}/{missileTarget.maxTargets}";
-
-
             spellMouseUI.transform.position = Input.mousePosition;
-            spellMouseUI.SetActive(true);
+        }
+
+
+        // missile selection box logic
+        if (playerCharacter.selectingTargets)
+        {
+            spellSelectionImage.SetActive(true);
+
+            var rectTransform = spellSelectionImage.GetComponent<RectTransform>();
+
+
+            var selectingViewportPos = Camera.main.WorldToScreenPoint(playerCharacter.selectingTargetsStartPos);
+
+            var width = Input.mousePosition.x - selectingViewportPos.x;
+            var height = selectingViewportPos.y - Input.mousePosition.y;
+
+            rectTransform.position = selectingViewportPos;
+
+            rectTransform.position = new Vector2(width > 0 ? selectingViewportPos.x : Input.mousePosition.x,
+
+             height > 0 ? selectingViewportPos.y : Input.mousePosition.y);
+
+            rectTransform.sizeDelta = new Vector2(Mathf.Abs(width), Mathf.Abs(height));
         }
         else
         {
-
-            spellMouseUI.SetActive(false);
+            spellSelectionImage.SetActive(false);
         }
-
-
 
     }
 

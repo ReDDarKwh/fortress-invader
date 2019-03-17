@@ -35,7 +35,7 @@ namespace Scripts.Spells
         public GameObject spellTarget { private set; get; }
 
 
-        public void Cast()
+        public void Cast(bool specialCast)
         {
             if (spellTarget != null)
             {
@@ -49,19 +49,26 @@ namespace Scripts.Spells
                     case SpellTarget.CIRCLE:
                     case SpellTarget.AURA:
                         bodyAnimator.SetTrigger("CastSpell");
+
+                        spellTarget.GetComponent<MagicTargetBase>().Cast();
                         break;
 
                     case SpellTarget.MISSILE:
 
                         //bodyAnimator.SetTrigger("CastSpell");
+                        var missileTarget = spellTarget.GetComponent<MagicTargetMissileController>();
 
+                        if (specialCast)
+                        {
+                            missileTarget.Select();
+                        }
+                        else
+                        {
+                            bodyAnimator.SetTrigger("CastSpell");
+                            missileTarget.Cast();
+                        }
                         break;
-
                 }
-
-                spellTarget.GetComponent<MagicTargetBase>().Cast();
-
-
 
             }
 

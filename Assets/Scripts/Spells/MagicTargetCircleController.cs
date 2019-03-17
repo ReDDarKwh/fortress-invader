@@ -11,7 +11,7 @@ namespace Scripts.Spells
 
 
 
-        public List<ParticleSystem> effects;
+
         public float radius;
 
 
@@ -21,8 +21,8 @@ namespace Scripts.Spells
         void Start()
         {
             BaseStart();
-            setRadius(radius);
 
+            setRadius(radius);
 
             if (spell != null)
             {
@@ -35,10 +35,7 @@ namespace Scripts.Spells
                     item.travelCost += addedNodeTravelCost;
                 }
                 //
-
             }
-
-
         }
 
         void UpdateRadius()
@@ -119,6 +116,7 @@ namespace Scripts.Spells
 
             circleTarget.caster = caster;
             circleTarget.spell = caster.selectedSpell.Value;
+            circleTarget.SpellOrigin = spellTarget.transform.position;
 
             circleTarget.effects = circleTarget.spell.spellEffects.Where(x => x.circleEffect != null).Select(effect =>
                     {
@@ -164,6 +162,8 @@ namespace Scripts.Spells
                 noiseEmitter.EmitNoise(radius + effect.noiseRadius);
             }
         }
+
+
     }
 
 }

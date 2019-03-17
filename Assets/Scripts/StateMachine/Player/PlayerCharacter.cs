@@ -31,12 +31,28 @@ public class PlayerCharacter : MonoBehaviour
     private Vector2 moveVector;
 
 
+    private bool specialCastKeydown;
+
+
+
+    [System.NonSerialized]
+    public bool selectingTargets;
+
+    [System.NonSerialized]
+    public Vector3 selectingTargetsStartPos;
+
+
+
+
     // Use this for initialization
     void Start()
     {
 
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+
+
+
 
     }
 
@@ -78,7 +94,18 @@ public class PlayerCharacter : MonoBehaviour
         // cast spell on click;
         if (Input.GetMouseButtonUp(0))
         {
-            spellCaster.Cast();
+            spellCaster.Cast(true);
+        }
+
+        if (Input.GetAxisRaw("Cast Spell") == 1 && !specialCastKeydown)
+        {
+            specialCastKeydown = true;
+            spellCaster.Cast(false);
+        }
+
+        if (Input.GetAxisRaw("Cast Spell") == 0)
+        {
+            specialCastKeydown = false;
         }
 
         if (Input.GetAxisRaw("Pause") == 1)
@@ -88,6 +115,38 @@ public class PlayerCharacter : MonoBehaviour
         else
         {
             Time.timeScale = 1;
+        }
+
+
+        if (spellCaster.selectedSpell.Value != null && spellCaster.selectedSpell.Value.spellTarget == SpellTarget.MISSILE)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                selectingTargetsStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+
+            selectingTargets = Input.GetMouseButton(0);
+
+            if (selectingTargets)
+            {
+
+
+                var mousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                var width = mousePosWorld.x - selectingTargetsStartPos.x;
+
+                var height = mousePosWorld.y - selectingTargetsStartPos.y;
+
+
+                var pos = new Vector3(width > 0 ? selectingTargetsStartPos.x : mousePosWorld.x, height > 0 ? selectingTargetsStartPos.y : mousePosWorld.y);
+
+
+                spellCaster.spellTarget.GetComponent<MagicTargetMissileController>().SelectRect(pos + new Vector3(Mathf.Abs(width) / 2, Mathf.Abs(height) / 2),
+
+                    new Vector2(Mathf.Abs(width), Mathf.Abs(height))
+                );
+            }
+
         }
 
     }
@@ -111,5 +170,8 @@ public class PlayerCharacter : MonoBehaviour
         mousePos.z = -cam.transform.position.z;
         return cam.ScreenToWorldPoint(mousePos);
     }
+
+
+
 }
 

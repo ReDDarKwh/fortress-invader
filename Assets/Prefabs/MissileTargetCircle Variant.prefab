@@ -19,7 +19,11 @@ MonoBehaviour:
   targetPrefab: {fileID: 0}
   active: 1
   addedNodeTravelCost: 10
+  effects: []
   spellDone: 0
+  missileInitialForce: 2
+  missilePrefab: {fileID: 206514442718993009, guid: f168bdc03a6779a41b34fd471319955d,
+    type: 3}
 --- !u!1001 &7065281861662560680
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ namespace Scripts.AI
         private Rigidbody2D rb;
         private float yVelocity = 0.0f;
 
-
+        [System.NonSerialized]
         public Vector2 velocity = Vector2.zero;
 
         private Character character;

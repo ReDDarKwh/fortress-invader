@@ -15,7 +15,7 @@ PlayerSettings:
   companyName: DefaultCompany
   productName: FortressInvader
   defaultCursor: {fileID: 2800000, guid: 8d58b1dfa49168640ad4f34a9cea9e20, type: 3}
-  cursorHotspot: {x: 8, y: 8}
+  cursorHotspot: {x: 7, y: 7}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
