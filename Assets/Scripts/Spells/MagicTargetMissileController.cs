@@ -143,6 +143,11 @@ namespace Scripts.Spells
         public void SelectRect(Vector2 point, Vector2 size)
         {
 
+            if (size.magnitude < 1)
+            {
+                return;
+            }
+
             DebugDrawBox(point, size, 0, Color.red, 0);
 
             var colliders = Physics2D.OverlapBoxAll(point, size, 0, LayerMask.GetMask("AI"));

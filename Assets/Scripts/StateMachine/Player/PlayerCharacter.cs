@@ -129,24 +129,16 @@ public class PlayerCharacter : MonoBehaviour
 
             if (selectingTargets)
             {
-
-
                 var mousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
                 var width = mousePosWorld.x - selectingTargetsStartPos.x;
-
                 var height = mousePosWorld.y - selectingTargetsStartPos.y;
-
-
                 var pos = new Vector3(width > 0 ? selectingTargetsStartPos.x : mousePosWorld.x, height > 0 ? selectingTargetsStartPos.y : mousePosWorld.y);
-
 
                 spellCaster.spellTarget.GetComponent<MagicTargetMissileController>().SelectRect(pos + new Vector3(Mathf.Abs(width) / 2, Mathf.Abs(height) / 2),
 
                     new Vector2(Mathf.Abs(width), Mathf.Abs(height))
                 );
             }
-
         }
 
     }
