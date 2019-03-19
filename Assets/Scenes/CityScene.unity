@@ -184,13 +184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599118f2e931d0540b555dcb3d59f8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 100
-  seed: 3202
-  relaxIterations: 41
+  size: 200
+  seed: 179
+  relaxIterations: 0
   numberOfPatches: 15
-  snapDistance: 0
-  voronoiPointNumber: 120
+  snapDistance: 1
   heightMapSettings: {fileID: 11400000, guid: 65ac763f7da30544a921aa3dce35932f, type: 2}
+  pointGeneration: 1
+  pointSpacing: 10
 --- !u!4 &768672281
 Transform:
   m_ObjectHideFlags: 0
