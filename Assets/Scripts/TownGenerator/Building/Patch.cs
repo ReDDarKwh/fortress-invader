@@ -1,4 +1,4 @@
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TownGenerator.Geom;
@@ -16,7 +16,7 @@ namespace TownGenerator.Building
         public bool withinWalls;
         public bool withinCity;
 
-        public Patch(List<Vector2> vertices)
+        public Patch(List<Point> vertices)
         {
             this.shape = new Polygon(vertices);
             withinCity = false;
@@ -24,7 +24,18 @@ namespace TownGenerator.Building
         }
         public static Patch fromRegion(Region r)
         {
-            return new Patch(r.vertices.Select(x => x.c).ToList());
+            return new Patch(r.vertices.Select(x =>
+            {
+
+                if (float.IsNaN(x.c.x))
+                {
+
+                    Debug.Log("wyh?");
+                }
+
+                return x.c;
+
+            }).ToList());
         }
     }
 }

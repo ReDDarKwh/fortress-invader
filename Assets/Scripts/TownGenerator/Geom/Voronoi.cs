@@ -2,7 +2,7 @@
 
 
 
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,34 +11,48 @@ using System.Linq;
 namespace TownGenerator.Geom
 {
 
-    class Voronoi
+    public class Voronoi
     {
         public List<Triangle> triangles;
 
-        public Dictionary<Vector2, Region> regions;
-        private bool _regionsDirty;
-        private Dictionary<Vector2, Region> _regions;
+        public Dictionary<Point, Region> regions
+        {
+            get
+            {
 
-        public List<Vector2> points;
-        public List<Vector2> frame;
+                return get_the_regions();
+            }
+        }
+        private bool _regionsDirty;
+        private Dictionary<Point, Region> _regions;
+
+        public List<Point> points;
+        public List<Point> frame;
 
         public Voronoi(float minx, float miny, float maxx, float maxy)
         {
 
             triangles = new List<Triangle>();
 
-            var c1 = new Vector2(minx, miny);
-            var c2 = new Vector2(minx, maxy);
-            var c3 = new Vector2(maxx, miny);
-            var c4 = new Vector2(maxx, maxy);
-            frame = new List<Vector2> { c1, c2, c3, c4 };
-            points = new List<Vector2> { c1, c2, c3, c4 };
+            var c1 = new Point(minx, miny);
+            var c2 = new Point(minx, maxy);
+            var c3 = new Point(maxx, miny);
+            var c4 = new Point(maxx, maxy);
+            frame = new List<Point> { c1, c2, c3, c4 };
+            points = new List<Point> { c1, c2, c3, c4 };
             triangles.Add(new Triangle(c1, c2, c3));
             triangles.Add(new Triangle(c2, c3, c4));
 
             // Maybe we shouldn't do it beause these temporary
             // regions will be discarded anyway
-            _regions = null; //points.ToDictionary(x => buildRegion(x),);
+
+            _regions = new Dictionary<Point, Region>();
+
+            foreach (var p in points)
+            {
+                _regions[p] = buildRegion(p);
+            }
+            //points.ToDictionary(x => buildRegion(x),);
             _regionsDirty = false;
         }
 
@@ -46,12 +60,15 @@ namespace TownGenerator.Geom
 	* Adds a point to the list and updates the list of triangles
 	* @param p a point to add
 	**/
-        public void addPoint(Vector2 p)
+        public void addPoint(Point p)
         {
+
+
+
             var toSplit = new List<Triangle>();
             foreach (var tr in triangles)
             {
-                if ((p - tr.c).magnitude < tr.r)
+                if ((p.vec - tr.c.vec).magnitude < tr.r)
                 {
                     toSplit.Add(tr);
                 }
@@ -62,24 +79,39 @@ namespace TownGenerator.Geom
 
                 points.Add(p);
 
-                var a = new List<Vector2>();
-                var b = new List<Vector2>();
+                var a = new List<Point>();
+                var b = new List<Point>();
                 foreach (var t1 in toSplit)
                 {
                     var e1 = true;
                     var e2 = true;
                     var e3 = true;
-                    foreach (var t2 in toSplit) if (t2 != t1)
+                    foreach (var t2 in toSplit)
+                    {
+                        if (t2 != t1)
                         {
                             // If triangles have a common edge, it goes in opposite directions
-                            if (e1 && t2.hasEdge(t1.p2, t1.p1)) e1 = false;
-                            if (e2 && t2.hasEdge(t1.p3, t1.p2)) e2 = false;
-                            if (e3 && t2.hasEdge(t1.p1, t1.p3)) e3 = false;
+                            if (e1 && t2.hasEdge(t1.p2, t1.p1)) { e1 = false; }
+                            if (e2 && t2.hasEdge(t1.p3, t1.p2)) { e2 = false; }
+                            if (e3 && t2.hasEdge(t1.p1, t1.p3)) { e3 = false; }
                             if (!(e1 || e2 || e3)) break;
                         }
-                    if (e1) { a.Add(t1.p1); b.Add(t1.p2); }
-                    if (e2) { a.Add(t1.p2); b.Add(t1.p3); }
-                    if (e3) { a.Add(t1.p3); b.Add(t1.p1); }
+                    }
+                    if (e1)
+                    {
+                        a.Add(t1.p1);
+                        b.Add(t1.p2);
+                    }
+                    if (e3)
+                    {
+                        a.Add(t1.p3);
+                        b.Add(t1.p1);
+                    }
+                    if (e2)
+                    {
+                        a.Add(t1.p2);
+                        b.Add(t1.p3);
+                    }
                 }
 
                 var index = 0;
@@ -90,13 +122,15 @@ namespace TownGenerator.Geom
                 } while (index != 0);
 
                 foreach (var tr in toSplit)
+                {
                     triangles.Remove(tr);
+                }
 
                 _regionsDirty = true;
             }
         }
 
-        private Region buildRegion(Vector2 p)
+        private Region buildRegion(Point p)
         {
             var r = new Region(p);
             foreach (var tr in triangles)
@@ -106,11 +140,11 @@ namespace TownGenerator.Geom
             return r.sortVertices();
         }
 
-        public Dictionary<Vector2, Region> get_regions()
+        public Dictionary<Point, Region> get_the_regions()
         {
             if (_regionsDirty)
             {
-                _regions = new Dictionary<Vector2, Region>();
+                _regions = new Dictionary<Point, Region>();
                 _regionsDirty = false;
                 foreach (var p in points)
                     _regions[p] = buildRegion(p);
@@ -127,15 +161,15 @@ namespace TownGenerator.Geom
             return !(frame.Contains(tr.p1) || frame.Contains(tr.p2) || frame.Contains(tr.p3));
         }
 
-        /**
-        * Returns triangles which do not contain "frame" points as their vertices
-        * @return List of triangles
-        **/
-        public List<Triangle> triangulation()
-        {
+        // /**
+        // * Returns triangles which do not contain "frame" points as their vertices
+        // * @return List of triangles
+        // **/
+        // public List<Triangle> triangulation()
+        // {
 
-            return triangles.Where(tr => !(frame.Contains(tr.p1) || frame.Contains(tr.p2) || frame.Contains(tr.p3))).ToList();
-        }
+        //     return triangles.Where(tr => !(frame.Contains(tr.p1) || frame.Contains(tr.p2) || frame.Contains(tr.p3))).ToList();
+        // }
 
         public List<Region> partioning()
         {
@@ -164,11 +198,11 @@ namespace TownGenerator.Geom
             return regions.Values.Where(r2 => r1.borders(r2)).ToList();
         }
 
-        public static Voronoi relax(Voronoi voronoi, List<Vector2> toRelax = null)
+        public static Voronoi relax(Voronoi voronoi, List<Point> toRelax = null)
         {
             var regions = voronoi.partioning();
 
-            var points = new List<Vector2>(voronoi.points);
+            var points = new List<Point>(voronoi.points);
             foreach (var p in voronoi.frame) points.Remove(p);
 
             if (toRelax == null) toRelax = voronoi.points;
@@ -182,7 +216,7 @@ namespace TownGenerator.Geom
             return build(points);
         }
 
-        public static Voronoi build(List<Vector2> vertices)
+        public static Voronoi build(List<Point> vertices)
         {
             var minx = 1e+10;
             var miny = 1e+10;
@@ -212,15 +246,18 @@ namespace TownGenerator.Geom
 
     public class Triangle
     {
-        public Vector2 p1;
-        public Vector2 p2;
-        public Vector2 p3;
+        public Point p1;
+        public Point p2;
+        public Point p3;
 
-        public Vector2 c;
+        public Point c;
         public float r;
 
-        public Triangle(Vector2 p1, Vector2 p2, Vector2 p3)
+        public Triangle(Point p1, Point p2, Point p3)
         {
+
+
+
             var s = (p2.x - p1.x) * (p2.y + p1.y) + (p3.x - p2.x) * (p3.y + p2.y) + (p1.x - p3.x) * (p1.y + p3.y);
             this.p1 = p1;
             // CCW
@@ -233,19 +270,41 @@ namespace TownGenerator.Geom
             var y2 = (p2.y + p3.y) / 2;
 
             var dx1 = p1.y - p2.y;
+
+            dx1 = dx1 == 0 ? 0.001f : dx1;
+
             var dy1 = p2.x - p1.x;
             var dx2 = p2.y - p3.y;
             var dy2 = p3.x - p2.x;
 
-            var tg1 = dy1 / dx1;
+            if (dx1 == 0)
+            {
+
+                Debug.DebugBreak();
+            }
+
+            var tg1 = dy1 / (dx1);
             var t2 = ((y1 - y2) - (x1 - x2) * tg1) /
                         (dy2 - dx2 * tg1);
 
-            c = new Vector2(x2 + dx2 * t2, y2 + dy2 * t2);
-            r = (c - p1).magnitude;
+            c = new Point(x2 + dx2 * t2, y2 + dy2 * t2);
+
+            if (float.IsNaN(c.x) || float.IsNaN(c.y))
+            {
+                Debug.Log("wtf");
+            }
+
+
+            r = (c.vec - p1.vec).magnitude;
+
+
+            if (float.IsNaN(c.x))
+            {
+                Debug.Log("");
+            }
         }
 
-        public bool hasEdge(Vector2 a, Vector2 b)
+        public bool hasEdge(Point a, Point b)
         {
             return
                 (p1 == a && p2 == b) ||
@@ -254,12 +313,12 @@ namespace TownGenerator.Geom
         }
     }
 
-    class Region
+    public class Region
     {
-        public Vector2 seed;
+        public Point seed;
         public List<Triangle> vertices;
 
-        public Region(Vector2 seed)
+        public Region(Point seed)
         {
             this.seed = seed;
             vertices = new List<Triangle>();
@@ -271,12 +330,15 @@ namespace TownGenerator.Geom
             return this;
         }
 
-        public Vector2 center()
+        public Point center()
         {
             var c = Vector2.zero;
-            foreach (var v in vertices) c += v.c;
+            foreach (var v in vertices)
+            {
+                c += v.c.vec;
+            }
 
-            return c * (1 / vertices.Count);
+            return new Point(c * (1 / vertices.Count));
         }
 
         public bool borders(Region r)

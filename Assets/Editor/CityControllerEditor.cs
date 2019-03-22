@@ -15,7 +15,6 @@ public class CityControllerEditor : Editor
         if (DrawDefaultInspector())
         {
             //mapGen.generateNavMesh();
-
         }
 
         if (GUILayout.Button("Generate"))
@@ -25,22 +24,10 @@ public class CityControllerEditor : Editor
     }
 
 
-    void OnSceneGUI()
-    {
-        CityController mapGen = (CityController)target;
+    // void OnSceneGUI()
+    // {
+    //     CityController mapGen = (CityController)target;
 
 
-        foreach (var node in mapGen.heightSortedNodes)
-        {
-            Handles.Label(node.centerPoint, node.GetElevation().ToString());
-        }
-
-
-        // for (var i = 0; i < mapGen.mapGraph.nodesByCenterPosition.Values.Count; i++)
-        // {
-
-        //     Handles.Label(mapGen.mapGraph.nodesByCenterPosition.Values.ToList()[i].centerPoint, i.ToString());
-        // }
-
-    }
+    // }
 }
