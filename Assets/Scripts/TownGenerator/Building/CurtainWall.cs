@@ -30,27 +30,31 @@ namespace TownGenerator.Building
             if (patches.Count == 1)
             {
                 shape = patches[0].shape;
+
+
             }
             else
             {
                 shape = Model.findCircumference(patches);
+
+
 
                 if (real)
                 {
                     var smoothFactor = Mathf.Min(1, 40 / patches.Count);
                     shape.set(
                          new Polygon(shape.Select(v =>
-                       {
-
-                           return reserved.Contains(v) ? v : shape.smoothVertex(v, smoothFactor);
-                       }).ToList())
-                       );
+                            {
+                                return reserved.Contains(v) ? v : shape.smoothVertex(v, smoothFactor);
+                            }).ToList()
+                        )
+                    );
                 }
             }
 
-            segments = shape.Select(x => true).ToList();
 
             buildGates(real, model, reserved);
+            segments = shape.Select(x => true).ToList();
         }
 
         private void buildGates(bool real, Model model, List<Point> reserved)
@@ -64,13 +68,29 @@ namespace TownGenerator.Building
             if (patches.Count > 1)
             {
                 entrances = shape.Where((v) =>
-                               {
+                {
+                    //Debug.Log("Entrance: " + v.vec);
 
-                                   return (!reserved.Contains(v) && patches.Where(
-                                      (Patch p) => p.shape.contains(v)
-                                    ).Count() > 1);
+                    var notReserved = !reserved.Contains(v);
 
-                               }).ToList();
+                    var sharedPoint = patches.Where(
+                        (Patch p) =>
+                        {
+
+                            foreach (var shape in p.shape)
+                            {
+                                //Debug.Log(shape.vec);
+                            }
+
+                            return p.shape.FirstOrDefault(point => point.vec == v.vec) != null;
+                        }
+                    );
+
+                    Debug.Log("shared : " + sharedPoint.Count());
+
+                    return notReserved && sharedPoint.Count() > 1;
+
+                }).ToList();
             }
             else
             {
@@ -176,13 +196,21 @@ namespace TownGenerator.Building
             if (gates.Count == 0)
                 throw new System.Exception("Bad walled area shape!");
 
+            // // Smooth further sections of the wall with gates
+            // if (real)
+            //     for (var i = 0; i < gates.Count; i++)
+            //     {
+            //         gates[i] = shape.smoothVertex(gates[i]);
+            //     }
+
             // Smooth further sections of the wall with gates
             if (real)
-                for (var i = 0; i < gates.Count; i++)
+            {
+                foreach (var gate in gates)
                 {
-                    gates[i] = shape.smoothVertex(gates[i]);
+                    gate.Set(shape.smoothVertex(gate).vec);
                 }
-
+            }
         }
 
         public void buildTowers()

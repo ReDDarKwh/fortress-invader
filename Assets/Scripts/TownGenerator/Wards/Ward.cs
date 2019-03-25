@@ -17,9 +17,9 @@ namespace TownGenerator.Wards
 
     public class Ward
     {
-        public static float MAIN_STREET = 2.0f;
-        public static float REGULAR_STREET = 1.0f;
-        public static float ALLEY = 0.6f;
+        public static float MAIN_STREET = 5.0f;
+        public static float REGULAR_STREET = 2.0f;
+        public static float ALLEY = 0.7f;
 
         public Model model;
         public Patch patch;
@@ -177,6 +177,8 @@ namespace TownGenerator.Wards
 
         public static float rateLocation(Model model, Patch patch)
         {
+
+
             return 0;
         }
 

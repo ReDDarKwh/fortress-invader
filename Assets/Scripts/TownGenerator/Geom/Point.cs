@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace TownGenerator.Geom
 {
+
+
     public class Point
     {
         public Vector2 vec;
@@ -31,6 +33,13 @@ namespace TownGenerator.Geom
             {
                 vec.y = value;
             }
+        }
+
+
+        public void Set(Vector2 vec)
+        {
+            x = vec.x;
+            y = vec.y;
         }
 
         public Point(float x, float y)

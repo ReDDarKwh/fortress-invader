@@ -28,9 +28,13 @@ namespace TownGenerator.Building
         private bool wallsNeeded;
 
         public static List<Type> WARDS = new List<Type> {
-            typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(Cathedral),
-            typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(CraftsmenWard),
-            typeof(CraftsmenWard), typeof(CraftsmenWard), typeof(CraftsmenWard)
+          typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(MerchantWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(Cathedral),
+         typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),
+        typeof(CraftsmenWard), typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(AdministrationWard), typeof(CraftsmenWard),
+         typeof(Slum),  typeof(CraftsmenWard),  typeof(Slum),  typeof(PatriciateWard),  typeof(Market),
+         typeof(Slum),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(Slum),
+         typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(MilitaryWard),  typeof(Slum),
+         typeof(CraftsmenWard),  typeof(Park),  typeof(PatriciateWard),  typeof(Market),  typeof(MerchantWard)
         };
 
         public Topology topology;
@@ -60,19 +64,19 @@ namespace TownGenerator.Building
 
 
 
-        public Model(Vector2 origin, int nPatches = -1, int seed = -1)
+        public Model(int nPatches = -1, int seed = -1)
         {
             this.nPatches = nPatches != -1 ? nPatches : 15;
 
-            plazaNeeded = Random.value < 0.5;
-            citadelNeeded = Random.value < 0.5;
-            wallsNeeded = Random.value < 0.5;
+            plazaNeeded = true;//Random.value < 0.5;
+            citadelNeeded = true;// Random.value < 0.5;
+            wallsNeeded = true;//Random.value < 0.5;
 
             // do
             // {
             //     try
             //     {
-            build(origin);
+            build();
             //         instance = this;
             //     }
             //     catch (Exception e)
@@ -88,12 +92,12 @@ namespace TownGenerator.Building
         }
 
 
-        private void build(Vector2 origin)
+        private void build()
         {
             streets = new List<Polygon>();
             roads = new List<Polygon>();
 
-            buildPatches(origin);
+            buildPatches();
             optimizeJunctions();
             buildWalls();
             buildStreets();
@@ -101,7 +105,7 @@ namespace TownGenerator.Building
             buildGeometry();
         }
 
-        private void buildPatches(Vector2 origin)
+        private void buildPatches()
         {
             var sa = Random.value * 2 * Math.PI;
             var points = new List<Point>();
@@ -110,7 +114,7 @@ namespace TownGenerator.Building
             {
                 var a = sa + Mathf.Sqrt(i) * 5;
                 var r = (i == 0 ? 0 : (10 + i * (2 + Random.value)));
-                points.Add(new Point(origin.x + Mathf.Cos((float)a) * r, origin.y + Mathf.Sin((float)a) * r));
+                points.Add(new Point(Mathf.Cos((float)a) * r, Mathf.Sin((float)a) * r));
             }
             var voronoi = Voronoi.build(points);
 
@@ -145,7 +149,9 @@ namespace TownGenerator.Building
                 if (count == 0)
                 {
                     center =
-                    patch.shape.MinBy((Point p) => { return (origin - p.vec).magnitude; }).FirstOrDefault();
+                    patch.shape.MinBy((Point p) => { return (p.vec).magnitude; }).FirstOrDefault();
+
+
                     if (plazaNeeded)
                         plaza = patch;
                 }
@@ -168,7 +174,7 @@ namespace TownGenerator.Building
 
         private void buildWalls()
         {
-            var reserved = citadel != null ? new List<Point>(citadel.shape) : new List<Point>();
+            var reserved = citadel != null ? citadel.shape : new List<Point>();
 
             border = new CurtainWall(wallsNeeded, this, inner, reserved);
             if (wallsNeeded)
@@ -213,14 +219,17 @@ namespace TownGenerator.Building
                 if (wards.Count == 1)
                     return new Polygon(wards[0].shape);
             }
-            var A = new List<Point>();
-            var B = new List<Point>();
+
+
+            var edges = new List<Tuple<Point, Point>>();
 
             foreach (var w1 in wards)
             {
                 w1.shape.forEdge((a, b) =>
                 {
                     var outerEdge = true;
+
+
                     foreach (var w2 in wards)
                     {
                         if (w2.shape.findEdge(b, a) != -1)
@@ -229,30 +238,59 @@ namespace TownGenerator.Building
                             break;
                         }
                     }
+
                     if (outerEdge)
                     {
-                        A.Add(a);
-                        B.Add(b);
+
+
+                        edges.Add(new Tuple<Point, Point>(a, b));
                     }
                 });
             }
 
-            var result = new Polygon();
-            var index = 0;
-            var count = 0;
+            var result = new Polygon(
+                findNextEdge(edges[0], edges[0], edges, new List<Tuple<Point, Point>> { edges[0] }).Select(x => x.Item1)
+                .ToList()
+            );
+            // var index = 0;
+            // var count = 0;
 
-            do
+
+            // do
+            // {
+            //     count++;
+            //     result.Add(A[index]);
+            //     index = A.IndexOf(B[index]);
+
+            //     // max number of tries
+
+            // }
+            // while (index != 0 && count < 50000);
+
+            for (var i = 0; i < result.Count; i++)
             {
-                count++;
-                result.Add(A[index]);
-                index = A.IndexOf(B[index]);
-
-                // max number of tries
-
+                Debug.DrawLine(result[i].vec, result[(i + 1) % result.Count].vec, Color.red, 20 + i);
             }
-            while (index != 0 && count < 50000 && index != -1);
 
             return result;
+        }
+
+        private static List<Tuple<Point, Point>> findNextEdge(Tuple<Point, Point> start, Tuple<Point, Point> edge, List<Tuple<Point, Point>> edges, List<Tuple<Point, Point>> result)
+        {
+            var index = edges.FindIndex(x => x.Item1 == edge.Item2);
+            var found = edges[index];
+
+            result.Add(found);
+            edges.RemoveAt(index);
+
+            if (start.Item1 != found.Item2)
+            {
+                return findNextEdge(start, found, edges, result);
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public List<Patch> patchByVertex(Point v)

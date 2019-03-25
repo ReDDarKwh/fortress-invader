@@ -11,6 +11,7 @@ using System.Linq;
 namespace TownGenerator.Geom
 {
 
+
     public class Polygon : List<Point>
     {
 
@@ -26,14 +27,20 @@ namespace TownGenerator.Geom
         {
             for (var i = 0; i < p.Count; i++)
             {
-                this[i] = p[i];
+                this[i].Set(p[i].vec);
             }
         }
 
-        public float square;
+        public float square
+        {
+            get
+            {
+                return _square();
+            }
+        }
 
 
-        public float get_square()
+        public float _square()
         {
             var v1 = this[this.Count - 1].vec;
             var v2 = this[0].vec;
@@ -88,8 +95,9 @@ namespace TownGenerator.Geom
             foreach (var v in this)
             {
                 c.vec += v.vec;
-                c.vec *= (1 / this.Count);
             }
+
+            c.vec /= this.Count;
             return c;
         }
 
@@ -206,22 +214,25 @@ namespace TownGenerator.Geom
                 prevv.x + v.x * f + nextt.x,
                 prevv.y + v.y * f + nextt.y
 
-            ).vec * (1 / (2 + f)));
+            ).vec / ((2 + f)));
         }
 
         // This  returns minimal distance from any of the vertices
         // to a point, not real distance from the polygon
         public float distance(Point p)
         {
-            Point v0 = null;
             var d = Mathf.Infinity;
             for (var i = 0; i < this.Count; i++)
             {
                 var v1 = this[i];
                 var d1 = (v1.vec - p.vec).magnitude;
-                if (d1 < d) v0 = v1;
+
+                if (d1 < d)
+                {
+                    d = d1;
+                }
             }
-            return (v0.vec - p.vec).magnitude;
+            return d;
         }
 
         public Polygon smoothVertexEq(float f = 1.0f)

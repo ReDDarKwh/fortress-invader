@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 462c02630ab2f79489f31ff941aa8508, type: 3}
-  m_Name: HostileOnSightLinker
+  m_Name: HostileOnSightLinker 1
   m_EditorClassIdentifier: 
   links:
   - tagName: searching_group
@@ -123,14 +123,6 @@ MonoBehaviour:
     action:
       actionType: 0
       transitionToState: {fileID: 11400000, guid: 2932f37b16962454caaea574dc6faeda,
-        type: 2}
-      addStates: []
-  - tagName: attacking
-    triggeredOn: {fileID: 11400000, guid: ba77e132ca87e9049b37eac1b4d95805, type: 2}
-    invert: 0
-    action:
-      actionType: 4
-      transitionToState: {fileID: 11400000, guid: 3c2377879a50fe5478d21b69ede492ab,
         type: 2}
       addStates: []
   - tagName: slashing

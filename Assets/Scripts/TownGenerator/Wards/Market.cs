@@ -81,8 +81,12 @@ namespace TownGenerator.Wards
             foreach (var p in model.inner)
             {
 
-                if (p.ward.GetType() == typeof(Market) && p.shape.borders(patch.shape))
+                if (p.ward != null && p.ward.GetType() == typeof(Market) && p.shape.borders(patch.shape))
+                {
+
                     return Mathf.Infinity;
+
+                }
 
             }
 

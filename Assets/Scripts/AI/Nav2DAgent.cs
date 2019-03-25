@@ -165,14 +165,19 @@ namespace Scripts.AI
         // Update is called once per frame
         void Update()
         {
-            if (this.path != null)
-            {
-                for (var i = 1; i < this.path.Count; i++)
-                {
 
-                    Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
-                }
-            }
+
+            Debug.Log(ignoredSeparationNeighbors.Count);
+
+
+            // if (this.path != null)
+            // {
+            //     for (var i = 1; i < this.path.Count; i++)
+            //     {
+
+            //         Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
+            //     }
+            // }
 
             Vector2 desiredVelocity = ((isMoving ? (currentTarget - transform.position).normalized : Vector3.zero) +
              computeSeparation()) * Time.fixedDeltaTime * speed;

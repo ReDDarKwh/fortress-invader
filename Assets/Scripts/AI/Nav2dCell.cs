@@ -11,6 +11,8 @@ namespace Scripts.AI
     {
         private Nav2dNode[,] nodes;
         public Vector3Int gridPos;
+        public bool connected = false;
+
         public Nav2dCell(Vector3Int gridPos)
         {
             this.gridPos = gridPos;

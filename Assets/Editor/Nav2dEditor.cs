@@ -21,5 +21,11 @@ public class MapGeneratorEditor : Editor
         {
             mapGen.GenerateNavMesh();
         }
+
+
+
     }
+
+
+
 }

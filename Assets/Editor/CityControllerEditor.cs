@@ -24,10 +24,16 @@ public class CityControllerEditor : Editor
     }
 
 
-    // void OnSceneGUI()
-    // {
-    //     CityController mapGen = (CityController)target;
+    void OnSceneGUI()
+    {
+        CityController mapGen = (CityController)target;
 
-
-    // }
+        if (mapGen.cityModel != null)
+        {
+            foreach (var patch in mapGen.cityModel.patches)
+            {
+                Handles.Label(mapGen.transform.TransformPoint(patch.shape.center.vec), patch.ward.getLabel());
+            }
+        }
+    }
 }

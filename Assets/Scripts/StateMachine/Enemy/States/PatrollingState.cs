@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
+using Scripts.AI;
 using Scripts.NPC;
 using Scripts.Spells;
 using UnityEngine;
@@ -13,9 +14,13 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "PatrollingState", menuName = "StateMachine/States/Enemy/PatrollingState")]
 public class PatrollingState : BaseState
 {
-    public float findClosestBuildingRadius = 30;
+    public float findClosestBuildingRadius = 100;
     public string[] buildingFindLayers = new String[] { "Nav2DObstacle" };
     public string[] spellTargetLayers = new String[] { "SpellTarget" };
+
+    private Nav2D navGrid;
+
+
 
     public PatrollingState()
     {
@@ -42,6 +47,9 @@ public class PatrollingState : BaseState
         NonPlayerCharacter npc = stateMachine.GetComponent<NonPlayerCharacter>();
         Character character = stateMachine.GetComponent<Character>();
 
+
+        Nav2DAgent navAgent = stateMachine.GetComponent<Nav2DAgent>();
+
         character.currentSpeed = CharacterSpeed.SLOW;
 
 
@@ -51,6 +59,12 @@ public class PatrollingState : BaseState
 
             var colliders = Physics2D.OverlapCircleAll(stateMachine.transform.position,
              findClosestBuildingRadius, LayerMask.GetMask(buildingFindLayers));
+
+
+            if (colliders.Count() <= 0)
+            {
+                return;
+            }
 
             var buildingQueue = activeLinking.GetValueOrDefault<Queue<Queue<Vector2>>>("buildings");
             var cornerQueue = activeLinking.GetValueOrDefault<Queue<Vector2>>("corners");
@@ -86,21 +100,18 @@ public class PatrollingState : BaseState
                 {
 
                     // only take corners that are not inside a active spell
-
                     var c = Physics2D.OverlapPointAll(x, LayerMask.GetMask(spellTargetLayers));
-
                     foreach (var collider in c)
                     {
-
                         var target = collider.GetComponent<MagicTargetBase>();
                         if (!target.spellDone)
                         {
-
                             return false;
                         }
                     }
 
-                    return true;
+                    // and the corner is accessable;
+                    return navAgent.navGrid.CanBeReached(x);
                 }).ToList();
 
 
