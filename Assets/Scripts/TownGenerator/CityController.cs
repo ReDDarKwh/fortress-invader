@@ -18,7 +18,8 @@ public class CityController : MonoBehaviour
     public Model cityModel;
 
 
-    public GameObject building;
+    public GameObject buildingPrefab;
+    public GameObject wardPrefab;
     public GameObject navGridPrefab;
 
     private Nav2D navGrid;
@@ -57,18 +58,24 @@ public class CityController : MonoBehaviour
 
         foreach (var patch in cityModel.patches)
         {
-            foreach (var shape in patch.ward.geometry)
-            {
 
-                var b = Instantiate(building, this.transform, false);
-                b.transform.rotation = Quaternion.identity;
-                //b.transform.position += transform.TransformPoint((Vector3)cityModel.center.vec);
+            var ward = Instantiate(wardPrefab, this.transform, false);
+            ward.GetComponent<WardController>().shape = patch.shape;
 
-                Debug.DrawLine(transform.position, cityModel.center.vec, Color.magenta, 20);
+            foreach (var wardShape in patch.shape)
 
-                var buildingController = b.GetComponent<BuildingController>();
-                buildingController.shape = shape;
-            }
+                foreach (var shape in patch.ward.geometry)
+                {
+
+                    var b = Instantiate(buildingPrefab, this.transform, false);
+                    b.transform.rotation = Quaternion.identity;
+                    //b.transform.position += transform.TransformPoint((Vector3)cityModel.center.vec);
+
+                    Debug.DrawLine(transform.position, cityModel.center.vec, Color.magenta, 20);
+
+                    var buildingController = b.GetComponent<BuildingController>();
+                    buildingController.shape = shape;
+                }
         }
 
 
