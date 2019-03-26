@@ -270,6 +270,7 @@ public partial class StateMachine : MonoBehaviour
 
         if (activeStates.ContainsKey(state))
         {
+            activeStates[state].links.ForEach(x => Destroy(x.triggeredOn));
             activeStates.Remove(state);
             state.Leave(this);
             AfterLeave(state);

@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using UnityEditor;
+using UnityEngine.AI;
 
 namespace Scripts.AI
 {
@@ -20,14 +21,22 @@ namespace Scripts.AI
     public class Nav2DAgent : MonoBehaviour
     {
 
-        public Nav2D navGrid;
+
         public float smoothAngleTime;
+
+        internal void endMovement()
+        {
+            agent.isStopped = true;
+        }
+
         public float neighborhoodRadius;
         public float mass;
         public float maxSteeringForce;
         public float maxSteeringSpeed;
         public string[] separationLayers = new String[] { "AI", "Player" };
         private HashSet<GameObject> ignoredSeparationNeighbors = new HashSet<GameObject>();
+
+        private NavMeshAgent agent;
 
 
 
@@ -50,11 +59,18 @@ namespace Scripts.AI
             }
         }
 
-        public bool isWaitingForPath { get; private set; }
 
 
-        public bool isMoving { get; private set; }
+        public bool isMoving
+        {
+            get
+            {
+                return agent.pathPending;
+            }
+        }
 
+
+        private bool _moving;
 
         private float targetsRadius;
         private bool neightborAvoidance = true;
@@ -89,77 +105,35 @@ namespace Scripts.AI
             this.neightborAvoidance = neightborAvoidance;
             this.speed = speed;
 
-            switch (mode)
-            {
-                case NavAgentMode.PATH_FINDING:
 
-                    //Debug.Log("Requested path");
-                    isWaitingForPath = true;
-                    navGrid.RequestPath(
-                        transform.position,
-                        worldPos,
-                        this.gameObject.GetInstanceID(),
-                        PathCallback
-                    );
+            //Debug.Log("Requested path");
 
-                    break;
+            agent.destination = worldPos;
+            this.agent.isStopped = false;
+            agent.speed = speed;
 
-                case NavAgentMode.DIRECT:
-                    this.currentTarget = worldPos;
-                    this.isMoving = true;
-                    break;
-            }
+            this._moving = true;
+
+
 
         }
 
-        public void PathCallback(IEnumerable<Nav2dNode> newPath)
-        {
-
-            isWaitingForPath = false;
-
-            if (newPath == null)
-            {
-                return;
-            }
-
-            this.isMoving = true;
-
-            this.path.Clear();
-
-            foreach (var pos in newPath.Select(x => x.worldPos))
-            {
-                this.path.Push(pos);
-            }
-
-            // skip the first node no jitter on path change.
-            setNextTarget();
-            setNextTarget();
-        }
 
 
-        public void endMovement()
-        {
-            this.isMoving = false;
-        }
 
-        private void setNextTarget()
-        {
-            if (path != null && path.Count > 0)
-            {
-                path.TryPop(out currentTarget);
-                return;
-            }
-            this.isMoving = false;
-        }
 
         // Use this for initialization
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            navGrid = GameObject.FindGameObjectWithTag("MainNavGrid").GetComponent<Nav2D>();
+
             path = new ConcurrentStack<Vector3>();
 
             character = GetComponent<Character>();
+
+            agent = GetComponent<NavMeshAgent>();
+
+
         }
 
         // Update is called once per frame
@@ -167,49 +141,36 @@ namespace Scripts.AI
         {
 
 
-            Debug.Log(ignoredSeparationNeighbors.Count);
+            // Debug.Log(ignoredSeparationNeighbors.Count);
 
 
-            // if (this.path != null)
-            // {
-            //     for (var i = 1; i < this.path.Count; i++)
-            //     {
+            // // if (this.path != null)
+            // // {
+            // //     for (var i = 1; i < this.path.Count; i++)
+            // //     {
 
-            //         Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
-            //     }
-            // }
+            // //         Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
+            // //     }
+            // // }
 
-            Vector2 desiredVelocity = ((isMoving ? (currentTarget - transform.position).normalized : Vector3.zero) +
-             computeSeparation()) * Time.fixedDeltaTime * speed;
+            // Vector2 desiredVelocity = ((_moving ? (currentTarget - transform.position).normalized : Vector3.zero) +
+            //  computeSeparation()) * Time.fixedDeltaTime * speed;
 
-            var sterring = Vector2.ClampMagnitude((desiredVelocity - velocity), maxSteeringForce) / mass;
+            // var sterring = Vector2.ClampMagnitude((desiredVelocity - velocity), maxSteeringForce) / mass;
 
-            velocity = Vector2.ClampMagnitude(velocity + sterring, maxSteeringSpeed);
-
-
+            // velocity = Vector2.ClampMagnitude(velocity + sterring, maxSteeringSpeed);
 
 
-            // set if character is moving for animations
-            character.moving = isMoving;
 
 
-            // set rotation if moving
-            if (isMoving)
-            {
+            // // set if character is moving for animations
+            // character.moving = _moving;
 
-                //rb.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-
-                if ((transform.position - currentTarget).magnitude < targetsRadius)
-                {
-                    setNextTarget();
-                }
-            }
         }
 
         void FixedUpdate()
         {
-            rb.MovePosition(rb.position + velocity);
+            //rb.MovePosition(rb.position + velocity);s
         }
 
 

@@ -53,7 +53,7 @@ public class PatrollingState : BaseState
         character.currentSpeed = CharacterSpeed.SLOW;
 
 
-        if (!npc.nav2DAgent.isMoving && !npc.nav2DAgent.isWaitingForPath)
+        if (!npc.nav2DAgent.isMoving)
         {
             //Debug.Log("moving is false");
 
@@ -111,7 +111,7 @@ public class PatrollingState : BaseState
                     }
 
                     // and the corner is accessable;
-                    return navAgent.navGrid.CanBeReached(x);
+                    return true;//navAgent.navGrid.CanBeReached(x);
                 }).ToList();
 
 
