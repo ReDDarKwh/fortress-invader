@@ -35,6 +35,22 @@ namespace Scripts.AI
         public bool showNodeConnections;
         public string[] collisionLayers = new string[] { "Buildings" };
 
+        public NodeController node;
+
+        public int createNodeFrames = 10;
+        public int createConnectionFrame = 10;
+
+
+        // [System.NonSerialized]
+        // public Vector3Int offset = Vector3Int.zero;
+
+
+        private int maxCreateNodePerFrames;
+        private int maxCreateConnectionPerFrame;
+
+
+        private bool createNodePerFramesDone = false;
+        //private int maxCreateConnectionPerFrame;
 
         private Vector2Int maxCreatePerFrameVec = Vector2Int.zero;
 
@@ -46,14 +62,22 @@ namespace Scripts.AI
         private List<Nav2dNode> debugPath;
 
 
+        [System.NonSerialized]
+        public List<Nav2dNode> nodes;
+
         private int maxRunningTreadNum = 2;
 
         private Dictionary<int, int> waitingThreadNumberById;
         private Queue<PathRequest> waitingThreads;
         private List<Thread> runningThreads;
-        private bool generated = true;
+        private bool generated = false;
 
 
+        private Vector3Int oldMiddle = Vector3Int.zero;
+
+
+        private Transform playerPos;
+        public int artiveGridSize;
 
         public List<Nav2dNode> GetNodesInCircle(Vector3 point, float radius)
         {
@@ -67,16 +91,24 @@ namespace Scripts.AI
         // Use this for initialization
         void Start()
         {
+
+            maxCreateNodePerFrames = width * height / createNodeFrames;
+            maxCreateConnectionPerFrame = width * height / createConnectionFrame;
+
+            nodes = new List<Nav2dNode>();
             waitingThreads = new Queue<PathRequest>();
             runningThreads = new List<Thread>();
             waitingThreadNumberById = new Dictionary<int, int>();
+            cellsArray = new Nav2dCell[width, height];
 
             //width = (int)(optimizationGrid.cellSize.x); /// grid.cellSize.x * artiveGridSize);
             //height = (int)(optimizationGrid.cellSize.y); /// grid.cellSize.y * artiveGridSize);
 
 
-            transform.position = -new Vector3(width * grid.cellSize.x / 2, height * grid.cellSize.y / 2);
-            //GenerateNavMesh();
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+
+            //transform.position = -new Vector3(width * grid.cellSize.x / 2, height * grid.cellSize.y / 2);
+            GenerateNavMesh();
 
         }
 
@@ -95,53 +127,6 @@ namespace Scripts.AI
         // Update is called once per frame
         void Update()
         {
-
-
-            if (!generated)
-            {
-
-                for (int y = 0; y < height; y++)
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-                        // if already exist skip
-                        if (cellsArray[x, y] != null)
-                        {
-                            continue;
-                        }
-
-                        CreateNavCell(new Vector3Int(x, y, 0));
-                        // if (y * height + x >= maxCreatePerFrameVec.y * height + maxCreatePerFrameVec.x + maxCreateNodePerFrames || (x == width - 1 && y == height - 1))
-                        // {
-                        //     maxCreatePerFrameVec.Set(x + 1, y);
-                        //     return;
-                        // }
-                    }
-
-                }
-
-                for (int y = 0; y < height; y++)
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-
-                        // if already connected skip
-                        if (cellsArray[x, y].connected)
-                        {
-                            continue;
-                        }
-                        CreateAdjacentNodesConnections(cellsArray[x, y]);
-                        // if (y * height + x >= maxConnectionPerFrameVec.y * height + maxConnectionPerFrameVec.x + maxCreateConnectionPerFrame)
-                        // {
-                        //     maxConnectionPerFrameVec.Set(x + 1, y);
-                        //     return;
-                        // }
-                    }
-
-                }
-
-                generated = true;
-            }
             // var middle = optimizationGrid.WorldToCell(playerPos.position) - new Vector3Int(artiveGridSize, artiveGridSize, 0);
 
             // if (oldMiddle != middle)
@@ -266,11 +251,47 @@ namespace Scripts.AI
         public void GenerateNavMesh()
         {
 
-            //cellsArray = new Nav2dCell[(int)Mathf.Ceil(radius), (int)Mathf.Ceil(radius)];
-            generated = false;
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // if already exist skip
+                    if (cellsArray[x, y] != null)
+                    {
+                        continue;
+                    }
 
-            //transform = origin
+                    CreateNavCell(new Vector3Int(x, y, 0));
+                    // if (y * height + x >= maxCreatePerFrameVec.y * height + maxCreatePerFrameVec.x + maxCreateNodePerFrames || (x == width - 1 && y == height - 1))
+                    // {
+                    //     maxCreatePerFrameVec.Set(x + 1, y);
+                    //     return;
+                    // }
+                }
 
+            }
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+
+                    // if already connected skip
+                    if (cellsArray[x, y].connected)
+                    {
+                        continue;
+                    }
+                    CreateAdjacentNodesConnections(cellsArray[x, y]);
+                    // if (y * height + x >= maxConnectionPerFrameVec.y * height + maxConnectionPerFrameVec.x + maxCreateConnectionPerFrame)
+                    // {
+                    //     maxConnectionPerFrameVec.Set(x + 1, y);
+                    //     return;
+                    // }
+                }
+
+            }
+
+            generated = true;
         }
 
 
@@ -306,6 +327,8 @@ namespace Scripts.AI
 
             //setting nodes in cells
 
+            nodes.Add(nodeCenter);
+            nodes.Add(nodeNorthWest);
 
             cellsArray[gridPos.x, gridPos.y] = new Nav2dCell(gridPos);
             cellsArray[gridPos.x, gridPos.y].setNode(nodeCenter, new Vector2Int(0, 0));

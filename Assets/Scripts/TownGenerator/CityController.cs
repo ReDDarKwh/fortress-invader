@@ -5,7 +5,6 @@ using System.Linq;
 using Scripts.AI;
 using TownGenerator.Building;
 using UnityEngine;
-using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class CityController : MonoBehaviour
@@ -23,7 +22,6 @@ public class CityController : MonoBehaviour
     public GameObject navGridPrefab;
 
     private Nav2D navGrid;
-    private NavMeshSurface navMeshSurface;
 
 
 
@@ -33,13 +31,18 @@ public class CityController : MonoBehaviour
     {
 
 
-        navMeshSurface = GetComponent<NavMeshSurface>();
+
+
 
         Init();
     }
 
 
-
+    private IEnumerator GenerateNav2d()
+    {
+        navGrid.GenerateNavMesh();
+        yield return new WaitForSecondsRealtime(0.1f);
+    }
 
     public void Init()
     {
@@ -70,12 +73,12 @@ public class CityController : MonoBehaviour
 
 
         // init nav mesh
+        navGrid = Instantiate(navGridPrefab, transform.position, Quaternion.identity).GetComponent<Nav2D>();
 
+        navGrid.transform.SetParent(this.gameObject.transform);
+        navGrid.transform.position -= new Vector3(navGrid.width / 2 * navGrid.grid.cellSize.x, navGrid.height / 2 * navGrid.grid.cellSize.y);
 
-        // navGrid.transform.SetParent(this.gameObject.transform);
-        // navGrid.transform.position -= new Vector3(navGrid.width / 2 * navGrid.grid.cellSize.x, navGrid.height / 2 * navGrid.grid.cellSize.y);
-
-        navMeshSurface.BuildNavMesh();
+        //navGrid.GenerateNavMesh();
     }
 
 
