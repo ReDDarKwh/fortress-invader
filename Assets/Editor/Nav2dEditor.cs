@@ -17,10 +17,10 @@ public class MapGeneratorEditor : Editor
 
         }
 
-        if (GUILayout.Button("Generate"))
-        {
-            mapGen.GenerateNavMesh();
-        }
+        // if (GUILayout.Button("Generate"))
+        // {
+        //     mapGen.GenerateNavMesh();
+        // }
 
 
 

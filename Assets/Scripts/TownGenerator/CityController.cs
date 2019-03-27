@@ -20,9 +20,9 @@ public class CityController : MonoBehaviour
 
     public GameObject buildingPrefab;
     public GameObject wardPrefab;
-    public GameObject navGridPrefab;
+    //public GameObject navGridPrefab;
 
-    private Nav2D navGrid;
+    public Nav2D navGrid;
 
 
 
@@ -31,18 +31,21 @@ public class CityController : MonoBehaviour
     void Start()
     {
 
-
-
-
-
         Init();
     }
 
-
     private IEnumerator GenerateNav2d()
     {
-        navGrid.GenerateNavMesh();
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return 0;
+
+
+        navGrid.transform.position = transform.position - new Vector3(cityModel.cityRadius * transform.localScale.x,
+        cityModel.cityRadius * transform.localScale.y);
+
+        navGrid.width = (int)Mathf.Ceil(cityModel.cityRadius * transform.localScale.x * 2 / navGrid.grid.cellSize.x);
+        navGrid.height = (int)Mathf.Ceil(cityModel.cityRadius * transform.localScale.y * 2 / navGrid.grid.cellSize.y);
+
+        navGrid.GenerateNavMesh(transform.position, cityModel.cityRadius * transform.localScale.x);
     }
 
     public void Init()
@@ -60,32 +63,31 @@ public class CityController : MonoBehaviour
         {
 
             var ward = Instantiate(wardPrefab, this.transform, false);
-            ward.GetComponent<WardController>().shape = patch.shape;
+            ward.GetComponent<WardController>().ward = patch.ward;
 
-            foreach (var wardShape in patch.shape)
+            foreach (var shape in patch.ward.geometry)
+            {
 
-                foreach (var shape in patch.ward.geometry)
-                {
+                var b = Instantiate(buildingPrefab, this.transform, false);
+                b.transform.rotation = Quaternion.identity;
+                //b.transform.position += transform.TransformPoint((Vector3)cityModel.center.vec);
 
-                    var b = Instantiate(buildingPrefab, this.transform, false);
-                    b.transform.rotation = Quaternion.identity;
-                    //b.transform.position += transform.TransformPoint((Vector3)cityModel.center.vec);
+                Debug.DrawLine(transform.position, cityModel.center.vec, Color.magenta, 20);
 
-                    Debug.DrawLine(transform.position, cityModel.center.vec, Color.magenta, 20);
-
-                    var buildingController = b.GetComponent<BuildingController>();
-                    buildingController.shape = shape;
-                }
+                var buildingController = b.GetComponent<BuildingController>();
+                buildingController.shape = shape;
+            }
         }
 
 
         // init nav mesh
-        navGrid = Instantiate(navGridPrefab, transform.position, Quaternion.identity).GetComponent<Nav2D>();
+        // navGrid = Instantiate(navGridPrefab, transform.position, Quaternion.identity).GetComponent<Nav2D>();
 
-        navGrid.transform.SetParent(this.gameObject.transform);
-        navGrid.transform.position -= new Vector3(navGrid.width / 2 * navGrid.grid.cellSize.x, navGrid.height / 2 * navGrid.grid.cellSize.y);
+        // navGrid.transform.SetParent(this.gameObject.transform);
 
         //navGrid.GenerateNavMesh();
+
+        StartCoroutine("GenerateNav2d");
     }
 
 

@@ -6,9 +6,7 @@ using C5;
 using UnityEditor;
 using System.Threading;
 using System.Linq;
-
-
-
+using TownGenerator.Wards;
 
 namespace Scripts.AI
 {
@@ -26,39 +24,19 @@ namespace Scripts.AI
         public Grid grid;
 
         //public Grid optimizationGrid;
-
         public int width; // in cell
         public int height; // in cell
 
-        //public int width; // in cell
-        //public int height; // in cell
+
+        public string[] wardLayerMask;
+
         public bool showNodeConnections;
         public string[] collisionLayers = new string[] { "Buildings" };
 
-        public NodeController node;
-
-        public int createNodeFrames = 10;
-        public int createConnectionFrame = 10;
-
-
-        // [System.NonSerialized]
-        // public Vector3Int offset = Vector3Int.zero;
-
-
-        private int maxCreateNodePerFrames;
-        private int maxCreateConnectionPerFrame;
-
-
-        private bool createNodePerFramesDone = false;
-        //private int maxCreateConnectionPerFrame;
-
-        private Vector2Int maxCreatePerFrameVec = Vector2Int.zero;
-
-        private Vector2Int maxConnectionPerFrameVec = Vector2Int.zero;
-
-
         public string[] nav2dNodeLayer = new string[] { "Node" };
-        private Nav2dCell[,] cellsArray;
+
+        private Dictionary<Vector2Int, Nav2dCell> cellsArray;
+
         private List<Nav2dNode> debugPath;
 
 
@@ -70,14 +48,7 @@ namespace Scripts.AI
         private Dictionary<int, int> waitingThreadNumberById;
         private Queue<PathRequest> waitingThreads;
         private List<Thread> runningThreads;
-        private bool generated = false;
 
-
-        private Vector3Int oldMiddle = Vector3Int.zero;
-
-
-        private Transform playerPos;
-        public int artiveGridSize;
 
         public List<Nav2dNode> GetNodesInCircle(Vector3 point, float radius)
         {
@@ -91,24 +62,17 @@ namespace Scripts.AI
         // Use this for initialization
         void Start()
         {
-
-            maxCreateNodePerFrames = width * height / createNodeFrames;
-            maxCreateConnectionPerFrame = width * height / createConnectionFrame;
-
             nodes = new List<Nav2dNode>();
             waitingThreads = new Queue<PathRequest>();
             runningThreads = new List<Thread>();
             waitingThreadNumberById = new Dictionary<int, int>();
-            cellsArray = new Nav2dCell[width, height];
 
             //width = (int)(optimizationGrid.cellSize.x); /// grid.cellSize.x * artiveGridSize);
             //height = (int)(optimizationGrid.cellSize.y); /// grid.cellSize.y * artiveGridSize);
 
-
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-
             //transform.position = -new Vector3(width * grid.cellSize.x / 2, height * grid.cellSize.y / 2);
-            GenerateNavMesh();
+
+            //transform.position -= new Vector3(width / 2 * grid.cellSize.x, height / 2 * grid.cellSize.y);
 
         }
 
@@ -155,12 +119,13 @@ namespace Scripts.AI
                 {
                     for (int x = 0; x < width; x++)
                     {
-                        if (cellsArray[x, y] != null)
+                        if (cellsArray.ContainsKey(new Vector2Int(x, y)))
                         {
-                            if (cellsArray[x, y].getNode(0, 0) != null)
-                                cellsArray[x, y].getNode(0, 0).drawConnections();
-                            if (cellsArray[x, y].getNode(-1, -1) != null)
-                                cellsArray[x, y].getNode(-1, -1).drawConnections();
+
+                            if (cellsArray[new Vector2Int(x, y)].getNode(0, 0) != null)
+                                cellsArray[new Vector2Int(x, y)].getNode(0, 0).drawConnections();
+                            if (cellsArray[new Vector2Int(x, y)].getNode(-1, -1) != null)
+                                cellsArray[new Vector2Int(x, y)].getNode(-1, -1).drawConnections();
                         }
                     }
                 }
@@ -187,10 +152,7 @@ namespace Scripts.AI
                 // remove to save memory
                 waitingThreadNumberById.Remove(pathRequest.AgentGameObjectID);
 
-
-
                 // create thread
-
                 var startCellPos = grid.LocalToCell(grid.WorldToLocal(pathRequest.Start));
                 var endCellPos = grid.LocalToCell(grid.WorldToLocal(pathRequest.End));
 
@@ -203,15 +165,12 @@ namespace Scripts.AI
                     ));
                 };
 
-
                 var t = new Thread(threadStart);
                 runningThreads.Add(t);
 
                 // run the thread
                 t.Start();
-
             }
-
         }
 
         void OnDrawGizmos()
@@ -248,66 +207,65 @@ namespace Scripts.AI
 
         }
 
-        public void GenerateNavMesh()
+        public void GenerateNavMesh(Vector3 origin, float radius)
         {
 
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    // if already exist skip
-                    if (cellsArray[x, y] != null)
-                    {
-                        continue;
-                    }
-
-                    CreateNavCell(new Vector3Int(x, y, 0));
-                    // if (y * height + x >= maxCreatePerFrameVec.y * height + maxCreatePerFrameVec.x + maxCreateNodePerFrames || (x == width - 1 && y == height - 1))
-                    // {
-                    //     maxCreatePerFrameVec.Set(x + 1, y);
-                    //     return;
-                    // }
-                }
-
-            }
+            cellsArray = new Dictionary<Vector2Int, Nav2dCell>();
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
 
-                    // if already connected skip
-                    if (cellsArray[x, y].connected)
-                    {
-                        continue;
-                    }
-                    CreateAdjacentNodesConnections(cellsArray[x, y]);
-                    // if (y * height + x >= maxConnectionPerFrameVec.y * height + maxConnectionPerFrameVec.x + maxCreateConnectionPerFrame)
-                    // {
-                    //     maxConnectionPerFrameVec.Set(x + 1, y);
-                    //     return;
-                    // }
-                }
+                    // dont generate cell if outside of city radius;
 
+                    var gridCenter = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
+                    var insideRadius = (gridCenter - origin).magnitude < radius;
+
+
+                    // ckeck if inside city ward;
+                    var insideWard = false;
+
+                    var collider = Physics2D.OverlapPoint(gridCenter, LayerMask.GetMask(wardLayerMask));
+
+                    if (collider != null)
+                    {
+                        var wardController = collider.GetComponent<WardController>();
+                        insideWard = wardController.ward.patch.withinCity;
+                    }
+
+                    if (insideRadius && insideWard)
+                    {
+                        CreateNavCell(new Vector3Int(x, y, 0));
+                    }
+                }
             }
 
-            generated = true;
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    var vec = new Vector2Int(x, y);
+
+                    if (cellsArray.ContainsKey(vec))
+                    {
+                        CreateAdjacentNodesConnections(cellsArray[vec]);
+                    }
+                }
+            }
+
+            // free up memory
+            //cellsArray = null;//new Nav2dCell[width, height];
         }
 
 
         public bool CanBeReached(Vector3 worldPos)
         {
             var gridpos = grid.WorldToCell(worldPos);
-
-            if (cellsArray[gridpos.x, gridpos.y] == null)
-            {
-                return false;
-            }
-
-            return true;
+            return (cellsArray[new Vector2Int(gridpos.x, gridpos.y)] != null);
         }
 
-        private Nav2dCell CreateNavCell(Vector3Int gridPos)
+        private void CreateNavCell(Vector3Int gridPos)
         {
             var cellsize = grid.cellSize.x;
             var center = grid.GetCellCenterWorld(gridPos);
@@ -330,9 +288,9 @@ namespace Scripts.AI
             nodes.Add(nodeCenter);
             nodes.Add(nodeNorthWest);
 
-            cellsArray[gridPos.x, gridPos.y] = new Nav2dCell(gridPos);
-            cellsArray[gridPos.x, gridPos.y].setNode(nodeCenter, new Vector2Int(0, 0));
-            cellsArray[gridPos.x, gridPos.y].setNode(nodeNorthWest, new Vector2Int(-1, -1));
+            var cell = cellsArray[new Vector2Int(gridPos.x, gridPos.y)] = new Nav2dCell(gridPos);
+            cell.setNode(nodeCenter, new Vector2Int(0, 0));
+            cell.setNode(nodeNorthWest, new Vector2Int(-1, -1));
 
 
             var leftCell = FindNavCellAtPosition(gridPos + new Vector3Int(-1, 0, 0));
@@ -354,8 +312,10 @@ namespace Scripts.AI
             }
 
 
-            return cellsArray[gridPos.x, gridPos.y];
+            //return cellsArray[gridPos.x, gridPos.y];
         }
+
+
         private void CreateAdjacentNodesConnections(Nav2dCell cell)
         {
             var cells = new Dictionary<string, Nav2dCell>{
@@ -369,6 +329,7 @@ namespace Scripts.AI
                 {"rightDown", FindNavCellAtPosition(cell.gridPos + new Vector3Int(1,-1,0))}
             };
 
+
             // table of nodes to test connection
             Nav2dNode[] centerNodeNeighbors = new Nav2dNode[9]{
                     cell.getNode(-1,-1),
@@ -380,16 +341,11 @@ namespace Scripts.AI
                     cells["right"]?.getNode(-1,-1),
                     cells["right"]?.getNode(0,0),
                     cells["rightTop"]?.getNode(-1,-1)
-            };
+                };
 
             //sets connection two ways
-            cell.getNode(0, 0).setAccessibility(centerNodeNeighbors, LayerMask.GetMask(collisionLayers));
 
-            // if node not accessable then delete it
-            if (!cell.getNode(0, 0).accessible)
-            {
-                cell.setNode(null, new Vector2Int(0, 0));
-            }
+            cell.getNode(0, 0).setAccessibility(centerNodeNeighbors, LayerMask.GetMask(collisionLayers));
 
             Nav2dNode[] northWestNodeNeighbors = new Nav2dNode[9]{
                     cells["leftDown"]?.getNode(0,0),
@@ -401,26 +357,10 @@ namespace Scripts.AI
                     cells["down"]?.getNode(0,0),
                     cells["right"]?.getNode(-1,-1),
                     cell.getNode(0,0)
-            };
+                };
 
             //sets connection two ways
             cell.getNode(-1, -1).setAccessibility(northWestNodeNeighbors, LayerMask.GetMask(collisionLayers));
-
-            // if node not accessable then delete it
-            if (!cell.getNode(-1, -1).accessible)
-            {
-                cell.setNode(null, new Vector2Int(-1, -1));
-            }
-
-
-            // if cell has no nodes, delete it;
-            if (cell.getNode(0, 0) == null && cell.getNode(-1, -1) == null)
-            {
-                cellsArray[cell.gridPos.x, cell.gridPos.y] = null;
-            }
-
-
-            cell.connected = true;
         }
 
 
@@ -494,7 +434,8 @@ namespace Scripts.AI
             // outside grid bounds
             if (gridPos.x >= 0 && gridPos.x < width && gridPos.y >= 0 && gridPos.y < height)
             {
-                return cellsArray[gridPos.x, gridPos.y];
+                var vec = new Vector2Int(gridPos.x, gridPos.y);
+                return cellsArray.ContainsKey(vec) ? cellsArray[vec] : null;
             }
 
             return null;

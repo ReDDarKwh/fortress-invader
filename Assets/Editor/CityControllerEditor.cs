@@ -34,6 +34,9 @@ public class CityControllerEditor : Editor
             {
                 Handles.Label(mapGen.transform.TransformPoint(patch.shape.center.vec), patch.ward.getLabel());
             }
+            Handles.DrawWireDisc(mapGen.transform.position, Vector3.forward, mapGen.cityModel.cityRadius * 10);
         }
+
+
     }
 }

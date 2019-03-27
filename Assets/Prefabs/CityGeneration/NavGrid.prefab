@@ -40,7 +40,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8887115173609604082}
   m_Enabled: 1
-  m_CellSize: {x: 3, y: 3, z: 0}
+  m_CellSize: {x: 4, y: 4, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -59,13 +59,11 @@ MonoBehaviour:
   grid: {fileID: 8887115173609604080}
   width: 100
   height: 100
+  wardLayerMask:
+  - Ward
   showNodeConnections: 0
   collisionLayers:
   - Obstacle
   - Nav2DObstacle
-  node: {fileID: 4192343131675880661, guid: ba5c2fbce98184210a9f79a2db32119b, type: 3}
-  createNodeFrames: 30
-  createConnectionFrame: 60
   nav2dNodeLayer:
   - Node
-  artiveGridSize: 0

@@ -157,9 +157,9 @@ namespace Scripts.AI
         {
             rb = GetComponent<Rigidbody2D>();
             navGrid = GameObject.FindGameObjectWithTag("MainNavGrid").GetComponent<Nav2D>();
+            character = GetComponent<Character>();
             path = new ConcurrentStack<Vector3>();
 
-            character = GetComponent<Character>();
         }
 
         // Update is called once per frame
