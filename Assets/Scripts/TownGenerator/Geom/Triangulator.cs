@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace TownGenerator.Geom
 {
+
+
     public class Triangulator
     {
         private List<Vector2> m_points = new List<Vector2>();
@@ -35,7 +37,7 @@ namespace TownGenerator.Geom
 
             int nv = n;
             int count = 2 * nv;
-            for (int v = nv - 1; nv > 2;)
+            for (int m = 0, v = nv - 1; nv > 2;)
             {
                 if ((count--) <= 0)
                     return indices.ToArray();
@@ -59,6 +61,7 @@ namespace TownGenerator.Geom
                     indices.Add(a);
                     indices.Add(b);
                     indices.Add(c);
+                    m++;
                     for (s = v, t = v + 1; t < nv; s++, t++)
                         V[s] = V[t];
                     nv--;
@@ -120,5 +123,120 @@ namespace TownGenerator.Geom
 
             return ((aCROSSbp >= 0.0f) && (bCROSScp >= 0.0f) && (cCROSSap >= 0.0f));
         }
+
+        public static Mesh CreateMesh(Vector2[] poly, float extrusion)
+        {
+
+            // convert polygon to triangles
+
+            Triangulator triangulator = new Triangulator(poly);
+
+            int[] tris = triangulator.Triangulate();
+
+            Mesh m = new Mesh();
+
+            Vector3[] vertices = new Vector3[poly.Length * 4];
+
+            // something horribly wrong with this
+
+            for (int i = 0; i < poly.Length; i += 2)
+            {
+
+                vertices[i].x = poly[i].x;
+
+                vertices[i].y = poly[i].y;
+
+                vertices[i].z = -extrusion; // front vertex
+
+
+                vertices[i + 1].x = poly[i].x;
+
+                vertices[i + 1].y = poly[i].y;
+
+                vertices[i + 1].z = -extrusion; // front vertex
+
+
+                vertices[i + poly.Length].x = poly[i].x;
+
+                vertices[i + poly.Length].y = poly[i].y;
+
+                vertices[i + poly.Length].z = extrusion;  // back vertex     
+
+
+                vertices[i + poly.Length + 1].x = poly[i].x;
+
+                vertices[i + poly.Length + 1].y = poly[i].y;
+
+                vertices[i + poly.Length + 1].z = extrusion;  // back vertex     
+            }
+
+            int[] triangles = new int[tris.Length * 2 + poly.Length * 3];
+
+            int count_tris = 0;
+
+            for (int i = 0; i < tris.Length; i += 3)
+            {
+                triangles[i] = tris[i];
+                triangles[i + 1] = tris[i + 1] + 1;
+                triangles[i + 2] = tris[i + 2] + 2;
+            } // front vertices
+
+            count_tris += tris.Length;
+
+            for (int i = 0; i < tris.Length; i += 3)
+            {
+                triangles[count_tris + i] = tris[i + 2] + poly.Length;
+                triangles[count_tris + i + 1] = tris[i + 1] + poly.Length + 1;
+                triangles[count_tris + i + 2] = tris[i] + poly.Length + 2;
+            }
+
+            //texture coordinate
+            Vector2[] uvs = new Vector2[vertices.Length];
+
+            for (int i = 0; i < uvs.Length; i++)
+            {
+                uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+            }
+
+
+            m.vertices = vertices;
+            m.triangles = triangles;
+            m.uv = uvs;
+
+            //m = Triangulator.SideExtrusion(m);
+            m.RecalculateNormals();
+            m.RecalculateBounds();
+
+
+            return m;
+
+        }
+
+        private static Mesh SideExtrusion(Mesh mesh)
+        {
+            List<int> indices = new List<int>(mesh.triangles);
+            int count = (mesh.vertices.Length / 2); // originl number of vertices plus copies
+            for (int i = 1; i < count; i += 2)
+            {
+                int i1 = i;
+                int i2 = (i1 + 1) % count;
+
+
+                int i3 = i1 + count;
+                int i4 = i2 + count;
+
+                indices.Add(i4);
+                indices.Add(i3);
+                indices.Add(i1);
+
+                indices.Add(i2);
+                indices.Add(i4);
+                indices.Add(i1);
+            }
+            mesh.triangles = indices.ToArray();
+            return mesh;
+        }
     }
+
+
 }

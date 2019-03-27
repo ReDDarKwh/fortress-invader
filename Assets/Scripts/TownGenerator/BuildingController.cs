@@ -5,6 +5,7 @@ using UnityEditor.Animations;
 using System;
 using System.Linq;
 using TownGenerator.Geom;
+using UnityEditor;
 
 public class BuildingController : MonoBehaviour
 {
@@ -58,24 +59,7 @@ public class BuildingController : MonoBehaviour
         // Create Vector2 vertices
         Vector2[] poly = shape.Select(x => x.vec).ToArray();
 
-        Triangulator tr = new Triangulator(poly);
-        int[] indices = tr.Triangulate();
-
-        // Create the Vector3 vertices
-        Vector3[] vertices = new Vector3[poly.Length];
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            vertices[i] = new Vector3(poly[i].x, poly[i].y, 0);
-        }
-
-        // Create the mesh
-        Mesh msh = new Mesh();
-        msh.vertices = vertices;
-        msh.triangles = indices;
-        msh.RecalculateNormals();
-        msh.RecalculateBounds();
-
-        // // Use the triangulator to get indices for creating triangles
+        // Use the triangulator to get indices for creating triangles
         // Triangulator triangulator = new Triangulator(poly);
         // int[] tris = triangulator.Triangulate();
         // Mesh m = new Mesh();
@@ -124,10 +108,11 @@ public class BuildingController : MonoBehaviour
         // msh.triangles = triangles;
         // msh.RecalculateNormals();
         // msh.RecalculateBounds();
-        // msh.RecalculateTangents();
+        // MeshUtility.Optimize(msh);
+        // //msh.Optimize();
 
-        // Set up game object with mesh;
-        filter.mesh = msh;
+        // // Set up game object with mesh;
+        filter.mesh = Triangulator.CreateMesh(poly, 2);
     }
 
     // private void setupLineRenderer()

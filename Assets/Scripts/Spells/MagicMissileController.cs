@@ -13,6 +13,8 @@ namespace Scripts.Spells
         [System.NonSerialized]
         public Character characterTarget;
 
+
+
         [System.NonSerialized]
         public MagicTargetMissileController selectionMissileTargetController;
 
@@ -101,6 +103,8 @@ namespace Scripts.Spells
                 velocity = Vector2.ClampMagnitude(velocity + sterring, maxSteeringSpeed);
 
                 transform.position += velocity;
+
+
 
                 transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
 
