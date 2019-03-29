@@ -52,7 +52,6 @@ namespace TownGenerator.Building
                 }
             }
 
-
             buildGates(real, model, reserved);
             segments = shape.Select(x => true).ToList();
         }
@@ -123,7 +122,7 @@ namespace TownGenerator.Building
                             var farthest = outer.shape.MaxBy((Point v) =>
                             {
 
-                                if (shape.contains(v) || reserved.Contains(v))
+                                if (shape.Contains(v) || reserved.Contains(v))
                                 {
                                     return Mathf.NegativeInfinity;
 

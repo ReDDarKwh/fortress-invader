@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Scripts.AI;
 using TownGenerator.Building;
+using TownGenerator.Geom;
+using TownGenerator.Wards;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -19,11 +21,15 @@ public class CityController : MonoBehaviour
 
 
     public GameObject buildingPrefab;
+    public GameObject wallPrefab;
+    public GameObject gatePrefab;
+    public GameObject towerPrefab;
     public GameObject wardPrefab;
     //public GameObject navGridPrefab;
 
     public Nav2D navGrid;
 
+    public float gateOpeningSize = 1;
 
 
     private IEnumerator coroutine;
@@ -58,7 +64,6 @@ public class CityController : MonoBehaviour
         Random.state = oldstate;
 
         //create buildings
-
         foreach (var patch in cityModel.patches)
         {
 
@@ -76,8 +81,123 @@ public class CityController : MonoBehaviour
 
                 var buildingController = b.GetComponent<BuildingController>();
                 buildingController.shape = shape;
+
+                //buildingController.transform.localScale = new Vector3(1, 1, Random.Range(1, 2));
+
             }
         }
+
+
+        // create walls and towers and gates
+
+        if (cityModel.wall != null)
+        {
+
+            // city wall and towers
+            for (var i = 0; i < cityModel.wall.shape.Count; i++)
+            {
+                // wall
+
+                var start = cityModel.wall.shape[i].vec;
+                var end = cityModel.wall.shape[(i + 1) % cityModel.wall.shape.Count].vec;
+                var nextEnd = cityModel.wall.shape[(i + 2) % cityModel.wall.shape.Count].vec;
+
+                var startToEnd = end - start;
+                var endToStart = start - end;
+                var dis = endToStart.magnitude;
+
+                //connectedToGate
+
+                if (cityModel.wall.gates.Concat(
+                    cityModel.citadel != null ? (cityModel.citadel.ward as Castle).wall.gates : null
+                    ).Contains(new Point(end)))
+                {
+                    // shorten wall
+                    end = start + startToEnd.normalized * (dis - gateOpeningSize / 2);
+
+                    // add gate tower
+                    Instantiate(gatePrefab, transform.TransformPoint(end),
+                        Quaternion.Euler(90, 0, 0),
+                        this.transform
+                    );
+                }
+
+                if (cityModel.wall.gates.Concat(
+                    cityModel.citadel != null ? (cityModel.citadel.ward as Castle).wall.gates : null
+                    ).Contains(new Point(start)))
+                {
+                    // shorten wall
+                    start = end + endToStart.normalized * (dis - gateOpeningSize / 2);
+
+                    // add gate tower
+                    Instantiate(gatePrefab, transform.TransformPoint(start),
+                    Quaternion.Euler(90, 0, 0),
+                    this.transform
+                    );
+                }
+
+                var vec = end - start;
+                var pos = Vector2.Lerp(start, end, 0.5f);
+                var wall = Instantiate(wallPrefab, this.transform);
+
+                wall.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg);
+                wall.transform.position = transform.TransformPoint(pos);
+                wall.transform.localScale = new Vector3(dis, 1, 22);
+
+            }
+
+            foreach (var tower in cityModel.wall.towers)
+            {
+                if (cityModel.citadel != null)
+                {
+                    if ((cityModel.citadel.ward as Castle).wall.gates.Contains(tower))
+                    {
+                        continue;
+                    }
+                }
+
+                var t = Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
+            }
+
+
+            // foreach (var gate in cityModel.wall.gates)
+            // {
+            //     var t = Instantiate(gatePrefab, transform.TransformPoint(gate.vec), Quaternion.Euler(0, 0, 0), this.transform);
+            // }
+
+            // castle wall and towers
+            if (cityModel.citadel != null)
+            {
+                var castle = cityModel.citadel.ward as Castle;
+
+                for (var i = 0; i < castle.wall.shape.Count; i++)
+                {
+                    // wall
+                    var start = castle.wall.shape[i].vec;
+                    var end = castle.wall.shape[(i + 1) % castle.wall.shape.Count].vec;
+
+                    if (cityModel.wall.shape.findEdge(castle.wall.shape[(i + 1) % castle.wall.shape.Count], castle.wall.shape[i]) == -1)
+                    {
+                        var endToStart = start - end;
+                        var dis = endToStart.magnitude;
+
+                        var vec = end - start;
+                        var pos = Vector2.Lerp(start, end, 0.5f);
+                        var wall = Instantiate(wallPrefab, this.transform);
+
+                        wall.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg);
+                        wall.transform.position = transform.TransformPoint(pos);
+                        wall.transform.localScale = new Vector3(dis, 1, 22);
+                    }
+                }
+
+                foreach (var tower in castle.wall.towers)
+                {
+                    var t = Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
+                }
+            }
+        }
+
 
 
         // init nav mesh

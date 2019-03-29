@@ -296,7 +296,7 @@ namespace TownGenerator.Building
         public List<Patch> patchByVertex(Point v)
         {
             return patches.Where(
-                (patch) => { return patch.shape.contains(v); }
+                (patch) => { return patch.shape.Contains(v); }
         ).ToList();
         }
 
@@ -369,7 +369,7 @@ namespace TownGenerator.Building
                 v1 = street[i];
 
                 // Removing segments which go along the plaza
-                if (plaza != null && plaza.shape.contains(v0) && plaza.shape.contains(v1))
+                if (plaza != null && plaza.shape.Contains(v0) && plaza.shape.Contains(v1))
                     continue;
 
                 var exists = false;

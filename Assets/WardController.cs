@@ -39,8 +39,7 @@ public class WardController : MonoBehaviour
     {
         // Create Vector2 vertices
         Vector2[] poly = ward.patch.shape.Select(x => x.vec).ToArray();
-        Triangulator tr = new Triangulator(poly);
-        int[] indices = tr.Triangulate();
+        int[] indices = new Triangulator(poly).Triangulate();
 
         // Create the Vector3 vertices
         Vector3[] vertices = new Vector3[poly.Length];

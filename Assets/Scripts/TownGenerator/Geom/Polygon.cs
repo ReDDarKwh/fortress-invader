@@ -125,10 +125,7 @@ namespace TownGenerator.Geom
             return new Point((float)(s6 * x), (float)(s6 * y));
         }
 
-        public bool contains(Point v)
-        {
-            return this.IndexOf(v) != -1;
-        }
+
 
         public void forEdge(Action<Point, Point> f)
         {

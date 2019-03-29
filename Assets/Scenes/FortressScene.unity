@@ -662,6 +662,29 @@ PrefabInstance:
       propertyPath: navGrid
       value: 
       objectReference: {fileID: 60741506}
+    - target: {fileID: 8641542246610101916, guid: 9e084ef7da1368d47b58e08597d2a37e,
+        type: 3}
+      propertyPath: wallPrefab
+      value: 
+      objectReference: {fileID: 7664059178267595389, guid: bf0d660b886165d47a614af06e8235d7,
+        type: 3}
+    - target: {fileID: 8641542246610101916, guid: 9e084ef7da1368d47b58e08597d2a37e,
+        type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: 979000451926275478, guid: b1487b63701e0e448af74358a43b7d1d,
+        type: 3}
+    - target: {fileID: 8641542246610101916, guid: 9e084ef7da1368d47b58e08597d2a37e,
+        type: 3}
+      propertyPath: gatePrefab
+      value: 
+      objectReference: {fileID: 979000451926275478, guid: b1487b63701e0e448af74358a43b7d1d,
+        type: 3}
+    - target: {fileID: 8641542246610101916, guid: 9e084ef7da1368d47b58e08597d2a37e,
+        type: 3}
+      propertyPath: gateOpeningSize
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e084ef7da1368d47b58e08597d2a37e, type: 3}
 --- !u!1 &563737688

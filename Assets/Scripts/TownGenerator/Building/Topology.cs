@@ -56,7 +56,7 @@ namespace TownGenerator.Building
                     var v0 = v1; v1 = p.shape[i];
                     var n0 = n1; n1 = processPoint(v1);
 
-                    if (n0 != null && !border.contains(v0))
+                    if (n0 != null && !border.Contains(v0))
                     {
                         if (withinCity)
                             inner.Add(n0);
@@ -66,7 +66,7 @@ namespace TownGenerator.Building
                         outer.Add(n0);
                     }
 
-                    if (n1 != null && !border.contains(v1))
+                    if (n1 != null && !border.Contains(v1))
                     {
                         if (withinCity)
                             inner.Add(n1);

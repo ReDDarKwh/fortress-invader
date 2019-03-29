@@ -17,9 +17,10 @@ namespace TownGenerator.Wards
 
     public class Ward
     {
-        public static float MAIN_STREET = 5.0f;
+        public static float MAIN_STREET = 3.5f;
         public static float REGULAR_STREET = 2.0f;
         public static float ALLEY = 0.7f;
+        public static float BUILDING_GAP = 0.1f;
 
         public Model model;
         public Patch patch;
@@ -47,18 +48,25 @@ namespace TownGenerator.Wards
             patch.shape.forEdge((v0, v1) =>
             {
                 if (model.wall != null && model.wall.bordersBy(patch, v0, v1))
+                {
                     // Not too close to the wall
                     insetDist.Add(MAIN_STREET / 2);
+                }
                 else
                 {
                     var onStreet = innerPatch && (model.plaza != null && model.plaza.shape.findEdge(v1, v0) != -1);
                     if (!onStreet)
+                    {
+
                         foreach (var street in model.arteries)
-                            if (street.contains(v0) && street.contains(v1))
+                        {
+                            if (street.Contains(v0) && street.Contains(v1))
                             {
                                 onStreet = true;
                                 break;
                             }
+                        }
+                    }
                     insetDist.Add((onStreet ? MAIN_STREET : (innerPatch ? REGULAR_STREET : ALLEY)) / 2);
                 }
             });
@@ -109,7 +117,7 @@ namespace TownGenerator.Wards
             {
                 var onRoad = false;
                 foreach (var street in model.arteries)
-                    if (street.contains(v1) && street.contains(v2))
+                    if (street.Contains(v1) && street.Contains(v2))
                     {
                         onRoad = true;
                         break;
@@ -204,7 +212,7 @@ namespace TownGenerator.Wards
             var angleSpread = Mathf.PI / 6 * gridChaos * (p.square < minSq * 4 ? 0.0 : 1);
             var b = (Random.value - 0.5) * angleSpread;
 
-            var halves = Cutter.bisect(p, v, (float)ratio, (float)b, split ? ALLEY : 0.0f);
+            var halves = Cutter.bisect(p, v, (float)ratio, (float)b, split ? ALLEY : BUILDING_GAP);
 
             var buildings = new List<Polygon>();
             foreach (var half in halves)
@@ -216,8 +224,9 @@ namespace TownGenerator.Wards
                 }
                 else
                 {
-                    buildings = buildings.Concat(createAlleys(half, minSq, gridChaos, sizeChaos, emptyProb, half.square > minSq / (Random.value * Random
-                         .value))).ToList();
+                    buildings = buildings.Concat(
+                        createAlleys(half, minSq, gridChaos, sizeChaos, emptyProb, half.square > minSq / (Random.value * Random.value))
+                    ).ToList();
                 }
             }
 
