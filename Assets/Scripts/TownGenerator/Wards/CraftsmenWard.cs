@@ -17,7 +17,7 @@ namespace TownGenerator.Wards
     {
 
         public CraftsmenWard(Model model, Patch patch)
-        : base(model, patch, 10 + 80 * Random.value * Random.value, 0.5f + Random.value * 0.2f, 0.5f)
+        : base(model, patch, 10 + 50 * Random.value * Random.value, 0.3f + Random.value * 0.2f, 0.5f)
         {
 
             // small to large

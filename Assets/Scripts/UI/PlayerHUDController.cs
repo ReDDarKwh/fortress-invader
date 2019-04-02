@@ -95,7 +95,7 @@ public class PlayerHUDController : MonoBehaviour
 
         playerHealthBar.fillAmount = Mathf.SmoothDamp(
             playerHealthBar.fillAmount,
-            playerCharacter.character.currentHealth.Value / playerCharacter.character.maxHealth.Value,
+            playerCharacter.character.currentHealth / playerCharacter.character.maxHealth,
             ref vel, 0.1f
        );
 

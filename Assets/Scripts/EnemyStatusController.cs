@@ -32,7 +32,7 @@ public class EnemyStatusController : MonoBehaviour
 
         healthBar.fillAmount = Mathf.SmoothDamp(
            healthBar.fillAmount,
-           character.currentHealth.Value / character.maxHealth.Value,
+           character.currentHealth / character.maxHealth,
            ref vel, 0.2f
         );
     }

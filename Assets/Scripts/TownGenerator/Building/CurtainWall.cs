@@ -85,7 +85,7 @@ namespace TownGenerator.Building
                         }
                     );
 
-                    Debug.Log("shared : " + sharedPoint.Count());
+                    //Debug.Log("shared : " + sharedPoint.Count());
 
                     return notReserved && sharedPoint.Count() > 1;
 

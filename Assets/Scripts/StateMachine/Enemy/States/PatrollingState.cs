@@ -86,13 +86,24 @@ public class PatrollingState : BaseState
                         var c = collider.GetComponentInParent<BuildingController>();
 
                         // if has building component and parent building is on building layer (walls are building that cannot be patrolled)
-                        if (c == null || c.gameObject.layer != LayerMask.GetMask("Building"))
+                        if (c == null || c.gameObject.layer != LayerMask.NameToLayer("Building"))
+                        {
+                            var l = LayerMask.GetMask("Building");
                             continue;
+
+                        }
 
                         buildingQueue.Enqueue(new Queue<Vector2>(c.WorldSpaceCorners));
 
                     }
 
+                }
+
+
+                if (buildingQueue.Count < 1)
+                {
+
+                    return;
                 }
 
 

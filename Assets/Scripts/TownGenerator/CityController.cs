@@ -25,6 +25,8 @@ public class CityController : MonoBehaviour
     public GameObject gatePrefab;
     public GameObject towerPrefab;
     public GameObject wardPrefab;
+
+    public GameObject roadPrefab;
     //public GameObject navGridPrefab;
 
     public Nav2D navGrid;
@@ -85,6 +87,9 @@ public class CityController : MonoBehaviour
                 //buildingController.transform.localScale = new Vector3(1, 1, Random.Range(1, 2));
 
             }
+
+
+
         }
 
 
@@ -198,6 +203,54 @@ public class CityController : MonoBehaviour
             }
         }
 
+        // roads 
+
+        // foreach (var street in cityModel.streets)
+        // {
+        //     var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
+        //     roadControl.points = street.Select(x => transform.TransformPoint(x.vec)).ToList();
+        // }
+
+        foreach (var street in cityModel.roads)
+        {
+            var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
+            roadControl.points = street.Select(x => transform.TransformPoint(x.vec)).ToList();
+            roadControl.roadWidth = 4;
+        }
+
+
+
+
+        var edges = new List<Polygon>();
+
+
+        foreach (var patch in cityModel.inner)
+        {
+            patch.shape.forEdge((start, end) =>
+            {
+                if (cityModel.wall == null || !cityModel.wall.bordersBy(patch, start, end))
+                {
+
+                    if (!edges.Any(x => x.findEdge(start, end) != -1) && !edges.Any(x => x.findEdge(end, start) != -1))
+                    {
+                        edges.Add(new Polygon { start, end });
+                    }
+                }
+            });
+        }
+
+        foreach (var edge in edges)
+        {
+            var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
+            roadControl.points = new List<Vector3> { transform.TransformPoint(edge[0].vec), transform.TransformPoint(edge[1].vec) };
+            roadControl.roadWidth = 8;
+        }
+
+        // foreach (var street in cityModel.arteries)
+        // {
+        //     var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
+        //     roadControl.points = street.Select(x => transform.TransformPoint(x.vec)).ToList();
+        // }
 
 
         // init nav mesh
@@ -210,6 +263,19 @@ public class CityController : MonoBehaviour
         StartCoroutine("GenerateNav2d");
     }
 
+
+    // public class EdgeComparer : IEqualityComparer<Polygon>
+    // {
+    //     public bool Equals(Polygon x, Polygon y)
+    //     {
+    //         return (x[0].vec == y[0].vec && x[1].vec == y[1].vec);
+    //     }
+
+    //     public int GetHashCode(Polygon obj)
+    //     {
+    //         return obj.GetHashCode();
+    //     }
+    // }
 
     void Update()
     {

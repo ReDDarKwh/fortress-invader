@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 6900033692342425676}
+  followerGuardPrefab: {fileID: 1914670080473648538, guid: cbce3d16467431c49808477f1e650b7e,
+    type: 3}
+  leaderGuardPrefab: {fileID: 4760294453471234741, guid: f213b3df07b4bb84eaa30c3550d7c40c,
+    type: 3}
 --- !u!60 &6900033692342425676
 PolygonCollider2D:
   m_ObjectHideFlags: 0

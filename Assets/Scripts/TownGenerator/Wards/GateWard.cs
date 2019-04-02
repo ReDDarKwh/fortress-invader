@@ -16,7 +16,7 @@ namespace TownGenerator.Wards
     {
 
         public GateWard(Model model, Patch patch)
-            : base(model, patch, 10 + 50 * Random.value * Random.value, 0.5f + Random.value * 0.2f, 0.7f)
+            : base(model, patch, 10 + 50 * Random.value * Random.value, 0.5f + Random.value * 0.1f, 0.7f)
         {
 
             // small to large

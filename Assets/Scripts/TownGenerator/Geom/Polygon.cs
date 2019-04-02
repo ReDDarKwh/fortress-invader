@@ -526,8 +526,8 @@ namespace TownGenerator.Geom
 
         public int findEdge(Point a, Point b)
         {
-            var index = this.IndexOf(a);
-            return ((index != -1 && this[(index + 1) % this.Count] == b) ? index : -1);
+            var index = this.Select(x => x.vec).ToList().IndexOf(a.vec);
+            return ((index != -1 && this[(index + 1) % this.Count].Equals(b)) ? index : -1);
         }
 
         public Point next(Point a)

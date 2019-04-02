@@ -13,7 +13,7 @@ namespace Scripts.Characters
 
             message = EventMessage.EmptyMessage;
 
-            return character.currentHealth.Value <= 0;
+            return character.currentHealth <= 0;
         }
 
         public override void Init(ActiveLinking activeLinking)

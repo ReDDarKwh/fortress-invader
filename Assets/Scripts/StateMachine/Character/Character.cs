@@ -62,8 +62,8 @@ public class Character : MonoBehaviour
 
 
 
-    public FloatReactiveProperty maxHealth;
-    public ReactiveProperty<float> currentHealth = new ReactiveProperty<float>();
+    public float maxHealth;
+    public float currentHealth;
 
 
     public GameObject legsObject;
@@ -111,7 +111,7 @@ public class Character : MonoBehaviour
 
     public void AddDamage(float damage)
     {
-        this.currentHealth.Value -= damage;
+        this.currentHealth -= damage;
         //stateMachine.TriggerEvent(damageTakenEvent, EventMessage.EmptyMessage);
 
         // sound of getting hurt that AI might
@@ -128,23 +128,18 @@ public class Character : MonoBehaviour
     void Start()
     {
 
+        currentHealth = maxHealth;
 
         stateMachine = GetComponent<StateMachine>();
         animator = GetComponent<Animator>();
         noiseEmitter = GetComponent<NoiseEmitter>();
-
         effectIndicators = GetComponentInChildren<EffectIndicatorController>();
 
-
-
-        currentHealth.Value = maxHealth.Value;
         IsSelected = new ReactiveProperty<bool>();
         IsSelected.Subscribe(x => animator.SetBool("selected", x));
 
-
         legsAnimator = legsObject.GetComponent<Animator>();
         bodyAnimator = bodyObject.GetComponent<Animator>();
-
     }
 
     // Update is called once per frame

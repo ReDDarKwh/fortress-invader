@@ -32,8 +32,9 @@ MonoBehaviour:
     triggeredOn: {fileID: 11400000, guid: ca20c9a8db723ac46bfa6dc60e116b0b, type: 2}
     invert: 0
     action:
-      actionType: 2
-      transitionToState: {fileID: 0}
+      actionType: 0
+      transitionToState: {fileID: 11400000, guid: ecebe1e0663d8b64d987f8f55c2e8d88,
+        type: 2}
       addStates: []
   - tagName: taking_damage
     triggeredOn: {fileID: 11400000, guid: 4ed067348f11eb341a4d0086b5eae33b, type: 2}
@@ -55,5 +56,13 @@ MonoBehaviour:
     action:
       actionType: 0
       transitionToState: {fileID: 11400000, guid: cc4dc6bb4a2c34929acdb95fe440b079,
+        type: 2}
+      addStates: []
+  - tagName: behavior
+    triggeredOn: {fileID: 11400000, guid: 342c98098d64e4646afc1ce8d52766cd, type: 2}
+    invert: 0
+    action:
+      actionType: 0
+      transitionToState: {fileID: 11400000, guid: c247c4bed5e5fa94a8d4827d0aadb4c8,
         type: 2}
       addStates: []

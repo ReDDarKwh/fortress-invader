@@ -403,6 +403,7 @@ namespace TownGenerator.Building
 
                 var attached = false;
                 foreach (var a in arteries)
+                {
                     if (a[0] == seg.end)
                     {
                         a.Insert(0, seg.start);
@@ -415,6 +416,7 @@ namespace TownGenerator.Building
                         attached = true;
                         break;
                     }
+                }
 
                 if (!attached)
                     arteries.Add(new Street(new List<Point> { seg.start, seg.end }));

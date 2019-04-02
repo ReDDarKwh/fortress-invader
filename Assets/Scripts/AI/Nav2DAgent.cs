@@ -76,6 +76,23 @@ namespace Scripts.AI
 
 
 
+        public void setTargetWithPath(
+                    List<Vector3> path,
+                    float targetsRadius,
+                    float speed,
+                    bool neightborAvoidance = true
+                )
+        {
+
+            this.targetsRadius = targetsRadius;
+            this.neightborAvoidance = neightborAvoidance;
+            this.speed = speed;
+
+            PathCallback(path, false);
+            this.isMoving = true;
+        }
+
+
         public void setTarget(
             Vector3 worldPos,
             NavAgentMode mode,
@@ -112,7 +129,13 @@ namespace Scripts.AI
 
         }
 
-        public void PathCallback(IEnumerable<Nav2dNode> newPath)
+
+        public void PathCallback(IEnumerable<Nav2dNode> newPath, bool skipFist = true)
+        {
+            PathCallback(newPath.Select(x => x.worldPos), skipFist);
+        }
+
+        private void PathCallback(IEnumerable<Vector3> newPath, bool skipFist = true)
         {
 
             isWaitingForPath = false;
@@ -126,14 +149,17 @@ namespace Scripts.AI
 
             this.path.Clear();
 
-            foreach (var pos in newPath.Select(x => x.worldPos))
+            foreach (var pos in newPath)
             {
                 this.path.Push(pos);
             }
 
+            setNextTarget();
             // skip the first node no jitter on path change.
-            setNextTarget();
-            setNextTarget();
+            if (skipFist)
+            {
+                setNextTarget();
+            }
         }
 
 
@@ -166,8 +192,6 @@ namespace Scripts.AI
         void Update()
         {
 
-
-            Debug.Log(ignoredSeparationNeighbors.Count);
 
 
             // if (this.path != null)

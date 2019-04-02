@@ -33,10 +33,7 @@ public partial class StateMachine : MonoBehaviour
     {
         var pendingActions = new Queue<Tuple<BaseState, EventStateLinking>>();
 
-        Debug.Log("ActiveStates length : " + activeStates.Count());
-        Debug.Log("UpdateSubs length : " + UpdateSubs.Count());
-        Debug.Log("LeaveSubs length : " + LeaveSubs.Count());
-        Debug.Log("EnterSubs length : " + EnterSubs.Count());
+
 
         if (activeStates.Count < 1)
         {

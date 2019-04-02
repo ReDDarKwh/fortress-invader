@@ -16,7 +16,7 @@ namespace Scripts.AI
         public Vector3 Start { get; set; }
         public Vector3 End { get; set; }
         public int AgentGameObjectID { get; set; }
-        public Action<IEnumerable<Nav2dNode>> PathCallback { get; set; }
+        public Action<IEnumerable<Nav2dNode>, bool> PathCallback { get; set; }
     }
 
     public class Nav2D : MonoBehaviour
@@ -162,7 +162,7 @@ namespace Scripts.AI
                     pathRequest.PathCallback(Astar.findShortestPath(
                         findClosestAccessibleNodeInGrid(startCellPos, pathRequest.End),
                         findClosestAccessibleNodeInGrid(endCellPos, pathRequest.End)
-                    ));
+                    ), true);
                 };
 
                 var t = new Thread(threadStart);
@@ -364,7 +364,7 @@ namespace Scripts.AI
         }
 
 
-        internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>> pathCallback)
+        internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>, bool> pathCallback)
         {
 
             // add it to waiting dictionnary

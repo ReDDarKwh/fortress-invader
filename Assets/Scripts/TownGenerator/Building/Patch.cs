@@ -27,14 +27,7 @@ namespace TownGenerator.Building
             return new Patch(r.vertices.Select(x =>
             {
 
-                if (float.IsNaN(x.c.x))
-                {
-
-                    Debug.Log("wyh?");
-                }
-
                 return x.c;
-
             }).ToList());
         }
     }
