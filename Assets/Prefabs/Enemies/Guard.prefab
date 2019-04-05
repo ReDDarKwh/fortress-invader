@@ -14398,11 +14398,11 @@ GameObject:
   - component: {fileID: 689507999303273334}
   - component: {fileID: 715076880741360782}
   - component: {fileID: 633742459626043716}
+  - component: {fileID: 633315769219650204}
   - component: {fileID: 633300220092384904}
   - component: {fileID: 633604959377423230}
-  - component: {fileID: 633315769219650204}
-  - component: {fileID: 580919497555956514}
   - component: {fileID: 633767703150014484}
+  - component: {fileID: 580919497555956514}
   m_Layer: 12
   m_Name: Guard
   m_TagString: Untagged
@@ -14492,6 +14492,29 @@ MonoBehaviour:
   damageTakenEvent: {fileID: 0}
   bodyRotationSmoothness: 0.3
   legsRotationSmoothness: 0.3
+--- !u!114 &633315769219650204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673976840835746944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6102c91ac9c51841bd0b9e5b85b8101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisionRadiusModifier: 1
+  VisionAngleModifier: 1
+  baseVisionAngle: 67
+  baseVisionRadius: 25
+  earshotRadius: 2
+  pathToTargetUpdateDistance: 2
+  pathFindingTargetRadius: 2
+  TargetLayers:
+  - Player
+  ViewBlockingLayers:
+  - Obstacle
 --- !u!114 &633300220092384904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14530,7 +14553,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e905bdad5c09f7a4a81215e36e5eeb8f, type: 2}
   - {fileID: 11400000, guid: 7b554828f020aea4782588115222719d, type: 2}
   debugShowStates: 1
---- !u!114 &633315769219650204
+--- !u!114 &633767703150014484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14539,20 +14562,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 673976840835746944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6102c91ac9c51841bd0b9e5b85b8101, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ad2f240da2ae884d83c0ef9d55308a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisionRadiusModifier: 1
-  VisionAngleModifier: 1
-  baseVisionAngle: 67
-  baseVisionRadius: 25
-  earshotRadius: 2
-  pathToTargetUpdateDistance: 2
-  pathFindingTargetRadius: 2
-  TargetLayers:
-  - Player
-  ViewBlockingLayers:
-  - Obstacle
+  soundHeardEvent: {fileID: 11400000, guid: b1905699b91c46f4b81d9a0a62448ee8, type: 2}
+  layersThatCanHear:
+  - AI
 --- !u!95 &580919497555956514
 Animator:
   serializedVersion: 3
@@ -14572,21 +14587,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &633767703150014484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673976840835746944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad2f240da2ae884d83c0ef9d55308a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundHeardEvent: {fileID: 11400000, guid: b1905699b91c46f4b81d9a0a62448ee8, type: 2}
-  layersThatCanHear:
-  - AI
 --- !u!1 &673990472753127628
 GameObject:
   m_ObjectHideFlags: 0

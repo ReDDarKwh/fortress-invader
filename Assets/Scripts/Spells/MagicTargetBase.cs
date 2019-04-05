@@ -68,7 +68,7 @@ namespace Scripts.Spells
                 if (Random.value < effect.emissionChance)
                 {
                     var stateMachine = c.GetComponent<StateMachine>();
-                    var msg = new EventMessage { pos = SpellOrigin };
+                    var msg = new EventMessage { pos = SpellOrigin, target = this.gameObject };
 
 
                     // start states directly 

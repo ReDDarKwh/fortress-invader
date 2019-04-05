@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CityONE
   m_EditorClassIdentifier: 
   cityName: One
-  patchNum: 10
-  seed: 77
+  patchNum: 20
+  seed: 7777
