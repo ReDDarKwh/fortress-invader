@@ -39,7 +39,28 @@ namespace TownGenerator.Building
             if (model.citadel != null)
                 blocked = blocked.Concat(model.citadel.shape).ToList();
             if (model.wall != null)
-                blocked = blocked.Concat(model.wall.shape).ToList();
+            {
+
+                blocked = blocked.Concat(model.wall.shape.Where(x =>
+                {
+
+                    var sharedPoint = model.inner.Where(
+                       (Patch p) =>
+                       {
+
+                           foreach (var shape in p.shape)
+                           {
+                               //Debug.Log(shape.vec);
+                           }
+
+                           return p.shape.FirstOrDefault(point => point.vec == x.vec) != null;
+                       }
+                   );
+
+                    return !(sharedPoint.Count() > 1);
+
+                })).ToList();
+            }
             blocked = blocked.Where(x => !model.gates.Select(g => g.vec).ToList().Contains(x.vec)).ToList();
 
             var border = model.border.shape;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2cb76e8f877fb647855bc006c2d93b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathFindingTargetRadius: 2
+  pathFindingTargetRadius: 11
   pathMoveSpeed: 3
 --- !u!1001 &5428390921428305461
 PrefabInstance:

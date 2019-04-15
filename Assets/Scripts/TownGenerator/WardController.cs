@@ -4,8 +4,8 @@ using TownGenerator.Geom;
 using UnityEngine;
 using System.Linq;
 using TownGenerator.Wards;
-
-
+using MoreLinq;
+using TownGenerator.Building;
 
 public class WardController : MonoBehaviour
 {
@@ -54,10 +54,32 @@ public class WardController : MonoBehaviour
             // {
             //     return;
             // }
+            var accessablePoints = ward.patch.shape.Where(
+                x =>
+                {
+                    return cityController.cityModel.topology.pt2node.ContainsKey(x);
+                }
+                );
 
-            var path = ward.patch.shape;
-            var leader = Instantiate(leaderGuardPrefab, transform.TransformPoint(path[0].vec), Quaternion.identity).GetComponent<Leader>();
-            leader.path = path.Select(x => transform.TransformPoint(x.vec)).ToList();
+
+
+            var startPoint = accessablePoints.First(x => !cityController.cityModel.wall.shape.Contains(x));
+
+            Point furthestPointFromStart = accessablePoints.MaxBy(x => (x.vec - startPoint.vec).magnitude).FirstOrDefault();
+
+            var leader = Instantiate(leaderGuardPrefab, transform.TransformPoint(startPoint.vec), Quaternion.identity).GetComponent<Leader>();
+
+            leader.startToEndPath = cityController.cityModel.topology
+            .buildPath(startPoint, furthestPointFromStart)
+            .Select(x => transform.TransformPoint(x.vec)).ToList();
+
+            leader.endToStartPath = cityController.cityModel.topology
+            .buildPath(furthestPointFromStart, startPoint)
+            .Select(x => transform.TransformPoint(x.vec)).ToList();
+
+            leader.currentPath = leader.endToStartPath;
+
+            //leader.path = cityController.cityModel.topology.buildPath(startPoint, path[path.Count - 1]).Select(x => transform.TransformPoint(x.vec)).ToList();
         }
 
         // g1

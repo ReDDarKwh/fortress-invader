@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Scripts.AI;
+using TownGenerator.Geom;
 using UnityEngine;
 
 public class Leader : MonoBehaviour
@@ -17,6 +18,17 @@ public class Leader : MonoBehaviour
     public float pathFindingTargetRadius;
     public float pathMoveSpeed;
 
+
+    [System.NonSerialized]
+    internal List<Vector3> startToEndPath;
+
+    [System.NonSerialized]
+    internal List<Vector3> endToStartPath;
+
+    [System.NonSerialized]
+    internal List<Vector3> currentPath;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +41,10 @@ public class Leader : MonoBehaviour
     {
         if (!navAgent.isMoving && !navAgent.isWaitingForPath)
         {
-            navAgent.setTargetWithPath(path, pathFindingTargetRadius, pathMoveSpeed, true);
+
+            currentPath = currentPath == startToEndPath ? endToStartPath : startToEndPath;
+
+            navAgent.setTargetWithPath(currentPath, pathFindingTargetRadius, pathMoveSpeed, true);
         }
     }
 }

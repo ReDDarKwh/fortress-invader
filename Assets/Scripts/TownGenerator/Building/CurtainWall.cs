@@ -15,6 +15,9 @@ namespace TownGenerator.Building
 
 
         public Polygon shape;
+
+        // outset shape that is actually used to generate walls
+        public Polygon realShape;
         public List<bool> segments;
         public List<Point> gates;
         public List<Point> towers;
@@ -37,8 +40,6 @@ namespace TownGenerator.Building
             {
                 shape = Model.findCircumference(patches);
 
-
-
                 if (real)
                 {
                     var smoothFactor = Mathf.Min(1, 40 / patches.Count);
@@ -49,6 +50,8 @@ namespace TownGenerator.Building
                             }).ToList()
                         )
                     );
+
+                    realShape = shape.buffer(shape.Select(x => Wards.Ward.BUILDING_GAP).ToList());
                 }
             }
 
