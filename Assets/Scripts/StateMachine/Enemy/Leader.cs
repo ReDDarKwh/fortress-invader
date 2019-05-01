@@ -17,16 +17,16 @@ public class Leader : MonoBehaviour
 
     public float pathFindingTargetRadius;
     public float pathMoveSpeed;
-    public float towerDetectRadius;
-    public string[] towerLayers;
 
 
+    [System.NonSerialized]
+    internal List<Vector3> startToEndPath;
 
+    [System.NonSerialized]
+    internal List<Vector3> endToStartPath;
 
-    private bool disableTowerDetect;
     [System.NonSerialized]
     internal List<Vector3> currentPath;
-    internal int startPathIndex;
 
 
     // Start is called before the first frame update
@@ -39,23 +39,12 @@ public class Leader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        var closeToTower = Physics2D.OverlapCircle(transform.position, towerDetectRadius, LayerMask.GetMask(towerLayers));
-
-        if (!closeToTower)
+        if (!navAgent.isMoving && !navAgent.isWaitingForPath)
         {
-            disableTowerDetect = false;
-        }
 
-        if (closeToTower && !disableTowerDetect)
-        {
-            disableTowerDetect = true;
-            navAgent.direction = navAgent.direction * -1;
-        }
+            currentPath = currentPath == startToEndPath ? endToStartPath : startToEndPath;
 
-        if ((!navAgent.isMoving && !navAgent.isWaitingForPath))
-        {
-            navAgent.setTargetWithPath(currentPath, pathFindingTargetRadius, pathMoveSpeed, true, startPathIndex);
+            navAgent.setTargetWithPath(currentPath, pathFindingTargetRadius, pathMoveSpeed, true);
         }
     }
 }

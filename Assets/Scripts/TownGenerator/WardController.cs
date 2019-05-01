@@ -54,38 +54,31 @@ public class WardController : MonoBehaviour
             // {
             //     return;
             // }
-            var accessablePoints = ward.patch.shape;
+            var accessablePoints = ward.patch.shape.Where(
+                x =>
+                {
+                    return cityController.cityModel.topology.pt2node.ContainsKey(x);
+                }
+                );
 
 
 
+            var startPoint = accessablePoints.First(x => !cityController.cityModel.wall.shape.Contains(x));
 
+            Point furthestPointFromStart = accessablePoints.MaxBy(x => (x.vec - startPoint.vec).magnitude).FirstOrDefault();
 
-            var firstWall = accessablePoints.FirstOrDefault(x => cityController.cityModel.wall.shape.Contains(x));
+            var leader = Instantiate(leaderGuardPrefab, transform.TransformPoint(startPoint.vec), Quaternion.identity).GetComponent<Leader>();
 
+            leader.startToEndPath = cityController.cityModel.topology
+            .buildPath(startPoint, furthestPointFromStart)
+            .Select(x => transform.TransformPoint(x.vec)).ToList();
 
-            var startPointIndex = firstWall == null ? 0 : accessablePoints.IndexOf(firstWall);
+            leader.endToStartPath = cityController.cityModel.topology
+            .buildPath(furthestPointFromStart, startPoint)
+            .Select(x => transform.TransformPoint(x.vec)).ToList();
 
+            leader.currentPath = leader.endToStartPath;
 
-
-            var path = new List<Point>();
-
-
-            for (var i = 0; i < accessablePoints.Count; i++)
-            {
-                path.Add(
-                        accessablePoints
-                        .ElementAt((i + startPointIndex) % accessablePoints.Count)
-                        )
-                    ;
-            }
-
-            var firstNotWall = path.FirstOrDefault(x => !cityController.cityModel.wall.shape.Contains(x));
-            var characterStartPointIndex = firstNotWall == null ? 0 : path.IndexOf(firstNotWall);
-
-
-            var leader = Instantiate(leaderGuardPrefab, transform.TransformPoint(path[characterStartPointIndex].vec), Quaternion.identity).GetComponent<Leader>();
-            leader.currentPath = path.Select(x => transform.TransformPoint(x.vec)).ToList();
-            leader.startPathIndex = characterStartPointIndex;
             //leader.path = cityController.cityModel.topology.buildPath(startPoint, path[path.Count - 1]).Select(x => transform.TransformPoint(x.vec)).ToList();
         }
 

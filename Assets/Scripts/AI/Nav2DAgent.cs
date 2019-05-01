@@ -64,8 +64,6 @@ namespace Scripts.AI
         private NavAgentMode mode;
         private ConcurrentStack<Vector3> path;
         private Vector3 currentTarget;
-        private int currentTargetIndex;
-
         private float startTime;
         private Vector3 startPos;
         private Rigidbody2D rb;
@@ -76,22 +74,19 @@ namespace Scripts.AI
 
         private Character character;
 
-        // step increment for in path array
-        internal int direction = 1;
+
 
         public void setTargetWithPath(
                     List<Vector3> path,
                     float targetsRadius,
                     float speed,
-                    bool neightborAvoidance = true,
-                    int startIndex = 0
+                    bool neightborAvoidance = true
                 )
         {
 
             this.targetsRadius = targetsRadius;
             this.neightborAvoidance = neightborAvoidance;
             this.speed = speed;
-            this.currentTargetIndex = startIndex;
 
             PathCallback(path, false);
             this.isMoving = true;
@@ -110,7 +105,6 @@ namespace Scripts.AI
             this.targetsRadius = targetsRadius;
             this.neightborAvoidance = neightborAvoidance;
             this.speed = speed;
-            this.currentTargetIndex = 0;
 
             switch (mode)
             {
@@ -136,12 +130,12 @@ namespace Scripts.AI
         }
 
 
-        public void PathCallback(IEnumerable<Nav2dNode> newPath, bool skipFirst = true)
+        public void PathCallback(IEnumerable<Nav2dNode> newPath, bool skipFist = true)
         {
-            PathCallback(newPath.Select(x => x.worldPos), skipFirst);
+            PathCallback(newPath.Select(x => x.worldPos), skipFist);
         }
 
-        private void PathCallback(IEnumerable<Vector3> newPath, bool skipFirst = true)
+        private void PathCallback(IEnumerable<Vector3> newPath, bool skipFist = true)
         {
 
             isWaitingForPath = false;
@@ -162,7 +156,7 @@ namespace Scripts.AI
 
             setNextTarget();
             // skip the first node no jitter on path change.
-            if (skipFirst)
+            if (skipFist)
             {
                 setNextTarget();
             }
@@ -176,10 +170,9 @@ namespace Scripts.AI
 
         private void setNextTarget()
         {
-            if (path != null && currentTargetIndex < path.Count && currentTargetIndex >= 0)
+            if (path != null && path.Count > 0)
             {
-                path.ElementAt(currentTargetIndex);
-                currentTargetIndex += direction;
+                path.TryPop(out currentTarget);
                 return;
             }
             this.isMoving = false;
@@ -201,14 +194,14 @@ namespace Scripts.AI
 
 
 
-            if (this.path != null)
-            {
-                for (var i = 1; i < this.path.Count; i++)
-                {
+            // if (this.path != null)
+            // {
+            //     for (var i = 1; i < this.path.Count; i++)
+            //     {
 
-                    Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
-                }
-            }
+            //         Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
+            //     }
+            // }
 
             Vector2 desiredVelocity = ((isMoving ? (currentTarget - transform.position).normalized : Vector3.zero) +
              computeSeparation()) * Time.fixedDeltaTime * speed;
