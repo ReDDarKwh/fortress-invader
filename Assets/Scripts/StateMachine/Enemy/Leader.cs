@@ -41,9 +41,6 @@ public class Leader : MonoBehaviour
     {
         if (!navAgent.isMoving && !navAgent.isWaitingForPath)
         {
-
-            currentPath = currentPath == startToEndPath ? endToStartPath : startToEndPath;
-
             navAgent.setTargetWithPath(currentPath, pathFindingTargetRadius, pathMoveSpeed, true);
         }
     }

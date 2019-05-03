@@ -25,6 +25,9 @@ public class WardController : MonoBehaviour
     private CityController cityController;
 
 
+    public float leaderPathInWallDistanceFromPointSubstraction = 3;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +49,6 @@ public class WardController : MonoBehaviour
 
         // g0
 
-
         if (ward.patch.withinWalls)
         {
 
@@ -54,30 +56,42 @@ public class WardController : MonoBehaviour
             // {
             //     return;
             // }
-            var accessablePoints = ward.patch.shape.Where(
-                x =>
+
+            var reconstructedpath = new List<Vector3>();
+
+
+
+            foreach (var p in ward.patch.shape)
+            {
+                // if path point is part of wall
+                if (cityController.cityModel.wall.shape.Contains(p))
                 {
-                    return cityController.cityModel.topology.pt2node.ContainsKey(x);
+                    var magFromCityCenter = (p.vec - cityController.cityModel.center.vec).magnitude;
+
+                    var next = ward.patch.shape.next(p);
+                    var prev = ward.patch.shape.prev(p);
+
+
+
+
+
+
+                    //make path point closer to the city center
+                    reconstructedpath.Add(cityController.cityModel.center.vec +
+                    (p.vec - cityController.cityModel.center.vec).normalized *
+                    (magFromCityCenter - leaderPathInWallDistanceFromPointSubstraction));
                 }
-                );
+                else
+                {
+                    reconstructedpath.Add(p.vec);
+                }
+            }
 
-
-
-            var startPoint = accessablePoints.First(x => !cityController.cityModel.wall.shape.Contains(x));
-
-            Point furthestPointFromStart = accessablePoints.MaxBy(x => (x.vec - startPoint.vec).magnitude).FirstOrDefault();
+            var startPoint = ward.patch.shape.First(x => !cityController.cityModel.wall.shape.Contains(x));
+            Point furthestPointFromStart = ward.patch.shape.MaxBy(x => (x.vec - startPoint.vec).magnitude).FirstOrDefault();
 
             var leader = Instantiate(leaderGuardPrefab, transform.TransformPoint(startPoint.vec), Quaternion.identity).GetComponent<Leader>();
-
-            leader.startToEndPath = cityController.cityModel.topology
-            .buildPath(startPoint, furthestPointFromStart)
-            .Select(x => transform.TransformPoint(x.vec)).ToList();
-
-            leader.endToStartPath = cityController.cityModel.topology
-            .buildPath(furthestPointFromStart, startPoint)
-            .Select(x => transform.TransformPoint(x.vec)).ToList();
-
-            leader.currentPath = leader.endToStartPath;
+            leader.currentPath = reconstructedpath.Select(x => transform.TransformPoint(x)).ToList();
 
             //leader.path = cityController.cityModel.topology.buildPath(startPoint, path[path.Count - 1]).Select(x => transform.TransformPoint(x.vec)).ToList();
         }
