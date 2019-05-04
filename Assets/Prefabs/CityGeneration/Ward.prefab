@@ -51,6 +51,7 @@ MonoBehaviour:
     type: 3}
   leaderGuardPrefab: {fileID: 4760294453471234741, guid: f213b3df07b4bb84eaa30c3550d7c40c,
     type: 3}
+  leaderPathInWallDistanceFromPointSubstraction: 1.5
 --- !u!60 &6900033692342425676
 PolygonCollider2D:
   m_ObjectHideFlags: 0

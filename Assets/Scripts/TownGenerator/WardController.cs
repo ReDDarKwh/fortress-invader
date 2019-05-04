@@ -71,15 +71,17 @@ public class WardController : MonoBehaviour
                     var next = ward.patch.shape.next(p);
                     var prev = ward.patch.shape.prev(p);
 
-
-
-
-
+                    var centerToNext = (next.vec - p.vec).normalized;
+                    var centerToPrev = (prev.vec - p.vec).normalized;
+                    var displacementDirection = ((centerToNext + centerToPrev) / 2).normalized *
+                     leaderPathInWallDistanceFromPointSubstraction;
 
                     //make path point closer to the city center
-                    reconstructedpath.Add(cityController.cityModel.center.vec +
-                    (p.vec - cityController.cityModel.center.vec).normalized *
-                    (magFromCityCenter - leaderPathInWallDistanceFromPointSubstraction));
+
+                    var point = p.vec + (ward.patch.shape.isConvexVertex(p) ? displacementDirection : -displacementDirection);
+                    reconstructedpath.Add(point);
+
+                    Debug.DrawLine(transform.TransformPoint(p.vec), transform.TransformPoint(point), Color.cyan, 60);
                 }
                 else
                 {
