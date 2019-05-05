@@ -57,44 +57,11 @@ public class WardController : MonoBehaviour
             //     return;
             // }
 
-            var reconstructedpath = new List<Vector3>();
+            var path = ward.getPathAround()
+            .Select(x => transform.TransformPoint(x.vec)).ToList();
+            var leader = Instantiate(leaderGuardPrefab, path[0], Quaternion.identity).GetComponent<Leader>();
 
-
-
-            foreach (var p in ward.patch.shape)
-            {
-                // if path point is part of wall
-                if (cityController.cityModel.wall.shape.Contains(p))
-                {
-                    var magFromCityCenter = (p.vec - cityController.cityModel.center.vec).magnitude;
-
-                    var next = ward.patch.shape.next(p);
-                    var prev = ward.patch.shape.prev(p);
-
-                    var centerToNext = (next.vec - p.vec).normalized;
-                    var centerToPrev = (prev.vec - p.vec).normalized;
-                    var displacementDirection = ((centerToNext + centerToPrev) / 2).normalized *
-                     leaderPathInWallDistanceFromPointSubstraction;
-
-                    //make path point closer to the city center
-
-                    var point = p.vec + (ward.patch.shape.isConvexVertex(p) ? displacementDirection : -displacementDirection);
-                    reconstructedpath.Add(point);
-
-                    Debug.DrawLine(transform.TransformPoint(p.vec), transform.TransformPoint(point), Color.cyan, 60);
-                }
-                else
-                {
-                    reconstructedpath.Add(p.vec);
-                }
-            }
-
-            var startPoint = ward.patch.shape.First(x => !cityController.cityModel.wall.shape.Contains(x));
-            Point furthestPointFromStart = ward.patch.shape.MaxBy(x => (x.vec - startPoint.vec).magnitude).FirstOrDefault();
-
-            var leader = Instantiate(leaderGuardPrefab, transform.TransformPoint(startPoint.vec), Quaternion.identity).GetComponent<Leader>();
-            leader.currentPath = reconstructedpath.Select(x => transform.TransformPoint(x)).ToList();
-
+            leader.currentPath = path;
             //leader.path = cityController.cityModel.topology.buildPath(startPoint, path[path.Count - 1]).Select(x => transform.TransformPoint(x.vec)).ToList();
         }
 

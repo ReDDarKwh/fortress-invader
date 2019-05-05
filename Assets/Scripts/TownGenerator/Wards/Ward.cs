@@ -50,7 +50,7 @@ namespace TownGenerator.Wards
                 if (model.wall != null && model.wall.bordersBy(patch, v0, v1))
                 {
                     // Not too close to the wall
-                    insetDist.Add(MAIN_STREET / 2);
+                    insetDist.Add(MAIN_STREET / 1.5f);
                 }
                 else
                 {
@@ -75,6 +75,37 @@ namespace TownGenerator.Wards
                 patch.shape.shrink(insetDist) :
                 patch.shape.buffer(insetDist);
         }
+
+
+
+        public Polygon getPathAround()
+        {
+            var insetDist = new List<float>();
+
+            var innerPatch = model.wall == null || patch.withinWalls;
+            patch.shape.forEdge((v0, v1) =>
+            {
+                if (model.wall != null && model.wall.bordersBy(patch, v0, v1))
+                {
+                    // Not too close to the wall
+                    insetDist.Add(MAIN_STREET / 2f);
+                }
+                else
+                {
+
+                    insetDist.Add(MAIN_STREET / 10);
+                }
+
+            });
+
+            return patch.shape.isConvex() ?
+                patch.shape.shrink(insetDist) :
+                patch.shape.buffer(insetDist);
+        }
+
+
+
+
 
 
 
