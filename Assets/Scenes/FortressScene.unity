@@ -726,6 +726,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 491308879686087997, guid: 65957c9a59324d646abd5d7603e17c69,
         type: 3}
+    - target: {fileID: 8641542246610101916, guid: 9e084ef7da1368d47b58e08597d2a37e,
+        type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: f889534f0a8bf2f42b37af2393939193,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e084ef7da1368d47b58e08597d2a37e, type: 3}
 --- !u!1 &563737688
@@ -1951,7 +1957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9764ed702beab4e47a73b89cf8affc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeGameover: 10
+  timeBeforeGameover: 300
   score:
     value: 0
   levelChanger: {fileID: 2054505079}
@@ -2206,6 +2212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelChanger
       objectReference: {fileID: 0}
+    - target: {fileID: 114991184434311910, guid: 559b3e0c6353ccb41805f654515bc2f2,
+        type: 3}
+      propertyPath: levelToLoad
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4604207131898444, guid: 559b3e0c6353ccb41805f654515bc2f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2249,11 +2260,6 @@ PrefabInstance:
     - target: {fileID: 4604207131898444, guid: 559b3e0c6353ccb41805f654515bc2f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114991184434311910, guid: 559b3e0c6353ccb41805f654515bc2f2,
-        type: 3}
-      propertyPath: levelToLoad
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 559b3e0c6353ccb41805f654515bc2f2, type: 3}

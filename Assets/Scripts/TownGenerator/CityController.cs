@@ -13,28 +13,23 @@ public class CityController : MonoBehaviour
 {
 
     public CitySettings settings;
-
     public bool debugDraw = false;
 
     [System.NonSerialized]
     public Model cityModel;
-
-
     public GameObject buildingPrefab;
     public GameObject wallPrefab;
     public GameObject gatePrefab;
     public GameObject towerPrefab;
     public GameObject wardPrefab;
-
     public GameObject roadPrefab;
     //public GameObject navGridPrefab;
 
     public Nav2D navGrid;
-
     public float gateOpeningSize = 1;
 
-
     private IEnumerator coroutine;
+    private Vector2 spawnPoint;
 
     void Start()
     {
@@ -45,7 +40,6 @@ public class CityController : MonoBehaviour
     private IEnumerator GenerateNav2d()
     {
         yield return 0;
-
 
         navGrid.transform.position = transform.position - new Vector3(cityModel.cityRadius * transform.localScale.x,
         cityModel.cityRadius * transform.localScale.y);
@@ -61,25 +55,18 @@ public class CityController : MonoBehaviour
 
     }
 
+    private void MovePlayerToSpawnPoint(Vector3 vec)
+    {
+        GameObject.FindGameObjectWithTag("Player").transform.position = vec;
+    }
+
     public void Init()
     {
 
         //create the city data model
-        do
-        {
-            try
-            {
-                Random.InitState(settings.seed);
-                cityModel = new Model(settings.patchNum);
-            }
-            catch (System.Exception e)
-            {
-                Debug.Log(
-                    e.StackTrace
-                );
-                cityModel = null;
-            }
-        } while (cityModel == null);
+
+        Random.InitState(settings.seed);
+        cityModel = new Model(settings.patchNum);
 
         Random.State oldstate = Random.state;
         Random.state = oldstate;
@@ -104,13 +91,8 @@ public class CityController : MonoBehaviour
                 buildingController.shape = shape;
 
                 //buildingController.transform.localScale = new Vector3(1, 1, Random.Range(1, 2));
-
             }
-
-
-
         }
-
 
         // create walls and towers and gates
 
@@ -183,7 +165,6 @@ public class CityController : MonoBehaviour
                 var t = Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
             }
 
-
             // foreach (var gate in cityModel.wall.gates)
             // {
             //     var t = Instantiate(gatePrefab, transform.TransformPoint(gate.vec), Quaternion.Euler(0, 0, 0), this.transform);
@@ -237,11 +218,9 @@ public class CityController : MonoBehaviour
             roadControl.roadWidth = 4;
         }
 
-
-
+        MovePlayerToSpawnPoint(transform.TransformPoint(cityModel.roads[0][1].vec));
 
         var edges = new List<Polygon>();
-
 
         foreach (var patch in cityModel.inner)
         {
@@ -270,7 +249,6 @@ public class CityController : MonoBehaviour
         //     var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
         //     roadControl.points = street.Select(x => transform.TransformPoint(x.vec)).ToList();
         // }
-
 
         // init nav mesh
         // navGrid = Instantiate(navGridPrefab, transform.position, Quaternion.identity).GetComponent<Nav2D>();
