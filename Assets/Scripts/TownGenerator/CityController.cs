@@ -56,12 +56,31 @@ public class CityController : MonoBehaviour
         navGrid.GenerateNavMesh(transform.position, cityModel.cityRadius * transform.localScale.x);
     }
 
+    private void generate()
+    {
+
+    }
+
     public void Init()
     {
 
         //create the city data model
-        Random.InitState(settings.seed);
-        cityModel = new Model(settings.patchNum, settings.seed);
+        do
+        {
+            try
+            {
+                Random.InitState(settings.seed);
+                cityModel = new Model(settings.patchNum);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(
+                    e.StackTrace
+                );
+                cityModel = null;
+            }
+        } while (cityModel == null);
+
         Random.State oldstate = Random.state;
         Random.state = oldstate;
 

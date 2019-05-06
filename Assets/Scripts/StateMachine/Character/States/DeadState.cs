@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts.AI;
-
+using Scripts.NPC;
 
 [CreateAssetMenu(fileName = "DeadState", menuName = "StateMachine/States/DeadState")]
 public class DeadState : BaseState
@@ -20,15 +20,31 @@ public class DeadState : BaseState
         //temporary
         //Destroy(stateMachine.gameObject);
 
+        var sceneManager = GameObject
+        .FindGameObjectWithTag("SceneManager")
+        .GetComponent<FortressSceneManager>();
+        var nonPlayerCharacter = stateMachine.GetComponent<NonPlayerCharacter>();
 
-        // disable agent2d for pushing around
+        if (nonPlayerCharacter != null)
+        {
+            // disable agent2d for pushing around
+            var agent = stateMachine.GetComponent<Nav2DAgent>();
+            if (agent != null)
+                agent.enabled = false;
+
+            sceneManager.score.Value++;
+        }
+        else
+        {
+            var playerCharacter = stateMachine.GetComponent<PlayerCharacter>();
+            if (playerCharacter != null)
+            {
+
+            }
+        }
 
 
 
-        var agent = stateMachine.GetComponent<Nav2DAgent>();
-
-        if (agent != null)
-            agent.enabled = false;
     }
 
     public override void Leave(StateMachine stateMachine)

@@ -64,7 +64,7 @@ namespace TownGenerator.Building
 
 
 
-        public Model(int nPatches = -1, int seed = -1)
+        public Model(int nPatches = -1)
         {
             this.nPatches = nPatches != -1 ? nPatches : 15;
 
@@ -201,7 +201,7 @@ namespace TownGenerator.Building
                 citadel.ward = castle;
 
                 if (citadel.shape.compactness < 0.75)
-                    throw new System.Exception("Bad citadel shape!");
+                    throw new GenerationFailedException("Bad citadel shape!");
 
                 gates = gates.Concat(castle.wall.gates).ToList();
             }
@@ -347,7 +347,7 @@ namespace TownGenerator.Building
                 else
                 {
 
-                    throw new System.Exception("Unable to build a street!");
+                    throw new GenerationFailedException("Unable to build a street!");
                 }
             }
 

@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using Scripts.Spells;
-
-
-
-
+using System;
 
 public class PlayerHUDController : MonoBehaviour
 {
@@ -34,8 +31,15 @@ public class PlayerHUDController : MonoBehaviour
 
     public GameObject spellSelectionImage;
 
+    public Text scoreText;
+
+    public Text timerText;
+
+
 
     private float vel = 0.0f;
+
+    private FortressSceneManager sceneManager;
 
 
     //rivate List<SpellSlot>
@@ -43,11 +47,14 @@ public class PlayerHUDController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager")
+        .GetComponent<FortressSceneManager>();
+
         playerCharacter.spellCaster.currentMana.Subscribe(x =>
         {
             playerManaBar.fillAmount = x / playerCharacter.spellCaster.maxMana.Value;
         });
-
 
         playerCharacter.spellCaster.selectedSpell.Subscribe(x =>
         {
@@ -67,14 +74,20 @@ public class PlayerHUDController : MonoBehaviour
             }
         });
 
+        sceneManager.score.Subscribe(x =>
+        {
+            scoreText.text = x.ToString();
+        });
 
         for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
         {
             createSpellSlot(i, playerCharacter.spellCaster.spells[i - 1]);
         }
-
         // create "no spell" slot
         createSpellSlot(0, null);
+
+
+
     }
 
 
@@ -136,6 +149,13 @@ public class PlayerHUDController : MonoBehaviour
         {
             spellSelectionImage.SetActive(false);
         }
+
+
+        // timer display
+        var remainingTime = sceneManager.timeBeforeGameover - Time.timeSinceLevelLoad;
+        var time = new TimeSpan(0, 0, Convert.ToInt32(remainingTime));
+
+        timerText.text = time.ToString(@"mm\:ss");
 
     }
 

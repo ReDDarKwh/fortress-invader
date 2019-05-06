@@ -1,35 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class FortressSceneManager : MonoBehaviour
 {
+    public float timeBeforeGameover;
 
-    // Use this for initialization
-    public static FortressSceneManager instance;
-    public UnityEngine.GameObject player;
-    public Camera cam;
+    public IntReactiveProperty score;
 
-    void Awake()
+    public LevelChanger levelChanger;
+
+    public GameOverInfo gameOverInfo;
+
+    public void Update()
     {
-
-        if (instance == null)
-
-            //if not, set instance to this
-            instance = this;
-
-        //If instance already exists and it's not this:
-        else if (instance != this)
-
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-            Destroy(gameObject);
-
-
-
-
-        player = UnityEngine.GameObject.FindGameObjectWithTag("Player");
-
+        if (timeBeforeGameover - Time.timeSinceLevelLoad <= 0)
+        {
+            GameOver(GameOverType.timeout);
+        }
     }
 
+    public void GameOver(GameOverType type = GameOverType.timeout)
+    {
+        gameOverInfo.score = score.Value;
 
+        if (gameOverInfo.score > gameOverInfo.highscore)
+        {
+            gameOverInfo.highscore = gameOverInfo.score;
+        }
+
+        gameOverInfo.type = type;
+        levelChanger.FadeToLevel(levelChanger.levelToLoad);
+    }
+
+    public enum GameOverType
+    {
+        playerDied,
+        allEnemiesKilled,
+        timeout
+    }
 }

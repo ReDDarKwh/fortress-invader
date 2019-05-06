@@ -44,10 +44,11 @@ namespace Scripts.Spells
 
         void OnDestroy()
         {
-            foreach (var character in selectedCharacters)
-            {
-                character.IsSelected.Value = false;
-            }
+            if (spell == null)
+                foreach (var character in selectedCharacters)
+                {
+                    character.IsSelected.Value = false;
+                }
         }
 
 

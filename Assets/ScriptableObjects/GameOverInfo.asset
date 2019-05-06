@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a9b0ccbc7d058409b2641745a6ed54, type: 3}
-  m_Name: DeadState
+  m_Script: {fileID: 11500000, guid: 9d68bb5678f9e3f49a09a1775e39274e, type: 3}
+  m_Name: GameOverInfo
   m_EditorClassIdentifier: 
-  tags: []
-  stateName: dead
+  score: 0
+  type: 0

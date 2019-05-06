@@ -101,7 +101,7 @@ namespace TownGenerator.Building
 
 
             if (entrances.Count == 0)
-                throw new System.Exception("Bad walled area shape!");
+                throw new GenerationFailedException("Bad walled area shape!");
 
             do
             {
@@ -196,7 +196,7 @@ namespace TownGenerator.Building
             } while (entrances.Count >= 3);
 
             if (gates.Count == 0)
-                throw new System.Exception("Bad walled area shape!");
+                throw new GenerationFailedException("Bad walled area shape!");
 
             // // Smooth further sections of the wall with gates
             // if (real)

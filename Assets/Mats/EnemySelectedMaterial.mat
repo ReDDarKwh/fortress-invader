@@ -104,7 +104,7 @@ Material:
     - _alpha: 0
     m_Colors:
     - Color_134650A9: {r: 2.528947, g: 0, b: 7.986147, a: 0}
-    - Color_AB5AB6D1: {r: 0, g: 1.1123219, b: 5.5908804, a: 1}
+    - Color_AB5AB6D1: {r: 0.92466724, g: 0.53798825, b: 4.2870936, a: 0.7490196}
     - Color_DEE93DE1: {r: 2.528947, g: 0, b: 7.986147, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -132,7 +132,10 @@ namespace Scripts.AI
 
         public void PathCallback(IEnumerable<Nav2dNode> newPath, bool skipFist = true)
         {
-            PathCallback(newPath.Select(x => x.worldPos), skipFist);
+            PathCallback(
+                newPath.Select(x => x.worldPos),
+                skipFist
+            );
         }
 
         private void PathCallback(IEnumerable<Vector3> newPath, bool skipFist = true)
@@ -194,14 +197,14 @@ namespace Scripts.AI
 
 
 
-            if (this.path != null)
-            {
-                for (var i = 1; i < this.path.Count; i++)
-                {
+            // if (this.path != null)
+            // {
+            //     for (var i = 1; i < this.path.Count; i++)
+            //     {
 
-                    Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
-                }
-            }
+            //         Debug.DrawLine(this.path.ElementAt(i - 1), this.path.ElementAt(i), Color.red);
+            //     }
+            // }
 
             Vector2 desiredVelocity = ((isMoving ? (currentTarget - transform.position).normalized : Vector3.zero) +
              computeSeparation()) * Time.fixedDeltaTime * speed;
