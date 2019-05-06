@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Scripts.AI;
 using Scripts.NPC;
+using static FortressSceneManager;
 
 [CreateAssetMenu(fileName = "DeadState", menuName = "StateMachine/States/DeadState")]
 public class DeadState : BaseState
@@ -39,7 +40,7 @@ public class DeadState : BaseState
             var playerCharacter = stateMachine.GetComponent<PlayerCharacter>();
             if (playerCharacter != null)
             {
-
+                sceneManager.GameOver(GameOverType.playerDied);
             }
         }
 
