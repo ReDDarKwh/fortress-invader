@@ -1499,7 +1499,7 @@ PrefabInstance:
     - target: {fileID: 3724343189913647469, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
         type: 3}
       propertyPath: spells.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3724343189913647469, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
         type: 3}
@@ -1517,6 +1517,12 @@ PrefabInstance:
       propertyPath: spells.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 8619047fcfcf146f0b0b5dd95137ed5b,
+        type: 2}
+    - target: {fileID: 3724343189913647469, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: spells.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 023ce8f983ed11548ac4078285aa414b,
         type: 2}
     - target: {fileID: 774310595977506264, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
         type: 3}
@@ -1826,7 +1832,7 @@ PrefabInstance:
     - target: {fileID: 3724343189913647471, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
         type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b4274a65ca80e4b96e49ffcfff53e7, type: 3}

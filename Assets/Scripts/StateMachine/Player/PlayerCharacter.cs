@@ -41,10 +41,7 @@ public class PlayerCharacter : MonoBehaviour
     [System.NonSerialized]
     public Vector3 selectingTargetsStartPos;
 
-
-
-
-
+    public GameObject guardPrefab;
 
 
 
@@ -95,6 +92,9 @@ public class PlayerCharacter : MonoBehaviour
             spellCaster.spellRadius = spellCaster.spellRadius + Input.GetAxis("Mouse ScrollWheel") * 5;
         }
 
+
+
+
         // cast spell on click;
         if (Input.GetMouseButtonUp(0))
         {
@@ -144,6 +144,9 @@ public class PlayerCharacter : MonoBehaviour
                 );
             }
         }
+
+
+
 
     }
 

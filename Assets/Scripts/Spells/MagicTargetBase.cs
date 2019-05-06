@@ -63,6 +63,8 @@ namespace Scripts.Spells
 
         private void EmitEffect(SpellEffect effect)
         {
+
+            // stuff that affects characters
             foreach (var c in selectedCharacters)
             {
                 if (Random.value < effect.emissionChance)
@@ -86,6 +88,10 @@ namespace Scripts.Spells
                         stateMachine.TriggerEvent(e, msg);
                 }
             }
+
+            // stuff that just happen
+
+
             OnEmitEffect(effect);
         }
 
