@@ -65,32 +65,43 @@ namespace Scripts.Spells
         {
 
             // stuff that affects characters
-            foreach (var c in selectedCharacters)
+
+            if (effect.affectsCharacters)
             {
-                if (Random.value < effect.emissionChance)
+                foreach (var c in selectedCharacters)
                 {
-                    var stateMachine = c.GetComponent<StateMachine>();
-                    var msg = new EventMessage { pos = SpellOrigin, target = this.gameObject };
-
-
-                    // start states directly 
-                    foreach (var s in effect.effectEntryStates)
+                    if (Random.value < effect.emissionChance)
                     {
-                        stateMachine.StartState(s, new EventStateLinking
+                        var stateMachine = c.GetComponent<StateMachine>();
+                        var msg = new EventMessage { pos = SpellOrigin, target = this.gameObject };
+
+
+                        // start states directly 
+                        foreach (var s in effect.effectEntryStates)
                         {
-                            eventResponse = msg
+                            stateMachine.StartState(s, new EventStateLinking
+                            {
+                                eventResponse = msg
 
-                        }, false);
+                            }, false);
+                        }
+
+                        // start states indirecly through events
+                        foreach (var e in effect.effectEntryEvents)
+                            stateMachine.TriggerEvent(e, msg);
                     }
-
-                    // start states indirecly through events
-                    foreach (var e in effect.effectEntryEvents)
-                        stateMachine.TriggerEvent(e, msg);
                 }
             }
-
-            // stuff that just happen
-
+            else
+            {
+                // effect that is not applied to character
+                // Using the state class to contain  effect logic
+                foreach (var s in effect.effectEntryStates)
+                {
+                    var msg = new EventMessage { pos = SpellOrigin, target = this.gameObject };
+                    s.Enter(null, msg, null);
+                }
+            }
 
             OnEmitEffect(effect);
         }

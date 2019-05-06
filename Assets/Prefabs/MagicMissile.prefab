@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionRadius: 1.5
-  mass: 10
+  mass: 6
   maxSteeringForce: 15
   maxSteeringSpeed: 5
   speed: 55

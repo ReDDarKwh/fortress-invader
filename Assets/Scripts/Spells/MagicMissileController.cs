@@ -104,10 +104,7 @@ namespace Scripts.Spells
 
                 transform.position += velocity;
 
-
-
                 transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
-
 
             }
         }

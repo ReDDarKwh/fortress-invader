@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9764ed702beab4e47a73b89cf8affc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeGameover: 300
+  timeBeforeGameover: 36000
   score:
     value: 0
   levelChanger: {fileID: 2054505079}

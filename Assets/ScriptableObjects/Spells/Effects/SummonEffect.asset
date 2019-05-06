@@ -15,10 +15,12 @@ MonoBehaviour:
   effectName: summon
   circleEffect: {fileID: 0}
   missileEffect: {fileID: 0}
-  duration: 1
-  intervalTime: 2
+  duration: 0
+  intervalTime: 0
   emissionChance: 1
   emitOnStart: 1
-  effectEntryStates: []
+  effectEntryStates:
+  - {fileID: 11400000, guid: 87e4ae078e48a35498469db4184faffb, type: 2}
   effectEntryEvents: []
+  affectsCharacters: 0
   noiseRadius: 0
