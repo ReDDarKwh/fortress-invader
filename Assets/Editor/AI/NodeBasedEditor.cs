@@ -25,15 +25,57 @@ public class NodeBasedEditor : EditorWindow
         window.titleContent = new GUIContent("Node Based Editor");
     }
 
+
+    public void DropAreaGUI(Event e)
+    {
+        Event evt = e;
+        Rect drop_area = new Rect(0, 0, position.width, position.height);
+
+        switch (evt.type)
+        {
+            case EventType.DragUpdated:
+            case EventType.DragPerform:
+
+                if (!drop_area.Contains(evt.mousePosition))
+                    return;
+
+                DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+
+                if (evt.type == EventType.DragPerform)
+                {
+                    DragAndDrop.AcceptDrag();
+
+                    foreach (Object dragged_object in DragAndDrop.objectReferences)
+                    {
+                        // Do On Drag Stuff here
+
+                        if (dragged_object is BaseState)
+                        {
+                            OnClickAddNode(evt.mousePosition, dragged_object as BaseState);
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+
     private void OnEnable()
     {
         nodeStyle = new GUIStyle();
         nodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D;
         nodeStyle.border = new RectOffset(12, 12, 12, 12);
+        nodeStyle.alignment = TextAnchor.MiddleCenter;
+        nodeStyle.normal.textColor = Color.white;
+
+
+
 
         selectedNodeStyle = new GUIStyle();
         selectedNodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D;
         selectedNodeStyle.border = new RectOffset(12, 12, 12, 12);
+        selectedNodeStyle.alignment = TextAnchor.MiddleCenter;
+
 
         inPointStyle = new GUIStyle();
         inPointStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left.png") as Texture2D;
@@ -53,6 +95,9 @@ public class NodeBasedEditor : EditorWindow
 
         DrawNodes();
         DrawConnections();
+
+
+        DropAreaGUI(Event.current);
 
         DrawConnectionLine(Event.current);
 
@@ -105,7 +150,7 @@ public class NodeBasedEditor : EditorWindow
             for (int i = 0; i < connections.Count; i++)
             {
                 connections[i].Draw();
-            } 
+            }
         }
     }
 
@@ -121,18 +166,15 @@ public class NodeBasedEditor : EditorWindow
                     ClearConnectionSelection();
                 }
 
-                if (e.button == 1)
-                {
-                    ProcessContextMenu(e.mousePosition);
-                }
-            break;
+
+                break;
 
             case EventType.MouseDrag:
                 if (e.button == 0)
                 {
                     OnDrag(e.delta);
                 }
-            break;
+                break;
         }
     }
 
@@ -185,12 +227,7 @@ public class NodeBasedEditor : EditorWindow
         }
     }
 
-    private void ProcessContextMenu(Vector2 mousePosition)
-    {
-        GenericMenu genericMenu = new GenericMenu();
-        genericMenu.AddItem(new GUIContent("Add node"), false, () => OnClickAddNode(mousePosition)); 
-        genericMenu.ShowAsContext();
-    }
+
 
     private void OnDrag(Vector2 delta)
     {
@@ -207,14 +244,16 @@ public class NodeBasedEditor : EditorWindow
         GUI.changed = true;
     }
 
-    private void OnClickAddNode(Vector2 mousePosition)
+    private void OnClickAddNode(Vector2 mousePosition, BaseState state)
     {
         if (nodes == null)
         {
             nodes = new List<Node>();
         }
 
-        nodes.Add(new Node(mousePosition, 200, 50, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode));
+
+
+        nodes.Add(new Node(mousePosition, state.name, 200, 50, nodeStyle, selectedNodeStyle, inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode));
     }
 
     private void OnClickInPoint(ConnectionPoint inPoint)
@@ -226,7 +265,7 @@ public class NodeBasedEditor : EditorWindow
             if (selectedOutPoint.node != selectedInPoint.node)
             {
                 CreateConnection();
-                ClearConnectionSelection(); 
+                ClearConnectionSelection();
             }
             else
             {
