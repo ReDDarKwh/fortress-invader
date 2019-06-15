@@ -18,6 +18,17 @@ public class NodeBasedEditor : EditorWindow
     private Vector2 offset;
     private Vector2 drag;
 
+
+    private readonly Rect _zoomArea = new Rect(0.0f, 75.0f, 600.0f, 300.0f - 100.0f);
+    private float _zoom = 1.0f;
+    private Vector2 _zoomCoordsOrigin = Vector2.zero;
+
+
+    private const float kZoomMin = 0.1f;
+    private const float kZoomMax = 10.0f;
+
+
+
     [MenuItem("Window/Node Based Editor")]
     private static void OpenWindow()
     {
@@ -69,8 +80,6 @@ public class NodeBasedEditor : EditorWindow
         nodeStyle.normal.textColor = Color.white;
 
 
-
-
         selectedNodeStyle = new GUIStyle();
         selectedNodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D;
         selectedNodeStyle.border = new RectOffset(12, 12, 12, 12);
@@ -88,8 +97,45 @@ public class NodeBasedEditor : EditorWindow
         outPointStyle.border = new RectOffset(4, 4, 12, 12);
     }
 
-    private void OnGUI()
+
+    class EditorZoomArea
     {
+        private const float kEditorWindowTabHeight = 21.0f;
+        private static Matrix4x4 _prevGuiMatrix;
+
+        public static Rect Begin(float zoomScale, Rect screenCoordsArea)
+        {
+            GUI.EndGroup();        // End the group Unity begins automatically for an EditorWindow to clip out the window tab. This allows us to draw outside of the size of the EditorWindow.
+
+            Rect clippedArea = screenCoordsArea.ScaleSizeBy(1.0f / zoomScale, screenCoordsArea.TopLeft());
+            clippedArea.y += kEditorWindowTabHeight;
+            GUI.BeginGroup(clippedArea);
+
+            _prevGuiMatrix = GUI.matrix;
+            Matrix4x4 translation = Matrix4x4.TRS(clippedArea.TopLeft(), Quaternion.identity, Vector3.one);
+            Matrix4x4 scale = Matrix4x4.Scale(new Vector3(zoomScale, zoomScale, 1.0f));
+            GUI.matrix = translation * scale * translation.inverse * GUI.matrix;
+
+            return clippedArea;
+        }
+
+        public static void End()
+        {
+            GUI.matrix = _prevGuiMatrix;
+            GUI.EndGroup();
+            GUI.BeginGroup(new Rect(0.0f, kEditorWindowTabHeight, Screen.width, Screen.height));
+        }
+    }
+
+    private void DrawZoomArea()
+    {
+        // Within the zoom area all coordinates are relative to the top left corner of the zoom area
+        // with the width and height being scaled versions of the original/unzoomed area's width and height.
+        EditorZoomArea.Begin(_zoom, _zoomArea);
+
+        GUI.Box(new Rect(0.0f - _zoomCoordsOrigin.x, 0.0f - _zoomCoordsOrigin.y, 100.0f, 25.0f), "Zoomed Box");
+
+
         DrawGrid(20, 0.2f, Color.gray);
         DrawGrid(100, 0.4f, Color.gray);
 
@@ -101,8 +147,23 @@ public class NodeBasedEditor : EditorWindow
 
         DrawConnectionLine(Event.current);
 
+
+        GUILayout.EndArea();
+
+        EditorZoomArea.End();
+    }
+
+    private void OnGUI()
+    {
+
+
+
         ProcessNodeEvents(Event.current);
         ProcessEvents(Event.current);
+
+        DrawZoomArea();
+
+
 
         if (GUI.changed) Repaint();
     }
@@ -154,9 +215,23 @@ public class NodeBasedEditor : EditorWindow
         }
     }
 
+
+
+
+    private void HandleEvents()
+    {
+
+    }
+
+    private Vector2 ConvertScreenCoordsToZoomCoords(Vector2 screenCoords)
+    {
+        return (screenCoords - _zoomArea.TopLeft()) / _zoom + _zoomCoordsOrigin;
+    }
+
     private void ProcessEvents(Event e)
     {
         drag = Vector2.zero;
+
 
         switch (e.type)
         {
@@ -175,7 +250,42 @@ public class NodeBasedEditor : EditorWindow
                     OnDrag(e.delta);
                 }
                 break;
+
         }
+
+
+
+        // Allow adjusting the zoom with the mouse wheel as well. In this case, use the mouse coordinates
+        // as the zoom center instead of the top left corner of the zoom area. This is achieved by
+        // maintaining an origin that is used as offset when drawing any GUI elements in the zoom area.
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            Vector2 screenCoordsMousePos = Event.current.mousePosition;
+            Vector2 delta = Event.current.delta;
+            Vector2 zoomCoordsMousePos = ConvertScreenCoordsToZoomCoords(screenCoordsMousePos);
+            float zoomDelta = -delta.y / 150.0f;
+            float oldZoom = _zoom;
+            _zoom += zoomDelta;
+            _zoom = Mathf.Clamp(_zoom, kZoomMin, kZoomMax);
+            _zoomCoordsOrigin += (zoomCoordsMousePos - _zoomCoordsOrigin) - (oldZoom / _zoom) * (zoomCoordsMousePos - _zoomCoordsOrigin);
+
+            Event.current.Use();
+        }
+
+        // Allow moving the zoom area's origin by dragging with the middle mouse button or dragging
+        // with the left mouse button with Alt pressed.
+        if (Event.current.type == EventType.MouseDrag &&
+            (Event.current.button == 0 && Event.current.modifiers == EventModifiers.Alt) ||
+            Event.current.button == 2)
+        {
+            Vector2 delta = Event.current.delta;
+            delta /= _zoom;
+            _zoomCoordsOrigin += delta;
+
+            Event.current.Use();
+        }
+
+
     }
 
     private void ProcessNodeEvents(Event e)
@@ -336,5 +446,50 @@ public class NodeBasedEditor : EditorWindow
     {
         selectedInPoint = null;
         selectedOutPoint = null;
+    }
+}
+
+
+
+// Helper Rect extension methods
+public static class RectExtensions
+{
+    public static Vector2 TopLeft(this Rect rect)
+    {
+        return new Vector2(rect.xMin, rect.yMin);
+    }
+    public static Rect ScaleSizeBy(this Rect rect, float scale)
+    {
+        return rect.ScaleSizeBy(scale, rect.center);
+    }
+    public static Rect ScaleSizeBy(this Rect rect, float scale, Vector2 pivotPoint)
+    {
+        Rect result = rect;
+        result.x -= pivotPoint.x;
+        result.y -= pivotPoint.y;
+        result.xMin *= scale;
+        result.xMax *= scale;
+        result.yMin *= scale;
+        result.yMax *= scale;
+        result.x += pivotPoint.x;
+        result.y += pivotPoint.y;
+        return result;
+    }
+    public static Rect ScaleSizeBy(this Rect rect, Vector2 scale)
+    {
+        return rect.ScaleSizeBy(scale, rect.center);
+    }
+    public static Rect ScaleSizeBy(this Rect rect, Vector2 scale, Vector2 pivotPoint)
+    {
+        Rect result = rect;
+        result.x -= pivotPoint.x;
+        result.y -= pivotPoint.y;
+        result.xMin *= scale.x;
+        result.xMax *= scale.x;
+        result.yMin *= scale.y;
+        result.yMax *= scale.y;
+        result.x += pivotPoint.x;
+        result.y += pivotPoint.y;
+        return result;
     }
 }
