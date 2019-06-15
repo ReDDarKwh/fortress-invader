@@ -19,9 +19,11 @@ public enum EventActionType
 [System.Serializable]
 public class EventAction
 {
-
     public EventActionType actionType = EventActionType.TRANSITION;
+
+    [System.NonSerialized]
     public BaseState transitionToState;
+    [System.NonSerialized]
     public List<BaseState> addStates;
 
     [System.NonSerialized]

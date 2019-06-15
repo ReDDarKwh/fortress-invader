@@ -12,8 +12,11 @@ namespace Scripts.Characters
     public class EventStateLinking
     {
 
-        [Tooltip("Name or tag of the states(s) that this linker will affect")]
+        [System.NonSerialized]
         public string tagName; // state name or tag.
+
+        public List<BaseState> states;
+
         public BaseEvent triggeredOn;
         public bool invert = false;
         public EventAction action;
