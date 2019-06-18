@@ -9,18 +9,18 @@ using UnityEngine.Events;
 public partial class StateMachine : MonoBehaviour
 {
 
-
     private Dictionary<BaseState, List<StateMachineEventWithActiveLinking>> UpdateSubs = new Dictionary<BaseState, List<StateMachineEventWithActiveLinking>>();
     private Dictionary<BaseState, List<UnityEvent>> LeaveSubs = new Dictionary<BaseState, List<UnityEvent>>();
     private Dictionary<BaseState, List<StateMachineEventWithActiveLinking>> EnterSubs = new Dictionary<BaseState, List<StateMachineEventWithActiveLinking>>();
 
     public BaseState entryState;
-    public List<BaseEventStateLinker> stateLinkers;
+
+    [System.NonSerialized]
+    public Dictionary<BaseState, IEnumerable<EventStateLinking>> stateLinkers;
+    public List<SMGraph> stateMachineGraphs;
 
     private Dictionary<BaseState, ActiveLinking> activeStates =
-     new Dictionary<BaseState, ActiveLinking>();
-
-
+        new Dictionary<BaseState, ActiveLinking>();
 
     public bool debugShowStates = false;
 
@@ -29,11 +29,14 @@ public partial class StateMachine : MonoBehaviour
         return activeStates.Keys.ToList();
     }
 
+    public void Start()
+    {
+        stateLinkers = GetLinksDictionary(stateMachineGraphs);
+    }
+
     public void Update()
     {
         var pendingActions = new Queue<Tuple<BaseState, EventStateLinking>>();
-
-
 
         if (activeStates.Count < 1)
         {
@@ -71,7 +74,6 @@ public partial class StateMachine : MonoBehaviour
         }
 
     }
-
 
     public void AddSubscription(StateMachineSubscription subscription)
     {
@@ -136,7 +138,6 @@ public partial class StateMachine : MonoBehaviour
         }
     }
 
-
     // find the events with the same name in the active states and trigger them
     public void TriggerEvent(BaseEvent e, EventMessage message)
     {
@@ -197,31 +198,40 @@ public partial class StateMachine : MonoBehaviour
         }
     }
 
-
-    private List<EventStateLinking> GetLinkingsForState(BaseState state)
+    private Dictionary<BaseState, IEnumerable<EventStateLinking>> GetLinksDictionary(List<SMGraph> stateMachineGraphs)
     {
-        return this.stateLinkers
-                .Select(x => x.GetLinksForState(state.GetTagsPlusName())
-                .ToDictionary(y => new { y.tagName, y.triggeredOn })).Aggregate((a, b) =>
+        return stateMachineGraphs.SelectMany(x =>
+
+             x.nodes
+                .Where(n => n is LinkNode)
+                .Select(n => n as LinkNode)
+                .Select(n => new EventStateLinking
                 {
-                    foreach (var link in b)
+                    states = n.Inputs
+                    .ElementAt(0)
+                    .GetInputValues()
+                    .Select(p => p as BaseState)
+                    .ToList(),
+                    triggeredOn = n.trigger,
+                    invert = n.invert,
+                    action = new EventAction
                     {
-                        if (a.ContainsKey(link.Key))
-                        {
-                            a[link.Key] = link.Value;
-                        }
-                        else
-                        {
-                            a.Add(link.Key, link.Value);
-                        }
+                        actionType = n.actionType,
+                        addStates = n.Outputs
+                        .ElementAt(0)
+                        .GetConnections()
+                        .Select(c => (c.Connection.node as StateNode).state)
+                        .ToList()
                     }
-                    return a;
-                }).Values.Select(x => new EventStateLinking()
-                {
-                    action = x.action,
-                    triggeredOn = Instantiate(x.triggeredOn),
-                    invert = x.invert
-                }).ToList();
+                })
+        ).SelectMany(x => x.states.Select((s) =>
+        {
+            // multiple states can be connected to the same event.
+            // multiply link and assigning one state each
+
+            x.states = new List<BaseState> { s };
+            return x;
+        })).GroupBy(x => x.states.First()).ToDictionary(k => k.Key, v => v.AsEnumerable());
     }
 
 
@@ -243,7 +253,7 @@ public partial class StateMachine : MonoBehaviour
 
         activeStates[stateToSwitchTo] = new ActiveLinking()
         {
-            links = GetLinkingsForState(stateToSwitchTo),
+            links = stateLinkers[stateToSwitchTo].ToList(),
             linkingProperties = new Dictionary<string, object>(),
             timeStarted = Time.time,
             state = stateToSwitchTo
@@ -274,4 +284,3 @@ public partial class StateMachine : MonoBehaviour
         }
     }
 }
-
