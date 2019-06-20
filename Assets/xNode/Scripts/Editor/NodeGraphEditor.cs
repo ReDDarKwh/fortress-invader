@@ -71,7 +71,13 @@ namespace XNodeEditor
 
         public virtual void DropItem(object droppedItem)
         {
-            target.OnDrop(droppedItem, NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
+
+            XNode.Node node = target.OnDrop(droppedItem, NodeEditorWindow.current.WindowToGridPosition(Event.current.mousePosition));
+
+            if (node != null)
+            {
+                SaveNode(node);
+            }
         }
 
         public virtual Color GetPortColor(XNode.NodePort port)
@@ -96,10 +102,16 @@ namespace XNodeEditor
                 if (typeName.EndsWith("Node")) typeName = typeName.Substring(0, typeName.LastIndexOf("Node"));
                 node.name = UnityEditor.ObjectNames.NicifyVariableName(typeName);
             }
+            SaveNode(node);
+        }
+
+        public virtual void SaveNode(XNode.Node node)
+        {
             AssetDatabase.AddObjectToAsset(node, target);
             if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
             NodeEditorWindow.RepaintAll();
         }
+
 
         /// <summary> Creates a copy of the original node in the graph </summary>
         public XNode.Node CopyNode(XNode.Node original)

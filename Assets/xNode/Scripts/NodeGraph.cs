@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using XNode;
+
 
 namespace XNode
 {
@@ -100,9 +102,10 @@ namespace XNode
 
         /// <summary> Is called when something is dragged in the editor </summary>
         /// <param name="droppedObject">The dropped object</param>
-        public virtual void OnDrop(object droppedObject, Vector2 dropPosition)
+        public virtual XNode.Node OnDrop(object droppedObject, Vector2 dropPosition)
         {
             Debug.LogWarning("No OnDrop(NodePort port) override defined for " + GetType());
+            return null;
         }
 
 

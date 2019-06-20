@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+
 [CreateAssetMenu]
 public class SMGraph : NodeGraph
 {
 
-    public override void OnDrop(object droppedObject, Vector2 dropPosition)
+    public override XNode.Node OnDrop(object droppedObject, Vector2 dropPosition)
     {
+
         if (droppedObject is BaseState)
         {
             Node.graphHotfix = this;
@@ -21,6 +23,8 @@ public class SMGraph : NodeGraph
             node.name = state.name;
             node.graph = this;
             nodes.Add(node);
+
+            return node;
         }
         else if (droppedObject is BaseEvent)
         {
@@ -38,7 +42,10 @@ public class SMGraph : NodeGraph
             node.graph = this;
             nodes.Add(node);
 
+            return node;
         }
+
+        return null;
     }
 
 }
