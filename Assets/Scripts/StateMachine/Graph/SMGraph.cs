@@ -8,44 +8,5 @@ using XNode;
 public class SMGraph : NodeGraph
 {
 
-    public override XNode.Node OnDrop(object droppedObject, Vector2 dropPosition)
-    {
-
-        if (droppedObject is BaseState)
-        {
-            Node.graphHotfix = this;
-            StateNode node = ScriptableObject.CreateInstance(typeof(StateNode)) as StateNode;
-
-            var state = droppedObject as BaseState;
-
-            node.position = dropPosition;
-            node.state = state;
-            node.name = state.name;
-            node.graph = this;
-            nodes.Add(node);
-
-            return node;
-        }
-        else if (droppedObject is BaseEvent)
-        {
-
-            Node.graphHotfix = this;
-            LinkNode node = ScriptableObject.CreateInstance(typeof(LinkNode)) as LinkNode;
-
-            var evt = droppedObject as BaseEvent;
-
-            node.position = dropPosition;
-            node.trigger = evt;
-            node.actionType = EventActionType.TRANSITION;
-
-            node.name = evt.name;
-            node.graph = this;
-            nodes.Add(node);
-
-            return node;
-        }
-
-        return null;
-    }
 
 }
