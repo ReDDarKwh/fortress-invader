@@ -83,9 +83,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
+      propertyPath: stateMachineGraphs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
       propertyPath: entryState
       value: 
-      objectReference: {fileID: 11400000, guid: 54010845aa3f83844969e77d59fe5567,
+      objectReference: {fileID: 11400000, guid: 7c62d9b61d350e742b75ea908872cb7c,
+        type: 2}
+    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
+      propertyPath: stateMachineGraphs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0575ae3d49125d740b3d325a313c5280,
         type: 2}
     - target: {fileID: 5949155286415463161, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}

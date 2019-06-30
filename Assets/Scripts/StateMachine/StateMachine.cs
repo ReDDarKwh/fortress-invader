@@ -38,7 +38,7 @@ public partial class StateMachine : MonoBehaviour
     {
         var pendingActions = new Queue<Tuple<BaseState, EventStateLinking>>();
 
-        if (activeStates.Count < 1)
+        if (activeStates.Count < 1 && stateLinkers != null)
         {
             StartState(this.entryState, null, false);
         }
@@ -200,7 +200,9 @@ public partial class StateMachine : MonoBehaviour
 
     private Dictionary<BaseState, IEnumerable<EventStateLinking>> GetLinksDictionary(List<SMGraph> stateMachineGraphs)
     {
-        return stateMachineGraphs.SelectMany(x =>
+
+        Dictionary<BaseState, IEnumerable<EventStateLinking>> result =
+         stateMachineGraphs.SelectMany(x =>
 
              x.nodes
                 .Where(n => n is LinkNode)
@@ -232,6 +234,9 @@ public partial class StateMachine : MonoBehaviour
             x.states = new List<BaseState> { s };
             return x;
         })).GroupBy(x => x.states.First()).ToDictionary(k => k.Key, v => v.AsEnumerable());
+
+
+        return result;
     }
 
 
