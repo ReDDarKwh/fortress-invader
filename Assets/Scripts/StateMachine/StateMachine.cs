@@ -214,7 +214,7 @@ public partial class StateMachine : MonoBehaviour
                     .GetInputValues()
                     .Select(p => p as BaseState)
                     .ToList(),
-                    triggeredOn = n.trigger,
+                    triggeredOn = Instantiate(n.trigger),
                     invert = n.invert,
                     action = new EventAction
                     {
@@ -222,7 +222,7 @@ public partial class StateMachine : MonoBehaviour
                         addStates = n.Outputs
                         .ElementAt(0)
                         .GetConnections()
-                        .Select(c => (c.Connection.node as StateNode).state)
+                        .Select(c => (c.node as StateNode).state)
                         .ToList()
                     }
                 })
