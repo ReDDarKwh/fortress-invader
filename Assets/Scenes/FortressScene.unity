@@ -1834,6 +1834,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 3724343189913647471, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: fastSpeedModifier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3724343189913647465, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
         type: 3}
       propertyPath: stateMachineGraphs.Array.size

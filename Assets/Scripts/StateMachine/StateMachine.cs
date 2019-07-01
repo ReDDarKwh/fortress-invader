@@ -198,8 +198,22 @@ public partial class StateMachine : MonoBehaviour
         }
     }
 
+
+    private void clearActiveState()
+    {
+        foreach (var entry in activeStates)
+        {
+            entry.Value.links.ForEach(x => Destroy(x.triggeredOn));
+            EndState(entry.Value.state);
+        }
+    }
+
     private Dictionary<BaseState, IEnumerable<EventStateLinking>> GetLinksDictionary(List<SMGraph> stateMachineGraphs)
     {
+        // triggers need to be instantiated to work. 
+        // Remaking the link dictionnary requires to remove previously created triggers.
+        // else memory leak
+        clearActiveState();
 
         Dictionary<BaseState, IEnumerable<EventStateLinking>> result =
          stateMachineGraphs.SelectMany(x =>
@@ -212,8 +226,8 @@ public partial class StateMachine : MonoBehaviour
                     states = n.Inputs
                     .ElementAt(0)
                     .GetInputValues()
-                    .Select(p => p as BaseState)
-                    .ToList(),
+                    .SelectMany(p => p as IEnumerable<BaseState>),
+
                     triggeredOn = Instantiate(n.trigger),
                     invert = n.invert,
                     action = new EventAction
@@ -222,8 +236,7 @@ public partial class StateMachine : MonoBehaviour
                         addStates = n.Outputs
                         .ElementAt(0)
                         .GetConnections()
-                        .Select(c => (c.node as StateNode).state)
-                        .ToList()
+                        .SelectMany(c => (c.node as StateNode).states)
                     }
                 })
         ).SelectMany(x => x.states.Select((s) =>
@@ -256,6 +269,8 @@ public partial class StateMachine : MonoBehaviour
             }
         }
 
+
+
         activeStates[stateToSwitchTo] = new ActiveLinking()
         {
             links = stateLinkers[stateToSwitchTo].ToList(),
@@ -263,6 +278,7 @@ public partial class StateMachine : MonoBehaviour
             timeStarted = Time.time,
             state = stateToSwitchTo
         };
+
 
         //start state that will fill the linkingProperties
         stateToSwitchTo.Enter(this, e?.eventResponse, activeStates[stateToSwitchTo]);
@@ -279,10 +295,8 @@ public partial class StateMachine : MonoBehaviour
     private void EndState(BaseState state)
     {
         //remove every links that affect the state
-
         if (activeStates.ContainsKey(state))
         {
-            activeStates[state].links.ForEach(x => Destroy(x.triggeredOn));
             activeStates.Remove(state);
             state.Leave(this);
             AfterLeave(state);

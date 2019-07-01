@@ -13,53 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStateGraph
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 114355651555780748}
-  - {fileID: 114634349770831066}
-  - {fileID: 114898315888854688}
---- !u!114 &114355651555780748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
-  m_Name: EmptyState
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -110.5, y: -70}
-  ports:
-    keys:
-    - state
-    - links
-    values:
-    - _fieldName: state
-      _node: {fileID: 114355651555780748}
-      _typeQualifiedName: BaseState, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: from
-        node: {fileID: 114634349770831066}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: links
-      _node: {fileID: 114355651555780748}
-      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  state: {fileID: 11400000, guid: e9226f64ebc98a347906dcadcb05b2ff, type: 2}
-  links: []
---- !u!114 &114634349770831066
+  - {fileID: 114320385835152888}
+  - {fileID: 114002808384593704}
+  - {fileID: 114381998561202472}
+--- !u!114 &114002808384593704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,33 +29,33 @@ MonoBehaviour:
   m_Name: NoHealthEvent
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 216, y: -104}
+  position: {x: 280, y: -56}
   ports:
     keys:
     - from
     - to
     values:
     - _fieldName: from
-      _node: {fileID: 114634349770831066}
+      _node: {fileID: 114002808384593704}
       _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: state
-        node: {fileID: 114355651555780748}
+      - fieldName: states
+        node: {fileID: 114320385835152888}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: to
-      _node: {fileID: 114634349770831066}
+      _node: {fileID: 114002808384593704}
       _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: links
-        node: {fileID: 114898315888854688}
+        node: {fileID: 114381998561202472}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -109,7 +66,52 @@ MonoBehaviour:
   trigger: {fileID: 11400000, guid: f769c344a5334034bacfc4973ffc51fc, type: 2}
   actionType: 0
   invert: 0
---- !u!114 &114898315888854688
+--- !u!114 &114320385835152888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
+  m_Name: EmptyState
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -104, y: -40}
+  ports:
+    keys:
+    - states
+    - links
+    values:
+    - _fieldName: states
+      _node: {fileID: 114320385835152888}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: from
+        node: {fileID: 114002808384593704}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: links
+      _node: {fileID: 114320385835152888}
+      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  states:
+  - {fileID: 11400000, guid: e9226f64ebc98a347906dcadcb05b2ff, type: 2}
+  links: []
+--- !u!114 &114381998561202472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,33 +124,35 @@ MonoBehaviour:
   m_Name: DeadState
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 616, y: -88}
+  position: {x: 632, y: 8}
   ports:
     keys:
-    - state
+    - states
     - links
     values:
-    - _fieldName: state
-      _node: {fileID: 114898315888854688}
-      _typeQualifiedName: BaseState, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+    - _fieldName: states
+      _node: {fileID: 114381998561202472}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: links
-      _node: {fileID: 114898315888854688}
+      _node: {fileID: 114381998561202472}
       _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: to
-        node: {fileID: 114634349770831066}
+        node: {fileID: 114002808384593704}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  state: {fileID: 11400000, guid: 85f28cdd3198c534aa2b97f5bd0dd6c3, type: 2}
+  states:
+  - {fileID: 11400000, guid: 85f28cdd3198c534aa2b97f5bd0dd6c3, type: 2}
   links: []

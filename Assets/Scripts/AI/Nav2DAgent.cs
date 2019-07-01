@@ -133,9 +133,8 @@ namespace Scripts.AI
         public void PathCallback(IEnumerable<Nav2dNode> newPath, bool skipFist = true)
         {
             PathCallback(
-                newPath.Select(x => x.worldPos),
-                skipFist
-            );
+               newPath?.Select(x => x.worldPos),
+               skipFist);
         }
 
         private void PathCallback(IEnumerable<Vector3> newPath, bool skipFist = true)

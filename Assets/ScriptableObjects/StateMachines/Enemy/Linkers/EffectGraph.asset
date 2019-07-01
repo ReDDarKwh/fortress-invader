@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9f796d762d18b46a3da073543c9a10, type: 3}
+  m_Name: EffectGraph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 114549939298951890}
+--- !u!114 &114549939298951890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
+  m_Name: HostileOnSight
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -424, y: -56}
+  ports:
+    keys:
+    - states
+    - links
+    values:
+    - _fieldName: states
+      _node: {fileID: 114549939298951890}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: links
+      _node: {fileID: 114549939298951890}
+      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  states:
+  - {fileID: 11400000, guid: d1467497bf6bc5241b8a0476dfa4fd56, type: 2}
+  - {fileID: 11400000, guid: 2932f37b16962454caaea574dc6faeda, type: 2}
+  - {fileID: 11400000, guid: d91d1e1ee74839d49919a233d120489c, type: 2}
+  - {fileID: 11400000, guid: c4920ee052fab314c8383b8063ba3500, type: 2}
+  - {fileID: 11400000, guid: 7c62d9b61d350e742b75ea908872cb7c, type: 2}
+  - {fileID: 11400000, guid: 0b559e7f910c4554e8a03835be0e523d, type: 2}
+  - {fileID: 11400000, guid: 7682891acbe619244b83af223d13a046, type: 2}
+  - {fileID: 11400000, guid: 54010845aa3f83844969e77d59fe5567, type: 2}
+  - {fileID: 11400000, guid: 015acc8b20be9ad429b86b6f5596451a, type: 2}
+  - {fileID: 11400000, guid: ecebe1e0663d8b64d987f8f55c2e8d88, type: 2}
+  - {fileID: 11400000, guid: d1a3893a1381beb43bdbcb345efd8751, type: 2}
+  - {fileID: 11400000, guid: 3c2377879a50fe5478d21b69ede492ab, type: 2}
+  - {fileID: 11400000, guid: d24212bd6d3de6b40862a8418a13acbc, type: 2}
+  - {fileID: 11400000, guid: 2c5e18cc7fc627343bda5e00dc684756, type: 2}
+  - {fileID: 11400000, guid: 4167f2734012849478bae2839228c153, type: 2}
+  links: []

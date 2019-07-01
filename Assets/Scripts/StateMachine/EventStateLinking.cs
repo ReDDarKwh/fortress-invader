@@ -15,7 +15,7 @@ namespace Scripts.Characters
         [System.NonSerialized]
         public string tagName; // state name or tag.
 
-        public List<BaseState> states;
+        public IEnumerable<BaseState> states;
 
         public BaseEvent triggeredOn;
         public bool invert = false;

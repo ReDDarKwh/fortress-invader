@@ -24,7 +24,7 @@ public class EventAction
     [System.NonSerialized]
     public BaseState transitionToState;
     [System.NonSerialized]
-    public List<BaseState> addStates;
+    public IEnumerable<BaseState> addStates;
 
     [System.NonSerialized]
     public BaseState fromState;
