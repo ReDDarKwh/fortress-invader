@@ -270,15 +270,13 @@ public partial class StateMachine : MonoBehaviour
         }
 
 
-
         activeStates[stateToSwitchTo] = new ActiveLinking()
         {
-            links = stateLinkers[stateToSwitchTo].ToList(),
+            links = stateLinkers.ContainsKey(stateToSwitchTo) ? stateLinkers[stateToSwitchTo].ToList() : new List<EventStateLinking>(),
             linkingProperties = new Dictionary<string, object>(),
             timeStarted = Time.time,
             state = stateToSwitchTo
         };
-
 
         //start state that will fill the linkingProperties
         stateToSwitchTo.Enter(this, e?.eventResponse, activeStates[stateToSwitchTo]);

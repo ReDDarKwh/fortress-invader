@@ -14,6 +14,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 114549939298951890}
+  - {fileID: 114257257809285306}
+  - {fileID: 114429563559559712}
+--- !u!114 &114257257809285306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
+  m_Name: CircleTargetScaredState
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 248, y: -104}
+  ports:
+    keys:
+    - states
+    - links
+    values:
+    - _fieldName: states
+      _node: {fileID: 114257257809285306}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: links
+      _node: {fileID: 114257257809285306}
+      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: to
+        node: {fileID: 114429563559559712}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  states:
+  - {fileID: 11400000, guid: cc4dc6bb4a2c34929acdb95fe440b079, type: 2}
+  links: []
+--- !u!114 &114429563559559712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab1b5d28de40014d928fd50d2ceb549, type: 3}
+  m_Name: CircleSpellScaredEvent
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: -152}
+  ports:
+    keys:
+    - from
+    - to
+    values:
+    - _fieldName: from
+      _node: {fileID: 114429563559559712}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: states
+        node: {fileID: 114549939298951890}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: to
+      _node: {fileID: 114429563559559712}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: links
+        node: {fileID: 114257257809285306}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  from: []
+  to: []
+  trigger: {fileID: 11400000, guid: d80dce4d8549f48f9ab367bdff8d4f3d, type: 2}
+  actionType: 0
+  invert: 0
 --- !u!114 &114549939298951890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,7 +124,7 @@ MonoBehaviour:
   m_Name: HostileOnSight
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -424, y: -56}
+  position: {x: -472, y: -72}
   ports:
     keys:
     - states
@@ -38,7 +135,10 @@ MonoBehaviour:
       _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
         Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: from
+        node: {fileID: 114429563559559712}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0

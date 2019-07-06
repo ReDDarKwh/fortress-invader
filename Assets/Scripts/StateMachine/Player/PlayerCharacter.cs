@@ -21,19 +21,14 @@ public class PlayerCharacter : MonoBehaviour
 
     public Character character;
 
-
     public float fastWalkingSpeedNoiseRadius;
     public float fastWalkingNoiseDistance;
 
     private Vector3 lastNoisePosition;
 
-
     private Vector2 moveVector;
 
-
     private bool specialCastKeydown;
-
-
 
     [System.NonSerialized]
     public bool selectingTargets;
@@ -43,18 +38,11 @@ public class PlayerCharacter : MonoBehaviour
 
     public GameObject guardPrefab;
 
-
-
     // Use this for initialization
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
-
-
-
-
     }
 
     // Update is called once per frame
@@ -63,17 +51,14 @@ public class PlayerCharacter : MonoBehaviour
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         playerToMouse = GetMousePos() - rb.position;
 
-
         if (Input.GetAxisRaw("Fast Speed") == 1)
         {
             character.currentSpeed = CharacterSpeed.FAST;
         }
         else
         {
-
             character.currentSpeed = CharacterSpeed.NORMAL;
         }
-
 
         if (character.currentSpeed == CharacterSpeed.FAST)
         {
@@ -84,16 +69,12 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
 
-
         // change radius for area spells
         if (spellCaster.spellRadius + Input.GetAxis("Mouse ScrollWheel") * 5 != spellCaster.spellRadius)
         {
             // update effect radiuses
             spellCaster.spellRadius = spellCaster.spellRadius + Input.GetAxis("Mouse ScrollWheel") * 5;
         }
-
-
-
 
         // cast spell on click;
         if (Input.GetMouseButtonUp(0))
@@ -121,7 +102,6 @@ public class PlayerCharacter : MonoBehaviour
             Time.timeScale = 1;
         }
 
-
         if (spellCaster.selectedSpell.Value != null && spellCaster.selectedSpell.Value.spellTarget == SpellTarget.MISSILE)
         {
             if (Input.GetMouseButtonDown(0))
@@ -144,12 +124,7 @@ public class PlayerCharacter : MonoBehaviour
                 );
             }
         }
-
-
-
-
     }
-
     void LateUpdate()
     {
         moveVector = input * this.character.GetSpeed() * Time.fixedDeltaTime;
@@ -158,7 +133,6 @@ public class PlayerCharacter : MonoBehaviour
         character.lookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
         character.moveDirection = Quaternion.Euler(0, 0, Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg);
     }
-
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveVector);
@@ -169,8 +143,6 @@ public class PlayerCharacter : MonoBehaviour
         mousePos.z = -cam.transform.position.z;
         return cam.ScreenToWorldPoint(mousePos);
     }
-
-
 
 }
 

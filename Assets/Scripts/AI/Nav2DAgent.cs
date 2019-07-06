@@ -126,9 +126,7 @@ namespace Scripts.AI
                     this.isMoving = true;
                     break;
             }
-
         }
-
 
         public void PathCallback(IEnumerable<Nav2dNode> newPath, bool skipFist = true)
         {
