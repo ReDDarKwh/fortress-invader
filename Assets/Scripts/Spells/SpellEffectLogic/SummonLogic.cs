@@ -37,6 +37,19 @@ public class SummonLogic : BaseState
                 }
 
                 break;
+            default:
+
+                var angle = Random.Range(0, 2 * Mathf.PI);
+                var distance = Random.Range(0.5f, 1);
+
+                Instantiate(
+                       summonedPrefab,
+                       eventResponse.target.transform.position +
+                        new Vector3(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance),
+                       Quaternion.identity
+                   );
+
+                break;
         }
         //temporary
         //Destroy(stateMachine.gameObject);
