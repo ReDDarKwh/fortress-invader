@@ -46,15 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
-  nav2D: {fileID: 0}
-  addedNodeTravelCost: 10
-  spellDone: 0
-  follow: {fileID: 0}
   caster: {fileID: 0}
+  follow: {fileID: 0}
   targetPrefab: {fileID: 0}
-  effects: []
   active: 1
+  addedNodeTravelCost: 10
+  effects: []
+  spellDone: 0
   radius: 1
+  safeDistance: 2
 --- !u!114 &114223662695136836
 MonoBehaviour:
   m_ObjectHideFlags: 0

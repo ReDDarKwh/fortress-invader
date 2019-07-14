@@ -15,11 +15,13 @@ MonoBehaviour:
   effectName: fire
   circleEffect: {fileID: 1479791270519732, guid: 8fed2531256570741b8b7b14ae472c8b,
     type: 3}
-  duration: 20
+  missileEffect: {fileID: 0}
+  duration: 2000
   intervalTime: 2
   emissionChance: 0.5
   emitOnStart: 0
   effectEntryStates:
   - {fileID: 11400000, guid: 4e5ea01ba8198bd4282f7b717def2485, type: 2}
   effectEntryEvents: []
+  affectsCharacters: 1
   noiseRadius: 0

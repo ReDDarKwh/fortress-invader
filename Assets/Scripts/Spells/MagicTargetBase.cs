@@ -17,7 +17,7 @@ namespace Scripts.Spells
     public abstract class MagicTargetBase : MonoBehaviour
     {
         public Spell spell;
-        public Nav2D nav2D;
+
         public SpellCaster caster;
 
         public Transform follow;
@@ -58,6 +58,50 @@ namespace Scripts.Spells
         public abstract void OnEmitEffect(SpellEffect effect);
 
         public abstract void Dispell();
+
+
+
+
+        protected void BaseStart()
+        {
+
+            if (selectedCharacters == null)
+            {
+                selectedCharacters = new HashSet<Character>();
+            }
+
+
+            // if null magic target is for selection only (doest have effects)
+            if (spell != null)
+            {
+
+                if (affectedNodes != null)
+                {
+                    foreach (var item in affectedNodes)
+                    {
+                        item.travelCost += spell.travelCost;
+                    }
+                }
+
+                startTime = Time.time;
+                activeSpellEffects = new List<SpellEffect>(spell.spellEffects);
+                lastEmissionTimes = new Dictionary<SpellEffect, float>();
+
+
+                foreach (var effect in activeSpellEffects)
+                {
+                    lastEmissionTimes.Add(
+                        effect,
+                        effect.emitOnStart ? float.MinValue : startTime
+                    );
+                }
+
+            }
+
+
+
+
+        }
 
 
 
@@ -106,36 +150,6 @@ namespace Scripts.Spells
             OnEmitEffect(effect);
         }
 
-        protected void BaseStart()
-        {
-
-            if (selectedCharacters == null)
-            {
-                selectedCharacters = new HashSet<Character>();
-            }
-
-
-            // if null magic target is for selection only (doest have effects)
-            if (spell == null)
-                return;
-
-            nav2D = GameObject.FindWithTag("MainNavGrid").GetComponent<Nav2D>();
-
-            startTime = Time.time;
-            activeSpellEffects = new List<SpellEffect>(spell.spellEffects);
-            lastEmissionTimes = new Dictionary<SpellEffect, float>();
-
-
-
-            foreach (var effect in activeSpellEffects)
-            {
-                lastEmissionTimes.Add(
-                    effect,
-                    effect.emitOnStart ? float.MinValue : startTime
-                );
-            }
-
-        }
 
 
         protected void UpdateActiveEffects()

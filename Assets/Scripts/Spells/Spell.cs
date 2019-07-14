@@ -19,8 +19,9 @@ namespace Scripts.Spells
         public List<SpellEffect> spellEffects;
         public SpellTarget spellTarget;
 
-
         public float manaCost;
+        [Header("Cost for AI to travel in a area with this spell active")]
+        public float travelCost;
 
         [Header("Missile target settings")]
         public int maxTargets;

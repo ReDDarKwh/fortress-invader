@@ -18,3 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d1b2308b681f343348d7acd1996568c9, type: 2}
   spellTarget: 4
   manaCost: 0
+  travelCost: 10
+  maxTargets: 0
+  maxRadius: 0

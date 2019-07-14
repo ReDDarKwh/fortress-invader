@@ -52,11 +52,25 @@ namespace Scripts.AI
 
         public List<Nav2dNode> GetNodesInCircle(Vector3 point, float radius)
         {
-            return Physics2D.OverlapCircleAll(point, radius,
-            LayerMask.GetMask(nav2dNodeLayer)
-                ).Select(
-            x => x.GetComponent<NodeController>().node
-                ).ToList();
+            var centerCell = grid.WorldToCell(point);
+            var gridRadius = Mathf.Ceil(radius / grid.cellSize.x);
+            var result = new System.Collections.Generic.HashSet<Nav2dNode>();
+            for (var y = -gridRadius; y < gridRadius; y++)
+            {
+                for (var x = -gridRadius; x < gridRadius; x++)
+                {
+                    var pos = new Vector2Int((int)(centerCell.x + x), (int)(centerCell.y + y));
+                    if (cellsArray.ContainsKey(pos))
+                    {
+                        foreach (var node in cellsArray[pos].GetNodesList()
+                        .Where(n => n != null && !result.Contains(n) && ((n.worldPos) - (point)).magnitude < radius))
+                        {
+                            result.Add(node);
+                        };
+                    }
+                }
+            }
+            return result.ToList();
         }
 
         // Use this for initialization

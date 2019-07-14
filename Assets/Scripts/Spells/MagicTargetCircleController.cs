@@ -2,40 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using Scripts.AI;
 
 namespace Scripts.Spells
 {
     public class MagicTargetCircleController : MagicTargetBase
     {
 
-
-
-
         public float radius;
-
-
+        public float safeDistance;
 
         //public ParticleSystem particlesSystemParent;
 
         void Start()
         {
-            BaseStart();
-
-            setRadius(radius);
-
+            Nav2D nav2D = GameObject.FindWithTag("MainNavGrid").GetComponent<Nav2D>();
             if (spell != null)
             {
-
-                // apply travel cost to nav2d nodes under circle target
-
-                affectedNodes = nav2D.GetNodesInCircle(transform.position, radius);
-                foreach (var item in affectedNodes)
+                if (spell.travelCost > 0)
                 {
-                    item.travelCost += addedNodeTravelCost;
+                    // apply travel cost to nav2d nodes under circle target
+                    affectedNodes = nav2D.GetNodesInCircle(transform.position, radius + safeDistance);
+                    //
                 }
-                //
             }
+
+            BaseStart();
+            setRadius(radius);
         }
 
         void UpdateRadius()

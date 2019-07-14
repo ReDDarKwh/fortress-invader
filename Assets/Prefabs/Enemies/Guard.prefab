@@ -14549,9 +14549,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entryState: {fileID: 11400000, guid: 7c62d9b61d350e742b75ea908872cb7c, type: 2}
-  stateLinkers:
-  - {fileID: 11400000, guid: e905bdad5c09f7a4a81215e36e5eeb8f, type: 2}
-  - {fileID: 11400000, guid: 7b554828f020aea4782588115222719d, type: 2}
+  stateMachineGraphs:
+  - {fileID: 11400000, guid: 0575ae3d49125d740b3d325a313c5280, type: 2}
+  - {fileID: 11400000, guid: 54f5967cc24caba49abd76da940259e4, type: 2}
   debugShowStates: 1
 --- !u!114 &633767703150014484
 MonoBehaviour:
