@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4540458495449742}
   - component: {fileID: 114305004784216124}
   - component: {fileID: 114223662695136836}
-  - component: {fileID: 1863359668998229910}
   m_Layer: 20
   m_Name: MagicTargetCircle
   m_TagString: Untagged
@@ -70,19 +69,3 @@ MonoBehaviour:
   soundHeardEvent: {fileID: 11400000, guid: b1905699b91c46f4b81d9a0a62448ee8, type: 2}
   layersThatCanHear:
   - AI
---- !u!58 &1863359668998229910
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1747648239025686}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5

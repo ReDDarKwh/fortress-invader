@@ -43,7 +43,7 @@ namespace Scripts.AI
         [System.NonSerialized]
         public List<Nav2dNode> nodes;
 
-        private int maxRunningTreadNum = 2;
+        private int maxRunningTreadNum = 6;
 
         private Dictionary<int, int> waitingThreadNumberById;
         private Queue<PathRequest> waitingThreads;

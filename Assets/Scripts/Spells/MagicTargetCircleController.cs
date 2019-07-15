@@ -83,9 +83,7 @@ namespace Scripts.Spells
             }
 
 
-            // update collider radius
 
-            this.GetComponent<CircleCollider2D>().radius = radius;
         }
 
         void OnDestroy()

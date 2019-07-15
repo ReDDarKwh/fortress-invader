@@ -24,8 +24,8 @@ namespace Scripts.NPC
         override public void StateUpdate(StateMachine stateMachine, ActiveLinking activeLinking)
         {
 
-            NonPlayerCharacter npc = stateMachine.GetComponent<NonPlayerCharacter>();
-            var npcToTarget = npc.characterTarget.transform.position - npc.transform.position;
+            // NonPlayerCharacter npc = stateMachine.GetComponent<NonPlayerCharacter>();
+            // var npcToTarget = npc.characterTarget.transform.position - npc.transform.position;
 
             //npc.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(npcToTarget.y, npcToTarget.x) * Mathf.Rad2Deg);
 

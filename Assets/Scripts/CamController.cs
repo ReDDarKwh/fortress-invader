@@ -8,7 +8,7 @@ using UnityEngine;
 public class CamController : MonoBehaviour
 {
 
-    public Transform follow;
+    public Character follow;
     public Vector3 offset;
     private Camera cam;
     public float zoomIncrement;
@@ -49,13 +49,16 @@ public class CamController : MonoBehaviour
             var mousePos = Input.mousePosition;
             mousePos.z = -cam.transform.position.z;
 
-            camPos = follow.position + ((cam.ScreenToWorldPoint(mousePos) - follow.position) / 2);
+            camPos = follow.transform.position + ((cam.ScreenToWorldPoint(mousePos) - follow.transform.position) / 2);
+
+
 
         }
         else
         {
-            camPos = follow.position;
+            camPos = follow.transform.position;
         }
+
 
         cam.transform.position = camPos + offset;
     }

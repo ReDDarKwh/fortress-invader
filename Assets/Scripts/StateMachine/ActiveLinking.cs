@@ -6,7 +6,7 @@ using Scripts.Characters;
 
 public class ActiveLinking
 {
-    public List<EventStateLinking> links;
+    public IEnumerable<EventStateLinking> links;
     public BaseState state;
     public Dictionary<string, System.Object> linkingProperties;
     public float timeStarted;

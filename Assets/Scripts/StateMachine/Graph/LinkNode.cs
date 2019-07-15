@@ -8,7 +8,7 @@ public class LinkNode : Node
 {
 
     // Use this for initialization
-
+    [Input] public List<string> tags;
     [Input] public List<BaseState> from;
     [Output] public List<BaseState> to;
 

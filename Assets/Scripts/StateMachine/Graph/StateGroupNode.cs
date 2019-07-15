@@ -7,7 +7,10 @@ public class StateGroupNode : Node
 {
 
     [Output]
-    public List<BaseState> states;
+    public List<string> tags;
+
+    public List<string> _tags;
+
 
     [System.NonSerialized]
     public SMGraph stateMachineGraph;
@@ -19,6 +22,12 @@ public class StateGroupNode : Node
     // Return the correct value of an output port when requested
     public override object GetValue(NodePort port)
     {
-        return null; // Replace this
+        if (port.fieldName == "tags")
+        {
+            return _tags;
+        }; // Replace this
+
+        return null;
     }
+
 }

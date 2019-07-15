@@ -13,7 +13,7 @@ namespace Scripts.Characters
     {
 
         [System.NonSerialized]
-        public string tagName; // state name or tag.
+        public IEnumerable<string> tagNames; // state name or tag.
 
         public IEnumerable<BaseState> states;
 

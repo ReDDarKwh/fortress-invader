@@ -12,18 +12,13 @@ public partial class StateMachine : MonoBehaviour
     private Dictionary<BaseState, List<StateMachineEventWithActiveLinking>> UpdateSubs = new Dictionary<BaseState, List<StateMachineEventWithActiveLinking>>();
     private Dictionary<BaseState, List<UnityEvent>> LeaveSubs = new Dictionary<BaseState, List<UnityEvent>>();
     private Dictionary<BaseState, List<StateMachineEventWithActiveLinking>> EnterSubs = new Dictionary<BaseState, List<StateMachineEventWithActiveLinking>>();
-
-    public BaseState entryState;
-
-    [System.NonSerialized]
-    public Dictionary<BaseState, IEnumerable<EventStateLinking>> stateLinkers;
-    public List<SMGraph> stateMachineGraphs;
-
+    private LinkRepo stateLinkers;
     private Dictionary<BaseState, ActiveLinking> activeStates =
         new Dictionary<BaseState, ActiveLinking>();
 
+    public BaseState entryState;
+    public List<SMGraph> stateMachineGraphs;
     public bool debugShowStates = false;
-
     public IEnumerable<BaseState> GetActiveStates()
     {
         return activeStates.Keys.ToList();
@@ -31,7 +26,7 @@ public partial class StateMachine : MonoBehaviour
 
     public void Start()
     {
-        stateLinkers = GetLinksDictionary(stateMachineGraphs);
+        stateLinkers = GenerateLinkRepo(stateMachineGraphs);
     }
 
     public void Update()
@@ -203,30 +198,47 @@ public partial class StateMachine : MonoBehaviour
     {
         foreach (var entry in activeStates)
         {
-            entry.Value.links.ForEach(x => Destroy(x.triggeredOn));
+            foreach (var l in entry.Value.links)
+            {
+                Destroy(l.triggeredOn);
+            }
             EndState(entry.Value.state);
         }
     }
 
-    private Dictionary<BaseState, IEnumerable<EventStateLinking>> GetLinksDictionary(List<SMGraph> stateMachineGraphs)
+
+
+
+    private class LinkRepo
+    {
+        public Dictionary<BaseState, IEnumerable<EventStateLinking>> LinksByState { get; set; }
+        public Dictionary<string, IEnumerable<EventStateLinking>> LinksByTag { get; set; }
+    }
+
+
+
+    private LinkRepo GenerateLinkRepo(List<SMGraph> stateMachineGraphs)
     {
         // triggers need to be instantiated to work. 
         // Remaking the link dictionnary requires to remove previously created triggers.
         // else memory leak
         clearActiveState();
 
-        Dictionary<BaseState, IEnumerable<EventStateLinking>> result =
-         stateMachineGraphs.SelectMany(x =>
+        var allLinks =
+         stateMachineGraphs
+
+
+         .SelectMany(x =>
 
              x.nodes
                 .Where(n => n is LinkNode)
                 .Select(n => n as LinkNode)
                 .Select(n => new EventStateLinking
                 {
-                    states = n.Inputs
-                    .ElementAt(0)
-                    .GetInputValues()
-                    .SelectMany(p => p as IEnumerable<BaseState>),
+
+                    states = n.GetInputValues<IEnumerable<BaseState>>("from", new List<BaseState>())
+                    .SelectMany(p => p),
+                    tagNames = n.GetInputValue<IEnumerable<string>>("tags"),
 
                     triggeredOn = Instantiate(n.trigger),
                     invert = n.invert,
@@ -239,19 +251,50 @@ public partial class StateMachine : MonoBehaviour
                         .SelectMany(c => (c.node as StateNode).states)
                     }
                 })
-        ).SelectMany(x => x.states.Select((s) =>
+        ).GroupBy(x => x.tagNames != null)
+        .ToDictionary(k => k.Key, v => v.AsEnumerable());
+
+        var linkByState = allLinks.ContainsKey(false) ? allLinks[false] : new List<EventStateLinking>();
+        var linkByTag = allLinks.ContainsKey(true) ? allLinks[true] : new List<EventStateLinking>();
+
+        return new LinkRepo
         {
-            // multiple states can be connected to the same event.
-            // multiply link and assigning one state each
+            LinksByState = linkByState.SelectMany(x => x.states.Select((s) =>
+            {
+                // multiple states can be connected to the same event.
+                // multiply link and assigning one state each
 
-            x.states = new List<BaseState> { s };
-            return x;
-        })).GroupBy(x => x.states.First()).ToDictionary(k => k.Key, v => v.AsEnumerable());
+                x.states = new List<BaseState> { s };
+                return x;
+            }))
+            .GroupBy(x => x.states.First()).ToDictionary(k => k.Key, v => v.AsEnumerable()),
 
+            LinksByTag = linkByTag.SelectMany(x => x.tagNames.Select((t) =>
+            {
+                // multiple states can be connected to the same event.
+                // multiply link and assigning one state each
 
-        return result;
+                x.tagNames = new List<string> { t };
+                return x;
+            }))
+            .GroupBy(x => x.tagNames.First()).ToDictionary(k => k.Key, v => v.AsEnumerable())
+        };
     }
 
+
+    private IEnumerable<EventStateLinking> GetLinkersForTags(IEnumerable<string> tags, Dictionary<string, IEnumerable<EventStateLinking>> links)
+    {
+        var result = new List<EventStateLinking>();
+
+        foreach (var tag in tags)
+        {
+            if (stateLinkers.LinksByTag.ContainsKey(tag))
+            {
+                result.AddRange(links[tag]);
+            }
+        }
+        return result;
+    }
 
     public void StartState(BaseState stateToSwitchTo, EventStateLinking e, bool doAnOverride)
     {
@@ -272,7 +315,10 @@ public partial class StateMachine : MonoBehaviour
 
         activeStates[stateToSwitchTo] = new ActiveLinking()
         {
-            links = stateLinkers.ContainsKey(stateToSwitchTo) ? stateLinkers[stateToSwitchTo].ToList() : new List<EventStateLinking>(),
+            links = (stateLinkers.LinksByState.ContainsKey(stateToSwitchTo) ?
+            stateLinkers.LinksByState[stateToSwitchTo] : new List<EventStateLinking>())
+            .Concat(GetLinkersForTags(stateToSwitchTo.tags, stateLinkers.LinksByTag)),
+
             linkingProperties = new Dictionary<string, object>(),
             timeStarted = Time.time,
             state = stateToSwitchTo
