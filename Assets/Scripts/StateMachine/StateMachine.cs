@@ -223,11 +223,8 @@ public partial class StateMachine : MonoBehaviour
         // Remaking the link dictionnary requires to remove previously created triggers.
         // else memory leak
         clearActiveState();
-
         var allLinks =
          stateMachineGraphs
-
-
          .SelectMany(x =>
 
              x.nodes
@@ -251,7 +248,18 @@ public partial class StateMachine : MonoBehaviour
                         .SelectMany(c => (c.node as StateNode).states)
                     }
                 })
-        ).GroupBy(x => x.tagNames != null)
+        )
+
+        // only take the last version of same linker between graphs (so we get overrides)
+        .GroupBy(x => new
+        {
+            states = x.states.Select(s => s.stateName),
+            x.tagNames,
+            x.triggeredOn.name,
+            x.action.actionType
+        })
+        .Select(x => x.Last())
+        .GroupBy(x => x.tagNames != null)
         .ToDictionary(k => k.Key, v => v.AsEnumerable());
 
         var linkByState = allLinks.ContainsKey(false) ? allLinks[false] : new List<EventStateLinking>();
@@ -267,7 +275,11 @@ public partial class StateMachine : MonoBehaviour
                 x.states = new List<BaseState> { s };
                 return x;
             }))
-            .GroupBy(x => x.states.First()).ToDictionary(k => k.Key, v => v.AsEnumerable()),
+
+
+
+            .GroupBy(x => x.states.First())
+            .ToDictionary(k => k.Key, v => v.AsEnumerable()),
 
             LinksByTag = linkByTag.SelectMany(x => x.tagNames.Select((t) =>
             {
