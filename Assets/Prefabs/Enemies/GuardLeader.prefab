@@ -84,7 +84,7 @@ PrefabInstance:
     - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
       propertyPath: stateMachineGraphs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
@@ -96,13 +96,19 @@ PrefabInstance:
         type: 3}
       propertyPath: stateMachineGraphs.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 0575ae3d49125d740b3d325a313c5280,
+      objectReference: {fileID: 11400000, guid: 54f5967cc24caba49abd76da940259e4,
         type: 2}
     - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
       propertyPath: stateMachineGraphs.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 54f5967cc24caba49abd76da940259e4,
+      objectReference: {fileID: 11400000, guid: 0575ae3d49125d740b3d325a313c5280,
+        type: 2}
+    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
+      propertyPath: stateMachineGraphs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e49e6812d1f51d148b308bb1f27a1a1c,
         type: 2}
     - target: {fileID: 5949155286415463161, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}

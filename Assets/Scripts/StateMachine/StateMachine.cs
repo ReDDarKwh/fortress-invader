@@ -217,13 +217,44 @@ public partial class StateMachine : MonoBehaviour
 
 
 
+    private class EventLinkingGroups
+    {
+        public IEnumerable<BaseState> states { get; set; }
+        public IEnumerable<string> tagnames { get; set; }
+        public string triggerName { get; set; }
+        public EventActionType actionType { get; set; }
+
+    }
+
+    class LinkerGroupEqualityComparer : IEqualityComparer<EventLinkingGroups>
+    {
+        public bool Equals(EventLinkingGroups g1, EventLinkingGroups g2)
+        {
+            return g1.states.Select(x => x.stateName).SequenceEqual(g2.states.Select(x => x.stateName)) &&
+            g1.tagnames.SequenceEqual(g2.tagnames) &&
+            g1.actionType.Equals(g2.actionType) &&
+            g1.triggerName.Equals(g2.triggerName);
+        }
+
+        public int GetHashCode(EventLinkingGroups g)
+        {
+            return
+            g.actionType.GetHashCode() ^
+            g.states.Select(x => x.stateName).Aggregate(0, (a, b) => a ^ b.GetHashCode()) ^
+            g.tagnames.Aggregate(0, (a, b) => a ^ b.GetHashCode()) ^
+            g.triggerName.GetHashCode();
+        }
+    }
+
+
+
     private LinkRepo GenerateLinkRepo(List<SMGraph> stateMachineGraphs)
     {
         // triggers need to be instantiated to work. 
         // Remaking the link dictionnary requires to remove previously created triggers.
         // else memory leak
         clearActiveState();
-        var allLinks =
+        var groups =
          stateMachineGraphs
          .SelectMany(x =>
 
@@ -251,14 +282,17 @@ public partial class StateMachine : MonoBehaviour
         )
 
         // only take the last version of same linker between graphs (so we get overrides)
-        .GroupBy(x => new
+        .GroupBy(x => new EventLinkingGroups
         {
-            states = x.states.Select(s => s.stateName),
-            x.tagNames,
-            x.triggeredOn.name,
-            x.action.actionType
-        })
-        .Select(x => x.Last())
+            states = x.states ?? new List<BaseState>(),
+            tagnames = x.tagNames ?? new List<string>(),
+            triggerName = x.triggeredOn.name,
+            actionType = x.action.actionType
+        }, new LinkerGroupEqualityComparer());
+
+
+
+        var allLinks = groups.Select(x => x.Last())
         .GroupBy(x => x.tagNames != null)
         .ToDictionary(k => k.Key, v => v.AsEnumerable());
 
