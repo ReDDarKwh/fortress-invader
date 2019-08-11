@@ -35,7 +35,11 @@ namespace Scripts.Spells
         // Update is called once per frame
         void Update()
         {
-            transform.position = follow.position;
+
+            if (follow != null)
+            {
+                transform.position = follow.position;
+            }
 
             UpdateActiveEffects();
         }
@@ -149,7 +153,7 @@ namespace Scripts.Spells
                 return;
             }
 
-            DebugDrawBox(point, size, 0, Color.red, 0);
+            //DebugDrawBox(point, size, 0, Color.red, 0);
 
             var colliders = Physics2D.OverlapBoxAll(point, size, 0, LayerMask.GetMask("AI"));
 

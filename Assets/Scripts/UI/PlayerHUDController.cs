@@ -27,7 +27,7 @@ public class PlayerHUDController : MonoBehaviour
 
     public GameObject spellMouseUI;
 
-    public GameObject castSpellText;
+    public Text castSpellText;
 
     public GameObject spellSelectionImage;
 
@@ -58,18 +58,16 @@ public class PlayerHUDController : MonoBehaviour
 
         playerCharacter.spellCaster.selectedSpell.Subscribe(x =>
         {
+
+            castSpellText.text = x?.spellName ?? "";
             switch (x?.spellTarget)
             {
                 case SpellTarget.MISSILE:
                     spellMouseUI.SetActive(true);
-                    castSpellText.SetActive(true);
-
                     break;
 
                 default:
                     spellMouseUI.SetActive(false);
-                    castSpellText.SetActive(false);
-
                     break;
             }
         });
@@ -152,7 +150,7 @@ public class PlayerHUDController : MonoBehaviour
 
 
         // timer display
-        var remainingTime = sceneManager.timeBeforeGameover - Time.timeSinceLevelLoad;
+        var remainingTime = sceneManager.timeBeforeGameover - (Time.unscaledTime - sceneManager.timeSinceLevelLoad);
         var time = new TimeSpan(0, 0, Convert.ToInt32(remainingTime));
 
         timerText.text = time.ToString(@"mm\:ss");

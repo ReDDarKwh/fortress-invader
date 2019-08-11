@@ -13,6 +13,15 @@ public class FortressSceneManager : MonoBehaviour
 
     public GameOverInfo gameOverInfo;
 
+
+    [System.NonSerialized]
+    public float timeSinceLevelLoad = 0;
+
+    public void Start()
+    {
+        timeSinceLevelLoad = Time.unscaledTime;
+    }
+
     public void Update()
     {
         if (timeBeforeGameover - Time.timeSinceLevelLoad <= 0)

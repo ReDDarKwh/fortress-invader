@@ -31,7 +31,8 @@ namespace Scripts.Spells
 
         public List<BaseState> effectEntryStates;
         public List<BaseEvent> effectEntryEvents;
-        public bool affectsCharacters = true;
+
+        public bool usesCharacterStateMachine = true;
         public float noiseRadius;
     }
 

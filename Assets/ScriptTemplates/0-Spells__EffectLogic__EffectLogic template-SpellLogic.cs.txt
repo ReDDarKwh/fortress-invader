@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Spells/EffectLogic/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : BaseState {
+
+
+    // stateMachine and activeLinking always null
+    public override void Enter(StateMachine stateMachine, EventMessage eventResponse, ActiveLinking activeLinking)
+    {
+
+    }
+
+    // unused for state
+    public override void Leave(StateMachine stateMachine) { }
+    public override void StateUpdate(StateMachine stateMachine, ActiveLinking activeLinking) { }
+
+}

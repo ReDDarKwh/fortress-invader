@@ -110,7 +110,7 @@ namespace Scripts.Spells
 
             // stuff that affects characters
 
-            if (effect.affectsCharacters)
+            if (effect.usesCharacterStateMachine)
             {
                 foreach (var c in selectedCharacters)
                 {

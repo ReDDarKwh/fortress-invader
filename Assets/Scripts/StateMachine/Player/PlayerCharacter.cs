@@ -38,6 +38,15 @@ public class PlayerCharacter : MonoBehaviour
 
     public GameObject guardPrefab;
 
+
+    public float unpauseTimeIncrement = 0.2f;
+    public float pauseTimeIncrement = 0.1f;
+
+    public float pauseSpeed = 0.005f;
+
+
+    private bool pause;
+
     // Use this for initialization
     void Start()
     {
@@ -93,13 +102,19 @@ public class PlayerCharacter : MonoBehaviour
             specialCastKeydown = false;
         }
 
-        if (Input.GetAxisRaw("Pause") == 1)
+        if (Input.GetButtonDown("Pause"))
         {
-            Time.timeScale = 0.05f;
+            pause = !pause;
+            //Time.timeScale = 0.05f;
+        }
+
+        if (pause)
+        {
+            Time.timeScale = Mathf.Max(pauseSpeed, Time.timeScale - pauseTimeIncrement);
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = Mathf.Min(1, Time.timeScale + unpauseTimeIncrement);
         }
 
         if (spellCaster.selectedSpell.Value != null && spellCaster.selectedSpell.Value.spellTarget == SpellTarget.MISSILE)
@@ -127,11 +142,15 @@ public class PlayerCharacter : MonoBehaviour
     }
     void LateUpdate()
     {
-        moveVector = input * this.character.GetSpeed() * Time.fixedDeltaTime;
 
-        character.moving = moveVector.magnitude > 0;
-        character.lookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
-        character.moveDirection = Quaternion.Euler(0, 0, Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg);
+        if (!pause)
+        {
+            moveVector = input * this.character.GetSpeed() * Time.fixedDeltaTime;
+
+            character.moving = moveVector.magnitude > 0;
+            character.lookDirection = Quaternion.Euler(0, 0, Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg);
+            character.moveDirection = Quaternion.Euler(0, 0, Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg);
+        }
     }
     void FixedUpdate()
     {
