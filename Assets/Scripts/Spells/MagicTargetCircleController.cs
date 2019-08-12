@@ -90,7 +90,10 @@ namespace Scripts.Spells
         {
             foreach (var character in selectedCharacters)
             {
-                character.IsSelected.Value = false;
+                if (character != null)
+                {
+                    character.IsSelected.Value = false;
+                }
             }
         }
 
