@@ -13,7 +13,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Camera cam;
-
+    private Animator camAnimator;
     private Vector2 input;
     private Vector2 playerToMouse;
 
@@ -36,8 +36,6 @@ public class PlayerCharacter : MonoBehaviour
     [System.NonSerialized]
     public Vector3 selectingTargetsStartPos;
 
-    public GameObject guardPrefab;
-
 
     public float unpauseTimeIncrement = 0.2f;
     public float pauseTimeIncrement = 0.1f;
@@ -52,6 +50,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        camAnimator = cam.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -105,6 +104,7 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
         {
             pause = !pause;
+            camAnimator.SetBool("paused", pause);
             //Time.timeScale = 0.05f;
         }
 
