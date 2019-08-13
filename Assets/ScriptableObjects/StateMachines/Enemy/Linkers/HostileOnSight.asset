@@ -15,14 +15,11 @@ MonoBehaviour:
   nodes:
   - {fileID: 114674595838359242}
   - {fileID: 114408964450294032}
-  - {fileID: 114523684400137032}
   - {fileID: 114898456053639916}
   - {fileID: 114178623126169398}
   - {fileID: 114894580192705824}
   - {fileID: 114932381631389578}
-  - {fileID: 114715260566170820}
   - {fileID: 114743554337614738}
-  - {fileID: 114492745901100648}
   - {fileID: 114298997873876332}
   - {fileID: 114021986208161656}
   - {fileID: 114079808537580808}
@@ -159,6 +156,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114080650985724292}
@@ -186,6 +184,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114080650985724292}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: efe9ad1243706ca4fa3b76642158625f, type: 2}
@@ -254,6 +263,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114200351391256440}
@@ -281,6 +291,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114200351391256440}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: f359f269c49df994c9b28e5d3a45d4f9, type: 2}
@@ -358,6 +379,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114337189347414298}
@@ -385,6 +407,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114337189347414298}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: ef7cbbd09671a8c4b8855f4150ef6f93, type: 2}
@@ -447,48 +480,6 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: 2932f37b16962454caaea574dc6faeda, type: 2}
   links: []
---- !u!114 &114492745901100648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
-  m_Name: QuickSuspiciousState
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -728, y: 696}
-  ports:
-    keys:
-    - states
-    - links
-    values:
-    - _fieldName: states
-      _node: {fileID: 114492745901100648}
-      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: links
-      _node: {fileID: 114492745901100648}
-      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  states:
-  - {fileID: 11400000, guid: ecebe1e0663d8b64d987f8f55c2e8d88, type: 2}
-  links: []
 --- !u!114 &114497765187460030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +498,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114497765187460030}
@@ -534,6 +526,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114497765187460030}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: a3e0c75a30f85f942b5c7d1317d10019, type: 2}
@@ -557,6 +560,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114500160684572834}
@@ -581,6 +585,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114500160684572834}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 14f01712a1b62994695d70242b4777e3, type: 2}
@@ -604,6 +619,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114518772230790200}
@@ -631,53 +647,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  from: []
-  to: []
-  trigger: {fileID: 11400000, guid: b44ba991d841ac049b458f878f7326d9, type: 2}
-  actionType: 0
-  invert: 0
---- !u!114 &114523684400137032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
-  m_Name: FollowingState
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -1384, y: 616}
-  ports:
-    keys:
-    - states
-    - links
-    values:
-    - _fieldName: states
-      _node: {fileID: 114523684400137032}
-      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: links
-      _node: {fileID: 114523684400137032}
-      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - _fieldName: tags
+      _node: {fileID: 114518772230790200}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  states:
-  - {fileID: 11400000, guid: d91d1e1ee74839d49919a233d120489c, type: 2}
-  links: []
+  tags: []
+  from: []
+  to: []
+  trigger: {fileID: 11400000, guid: b44ba991d841ac049b458f878f7326d9, type: 2}
+  actionType: 0
+  invert: 0
 --- !u!114 &114536090758232228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +681,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114536090758232228}
@@ -723,6 +709,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114536090758232228}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 6c3fdbd7dfb13904290fced79ea9279d, type: 2}
@@ -746,6 +743,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114574908298040324}
@@ -773,6 +771,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114574908298040324}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 6c3fdbd7dfb13904290fced79ea9279d, type: 2}
@@ -796,6 +805,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114604614177896046}
@@ -823,6 +833,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114604614177896046}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 15392f0d5cdc0e24c9a7bfff7b018330, type: 2}
@@ -897,6 +918,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114701303499296626}
@@ -924,53 +946,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  from: []
-  to: []
-  trigger: {fileID: 11400000, guid: 9535b6f96e3d24d459a9ce09a8ec534a, type: 2}
-  actionType: 0
-  invert: 0
---- !u!114 &114715260566170820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
-  m_Name: LeadingState
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -1384, y: 728}
-  ports:
-    keys:
-    - states
-    - links
-    values:
-    - _fieldName: states
-      _node: {fileID: 114715260566170820}
-      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: links
-      _node: {fileID: 114715260566170820}
-      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
-        Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - _fieldName: tags
+      _node: {fileID: 114701303499296626}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  states:
-  - {fileID: 11400000, guid: 54010845aa3f83844969e77d59fe5567, type: 2}
-  links: []
+  tags: []
+  from: []
+  to: []
+  trigger: {fileID: 11400000, guid: 9535b6f96e3d24d459a9ce09a8ec534a, type: 2}
+  actionType: 0
+  invert: 0
 --- !u!114 &114730747710788546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,6 +980,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114730747710788546}
@@ -1016,6 +1008,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114730747710788546}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 6c3fdbd7dfb13904290fced79ea9279d, type: 2}
@@ -1087,6 +1090,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114751658937340352}
@@ -1114,6 +1118,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114751658937340352}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 4ed067348f11eb341a4d0086b5eae33b, type: 2}
@@ -1137,6 +1152,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114765627931585254}
@@ -1164,6 +1180,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114765627931585254}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: b15f5f2f01dbe1b49a4c86593bbc78c0, type: 2}
@@ -1187,6 +1214,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114794735629299726}
@@ -1214,6 +1242,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114794735629299726}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 6c3fdbd7dfb13904290fced79ea9279d, type: 2}
@@ -1393,6 +1432,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114928106822070640}
@@ -1420,6 +1460,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114928106822070640}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: ef7cbbd09671a8c4b8855f4150ef6f93, type: 2}
@@ -1491,6 +1542,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114937135526635734}
@@ -1518,6 +1570,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114937135526635734}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: 14f01712a1b62994695d70242b4777e3, type: 2}
@@ -1589,6 +1652,7 @@ MonoBehaviour:
     keys:
     - from
     - to
+    - tags
     values:
     - _fieldName: from
       _node: {fileID: 114992763575177574}
@@ -1616,6 +1680,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: tags
+      _node: {fileID: 114992763575177574}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
   from: []
   to: []
   trigger: {fileID: 11400000, guid: ba77e132ca87e9049b37eac1b4d95805, type: 2}
