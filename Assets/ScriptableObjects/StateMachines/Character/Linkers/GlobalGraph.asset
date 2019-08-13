@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9f796d762d18b46a3da073543c9a10, type: 3}
+  m_Name: GlobalGraph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 114563958033933680}
+  - {fileID: 114150898877195734}
+  - {fileID: 114544934190953132}
+--- !u!114 &114150898877195734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab1b5d28de40014d928fd50d2ceb549, type: 3}
+  m_Name: NoHealthEvent
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -56, y: -88}
+  ports:
+    keys:
+    - tags
+    - from
+    - to
+    values:
+    - _fieldName: tags
+      _node: {fileID: 114150898877195734}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: tags
+        node: {fileID: 114563958033933680}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: from
+      _node: {fileID: 114150898877195734}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: to
+      _node: {fileID: 114150898877195734}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: links
+        node: {fileID: 114544934190953132}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
+  from: []
+  to: []
+  trigger: {fileID: 11400000, guid: f769c344a5334034bacfc4973ffc51fc, type: 2}
+  actionType: 0
+  invert: 0
+--- !u!114 &114544934190953132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7451b3aadd7b04cb5c6b1e413c85a9, type: 3}
+  m_Name: DeadState
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 328, y: -56}
+  ports:
+    keys:
+    - states
+    - links
+    values:
+    - _fieldName: states
+      _node: {fileID: 114544934190953132}
+      _typeQualifiedName: System.Collections.Generic.List`1[[BaseState, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: links
+      _node: {fileID: 114544934190953132}
+      _typeQualifiedName: System.Collections.Generic.List`1[[LinkNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib, Version=4.0.0.0,
+        Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: to
+        node: {fileID: 114150898877195734}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  states:
+  - {fileID: 11400000, guid: 85f28cdd3198c534aa2b97f5bd0dd6c3, type: 2}
+  links: []
+--- !u!114 &114563958033933680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935355ad51c419d44955152d69f4206e, type: 3}
+  m_Name: State Group
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -424, y: -152}
+  ports:
+    keys:
+    - tags
+    values:
+    - _fieldName: tags
+      _node: {fileID: 114563958033933680}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.String, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: tags
+        node: {fileID: 114150898877195734}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tags: []
+  _tags:
+  - global
