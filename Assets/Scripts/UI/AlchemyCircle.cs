@@ -13,7 +13,9 @@ public class AlchemyCircle : MonoBehaviour
     int size;
     Color color, backgroundColor, testColor;
     int thickness = 4;
-    public int THICK, SIZ; // small 4,64 : big 2,128
+
+    
+    public int THICK, SIZ, seed; // small 4,64 : big 2,128
 
     void Start()
     {
@@ -32,7 +34,7 @@ public class AlchemyCircle : MonoBehaviour
         for (int i = 0; i < size * size; i++) resetMatrix[i] = backgroundColor;
 
         texture.SetPixels(resetMatrix);
-        Generate(0);
+        Generate(seed);
 
         //test(0);
 

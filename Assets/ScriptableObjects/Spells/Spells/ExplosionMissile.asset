@@ -16,7 +16,7 @@ MonoBehaviour:
   spellEffects:
   - {fileID: 11400000, guid: 73061fd33be19944c80ef3729e428a7f, type: 2}
   - {fileID: 11400000, guid: 2526977b42fc6eb45af9c9aec61f7ee3, type: 2}
-  - {fileID: 11400000, guid: 50819ff2f779fd44e970e80eb7c9ac5e, type: 2}
+  - {fileID: 11400000, guid: c9bd21b0b020b4540baa12c73f4a1248, type: 2}
   spellTarget: 0
   manaCost: 0
   travelCost: 0

@@ -42,6 +42,11 @@ public class SpellSlotController : MonoBehaviour
                 slotImage.color = unSelectedColor;
             }
         });
+
+        AlchemyCircle circle = GetComponentInChildren<AlchemyCircle>();
+
+        circle.seed = spell?.spellName.GetHashCode() ?? 0;
+        
     }
 
     // Update is called once per frame
