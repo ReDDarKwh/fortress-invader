@@ -181,6 +181,14 @@ namespace Scripts.Spells
         public override void OnEmitEffect(SpellEffect effect)
         {
 
+            var noiseEmitter = GetComponent<NoiseEmitter>();
+
+            if (effect.noiseRadius > 0)
+            {
+
+                noiseEmitter.EmitNoise(effect.noiseRadius);
+            }
+
         }
 
 
