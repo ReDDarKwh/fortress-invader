@@ -72,6 +72,8 @@ namespace Scripts.AI
         [System.NonSerialized]
         public Vector2 velocity = Vector2.zero;
 
+        public float determinationLevel;
+
         private Character character;
 
 
@@ -116,7 +118,8 @@ namespace Scripts.AI
                         transform.position,
                         worldPos,
                         this.gameObject.GetInstanceID(),
-                        PathCallback
+                        PathCallback,
+                        determinationLevel
                     );
 
                     break;

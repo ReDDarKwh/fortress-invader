@@ -14536,6 +14536,7 @@ MonoBehaviour:
   separationLayers:
   - AI
   - Player
+  determinationLevel: 10
 --- !u!114 &633604959377423230
 MonoBehaviour:
   m_ObjectHideFlags: 0

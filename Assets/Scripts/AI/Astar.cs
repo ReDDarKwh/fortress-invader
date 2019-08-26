@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using C5;
 using UnityEngine;
+using System.Linq;
 
 namespace Scripts.AI
 {
@@ -16,23 +17,18 @@ namespace Scripts.AI
 
         private const float DiagonalCost = 2.12f;
         private const float NonDiagonalCost = 3;
-
         private const int maxPathLength = 1000; // nodes
-
-
         private static float getHcost(Nav2dNode node, Nav2dNode end)
         {
             var dx = Mathf.Abs(node.worldPos.x - end.worldPos.x);
             var dy = Mathf.Abs(node.worldPos.y - end.worldPos.y);
             return NonDiagonalCost * (dx + dy) + (DiagonalCost - 2 * NonDiagonalCost) * Mathf.Min(dx, dy);
         }
-
         private static float getGCost(Nav2dNode current, Nav2dNode next)
         {
             var normalized = (current.worldPos - next.worldPos).normalized;
             return ((normalized.x == 0 || normalized.y == 0) ? NonDiagonalCost : DiagonalCost) + next.travelCost;
         }
-
         private class NodeCompare : IComparer<Nav2dNode>
         {
 
@@ -49,7 +45,7 @@ namespace Scripts.AI
             }
         }
 
-        public static System.Collections.Generic.IList<Nav2dNode> findShortestPath(Nav2dNode start, Nav2dNode end)
+        public static IEnumerable<Nav2dNode> findShortestPath(Nav2dNode start, Nav2dNode end, float determinationLevel)
         {
             System.Collections.Generic.IList<Nav2dNode> result = new List<Nav2dNode>();
             Nav2dNode current = null;
@@ -70,8 +66,6 @@ namespace Scripts.AI
 
             while (!opened.IsEmpty)
             {
-
-
                 current = opened.DeleteMin();
 
                 if (current == end)
@@ -79,8 +73,6 @@ namespace Scripts.AI
 
                 foreach (var neighbor in current.getNeighbors())
                 {
-
-
                     // add neighbor or not to the openedQueue.
                     if (neighbor.accessible)
                     {
@@ -109,8 +101,16 @@ namespace Scripts.AI
                 result.Add(current);
             } while (parent.TryGetValue(current, out current) && result.Count < maxPathLength);
 
+
+            // need to loop from start to stop path early depending on determination level
+            if(determinationLevel != -1){
+                return result.Reverse().TakeWhile(x =>
+                    // add start cost so that AI is not stuck inside costly node
+                    x.travelCost < start.travelCost + determinationLevel
+                ).Reverse();
+            }
+
             return result;
         }
-
     }
 }

@@ -456,7 +456,6 @@ public static class TextureDraw
         int x2, y2;
         int ind1, ind2;
         int ints;
-        int fill_color;
         if (n <= 0)
         {
             return;

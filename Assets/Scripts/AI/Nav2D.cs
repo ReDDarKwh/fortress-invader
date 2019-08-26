@@ -17,6 +17,7 @@ namespace Scripts.AI
         public Vector3 End { get; set; }
         public int AgentGameObjectID { get; set; }
         public Action<IEnumerable<Nav2dNode>, bool> PathCallback { get; set; }
+        public float DeterminationLevel { get; internal set; }
     }
 
     public class Nav2D : MonoBehaviour
@@ -175,7 +176,8 @@ namespace Scripts.AI
 
                     pathRequest.PathCallback(Astar.findShortestPath(
                         findClosestAccessibleNodeInGrid(startCellPos, pathRequest.End),
-                        findClosestAccessibleNodeInGrid(endCellPos, pathRequest.End)
+                        findClosestAccessibleNodeInGrid(endCellPos, pathRequest.End),
+                        pathRequest.DeterminationLevel
                     ), true);
                 };
 
@@ -378,7 +380,7 @@ namespace Scripts.AI
         }
 
 
-        internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>, bool> pathCallback)
+        internal void RequestPath(Vector3 start, Vector3 end, int agentGameObjectID, Action<IEnumerable<Nav2dNode>, bool> pathCallback, float determinationLevel)
         {
 
             // add it to waiting dictionnary
@@ -399,8 +401,10 @@ namespace Scripts.AI
                     Start = start,
                     End = end,
                     AgentGameObjectID = agentGameObjectID,
-                    PathCallback = pathCallback
-                });
+                    PathCallback = pathCallback,
+                    DeterminationLevel = determinationLevel 
+                }
+            );
         }
 
         public Nav2dNode findClosestAccessibleNodeInGrid(Vector3Int cellPos, Vector3 targetPos)

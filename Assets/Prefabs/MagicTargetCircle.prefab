@@ -53,7 +53,7 @@ MonoBehaviour:
   effects: []
   spellDone: 0
   radius: 1
-  safeDistance: 2
+  safeDistance: 4
 --- !u!114 &114223662695136836
 MonoBehaviour:
   m_ObjectHideFlags: 0
