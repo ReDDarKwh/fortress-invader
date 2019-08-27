@@ -20,12 +20,6 @@ public class Leader : MonoBehaviour
 
 
     [System.NonSerialized]
-    internal List<Vector3> startToEndPath;
-
-    [System.NonSerialized]
-    internal List<Vector3> endToStartPath;
-
-    [System.NonSerialized]
     internal List<Vector3> currentPath;
 
 

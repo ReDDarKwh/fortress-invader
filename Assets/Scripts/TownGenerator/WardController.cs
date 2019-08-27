@@ -10,7 +10,7 @@ using TownGenerator.Building;
 public class WardController : MonoBehaviour
 {
 
-    public PolygonCollider2D collider;
+    public new PolygonCollider2D collider;
     public Ward ward;
 
 

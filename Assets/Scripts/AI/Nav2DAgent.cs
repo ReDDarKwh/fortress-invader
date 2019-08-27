@@ -67,7 +67,7 @@ namespace Scripts.AI
         private float startTime;
         private Vector3 startPos;
         private Rigidbody2D rb;
-        private float yVelocity = 0.0f;
+       
 
         [System.NonSerialized]
         public Vector2 velocity = Vector2.zero;

@@ -38,7 +38,7 @@ namespace Scripts.AI
 
         private Dictionary<Vector2Int, Nav2dCell> cellsArray;
 
-        private List<Nav2dNode> debugPath;
+        
 
 
         [System.NonSerialized]
@@ -191,23 +191,6 @@ namespace Scripts.AI
 
         void OnDrawGizmos()
         {
-            if (debugPath != null)
-            {
-
-                var path = debugPath.ToArray();
-                if (path.Length < 2) return;
-
-                for (var i = 0; i < path.Length - 1; i++)
-                {
-
-                    var current = path[i];
-                    var next = path[i + 1];
-
-                    Gizmos.color = new Color(0.2f, 1, 1);
-                    Gizmos.DrawLine(current.worldPos, next.worldPos);
-
-                }
-            }
 
             Gizmos.DrawLine(grid.transform.position,
              grid.transform.position + new Vector3(grid.cellSize.x * width, 0, 0));

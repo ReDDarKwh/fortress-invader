@@ -7,19 +7,15 @@ using UnityEngine.UI;
 
 public class AlchemyCircle : MonoBehaviour
 {
-
     RawImage ri;
     Texture2D texture;
     int size;
     Color color, backgroundColor, testColor;
     int thickness = 4;
-
-    
-    public int THICK, SIZ, seed; // small 4,64 : big 2,128
+    public int THICK, SIZ, seed; 
 
     void Start()
     {
-
         color = Color.white;
         backgroundColor = new Color(0, 0, 0, 0);
         testColor = new Color(.6f, .8f, 1, .8f);
@@ -36,72 +32,17 @@ public class AlchemyCircle : MonoBehaviour
         texture.SetPixels(resetMatrix);
         Generate(seed);
 
-        //test(0);
-
-
         texture.filterMode = FilterMode.Bilinear;
         texture.Apply();
         ri.texture = texture;
-        //StartCoroutine(NewCircle());
     }
-    int asd = 0;
     Color[] resetMatrix;
-    int timerd = 0;
-    private void Update()
-    {
-        //if (timerd++ % 100 == 0)
-        //{
-        //    texture.SetPixels(resetMatrix);
-
-        //    Generate(asd++);
-
-        //    texture.filterMode = FilterMode.Bilinear;
-        //    texture.Apply();
-        //    ri.texture = texture;
-        //}
-    }
-
-    public void Transmute(int seed)
-    {
-        texture.SetPixels(resetMatrix);
-
-        Generate(seed);
-
-        texture.filterMode = FilterMode.Bilinear;
-        texture.Apply();
-        ri.texture = texture;
-    }
-
-    IEnumerator NewCircle()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            texture.SetPixels(resetMatrix);
-
-            Generate(asd++);
-
-            texture.filterMode = FilterMode.Bilinear;
-            texture.Apply();
-            ri.texture = texture;
-        }
-    }
-
-    // ############################################
-    // TODO: dimezzare tutti i radius dei cerchi? #
-    // ############################################
-
+  
     void Generate(int id)
     {
         CiaccoRandom randomer = new CiaccoRandom();
         randomer.setSeed(id);
 
-
-        //int ncol = 60;// min_color 0
-        //int xcol = 250;// max_color 255
-
-        // draw the hexagon:
-        // hexagon's center coordinates and radius
         float hex_x = size / 2;
         float hex_y = size / 2;
         float radius = ((size / 2f) * 3f / 4f);
