@@ -6,7 +6,6 @@ using UniRx;
 using System.Linq;
 
 
-[RequireComponent(typeof(GameObject))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpellCaster))]
 public class PlayerCharacter : MonoBehaviour
