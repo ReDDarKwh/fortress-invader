@@ -9,7 +9,6 @@ namespace Scripts.Missions{
     {
         public KillObjectiveType killObjectiveType;
 
-
         // can be used has the exact target
         public Character target;
 
