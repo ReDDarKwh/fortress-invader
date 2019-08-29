@@ -14506,8 +14506,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VisionRadiusModifier: 1
   VisionAngleModifier: 1
-  baseVisionAngle: 67
-  baseVisionRadius: 25
+  baseVisionAngle: 69.4
+  baseVisionRadius: 25.7
   earshotRadius: 2
   pathToTargetUpdateDistance: 2
   pathFindingTargetRadius: 2

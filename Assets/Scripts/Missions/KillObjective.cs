@@ -14,7 +14,7 @@ namespace Scripts.Missions{
 
         public override void Init()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public enum KillObjectiveType

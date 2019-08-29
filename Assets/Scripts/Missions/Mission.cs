@@ -8,9 +8,7 @@ using System.Collections.Generic;
 namespace Scripts.Missions{
     public class Mission
     {
-        public string missionName;
-        public int XP;
-        public int goldReward;
+        public IEnumerable<Objective> objective = new List<Objective>();
 
     }
 }

@@ -31,10 +31,10 @@ namespace Scripts.NPC
         public float VisionRadiusModifier;
         public float VisionAngleModifier;
 
-      
-        protected float baseVisionAngle;
-
-        protected float baseVisionRadius;
+        [SerializeField]
+        private float baseVisionAngle;
+        [SerializeField]
+        private float baseVisionRadius;
 
         public float earshotRadius;
 
