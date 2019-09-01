@@ -9,10 +9,6 @@ public class FortressSceneManager : MonoBehaviour
 
     public IntReactiveProperty score;
 
-    public LevelChanger levelChanger;
-
-    public GameOverInfo gameOverInfo;
-
 
     [System.NonSerialized]
     public float timeSinceLevelLoad = 0;
@@ -32,15 +28,7 @@ public class FortressSceneManager : MonoBehaviour
 
     public void GameOver(GameOverType type = GameOverType.timeout)
     {
-        gameOverInfo.score = score.Value;
-
-        if (gameOverInfo.score > gameOverInfo.highscore)
-        {
-            gameOverInfo.highscore = gameOverInfo.score;
-        }
-
-        gameOverInfo.type = type;
-        levelChanger.FadeToLevel(levelChanger.levelToLoad);
+        SharedSceneController.Instance.levelChanger.FadeToLevel(1);
     }
 
     public enum GameOverType

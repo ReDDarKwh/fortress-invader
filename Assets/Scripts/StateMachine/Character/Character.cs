@@ -62,6 +62,9 @@ public class Character : MonoBehaviour
 
 
 
+
+
+
     public float maxHealth;
     public float currentHealth;
 

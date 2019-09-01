@@ -4,6 +4,7 @@ using UnityEngine;
 using Scripts.AI;
 using System.Linq;
 using MoreLinq;
+using RPGKit.FantasyNameGenerator;
 
 namespace Scripts.NPC
 {
@@ -36,6 +37,12 @@ namespace Scripts.NPC
         [SerializeField]
         private float baseVisionRadius;
 
+        public string characterName;
+        public string role;
+
+        [Tooltip("Difficulty from 0 'no challenge' to 1 'unkillable'")]
+        public float difficultyRating = 0;
+
         public float earshotRadius;
 
         public float pathToTargetUpdateDistance;
@@ -61,6 +68,13 @@ namespace Scripts.NPC
             nav2DAgent.Speed = character.GetSpeed();
 
             nav2DAgent.addSeparationIgnored(GameObject.FindWithTag("Player"));
+
+            characterName = FantasyNameGenerator.FromSettingsInfo(new FantasyNameSettings(
+                RPGKit.FantasyNameGenerator.Generators.Classes.Warrior,
+                RPGKit.FantasyNameGenerator.Generators.Race.None, false, false,
+                UnityEngine.Random.value > 0.5 ? RPGKit.FantasyNameGenerator.Generators.Gender.Male :
+                RPGKit.FantasyNameGenerator.Generators.Gender.Female)
+            ).GetFantasyName().FullName;
         }
 
 

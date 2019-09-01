@@ -4,7 +4,7 @@ using Scripts.Spells;
 using UnityEngine;
 using UniRx;
 using System.Linq;
-
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpellCaster))]
@@ -43,6 +43,10 @@ public class PlayerCharacter : MonoBehaviour
 
 
     private bool pause;
+    private bool menuPause;
+
+    public BoolReactiveProperty showCurrentMissionElement = new BoolReactiveProperty(false);
+    public BoolReactiveProperty showMinimap = new BoolReactiveProperty(true);
 
     // Use this for initialization
     void Start()
@@ -50,6 +54,14 @@ public class PlayerCharacter : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         camAnimator = cam.GetComponent<Animator>();
+
+        SharedSceneController.Instance.levelChanger.MenuExited += handleMenuExited;
+    }
+
+
+    void handleMenuExited(object sender, EventArgs e)
+    {
+        menuPause = false;
     }
 
     // Update is called once per frame
@@ -104,8 +116,28 @@ public class PlayerCharacter : MonoBehaviour
         {
             pause = !pause;
             camAnimator.SetBool("paused", pause);
+
             //Time.timeScale = 0.05f;
         }
+
+        if (Input.GetButtonDown("Menu") && !menuPause)
+        {
+            //Time.timeScale = 0;
+            menuPause = true;
+            SharedSceneController.Instance.OpenFortressMenu();
+
+        }
+
+        if (Input.GetButtonDown("CurrentMission"))
+        {
+            showCurrentMissionElement.Value = !showCurrentMissionElement.Value;
+        }
+
+        if (Input.GetButtonDown("Minimap"))
+        {
+            showMinimap.Value = !showMinimap.Value;
+        }
+
 
         if (pause)
         {

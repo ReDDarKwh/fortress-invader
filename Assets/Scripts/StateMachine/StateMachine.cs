@@ -120,6 +120,7 @@ public partial class StateMachine : MonoBehaviour
             return;
         foreach (var sub in EnterSubs[linking.state])
         {
+            Debug.Log(linking.state.stateName);
             sub.Invoke(linking);
         }
     }
@@ -382,7 +383,7 @@ public partial class StateMachine : MonoBehaviour
         }
     }
 
-    private void EndState(BaseState state)
+    public void EndState(BaseState state)
     {
         //remove every links that affect the state
         if (activeStates.ContainsKey(state))

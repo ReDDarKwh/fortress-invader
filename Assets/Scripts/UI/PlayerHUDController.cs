@@ -35,6 +35,15 @@ public class PlayerHUDController : MonoBehaviour
 
     public Text timerText;
 
+    public GameObject currentMissionElement;
+
+    public Text currentMissionName;
+    public Text currentMissionDescription;
+
+    public GameObject minimapElement;
+
+
+
 
 
     private float vel = 0.0f;
@@ -77,6 +86,23 @@ public class PlayerHUDController : MonoBehaviour
             scoreText.text = x.ToString();
         });
 
+
+        playerCharacter.showCurrentMissionElement.Subscribe(x =>
+        {
+            currentMissionElement.SetActive(x);
+        });
+
+        SharedSceneController.Instance.missionController.selectedMission.Subscribe(x =>
+        {
+            currentMissionName.text = x?.missionName ?? "No mission selected";
+            currentMissionDescription.text = x?.desc ?? $"Open the fortress menu to select your next mission.";
+        });
+
+        playerCharacter.showMinimap.Subscribe(x =>
+        {
+            minimapElement.SetActive(x);
+        });
+
         for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
         {
             createSpellSlot(i, playerCharacter.spellCaster.spells[i - 1]);
@@ -117,7 +143,7 @@ public class PlayerHUDController : MonoBehaviour
             var missileTarget = playerCharacter.spellCaster.spellTarget.GetComponent<MagicTargetMissileController>();
             var missileTargetSelectedText = spellMouseUI.GetComponent<Text>();
 
-            missileTargetSelectedText.text = $"{missileTarget.selectedCharacters.Count}/{missileTarget.maxTargets}";
+            missileTargetSelectedText.text = $"{missileTarget.selectedCharacters.Count }/{missileTarget.maxTargets}";
             spellMouseUI.transform.position = Input.mousePosition;
         }
 
