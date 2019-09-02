@@ -25,7 +25,7 @@ public class SharedSceneController : MonoBehaviour
 
     internal void OpenFortressMenu()
     {
-        missionController.ScanForMissions();
+        //missionController.ScanForMissions();
         levelChanger.LoadMenu(2);
     }
 }

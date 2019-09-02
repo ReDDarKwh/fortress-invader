@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80eb47d2691ea75408cef52a213ebbe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicators: []
 --- !u!1 &673556346282500530
 GameObject:
   m_ObjectHideFlags: 0
@@ -15039,6 +15040,8 @@ MonoBehaviour:
   showTime: 10
   indicatorsController: {fileID: 633680737498213840}
   animator: {fileID: 579340648195975274}
+  visible: 0
+  requestingHide: 0
 --- !u!225 &739048769031231154
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15259,6 +15262,8 @@ MonoBehaviour:
   showTime: 2
   indicatorsController: {fileID: 633680737498213840}
   animator: {fileID: 579494437781268070}
+  visible: 0
+  requestingHide: 0
 --- !u!225 &756226830136630224
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15425,6 +15430,8 @@ MonoBehaviour:
   showTime: 0
   indicatorsController: {fileID: 633680737498213840}
   animator: {fileID: 580144677564516264}
+  visible: 0
+  requestingHide: 0
   childImage: {fileID: 633283354027383446}
 --- !u!225 &755484027044838376
 CanvasGroup:
@@ -25257,17 +25264,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5804238098096686960}
-  m_LocalRotation: {x: 0, y: 0, z: 0.6427876, w: 0.7660445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: -1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739351119836711668}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 80}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.1}
-  m_SizeDelta: {x: 3.008, y: 2.5}
+  m_AnchoredPosition: {x: 0, y: -0.22}
+  m_SizeDelta: {x: 2.5, y: 2.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8766565686999121225
 CanvasRenderer:
@@ -25297,7 +25304,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a28cc04e143d4ab7d91c4294c6850678, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e1fd7ff67e8ac39babc1e8039bd246e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25318,9 +25325,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7798e1adcb48ce04f8f1e62d416c4563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showTime: 1233
+  showTime: 0
   indicatorsController: {fileID: 633680737498213840}
   animator: {fileID: 1047318669067167485}
+  visible: 0
+  requestingHide: 0
 --- !u!225 &4524697263669540786
 CanvasGroup:
   m_ObjectHideFlags: 0

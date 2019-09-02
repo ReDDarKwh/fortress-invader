@@ -26,6 +26,17 @@ namespace Scripts.Missions
             typeof(KillObjective)
         };
 
+        public List<Vector3> GetCurrentObjectivePositions()
+        {
+            var results = new List<Vector3>();
+            var pos = selectedMission.Value?.currentObjective.Value?.GetPosition();
+
+            if (pos != null)
+            {
+                results.Add(pos.Value);
+            }
+            return results;
+        }
 
         public void GenerateMissions()
         {

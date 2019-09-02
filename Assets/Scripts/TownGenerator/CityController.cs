@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RPGKit.FantasyNameGenerator;
 using Scripts.AI;
 using TownGenerator.Building;
 using TownGenerator.Geom;
@@ -27,6 +28,8 @@ public class CityController : MonoBehaviour
 
     public Nav2D navGrid;
     public float gateOpeningSize = 1;
+
+    public string cityName;
 
     private IEnumerator coroutine;
     private Vector2 spawnPoint;
@@ -64,6 +67,8 @@ public class CityController : MonoBehaviour
     {
 
         //create the city data model
+
+        cityName = FantasyNameGenerator.GetTownName();
 
         Random.InitState(settings.seed);
         cityModel = new Model(settings.patchNum);

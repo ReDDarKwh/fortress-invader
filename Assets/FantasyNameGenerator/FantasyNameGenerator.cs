@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using RPGKit.FantasyNameGenerator.Generators;
+using System.Linq;
 
 namespace RPGKit.FantasyNameGenerator
 {
-    public class FantasyNameGenerator : IFantasyNameGenerator
+    public class FantasyNameGenerator
     {
         private readonly List<INameGenerator> _nameGenerators;
 
@@ -13,7 +14,7 @@ namespace RPGKit.FantasyNameGenerator
         public INameGenerator FirstNameGenerator { get; set; }
         public INameGenerator LastNameGenerator { get; set; }
         public INameGenerator PostfixNameGenerator { get; set; }
-        public INameGenerator LandNameGenerator { get; set; }
+        public INameGenerator TownNameGenerator { get; set; }
 
         public FantasyName GetFantasyName()
         {
@@ -33,9 +34,6 @@ namespace RPGKit.FantasyNameGenerator
             if (PostfixNameGenerator != null)
                 name.Postfix = PostfixNameGenerator.GetName();
 
-            if (LandNameGenerator != null)
-                name.Land = LandNameGenerator.GetName();
-
             return name;
         }
 
@@ -44,17 +42,11 @@ namespace RPGKit.FantasyNameGenerator
             _nameGenerators = new List<INameGenerator>();
         }
 
-        public static FantasyNameGenerator FromSettingsInfo(FantasyNameSettings fantasyNameSettings)
+        public static FantasyNameGenerator GetCharacterNameGenerator(FantasyNameSettings fantasyNameSettings)
         {
             var fantasyNameGenerator = new FantasyNameGenerator();
 
             fantasyNameGenerator.Gender = fantasyNameSettings.Gender;
-
-            // TODO: use type matching/strategy pattern here or whatever you wanna call it.
-
-            // No prefix included in version 1
-            //if(IncludePrefix)
-            //	compositeNameGenerator.PrefixGenerator = new PrefixGenerator();
 
             if (fantasyNameSettings.ChosenClass != Classes.None)
             {
@@ -78,6 +70,7 @@ namespace RPGKit.FantasyNameGenerator
                 }
                 else
                 {
+
                     fantasyNameGenerator.FirstNameGenerator = new FemaleWrapperNameGenerator(maleNameGenerator);
                 }
 
@@ -89,7 +82,6 @@ namespace RPGKit.FantasyNameGenerator
                 fantasyNameGenerator.LastNameGenerator = new RaceNameGenerator(fantasyNameSettings.ChosenRace);
             }
 
-
             if (fantasyNameSettings.IncludePostfix)
             {
                 if (fantasyNameSettings.ChosenClass == Classes.Wizard)
@@ -100,25 +92,13 @@ namespace RPGKit.FantasyNameGenerator
                     fantasyNameGenerator.PostfixNameGenerator = new PostfixGenerator();
             }
 
-            if (fantasyNameSettings.IncludeHomeland)
-                fantasyNameGenerator.LandNameGenerator = new LandGenerator();
-
             return fantasyNameGenerator;
         }
 
-        public FantasyName[] GetFantasyNames(int numNames)
+        public static string GetTownName()
         {
-            if (numNames < 0)
-                throw new ArgumentException(string.Format("Number of fantasy names cannot be negative. [{0}", numNames));
-
-            FantasyName[] fantasyNames = new FantasyName[numNames];
-
-            for (int i = 0; i < numNames; i++)
-            {
-                fantasyNames[i] = this.GetFantasyName();
-            }
-
-            return fantasyNames;
+            var name = new TownNameGenerator().GetName();
+            return name.First().ToString().ToUpper() + name.Substring(1);
         }
     }
 }

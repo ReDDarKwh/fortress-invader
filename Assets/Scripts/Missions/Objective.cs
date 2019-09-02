@@ -12,11 +12,9 @@ namespace Scripts.Missions
         public float chaos;
         public string desc;
         public BoolReactiveProperty done = new BoolReactiveProperty();
-
-
+        internal abstract Vector3 GetPosition();
         internal abstract void Enter(BaseState targetState);
         internal abstract void Leave(BaseState targetState);
-
 
     }
 }

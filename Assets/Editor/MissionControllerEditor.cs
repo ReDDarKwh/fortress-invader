@@ -20,7 +20,7 @@ public class MissionControllerEditor : Editor
 
         if (GUILayout.Button("Generate"))
         {
-            control.GenerateMissions();
+            control.ScanForMissions();
         }
     }
 

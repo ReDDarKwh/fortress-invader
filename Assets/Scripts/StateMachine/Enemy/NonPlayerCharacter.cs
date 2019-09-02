@@ -69,9 +69,9 @@ namespace Scripts.NPC
 
             nav2DAgent.addSeparationIgnored(GameObject.FindWithTag("Player"));
 
-            characterName = FantasyNameGenerator.FromSettingsInfo(new FantasyNameSettings(
+            characterName = FantasyNameGenerator.GetCharacterNameGenerator(new FantasyNameSettings(
                 RPGKit.FantasyNameGenerator.Generators.Classes.Warrior,
-                RPGKit.FantasyNameGenerator.Generators.Race.None, false, false,
+                RPGKit.FantasyNameGenerator.Generators.Race.None, false,
                 UnityEngine.Random.value > 0.5 ? RPGKit.FantasyNameGenerator.Generators.Gender.Male :
                 RPGKit.FantasyNameGenerator.Generators.Gender.Female)
             ).GetFantasyName().FullName;

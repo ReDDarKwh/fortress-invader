@@ -6,27 +6,17 @@ namespace RPGKit.FantasyNameGenerator
     {
         public Classes ChosenClass { get; set; }
         public Race ChosenRace { get; set; }
-        public bool IncludeHomeland { get; set; }
         public bool IncludePostfix { get; set; }
         public Gender Gender { get; set; }
 
-        public FantasyNameSettings(Classes chosenclass, Race race, bool includeHomeland, bool includePostfix, Gender gender)
+        public FantasyNameSettings(Classes chosenclass = Classes.Warrior,
+         Race race = Race.None, bool includePostfix = false, Gender gender = Gender.Male)
         {
             ChosenClass = chosenclass;
             ChosenRace = race;
-            IncludeHomeland = includeHomeland;
             IncludePostfix = includePostfix;
             Gender = gender;
         }
 
-        public static FantasyNameSettings DefaultSettings()
-        {
-            return new FantasyNameSettings(Classes.Warrior, Race.None, true, true, Gender.Male);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("[FantasyNameSettings: ChosenClass={0}, ChosenRace={1}, IncludeHomeland={2}, IncludePostfix={3}, Gender={4}]", ChosenClass, ChosenRace, IncludeHomeland, IncludePostfix, Gender);
-        }
     }
 }

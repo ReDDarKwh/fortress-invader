@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UniRx;
 using Scripts.Spells;
 using System;
+using Scripts.Missions;
 
 public class PlayerHUDController : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class PlayerHUDController : MonoBehaviour
 
     public GameObject spellSlotPrefab;
 
+    public GameObject missionTargetPrefab;
+
+    public GameObject minimapItemsContainer;
+
     public GameObject spellMouseUI;
 
     public Text castSpellText;
@@ -40,15 +45,16 @@ public class PlayerHUDController : MonoBehaviour
     public Text currentMissionName;
     public Text currentMissionDescription;
 
-    public GameObject minimapElement;
+    public RectTransform minimapElement;
+    public RectTransform minimapRawImage;
+    public Camera minimapCam;
 
-
-
-
+    public float minimapRadius;
 
     private float vel = 0.0f;
 
     private FortressSceneManager sceneManager;
+    private MissionsController missionController;
 
 
     //rivate List<SpellSlot>
@@ -59,6 +65,8 @@ public class PlayerHUDController : MonoBehaviour
 
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager")
         .GetComponent<FortressSceneManager>();
+
+        missionController = SharedSceneController.Instance.missionController;
 
         playerCharacter.spellCaster.currentMana.Subscribe(x =>
         {
@@ -100,7 +108,7 @@ public class PlayerHUDController : MonoBehaviour
 
         playerCharacter.showMinimap.Subscribe(x =>
         {
-            minimapElement.SetActive(x);
+            minimapElement.gameObject.SetActive(x);
         });
 
         for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
@@ -129,13 +137,13 @@ public class PlayerHUDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateMinimapItems();
 
         playerHealthBar.fillAmount = Mathf.SmoothDamp(
             playerHealthBar.fillAmount,
             playerCharacter.character.currentHealth / playerCharacter.character.maxHealth,
             ref vel, 0.1f
-       );
-
+        );
 
         // missile number selected display logic
         if (playerCharacter.spellCaster.selectedSpell.Value != null && playerCharacter.spellCaster.selectedSpell.Value.spellTarget == SpellTarget.MISSILE)
@@ -146,7 +154,6 @@ public class PlayerHUDController : MonoBehaviour
             missileTargetSelectedText.text = $"{missileTarget.selectedCharacters.Count }/{missileTarget.maxTargets}";
             spellMouseUI.transform.position = Input.mousePosition;
         }
-
 
         // missile selection box logic
         if (playerCharacter.selectingTargets)
@@ -183,5 +190,34 @@ public class PlayerHUDController : MonoBehaviour
 
     }
 
+    private void UpdateMinimapItems()
+    {
+        var positions = missionController.GetCurrentObjectivePositions();
 
+        var diffMissionTargetsAndPositions =
+        positions.Count - minimapItemsContainer.transform.childCount;
+
+        for (var i = 0; i < Mathf.Abs(diffMissionTargetsAndPositions); i++)
+        {
+            if (diffMissionTargetsAndPositions > 0)
+            {
+                Instantiate(missionTargetPrefab, minimapItemsContainer.transform, false);
+            }
+            else
+            {
+                Destroy(minimapItemsContainer.transform.GetChild(i).gameObject);
+            }
+        }
+
+        // In theory the number of objective positions should match the number of MissionTarget UI elements by this point
+        for (var i = 0; i < positions.Count; i++)
+        {
+            var playerToMissionObjective =
+            minimapCam.WorldToScreenPoint(positions[i]) - new Vector3(minimapRawImage.rect.width / 2,
+            minimapRawImage.rect.height / 2);
+
+            minimapItemsContainer.transform.GetChild(i).transform.localPosition =
+            playerToMissionObjective.normalized * (Mathf.Min(playerToMissionObjective.magnitude, minimapRadius));
+        }
+    }
 }

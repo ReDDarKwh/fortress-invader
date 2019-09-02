@@ -7,7 +7,7 @@ public class TimedIndicatorController : IndicatorController
 
     // Use this for initialization
 
-    public override void Show(ActiveLinking activeLinking)
+    public override void Init(ActiveLinking activeLinking)
     {
 
     }

@@ -6,26 +6,49 @@ using UniRx;
 using UnityEngine.UI;
 using static UnityEngine.UI.Toggle;
 using System.Linq;
+using System;
 
 public class FortressMenuController : MonoBehaviour
 {
     public GameObject missionPrefab;
-    public ReactiveProperty<Mission> currentMission;
     public GameObject missionContentGameObject;
     public ToggleGroup missionToggleGroup;
 
     public void CloseMenu()
     {
-
         SharedSceneController.Instance.levelChanger.ExitMenu();
 
-        //Order is important here. Menu exit reactivated objects from last scene.
+        var selectedIndex = SharedSceneController
+            .Instance.missionController.missions.FindIndex(x => x.selected);
 
-        SharedSceneController.Instance.missionController.lastSelectedMission.Value =
-        SharedSceneController.Instance.missionController.selectedMission.Value;
+        // selected mission changed
+        if (SharedSceneController.Instance.missionController.selectedMission.Value !=
+            (selectedIndex == -1 ? null : SharedSceneController.Instance.missionController.missions.ElementAt(selectedIndex))
+        )
+        {
+            SharedSceneController.Instance.missionController.lastSelectedMission.Value =
+            SharedSceneController.Instance.missionController.selectedMission.Value;
 
-        SharedSceneController.Instance.missionController.selectedMission.Value = SharedSceneController
-        .Instance.missionController.missions.FirstOrDefault(x => x.selected);
+
+            if (selectedIndex != -1)
+            {
+
+                var mission = SharedSceneController
+                .Instance.missionController.missions.ElementAt(selectedIndex);
+
+                SharedSceneController.Instance.missionController.selectedMission.Value = mission;
+
+                // Move selected mission on top;
+                SharedSceneController
+                .Instance.missionController.missions.RemoveAt(selectedIndex);
+                SharedSceneController.Instance.missionController.missions.Insert(0, mission);
+            }
+            else
+            {
+                SharedSceneController.Instance.missionController.selectedMission.Value = null;
+            }
+        }
+
     }
 
 

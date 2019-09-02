@@ -6,20 +6,39 @@ using System;
 
 public class IndicatorsController : MonoBehaviour
 {
+    public List<IndicatorController> indicators = new List<IndicatorController>();
+    private Stack<IndicatorController> indicatorsStack = new Stack<IndicatorController>();
 
-    private IndicatorController[] indicators;
-
-    // Use this for initialization
-    void Start()
+    void Update()
     {
-        indicators = GetComponentsInChildren<IndicatorController>();
+        if (indicatorsStack.Count > 0)
+        {
+            var indicator = indicatorsStack.Peek();
+            if (!indicator.requestingHide)
+            {
+                if (!indicator.visible)
+                {
+                    indicators.ForEach(x => x.Hide());
+                    indicator.Show();
+                }
+            }
+            else
+            {
+                if (indicator.visible)
+                {
+                    indicator.Hide();
+                }
+                else
+                {
+                    indicatorsStack.Pop();
+                }
+            }
+        }
     }
 
-    public void HideAll()
+    internal void Show(IndicatorController indicatorController)
     {
-        foreach (var indicator in indicators)
-        {
-            indicator.HideIndicator();
-        }
+        if (!indicatorsStack.Contains(indicatorController))
+            this.indicatorsStack.Push(indicatorController);
     }
 }

@@ -6,13 +6,21 @@ public abstract class IndicatorController : MonoBehaviour
     [System.NonSerialized]
     public float start;
     public IndicatorsController indicatorsController;
-    public abstract void Show(ActiveLinking activeLinking);
+    public abstract void Init(ActiveLinking activeLinking);
     public Animator animator;
+    public bool visible;
+    public bool requestingHide;
+
+    void Start()
+    {
+        indicatorsController.indicators.Add(this);
+    }
 
     void Update()
     {
-        if (animator.GetBool("visible"))
+        if (visible)
         {
+            animator.SetBool("visible", visible);
             if (showTime != 0 && Time.time - start > showTime)
             {
                 HideIndicator();
@@ -20,18 +28,27 @@ public abstract class IndicatorController : MonoBehaviour
         }
     }
 
+    public void Show()
+    {
+        start = Time.time;
+        visible = true;
+    }
+
+    public void Hide()
+    {
+        visible = false;
+        animator.SetBool("visible", visible);
+    }
+
     public void ShowIndicator(ActiveLinking activeLinking)
     {
-        this.start = Time.time;
-        this.indicatorsController.HideAll();
-        animator.SetBool("visible", true);
-        this.Show(activeLinking);
+        this.requestingHide = false;
+        this.indicatorsController.Show(this);
+        this.Init(activeLinking);
     }
 
     public void HideIndicator()
     {
-        if (animator.GetBool("visible"))
-            animator.SetBool("visible", false);
+        this.requestingHide = true;
     }
-
 }

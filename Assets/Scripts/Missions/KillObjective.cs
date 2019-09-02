@@ -27,6 +27,11 @@ namespace Scripts.Missions
             sm.StartState(targetState, null, true);
         }
 
+        internal override Vector3 GetPosition()
+        {
+            return target.transform.position;
+        }
+
         internal override void Leave(BaseState targetState)
         {
             var sm = target.GetComponent<StateMachine>();
