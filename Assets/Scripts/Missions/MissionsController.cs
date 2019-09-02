@@ -21,7 +21,7 @@ namespace Scripts.Missions
 
         public Queue<Objective> objectiveBank = new Queue<Objective>();
         public BaseState targetState;
-
+        public BaseState deadState;
         private readonly Type[] objectiveTypes = new Type[]{
             typeof(KillObjective)
         };
@@ -60,20 +60,12 @@ namespace Scripts.Missions
                     break;
                 }
 
-                var mission = new Mission();
+                var mission = new Mission(
+                    objectives: objectives,
+                    missionName: $"Mission #{i + 1}"
+                    );
 
-                mission.objectives = objectives;
-
-                mission.missionName = $"Mission #{i + 1}";
-
-                mission.chaos = mission.objectives.Sum(x => x.chaos);
-
-                mission.difficulty = (MissionDifficulty)Mathf.Round(mission.chaos.Remap(0, 20, 0, 5));
-
-                mission.currentObjective.Value = mission.objectives.First();
-
-                mission.desc = $"Mission has {mission.objectives.Count()} step{(mission.objectives.Count() > 1 ? "s" : "")}. \n" +
-                $"<b>Current objective : </b>{mission.currentObjective.Value.desc}";
+                mission.done.Subscribe(x => Debug.Log(mission.missionName + $"{x}"));
 
                 missions.Add(mission);
             }
@@ -87,7 +79,7 @@ namespace Scripts.Missions
             {
                 if (UnityEngine.Random.value < 0.3 + c.difficultyRating)
                 {
-                    objectiveBank.Enqueue(new KillObjective(c));
+                    objectiveBank.Enqueue(new KillObjective(c, deadState));
                 }
             }
 

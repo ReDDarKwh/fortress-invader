@@ -221,6 +221,7 @@ MonoBehaviour:
   minNumberOfOperationsPerMission: 1
   maxNumberOfOperationsPerMission: 2
   targetState: {fileID: 11400000, guid: e4e226431bee0a58d9a09331b89bc22b, type: 2}
+  deadState: {fileID: 11400000, guid: 85f28cdd3198c534aa2b97f5bd0dd6c3, type: 2}
 --- !u!114 &18869394
 MonoBehaviour:
   m_ObjectHideFlags: 0

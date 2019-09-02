@@ -23,7 +23,7 @@ MonoBehaviour:
   emitOnStart: 1
   effectEntryStates:
   - {fileID: 11400000, guid: cbbbf4cd8db87f7488737ab236a04f2b, type: 2}
-  - {fileID: 11400000, guid: c4a490958c2d19543a07c584ab352119, type: 2}
   effectEntryEvents:
   - {fileID: 11400000, guid: 342c98098d64e4646afc1ce8d52766cd, type: 2}
-  noiseRadius: 50
+  usesCharacterStateMachine: 1
+  noiseRadius: 0

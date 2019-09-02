@@ -15,4 +15,4 @@ MonoBehaviour:
   tags:
   - global
   stateName: taking_damage
-  dmg: 20
+  dmg: 1000

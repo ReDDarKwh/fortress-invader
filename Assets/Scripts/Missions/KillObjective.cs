@@ -13,12 +13,29 @@ namespace Scripts.Missions
         // can be used has the exact target
         public NonPlayerCharacter target;
 
-        public KillObjective(NonPlayerCharacter target)
+        public KillObjective(NonPlayerCharacter target, BaseState deadState)
         {
             this.target = target;
+            var stateMachine = this.target.GetComponent<StateMachine>();
+            var onDeadEvent = new StateMachineEventWithActiveLinking();
+
+            onDeadEvent.AddListener(HandleDone);
+
+            stateMachine.AddSubscription(new StateMachineSubscription
+            {
+                state = deadState,
+                stateMachine = stateMachine,
+                onStateEnter = onDeadEvent
+            });
+
             // TODO : choas must be set based on the difficulty of the operation. target difficulty score?
             chaos = target.difficultyRating;
             desc = $"Kill the target named : {target.role} {target?.characterName}";
+        }
+
+        void HandleDone(ActiveLinking linking)
+        {
+            done.Value = true;
         }
 
         internal override void Enter(BaseState targetState)

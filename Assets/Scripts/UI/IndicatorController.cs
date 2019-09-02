@@ -20,11 +20,9 @@ public abstract class IndicatorController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Updating visible:{visible}", this);
         if (visible)
         {
             animator.SetBool("visible", visible);
-            Debug.Log("Showing", this);
             if (showTime != 0 && Time.time - start > showTime)
             {
                 HideIndicator();
@@ -36,8 +34,6 @@ public abstract class IndicatorController : MonoBehaviour
 
     public void Show()
     {
-
-        Debug.Log("Running show", this);
         start = Time.time;
         visible = true;
     }
@@ -46,7 +42,6 @@ public abstract class IndicatorController : MonoBehaviour
     {
         visible = false;
         animator.SetBool("visible", visible);
-        Debug.Log("Hiding", this);
     }
 
     public void ShowIndicator(ActiveLinking activeLinking)
