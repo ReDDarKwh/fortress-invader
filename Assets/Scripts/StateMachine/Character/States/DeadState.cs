@@ -33,7 +33,7 @@ public class DeadState : BaseState
             if (agent != null)
                 agent.enabled = false;
 
-            sceneManager.score.Value++;
+
         }
         else
         {

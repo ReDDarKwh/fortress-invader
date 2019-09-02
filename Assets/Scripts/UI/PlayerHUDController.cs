@@ -36,7 +36,7 @@ public class PlayerHUDController : MonoBehaviour
 
     public GameObject spellSelectionImage;
 
-    public Text scoreText;
+
 
     public Text timerText;
 
@@ -45,16 +45,24 @@ public class PlayerHUDController : MonoBehaviour
     public Text currentMissionName;
     public Text currentMissionDescription;
 
+    public Text chaosText;
+
     public RectTransform minimapElement;
     public RectTransform minimapRawImage;
     public Camera minimapCam;
 
     public float minimapRadius;
 
+
+    public GameObject missionDoneElement;
+
     private float vel = 0.0f;
 
     private FortressSceneManager sceneManager;
     private MissionsController missionController;
+    private IDisposable missionDone;
+
+
 
 
     //rivate List<SpellSlot>
@@ -67,6 +75,12 @@ public class PlayerHUDController : MonoBehaviour
         .GetComponent<FortressSceneManager>();
 
         missionController = SharedSceneController.Instance.missionController;
+
+        sceneManager.chaos.Subscribe(x =>
+        {
+            var num = Math.Round(x).ToString("0.");
+            chaosText.text = (num == "0" ? "Zero" : num) + "%";
+        });
 
         playerCharacter.spellCaster.currentMana.Subscribe(x =>
         {
@@ -89,21 +103,31 @@ public class PlayerHUDController : MonoBehaviour
             }
         });
 
-        sceneManager.score.Subscribe(x =>
-        {
-            scoreText.text = x.ToString();
-        });
-
 
         playerCharacter.showCurrentMissionElement.Subscribe(x =>
         {
             currentMissionElement.SetActive(x);
         });
 
+
+
         SharedSceneController.Instance.missionController.selectedMission.Subscribe(x =>
         {
             currentMissionName.text = x?.missionName ?? "No mission selected";
             currentMissionDescription.text = x?.desc ?? $"Open the fortress menu to select your next mission.";
+
+            missionDoneElement.SetActive(false);
+
+            missionDone?.Dispose();
+            missionDone = x?.done.Subscribe(done =>
+            {
+                missionDoneElement.SetActive(done);
+                if (done)
+                {
+                    currentMissionName.text = x?.missionName + " DONE";
+                    currentMissionDescription.text = "";
+                }
+            });
         });
 
         playerCharacter.showMinimap.Subscribe(x =>

@@ -7,7 +7,7 @@ public class FortressSceneManager : MonoBehaviour
 {
     public float timeBeforeGameover;
 
-    public IntReactiveProperty score;
+    public FloatReactiveProperty chaos = new FloatReactiveProperty();
 
 
     [System.NonSerialized]

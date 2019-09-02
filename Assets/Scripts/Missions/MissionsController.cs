@@ -14,18 +14,16 @@ namespace Scripts.Missions
         public ReactiveProperty<Mission> selectedMission = new ReactiveProperty<Mission>();
         internal ReactiveProperty<Mission> lastSelectedMission = new ReactiveProperty<Mission>();
         public int numberOfMissions;
-
         public int minNumberOfOperationsPerMission = 1;
         public int maxNumberOfOperationsPerMission = 5;
-
-
         public Queue<Objective> objectiveBank = new Queue<Objective>();
         public BaseState targetState;
         public BaseState deadState;
+        public FloatReactiveProperty chaos = new FloatReactiveProperty();
+
         private readonly Type[] objectiveTypes = new Type[]{
             typeof(KillObjective)
         };
-
         public List<Vector3> GetCurrentObjectivePositions()
         {
             var results = new List<Vector3>();
@@ -37,7 +35,6 @@ namespace Scripts.Missions
             }
             return results;
         }
-
         public void GenerateMissions()
         {
 
@@ -65,13 +62,9 @@ namespace Scripts.Missions
                     missionName: $"Mission #{i + 1}"
                     );
 
-                mission.done.Subscribe(x => Debug.Log(mission.missionName + $"{x}"));
-
                 missions.Add(mission);
             }
         }
-
-
         public void ScanForMissions()
         {
             var characters = GameObject.FindObjectsOfType<NonPlayerCharacter>();
@@ -85,8 +78,6 @@ namespace Scripts.Missions
 
             GenerateMissions();
         }
-
-
         // Start is called before the first frame update
         void Start()
         {
@@ -99,7 +90,6 @@ namespace Scripts.Missions
                 x?.currentObjective.Value?.Enter(targetState);
             });
         }
-
         // Update is called once per frame
         void Update()
         {
