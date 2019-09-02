@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class SuspicionLevelController : IndicatorController
 {
-
+    //private bool visible;
     private float suspiciousTime;
     public Image childImage;
 
-    void Update()
+    public override void ChildUpdate()
     {
-        childImage.fillAmount = (Time.time - start) / suspiciousTime;
+        if (childImage.fillAmount < 1)
+        {
+            childImage.fillAmount = (Time.time - start) / suspiciousTime;
+        }
     }
 
     public override void Init(ActiveLinking activeLinking)

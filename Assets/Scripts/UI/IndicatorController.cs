@@ -7,6 +7,8 @@ public abstract class IndicatorController : MonoBehaviour
     public float start;
     public IndicatorsController indicatorsController;
     public abstract void Init(ActiveLinking activeLinking);
+    public abstract void ChildUpdate();
+
     public Animator animator;
     public bool visible;
     public bool requestingHide;
@@ -18,18 +20,24 @@ public abstract class IndicatorController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"Updating visible:{visible}", this);
         if (visible)
         {
             animator.SetBool("visible", visible);
+            Debug.Log("Showing", this);
             if (showTime != 0 && Time.time - start > showTime)
             {
                 HideIndicator();
             }
+
+            ChildUpdate();
         }
     }
 
     public void Show()
     {
+
+        Debug.Log("Running show", this);
         start = Time.time;
         visible = true;
     }
@@ -38,6 +46,7 @@ public abstract class IndicatorController : MonoBehaviour
     {
         visible = false;
         animator.SetBool("visible", visible);
+        Debug.Log("Hiding", this);
     }
 
     public void ShowIndicator(ActiveLinking activeLinking)
