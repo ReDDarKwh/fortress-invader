@@ -31,9 +31,15 @@ namespace Scripts.Spells
 
         public GameObject flamesParticleSystem;
 
+        public float improveTime;
+        public float increasedSteeringForce;
+        public float increasedSteeringSpeed;
+        private float creationTime;
+        public float improveDuration;
+
         void Start()
         {
-
+            creationTime = Time.time;
         }
 
         // Update is called once per frame
@@ -96,11 +102,15 @@ namespace Scripts.Spells
             else
             {
 
+
+                var progress = (Time.time - creationTime) >= improveTime ? Mathf.Min((Time.time - creationTime) - improveTime / improveDuration, 1) : 0;
+
+
                 var desiredVelocity = (missileToTargetVec.normalized) * Time.deltaTime * speed;
 
-                var sterring = Vector3.ClampMagnitude((desiredVelocity - velocity), maxSteeringForce) / mass;
+                var sterring = Vector3.ClampMagnitude((desiredVelocity - velocity), maxSteeringForce + (increasedSteeringForce * progress)) / mass;
 
-                velocity = Vector2.ClampMagnitude(velocity + sterring, maxSteeringSpeed);
+                velocity = Vector2.ClampMagnitude(velocity + sterring, maxSteeringSpeed + (increasedSteeringSpeed * progress));
 
                 transform.position += velocity;
 

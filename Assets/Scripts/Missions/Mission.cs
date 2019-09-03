@@ -16,7 +16,7 @@ namespace Scripts.Missions
         public IEnumerable<Objective> objectives = new List<Objective>();
         public string missionName;
         public string desc;
-        public IObservable<bool> done;
+        public IReadOnlyReactiveProperty<bool> done;
         public float chaos;
         public bool selected;
 
@@ -33,7 +33,7 @@ namespace Scripts.Missions
             desc = $"Mission has {objectives.Count()} step{(objectives.Count() > 1 ? "s" : "")}. \n" +
             $"<b>Current objective : </b>{currentObjective.Value.desc}";
 
-            done = objectives.Select(x => x.done).CombineLatestValuesAreAllTrue();
+            done = objectives.Select(x => x.done).CombineLatestValuesAreAllTrue().ToReactiveProperty();
         }
     }
 }

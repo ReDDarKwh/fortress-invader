@@ -44,12 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1bef3fe3abbc418d366fece7fefdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionRadius: 1.5
-  mass: 6
-  maxSteeringForce: 15
-  maxSteeringSpeed: 5
-  speed: 55
+  collisionRadius: 3
+  mass: 1.5
+  maxSteeringForce: 0.2
+  maxSteeringSpeed: 10
+  speed: 50
   flamesParticleSystem: {fileID: 8293464996880345840}
+  improveTime: 0.5
+  increasedSteeringForce: 1
+  increasedSteeringSpeed: 0
+  improveDuration: 5
 --- !u!1001 &5016444246320332731
 PrefabInstance:
   m_ObjectHideFlags: 0

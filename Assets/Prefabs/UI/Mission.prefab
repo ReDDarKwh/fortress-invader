@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 4247146634600105825}
   - component: {fileID: 4247146634600105831}
   - component: {fileID: 4293833817106786804}
+  - component: {fileID: 1997023049154019190}
   m_Layer: 5
   m_Name: Mission
   m_TagString: Untagged
@@ -321,6 +322,19 @@ MonoBehaviour:
   difficulty: {fileID: 4247146635453553357}
   chaos: {fileID: 4247146635981945763}
   selected: {fileID: 3780065903988745863}
+  canvasGroup: {fileID: 1997023049154019190}
+--- !u!225 &1997023049154019190
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247146634600105827}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4247146634689069993
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class MissionUIController : MonoBehaviour
     public Text chaos;
     public Toggle selected;
     public Mission mission;
+    public CanvasGroup canvasGroup;
 
     public void SetSelected(bool selected)
     {
@@ -28,6 +29,8 @@ public class MissionUIController : MonoBehaviour
         chaos.text = $"{mission.chaos.ToString("0.00")}%";
         difficulty.text = "<b>Difficulty : </b>";
         selected.isOn = mission.selected;
+
+        canvasGroup.alpha = mission.done.Value == true ? 0.5f : 1;
 
 
         switch (mission.difficulty)
