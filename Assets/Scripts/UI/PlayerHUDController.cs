@@ -46,6 +46,7 @@ public class PlayerHUDController : MonoBehaviour
     public Text currentMissionDescription;
 
     public Text chaosText;
+    public ParticleSystem chaosEffect;
 
     public RectTransform minimapElement;
     public RectTransform minimapRawImage;
@@ -78,9 +79,13 @@ public class PlayerHUDController : MonoBehaviour
 
         sceneManager.chaos.Subscribe(x =>
         {
+            // StartCoroutine("UpdateChaosText", x);
             var num = Math.Round(x).ToString("0.");
             chaosText.text = (num == "0" ? "Zero" : num) + "%";
+            chaosEffect.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+            chaosEffect.Play();
         });
+
 
         playerCharacter.spellCaster.currentMana.Subscribe(x =>
         {
@@ -146,6 +151,11 @@ public class PlayerHUDController : MonoBehaviour
 
     }
 
+    private IEnumerator UpdateChaosText(float x)
+    {
+        yield return new WaitForSeconds(1);
+
+    }
 
     private void createSpellSlot(int number, Spell spell)
     {

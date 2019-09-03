@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using System.Linq;
 
 public class FortressSceneManager : MonoBehaviour
 {
@@ -16,6 +17,24 @@ public class FortressSceneManager : MonoBehaviour
     public void Start()
     {
         timeSinceLevelLoad = Time.unscaledTime;
+
+        SharedSceneController.Instance.missionController.missions.Subscribe(missions =>
+        {
+
+            if (missions == null)
+                return;
+
+            foreach (var mission in missions)
+            {
+                mission.done.Subscribe(x =>
+                {
+                    if (x)
+                    {
+                        chaos.Value += mission.chaos;
+                    }
+                });
+            }
+        });
     }
 
     public void Update()

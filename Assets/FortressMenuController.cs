@@ -19,11 +19,11 @@ public class FortressMenuController : MonoBehaviour
         SharedSceneController.Instance.levelChanger.ExitMenu();
 
         var selectedIndex = SharedSceneController
-            .Instance.missionController.missions.FindIndex(x => x.selected);
+            .Instance.missionController.missions.Value.FindIndex(x => x.selected);
 
         // selected mission changed
         if (SharedSceneController.Instance.missionController.selectedMission.Value !=
-            (selectedIndex == -1 ? null : SharedSceneController.Instance.missionController.missions.ElementAt(selectedIndex))
+            (selectedIndex == -1 ? null : SharedSceneController.Instance.missionController.missions.Value.ElementAt(selectedIndex))
         )
         {
             SharedSceneController.Instance.missionController.lastSelectedMission.Value =
@@ -34,14 +34,14 @@ public class FortressMenuController : MonoBehaviour
             {
 
                 var mission = SharedSceneController
-                .Instance.missionController.missions.ElementAt(selectedIndex);
+                .Instance.missionController.missions.Value.ElementAt(selectedIndex);
 
                 SharedSceneController.Instance.missionController.selectedMission.Value = mission;
 
                 // Move selected mission on top;
                 SharedSceneController
-                .Instance.missionController.missions.RemoveAt(selectedIndex);
-                SharedSceneController.Instance.missionController.missions.Insert(0, mission);
+                .Instance.missionController.missions.Value.RemoveAt(selectedIndex);
+                SharedSceneController.Instance.missionController.missions.Value.Insert(0, mission);
             }
             else
             {
@@ -55,7 +55,7 @@ public class FortressMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var missions = SharedSceneController.Instance.missionController.missions;
+        var missions = SharedSceneController.Instance.missionController.missions.Value;
         foreach (var mission in missions)
         {
             var missionUIElement = Instantiate(missionPrefab, missionContentGameObject.transform);

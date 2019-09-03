@@ -29,7 +29,7 @@ namespace Scripts.Missions
             });
 
             // TODO : choas must be set based on the difficulty of the operation. target difficulty score?
-            chaos = target.difficultyRating;
+            chaos = target.difficultyRating * 10;
             desc = $"Kill the target named : {target.role} {target?.characterName}";
         }
 

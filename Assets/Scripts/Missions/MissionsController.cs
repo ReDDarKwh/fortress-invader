@@ -10,7 +10,7 @@ namespace Scripts.Missions
 {
     public class MissionsController : MonoBehaviour
     {
-        public List<Mission> missions;
+        public ReactiveProperty<List<Mission>> missions = new ReactiveProperty<List<Mission>>();
         public ReactiveProperty<Mission> selectedMission = new ReactiveProperty<Mission>();
         internal ReactiveProperty<Mission> lastSelectedMission = new ReactiveProperty<Mission>();
         public int numberOfMissions;
@@ -37,9 +37,7 @@ namespace Scripts.Missions
         }
         public void GenerateMissions()
         {
-
-            missions = new List<Mission>();
-
+            var missions = new List<Mission>();
             for (var i = 0; i < numberOfMissions; i++)
             {
                 List<Objective> objectives = new List<Objective>();
@@ -64,6 +62,7 @@ namespace Scripts.Missions
 
                 missions.Add(mission);
             }
+            this.missions.Value = missions;
         }
         public void ScanForMissions()
         {
