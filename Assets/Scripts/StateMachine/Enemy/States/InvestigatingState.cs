@@ -20,7 +20,7 @@ public class InvestigatingState : BaseState
     }
     override public void Enter(StateMachine stateMachine, EventMessage eventMessage, ActiveLinking activeLinking)
     {
-        activeLinking.linkingProperties.Add("start_rotation", stateMachine.transform.rotation);
+        activeLinking.linkingProperties.Add("start_rotation", stateMachine.GetComponent<Character>().lookDirection);
     }
     override public void StateUpdate(StateMachine stateMachine, ActiveLinking activeLinking)
     {
@@ -29,7 +29,8 @@ public class InvestigatingState : BaseState
 
         c.lookDirection = Quaternion.Euler(
             activeLinking.GetValueOrDefault<Quaternion>("start_rotation").eulerAngles +
-            Vector3.forward * Mathf.Lerp(-lookAroundAngle, lookAroundAngle, (Mathf.Sin((Time.time - activeLinking.timeStarted) * rotationSpeed) + 1) / 2)
+            Vector3.forward * Mathf.Lerp(-lookAroundAngle, lookAroundAngle,
+            0.5f + (Mathf.Sin((Time.time - activeLinking.timeStarted) * rotationSpeed) / 2))
         );
 
     }

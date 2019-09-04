@@ -692,6 +692,9 @@ MonoBehaviour:
       - fieldName: states
         node: {fileID: 114178623126169398}
         reroutePoints: []
+      - fieldName: states
+        node: {fileID: 114932381631389578}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1489,7 +1492,7 @@ MonoBehaviour:
   m_Name: InvestigatingState
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1432, y: 584}
+  position: {x: -1160, y: 536}
   ports:
     keys:
     - states
@@ -1503,6 +1506,9 @@ MonoBehaviour:
       connections:
       - fieldName: from
         node: {fileID: 114080650985724292}
+        reroutePoints: []
+      - fieldName: from
+        node: {fileID: 114536090758232228}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

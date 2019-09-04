@@ -124,6 +124,8 @@ namespace Scripts.Spells
 
                         var main = particleSystem.main;
 
+                        particleSystem.Stop(false);
+
                         main.startLifetime = main.duration = Mathf.Max(1, effect.duration);
 
                         particleSystem.Play();
