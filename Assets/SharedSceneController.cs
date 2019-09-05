@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Scripts.Missions;
 using UnityEngine;
+using Scripts.Spells;
 
 public class SharedSceneController : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class SharedSceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+
+    void Start()
+    {
+
+
+
+
     }
 
     internal void OpenFortressMenu()

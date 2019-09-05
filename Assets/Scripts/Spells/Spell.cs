@@ -18,7 +18,7 @@ namespace Scripts.Spells
         public string spellName;
         public List<SpellEffect> spellEffects;
         public SpellTarget spellTarget;
-
+        public float createCost;
         public float manaCost;
         [Header("Cost for AI to travel in a area with this spell active")]
         public float travelCost;
