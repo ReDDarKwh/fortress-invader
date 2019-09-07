@@ -12,7 +12,6 @@ using UnityEngine;
 namespace Scripts.Spells
 {
 
-    [CreateAssetMenu(fileName = "Spell", menuName = "Spells/Spell")]
     public class Spell : ScriptableObject
     {
         public string spellName;
