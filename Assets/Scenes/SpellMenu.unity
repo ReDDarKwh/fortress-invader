@@ -1510,6 +1510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellElementPrefab: {fileID: 8140539437288429631, guid: ea574e2c047a8f2b787c321f9668d290,
     type: 3}
+  spellEffect: {fileID: 11400000, guid: 73061fd33be19944c80ef3729e428a7f, type: 2}
 --- !u!1 &1846273469
 GameObject:
   m_ObjectHideFlags: 0
