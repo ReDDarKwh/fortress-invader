@@ -25,9 +25,21 @@ namespace DragAndDropUtil
         // override this in derived classes, usually casting to to the type they deal with
         public abstract void UpdateObject();
 
+        public void SetObject(UnityEngine.Object o, Vector3 pos)
+        {
+            transform.position = pos;
+            //SetObject(o);
+
+            obj = o;
+            UpdateObject();
+        }
+
         public void SetObject(UnityEngine.Object o)
         {
             (transform as RectTransform).anchoredPosition = Vector3.zero;
+
+            //transform.position = Input.mousePosition
+
             obj = o;
             UpdateObject();
         }
@@ -117,13 +129,15 @@ namespace DragAndDropUtil
 
                 // if there is a container and we can't drop into it for game logic reasons, cancel the drag
                 if (containerTarget != null)
-                    if (containerTarget.CanDrop(this, target) == false)
-                        legal = false;
+                {
+                    legal = containerTarget.CanDrop(this, target);
+                }
 
                 // check the other way too, since the drag and drop is a swap
                 if (containerDrag != null)
-                    if (containerDrag.CanDrop(target.item, slot) == false)
-                        legal = false;
+                {
+                    legal = containerDrag.CanDrop(target.item, slot);
+                }
             }
 
             // we're Ok to move
@@ -147,7 +161,7 @@ namespace DragAndDropUtil
 
             // return to our parent slot now
             transform.SetParent(slot.GetSlot());
-            (transform as RectTransform).anchoredPosition3D = Vector3.zero;
+
             dragging = false;
             current = null;
 
@@ -210,7 +224,7 @@ namespace DragAndDropUtil
                     }
                     if (!readOnlyTarget)
                     {
-                        other.SetObject(o);
+                        other.SetObject(o, Input.mousePosition);
                         if (o != null && other.slot != null)
                             other.slot.onSlot.Invoke();
                     }
