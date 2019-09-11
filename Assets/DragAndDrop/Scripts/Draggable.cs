@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 namespace DragAndDropUtil
 {
@@ -28,8 +29,6 @@ namespace DragAndDropUtil
         public void SetObject(UnityEngine.Object o, Vector3 pos)
         {
             transform.position = pos;
-            //SetObject(o);
-
             obj = o;
             UpdateObject();
         }
@@ -37,9 +36,6 @@ namespace DragAndDropUtil
         public void SetObject(UnityEngine.Object o)
         {
             (transform as RectTransform).anchoredPosition = Vector3.zero;
-
-            //transform.position = Input.mousePosition
-
             obj = o;
             UpdateObject();
         }
@@ -136,7 +132,7 @@ namespace DragAndDropUtil
                 // check the other way too, since the drag and drop is a swap
                 if (containerDrag != null)
                 {
-                    legal = containerDrag.CanDrop(target.item, slot);
+                    legal = containerDrag.CanDrop(target.items.FirstOrDefault(), slot);
                 }
             }
 
@@ -212,7 +208,7 @@ namespace DragAndDropUtil
             else
             {
                 // swap the two valid slot items around
-                Draggable other = _slot.item;
+                Draggable other = _slot.items.FirstOrDefault();
                 if (other)
                 {
                     UnityEngine.Object o = obj;

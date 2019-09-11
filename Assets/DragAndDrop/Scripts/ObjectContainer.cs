@@ -81,7 +81,7 @@ namespace DragAndDropUtil
             item.SetObject(obj);
 
             // set up all required pointers
-            slot.item = item;
+            slot.items = new List<Draggable> { item };
             slot.container = this;
             item.slot = slot;
 

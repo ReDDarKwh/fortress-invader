@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace DragAndDropUtil
 {
@@ -18,7 +19,7 @@ namespace DragAndDropUtil
         public override void Drop(Slot slot, ObjectContainer fromContainer)
         {
             // copy the slot's data back into the array we're working with.
-            objects[slot.index] = slot.item.obj;
+            objects[slot.index] = slot.items.First().obj;
         }
 
         // Use this for initialization
