@@ -80,6 +80,9 @@ public class BuildingController : MonoBehaviour
 
     private void setupCollider(PolygonCollider2D collider, Polygon corners)
     {
-        collider.SetPath(0, corners.Concat(new List<Point> { corners[0] }).Select(x => x.vec).ToArray());
+        if (corners.Count > 0)
+        {
+            collider.SetPath(0, corners.Concat(new List<Point> { corners[0] }).Select(x => x.vec).ToArray());
+        }
     }
 }

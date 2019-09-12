@@ -39,7 +39,7 @@ namespace TownGenerator.Geom
         public override bool Equals(object obj)
         {
             if (!(obj is Point)) return false;
-            return this.vec == ((obj as Point).vec);
+            return this == ((obj as Point));
         }
 
         public override int GetHashCode()

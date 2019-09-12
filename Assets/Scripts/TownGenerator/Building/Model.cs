@@ -64,31 +64,42 @@ namespace TownGenerator.Building
 
 
 
-        public Model(int nPatches = -1)
+        public Model(CitySettings settings)
         {
-            this.nPatches = nPatches != -1 ? nPatches : 15;
+            this.nPatches = settings.patchNum != -1 ? settings.patchNum : 15;
 
-            plazaNeeded = true;//Random.value < 0.5;
-            citadelNeeded = true;// Random.value < 0.5;
-            wallsNeeded = true;//Random.value < 0.5;
+            plazaNeeded = true;
+            citadelNeeded = true;
+            wallsNeeded = true;
 
-            // do
-            // {
-            //     try
-            //     {
-            build();
-            //         instance = this;
-            //     }
-            //     catch (Exception e)
-            //     {
-            //         Debug.Log(
-            //             e.StackTrace
-            //         );
+            var seed = settings.seed;
 
-            //         instance = null;
-            //     }
-            // }
-            // while (instance == null);
+            do
+            {
+                try
+                {
+                    Random.InitState(++seed);
+                    Debug.Log(seed);
+
+                    build();
+                    instance = this;
+                }
+                catch (Exception e)
+                {
+                    Debug.Log(
+                        e.StackTrace
+                    );
+
+                    instance = null;
+                }
+                finally
+                {
+                    Random.State oldstate = Random.state;
+                    Random.state = oldstate;
+                }
+            }
+            while (instance == null);
+
         }
 
 

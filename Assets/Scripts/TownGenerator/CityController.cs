@@ -66,15 +66,18 @@ public class CityController : MonoBehaviour
     public void Init()
     {
 
+        for (var i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+
+        settings.seed = Random.Range(1, 1000000);
+
         //create the city data model
 
         cityName = FantasyNameGenerator.GetTownName();
 
-        Random.InitState(settings.seed);
-        cityModel = new Model(settings.patchNum);
-
-        Random.State oldstate = Random.state;
-        Random.state = oldstate;
+        cityModel = new Model(settings);
 
         //create buildings
         foreach (var patch in cityModel.patches)
@@ -85,17 +88,16 @@ public class CityController : MonoBehaviour
 
             foreach (var shape in patch.ward.geometry)
             {
+                if (shape._perimeter() > 0)
+                {
+                    var b = Instantiate(buildingPrefab, this.transform, false);
+                    b.transform.rotation = Quaternion.identity;
 
-                var b = Instantiate(buildingPrefab, this.transform, false);
-                b.transform.rotation = Quaternion.identity;
-                //b.transform.position += transform.TransformPoint((Vector3)cityModel.center.vec);
+                    Debug.DrawLine(transform.position, cityModel.center.vec, Color.magenta, 20);
 
-                Debug.DrawLine(transform.position, cityModel.center.vec, Color.magenta, 20);
-
-                var buildingController = b.GetComponent<BuildingController>();
-                buildingController.shape = shape;
-
-                //buildingController.transform.localScale = new Vector3(1, 1, Random.Range(1, 2));
+                    var buildingController = b.GetComponent<BuildingController>();
+                    buildingController.shape = shape;
+                }
             }
         }
 
@@ -121,7 +123,7 @@ public class CityController : MonoBehaviour
 
                 if (cityModel.wall.gates.Concat(
                     cityModel.citadel != null ? (cityModel.citadel.ward as Castle).wall.gates : null
-                    ).Contains(new Point(end)))
+                    ).Select(x => x.vec).Contains(new Point(end).vec))
                 {
                     // shorten wall
                     end = start + startToEnd.normalized * (dis - gateOpeningSize / 2);
@@ -135,7 +137,7 @@ public class CityController : MonoBehaviour
 
                 if (cityModel.wall.gates.Concat(
                     cityModel.citadel != null ? (cityModel.citadel.ward as Castle).wall.gates : null
-                    ).Contains(new Point(start)))
+                    ).Select(x => x.vec).Contains(new Point(start).vec))
                 {
                     // shorten wall
                     start = end + endToStart.normalized * (dis - gateOpeningSize / 2);
@@ -161,7 +163,7 @@ public class CityController : MonoBehaviour
             {
                 if (cityModel.citadel != null)
                 {
-                    if ((cityModel.citadel.ward as Castle).wall.gates.Contains(tower))
+                    if ((cityModel.citadel.ward as Castle).wall.gates.Select(x => x.vec).Contains(tower.vec))
                     {
                         continue;
                     }

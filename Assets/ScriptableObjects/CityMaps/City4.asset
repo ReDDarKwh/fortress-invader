@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0180381d2eb09f04c9d003ed482d7f8d, type: 3}
   m_Name: City4
   m_EditorClassIdentifier: 
-  cityName: One
-  patchNum: 10
-  seed: 7780
+  patchNum: 30
+  seed: 649569

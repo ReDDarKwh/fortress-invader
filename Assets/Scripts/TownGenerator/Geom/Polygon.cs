@@ -431,7 +431,7 @@ namespace TownGenerator.Geom
                     var next1 = q.IndexOf(v);
                     if (next1 == next)
                         next1 = q.LastIndexOf(v);
-                    i = next1 == -1 ? next : next1;
+                    i = (next1 == -1 ? next : next1);
                 } while (i != start);
 
                 var p = new Polygon(indices.Select(n => q[n]).ToList());
