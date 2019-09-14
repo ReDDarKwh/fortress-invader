@@ -129,11 +129,6 @@ namespace DragAndDropUtil
                     legal = containerTarget.CanDrop(this, target);
                 }
 
-                // check the other way too, since the drag and drop is a swap
-                if (containerDrag != null)
-                {
-                    legal = containerDrag.CanDrop(target.items.FirstOrDefault(), slot);
-                }
             }
 
             // we're Ok to move
@@ -208,7 +203,7 @@ namespace DragAndDropUtil
             else
             {
                 // swap the two valid slot items around
-                Draggable other = _slot.items.FirstOrDefault();
+                Draggable other = _slot.items?.FirstOrDefault();
                 if (other)
                 {
                     UnityEngine.Object o = obj;

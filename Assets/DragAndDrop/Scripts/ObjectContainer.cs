@@ -52,6 +52,7 @@ namespace DragAndDropUtil
             onDragExit.Invoke();
         }
 
+
         public virtual bool IsReadOnly()
         {
             return false;

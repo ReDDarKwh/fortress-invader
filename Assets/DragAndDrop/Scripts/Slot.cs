@@ -64,7 +64,7 @@ namespace DragAndDropUtil
         public virtual void UpdateSlot() { }
 
         // the child item sittign in this slot
-        List<Draggable> _items;
+        List<Draggable> _items = new List<Draggable>();
 
 
         // public accessor that updates the slot when set
