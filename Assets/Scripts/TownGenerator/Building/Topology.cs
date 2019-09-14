@@ -38,7 +38,7 @@ namespace TownGenerator.Building
             blocked = new List<Point>();
             if (model.citadel != null)
                 blocked = blocked.Concat(model.citadel.shape).ToList();
-            if (model.wall != null)
+            if (model.wallsNeeded)
             {
 
                 blocked = blocked.Concat(model.wall.shape.Where(x =>
@@ -61,7 +61,7 @@ namespace TownGenerator.Building
 
                 })).ToList();
             }
-            blocked = blocked.Where(x => !model.gates.Select(g => g.vec).ToList().Contains(x.vec)).ToList();
+            blocked = blocked.Where(x => !model.gates.ToList().Contains(x)).ToList();
 
             var border = model.border.shape;
 

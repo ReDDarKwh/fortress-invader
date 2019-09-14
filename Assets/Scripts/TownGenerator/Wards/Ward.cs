@@ -17,9 +17,9 @@ namespace TownGenerator.Wards
 
     public class Ward
     {
-        public static float MAIN_STREET = 3.5f;
+        public static float MAIN_STREET = 2.3f;
         public static float REGULAR_STREET = 2.0f;
-        public static float ALLEY = 0.7f;
+        public static float ALLEY = 1.2f;
         public static float BUILDING_GAP = 0.1f;
 
         public Model model;
@@ -50,7 +50,7 @@ namespace TownGenerator.Wards
                 if (model.wall != null && model.wall.bordersBy(patch, v0, v1))
                 {
                     // Not too close to the wall
-                    insetDist.Add(MAIN_STREET / 1.5f);
+                    insetDist.Add(MAIN_STREET);
                 }
                 else
                 {
@@ -58,7 +58,7 @@ namespace TownGenerator.Wards
                     if (!onStreet)
                     {
 
-                        foreach (var street in model.arteries)
+                        foreach (var street in model.streets)
                         {
                             if (street.Contains(v0) && street.Contains(v1))
                             {
@@ -161,7 +161,7 @@ namespace TownGenerator.Wards
                     var n = model.getNeighbour(patch, v1);
                     if (n != null)
                         if (n.withinCity)
-                            addEdge(v1, v2, populatedEdges, model.isEnclosed(n) ? 1.0f : 0.4f);
+                            addEdge(v1, v2, populatedEdges, 1.0f);
                 }
             });
 

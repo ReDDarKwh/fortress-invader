@@ -27,7 +27,7 @@ namespace TownGenerator.Building
 
         public CurtainWall(bool real, Model model, List<Patch> patches, List<Point> reserved)
         {
-            this.real = true;
+            this.real = real;
             this.patches = patches;
 
             if (patches.Count == 1)
@@ -197,13 +197,6 @@ namespace TownGenerator.Building
 
             if (gates.Count == 0)
                 throw new GenerationFailedException("Bad walled area shape!");
-
-            // // Smooth further sections of the wall with gates
-            // if (real)
-            //     for (var i = 0; i < gates.Count; i++)
-            //     {
-            //         gates[i] = shape.smoothVertex(gates[i]);
-            //     }
 
             // Smooth further sections of the wall with gates
             if (real)

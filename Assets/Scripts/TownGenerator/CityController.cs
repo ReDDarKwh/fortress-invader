@@ -71,8 +71,6 @@ public class CityController : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
 
-        settings.seed = Random.Range(1, 1000000);
-
         //create the city data model
 
         cityName = FantasyNameGenerator.GetTownName();
@@ -103,12 +101,22 @@ public class CityController : MonoBehaviour
 
         // create walls and towers and gates
 
-        if (cityModel.wall != null)
+        var castle = cityModel.citadel.ward as Castle;
+
+        if (cityModel.wallsNeeded)
         {
 
             // city wall and towers
             for (var i = 0; i < cityModel.wall.shape.Count; i++)
             {
+
+
+                if (castle.wall.shape.findEdge(cityModel.wall.shape[(i + 1) % cityModel.wall.shape.Count], cityModel.wall.shape[i]) != -1)
+                {
+                    // castle wall creation below will take care of the wall.
+                    continue;
+                }
+
                 // wall
 
                 var start = cityModel.wall.shape[i].vec;
@@ -121,9 +129,7 @@ public class CityController : MonoBehaviour
 
                 //connectedToGate
 
-                if (cityModel.wall.gates.Concat(
-                    cityModel.citadel != null ? (cityModel.citadel.ward as Castle).wall.gates : null
-                    ).Select(x => x.vec).Contains(new Point(end).vec))
+                if (cityModel.wall.gates.Select(x => x.vec).Contains(new Point(end).vec))
                 {
                     // shorten wall
                     end = start + startToEnd.normalized * (dis - gateOpeningSize / 2);
@@ -135,9 +141,7 @@ public class CityController : MonoBehaviour
                     );
                 }
 
-                if (cityModel.wall.gates.Concat(
-                    cityModel.citadel != null ? (cityModel.citadel.ward as Castle).wall.gates : null
-                    ).Select(x => x.vec).Contains(new Point(start).vec))
+                if (cityModel.wall.gates.Select(x => x.vec).Contains(new Point(start).vec))
                 {
                     // shorten wall
                     start = end + endToStart.normalized * (dis - gateOpeningSize / 2);
@@ -159,56 +163,71 @@ public class CityController : MonoBehaviour
 
             }
 
-            foreach (var tower in cityModel.wall.towers)
+            foreach (var tower in cityModel.wall.towers
+            .Where(x => !castle.wall.towers.Concat(castle.wall.gates)
+            .Select(p => p.vec).Contains(x.vec)))
             {
-                if (cityModel.citadel != null)
-                {
-                    if ((cityModel.citadel.ward as Castle).wall.gates.Select(x => x.vec).Contains(tower.vec))
-                    {
-                        continue;
-                    }
-                }
-
-                var t = Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
+                Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
             }
 
-            // foreach (var gate in cityModel.wall.gates)
-            // {
-            //     var t = Instantiate(gatePrefab, transform.TransformPoint(gate.vec), Quaternion.Euler(0, 0, 0), this.transform);
-            // }
-
-            // castle wall and towers
-            if (cityModel.citadel != null)
-            {
-                var castle = cityModel.citadel.ward as Castle;
-
-                for (var i = 0; i < castle.wall.shape.Count; i++)
-                {
-                    // wall
-                    var start = castle.wall.shape[i].vec;
-                    var end = castle.wall.shape[(i + 1) % castle.wall.shape.Count].vec;
-
-                    if (cityModel.wall.shape.findEdge(castle.wall.shape[(i + 1) % castle.wall.shape.Count], castle.wall.shape[i]) == -1)
-                    {
-                        var endToStart = start - end;
-                        var dis = endToStart.magnitude;
-
-                        var vec = end - start;
-                        var pos = Vector2.Lerp(start, end, 0.5f);
-                        var wall = Instantiate(wallPrefab, this.transform);
-
-                        wall.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg);
-                        wall.transform.position = transform.TransformPoint(pos);
-                        wall.transform.localScale = new Vector3(dis, 1, 22);
-                    }
-                }
-
-                foreach (var tower in castle.wall.towers)
-                {
-                    var t = Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
-                }
-            }
         }
+
+
+        // build castle walls
+
+        for (var i = 0; i < castle.wall.shape.Count; i++)
+        {
+            // wall
+            var start = castle.wall.shape[i].vec;
+            var end = castle.wall.shape[(i + 1) % castle.wall.shape.Count].vec;
+            var startToEnd = end - start;
+            var endToStart = start - end;
+            var dis = endToStart.magnitude;
+
+            //connectedToGate
+
+            if ((cityModel.citadel.ward as Castle).wall.gates
+                .Select(x => x.vec).Contains(new Point(end).vec))
+            {
+                // shorten wall
+                end = start + startToEnd.normalized * (dis - gateOpeningSize / 2);
+
+                // add gate tower
+                Instantiate(gatePrefab, transform.TransformPoint(end),
+                    Quaternion.Euler(90, 0, 0),
+                    this.transform
+                );
+            }
+
+            if ((cityModel.citadel.ward as Castle).wall.gates
+                .Select(x => x.vec).Contains(new Point(start).vec))
+            {
+                // shorten wall
+                start = end + endToStart.normalized * (dis - gateOpeningSize / 2);
+
+                // add gate tower
+                Instantiate(gatePrefab, transform.TransformPoint(start),
+                Quaternion.Euler(90, 0, 0),
+                this.transform
+                );
+            }
+
+
+            var vec = end - start;
+            var pos = Vector2.Lerp(start, end, 0.5f);
+            var wall = Instantiate(wallPrefab, this.transform);
+
+            wall.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg);
+            wall.transform.position = transform.TransformPoint(pos);
+            wall.transform.localScale = new Vector3(dis, 1, 22);
+
+        }
+
+        foreach (var tower in castle.wall.towers)
+        {
+            var t = Instantiate(towerPrefab, transform.TransformPoint(tower.vec), Quaternion.Euler(90, 0, 0), this.transform);
+        }
+
 
         // roads 
 
@@ -233,23 +252,24 @@ public class CityController : MonoBehaviour
         {
             patch.shape.forEdge((start, end) =>
             {
-                if (cityModel.wall == null || !cityModel.wall.bordersBy(patch, start, end))
+                if (!cityModel.wall.bordersBy(patch, start, end))
                 {
 
                     if (!edges.Any(x => x.findEdge(start, end) != -1) && !edges.Any(x => x.findEdge(end, start) != -1))
                     {
-                        edges.Add(new Polygon { start, end });
+
+                        var edge = new Polygon { start, end };
+                        edges.Add(edge);
+
+                        var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
+                        roadControl.points = new List<Vector3> { transform.TransformPoint(edge[0].vec), transform.TransformPoint(edge[1].vec) };
+                        roadControl.roadWidth = patch.withinWalls ? 8 : 4;
                     }
                 }
             });
         }
 
-        foreach (var edge in edges)
-        {
-            var roadControl = Instantiate(roadPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<RoadController>();
-            roadControl.points = new List<Vector3> { transform.TransformPoint(edge[0].vec), transform.TransformPoint(edge[1].vec) };
-            roadControl.roadWidth = 8;
-        }
+
 
         // foreach (var street in cityModel.arteries)
         // {

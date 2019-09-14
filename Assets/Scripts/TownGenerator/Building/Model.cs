@@ -25,7 +25,7 @@ namespace TownGenerator.Building
 
         private bool plazaNeeded;
         private bool citadelNeeded;
-        private bool wallsNeeded;
+        public bool wallsNeeded;
 
         public static List<Type> WARDS = new List<Type> {
           typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(MerchantWard),  typeof(CraftsmenWard),  typeof(CraftsmenWard),  typeof(Cathedral),
@@ -68,9 +68,9 @@ namespace TownGenerator.Building
         {
             this.nPatches = settings.patchNum != -1 ? settings.patchNum : 15;
 
-            plazaNeeded = true;
+            plazaNeeded = settings.plaza;
             citadelNeeded = true;
-            wallsNeeded = true;
+            wallsNeeded = settings.wall;
 
             var seed = settings.seed;
 
@@ -188,7 +188,7 @@ namespace TownGenerator.Building
             var reserved = citadel != null ? citadel.shape : new List<Point>();
 
             border = new CurtainWall(wallsNeeded, this, inner, reserved);
-            if (wallsNeeded)
+            if (true)
             {
                 wall = border;
                 wall.buildTowers();
@@ -196,12 +196,6 @@ namespace TownGenerator.Building
 
             var radius = border.getRadius();
             patches = patches.Where((Patch p) => { return p.shape.distance(center) < radius * 3; }).ToList();
-
-            if (patches.Count <= 0)
-            {
-
-                Debug.Log("all pasfsrg");
-            }
 
             gates = border.gates;
 
@@ -555,7 +549,7 @@ namespace TownGenerator.Building
             }
 
             // Outskirts
-            if (wall != null)
+            if (wallsNeeded)
                 foreach (var gate in wall.gates)
                 {
                     if (!(Random.value < (1 / (nPatches - 5))))
