@@ -86,14 +86,9 @@ namespace Scripts.UI
             if (!dragging)
                 return;
 
-            if (currentZoneBelow != null)
+            if (currentZoneBelow != null && currentZoneBelow.CanDrop(this))
             {
-                currentZoneBelow.OnDraggingExit();
-                currentZone = currentZoneBelow;
-                transform.SetParent(currentZone.transform);
-                transform.SetAsLastSibling();
-
-                currentZoneBelow.OnDrop(this);
+                AddDraggableToZone(currentZoneBelow);
             }
             else
             {
@@ -107,6 +102,15 @@ namespace Scripts.UI
             }
 
             dragging = false;
+        }
+
+        public void AddDraggableToZone(DropZone zone)
+        {
+            zone.OnDraggingExit();
+            currentZone = zone;
+            transform.SetParent(zone.transform);
+            transform.SetAsLastSibling();
+            zone.OnDrop(this);
         }
 
         // finds the firstSlot component currently under the mouse

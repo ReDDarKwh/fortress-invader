@@ -26,6 +26,8 @@ namespace Scripts.UI
 
         public DropFailedEvent onDragFailed;
 
+        public List<string> droppableDataTypes;
+
 
         // Start is called before the first frame update
         void Start()
@@ -37,6 +39,21 @@ namespace Scripts.UI
         void Update()
         {
 
+        }
+
+        public bool CanDrop(Draggable draggable)
+        {
+            if (droppableDataTypes.Count == 0)
+                return true;
+
+            foreach (var t in droppableDataTypes)
+            {
+                if (draggable.data.GetType() == Type.GetType(t))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         internal void OnDraggingEnter()
