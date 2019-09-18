@@ -20,16 +20,33 @@ namespace Scripts.UI
 
         public GameObject effectComponentItemPrefab;
 
+        public GameObject targetComponentItemPrefab;
+
         // Start is called before the first frame update
         void Start()
         {
             craftZone.onDragFailed.AddListener(RemoveSpellComponentFromCraftZone);
-            foreach (var e in effects)
+            craftZone.onDragEnter.AddListener(AddSpellComponentToCraftZone);
+
+            // add effects
+            CreateComponents(effectComponentItemPrefab, effects, effectZone);
+            // add targets
+            CreateComponents(targetComponentItemPrefab, Enum.GetNames(typeof(SpellTarget)), targetZone);
+        }
+
+        private void CreateComponents(GameObject prefab, IEnumerable<object> components, DropZone zone)
+        {
+            foreach (var c in components)
             {
-                var effectComponent = Instantiate(effectComponentItemPrefab, effectZone.transform);
-                var draggable = effectComponent.GetComponent<Draggable>();
-                draggable.data = e;
+                var component = Instantiate(prefab, zone.transform);
+                var draggable = component.GetComponent<Draggable>();
+                draggable.data = c;
             }
+        }
+
+        private void AddSpellComponentToCraftZone()
+        {
+            //throw new NotImplementedException();
         }
 
         private void RemoveSpellComponentFromCraftZone(Draggable draggable)

@@ -3133,6 +3133,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 50819ff2f779fd44e970e80eb7c9ac5e, type: 2}
   effectComponentItemPrefab: {fileID: 2215705614157356485, guid: 31a41cc5129f5d0ad946b18c7d83ca72,
     type: 3}
+  targetComponentItemPrefab: {fileID: 7295709146673716624, guid: 9f346487c9c4f51239cd3f4c57f341a5,
+    type: 3}
 --- !u!1 &1604447743
 GameObject:
   m_ObjectHideFlags: 0
@@ -4372,6 +4374,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5376112817662613561, guid: 0a768eb4db10888d3aefaadf1c842c90,
+        type: 3}
+      propertyPath: droppableDataTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376112817662613561, guid: 0a768eb4db10888d3aefaadf1c842c90,
+        type: 3}
+      propertyPath: droppableDataTypes.Array.data[0]
+      value: "SpellEffect\x13"
+      objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520548, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_Spacing.x
@@ -4406,16 +4418,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VerticalFit
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5376112817662613561, guid: 0a768eb4db10888d3aefaadf1c842c90,
-        type: 3}
-      propertyPath: droppableDataTypes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5376112817662613561, guid: 0a768eb4db10888d3aefaadf1c842c90,
-        type: 3}
-      propertyPath: droppableDataTypes.Array.data[0]
-      value: "SpellEffect\x13"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a768eb4db10888d3aefaadf1c842c90, type: 3}
