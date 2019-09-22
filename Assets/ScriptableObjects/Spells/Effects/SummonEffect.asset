@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b9e75b50c62a043ae8cf6ba1f003f2, type: 3}
   m_Name: SummonEffect
   m_EditorClassIdentifier: 
-  effectName: summon
+  effectName: Summon
   circleEffect: {fileID: 0}
   missileEffect: {fileID: 0}
   duration: 0

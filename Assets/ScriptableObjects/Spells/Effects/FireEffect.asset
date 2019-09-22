@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b9e75b50c62a043ae8cf6ba1f003f2, type: 3}
   m_Name: FireEffect
   m_EditorClassIdentifier: 
-  effectName: fire
+  effectName: Fire
   circleEffect: {fileID: 1479791270519732, guid: 8fed2531256570741b8b7b14ae472c8b,
     type: 3}
+  missileEffect: {fileID: 0}
   duration: 1
   intervalTime: 2
   emissionChance: 0.5
   emitOnStart: 1
   effectEntryStates:
   - {fileID: 11400000, guid: 4e5ea01ba8198bd4282f7b717def2485, type: 2}
+  effectEntryEvents: []
+  usesCharacterStateMachine: 1
   noiseRadius: 2

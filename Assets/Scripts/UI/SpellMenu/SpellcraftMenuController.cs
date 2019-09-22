@@ -26,7 +26,7 @@ namespace Scripts.UI
         void Start()
         {
             craftZone.onDragFailed.AddListener(RemoveSpellComponentFromCraftZone);
-            craftZone.onDragEnter.AddListener(AddSpellComponentToCraftZone);
+            craftZone.onDrop.AddListener(AddSpellComponentToCraftZone);
 
             // add effects
             CreateComponents(effectComponentItemPrefab, effects, effectZone);
@@ -39,18 +39,40 @@ namespace Scripts.UI
             foreach (var c in components)
             {
                 var component = Instantiate(prefab, zone.transform);
+
+                var componentUI = component.GetComponent<SpellComponentUIController>();
+
+                if (c is string)
+                {
+                    componentUI.nameText.text = (string)c;
+                }
+                else if (c is SpellEffect)
+                {
+                    componentUI.nameText.text = ((SpellEffect)c).effectName;
+                    componentUI.logoText.text = ((SpellEffect)c).effectName.Substring(0, 2).ToUpper();
+
+                }
+
                 var draggable = component.GetComponent<Draggable>();
                 draggable.data = c;
             }
         }
 
-        private void AddSpellComponentToCraftZone()
+        public void AddSpellComponentToCraftZone(Draggable draggable)
         {
+
+            Debug.Log(draggable.data);
+
             //throw new NotImplementedException();
         }
 
-        private void RemoveSpellComponentFromCraftZone(Draggable draggable)
+        public void RemoveSpellComponentFromCraftZone(Draggable draggable)
         {
+
+
+            Debug.Log(draggable.data);
+
+
             if (draggable.data is SpellEffect)
             {
                 draggable.AddDraggableToZone(effectZone);
