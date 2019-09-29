@@ -270,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -370,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 3379144027053282946, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_Text
-      value: "Targets\x13\x13"
+      value: Target scrolls
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -663,8 +663,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1552365802}
   - {fileID: 90472413}
+  - {fileID: 1552365802}
   - {fileID: 588788346}
   m_Father: {fileID: 315412613}
   m_RootOrder: 1
@@ -1025,7 +1025,18 @@ MonoBehaviour:
   m_CharacterLimit: 45
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1587985447}
+        m_MethodName: SpellNameChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -3127,6 +3138,7 @@ MonoBehaviour:
   targetZone: {fileID: 1310935531}
   modifierZone: {fileID: 995347190}
   craftZone: {fileID: 76429006}
+  spellNameInput: {fileID: 296466754}
   effects:
   - {fileID: 11400000, guid: 2526977b42fc6eb45af9c9aec61f7ee3, type: 2}
   - {fileID: 11400000, guid: 10244577f3c704968a5106e3cead52fd, type: 2}
@@ -3135,6 +3147,7 @@ MonoBehaviour:
     type: 3}
   targetComponentItemPrefab: {fileID: 7295709146673716624, guid: 9f346487c9c4f51239cd3f4c57f341a5,
     type: 3}
+  saveFilePrefix: spells/
 --- !u!1 &1604447743
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,7 +4155,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}

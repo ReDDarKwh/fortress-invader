@@ -112,12 +112,12 @@ namespace Scripts.Spells
             circleTarget.spell = caster.selectedSpell.Value;
             circleTarget.SpellOrigin = spellTarget.transform.position;
 
-            circleTarget.effects = circleTarget.spell.spellEffects.Where(x => x.circleEffect != null).Select(effect =>
+            circleTarget.effects = circleTarget.spell.spellEffects.Where(x => x.spellEffect.circleEffect != null).Select(effect =>
                     {
 
                         // init each particleSystems of each spell effect.
 
-                        var particleSystem = Instantiate(effect.circleEffect, circleTarget.transform.position, Quaternion.identity)
+                        var particleSystem = Instantiate(effect.spellEffect.circleEffect, circleTarget.transform.position, Quaternion.identity)
                           .GetComponent<ParticleSystem>();
 
                         particleSystem.transform.SetParent(circleTarget.transform);
@@ -126,7 +126,7 @@ namespace Scripts.Spells
 
                         particleSystem.Stop(false);
 
-                        main.startLifetime = main.duration = Mathf.Max(1, effect.duration);
+                        main.startLifetime = main.duration = Mathf.Max(1, effect.spellEffect.duration);
 
                         particleSystem.Play();
 

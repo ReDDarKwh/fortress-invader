@@ -66,19 +66,19 @@ namespace Scripts.Spells
                 missileTarget.SpellOrigin = transform.position;
 
 
-                missileTarget.effects = missileTarget.spell.spellEffects.Where(x => x.missileEffect != null).Select(effect =>
+                missileTarget.effects = missileTarget.spell.spellEffects.Where(x => x.spellEffect.missileEffect != null).Select(effect =>
                         {
 
                             // init each particleSystems of each spell effect.
 
-                            var particleSystem = Instantiate(effect.missileEffect, missileTarget.transform.position, Quaternion.identity)
+                            var particleSystem = Instantiate(effect.spellEffect.missileEffect, missileTarget.transform.position, Quaternion.identity)
                               .GetComponent<ParticleSystem>();
 
                             particleSystem.transform.SetParent(missileTarget.transform);
 
                             var main = particleSystem.main;
 
-                            main.startLifetime = main.duration = Mathf.Max(1, effect.duration);
+                            main.startLifetime = main.duration = Mathf.Max(1, effect.spellEffect.duration);
 
                             particleSystem.Play();
 

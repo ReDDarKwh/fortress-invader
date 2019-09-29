@@ -84,7 +84,7 @@ namespace Scripts.Spells
                 }
 
                 startTime = Time.time;
-                activeSpellEffects = new List<SpellEffect>(spell.spellEffects);
+                activeSpellEffects = new List<SpellEffect>(spell.spellEffects.Select(x => x.spellEffect));
                 lastEmissionTimes = new Dictionary<SpellEffect, float>();
 
 

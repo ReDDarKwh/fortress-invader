@@ -14,7 +14,7 @@ namespace Scripts.Spells
     public class Spell
     {
         public string spellName;
-        public List<SpellEffect> spellEffects;
+        public List<SpellEffectContainer> spellEffects;
         public SpellTarget spellTarget;
         public float createCost;
         public float manaCost;
@@ -24,6 +24,12 @@ namespace Scripts.Spells
         public int maxTargets;
         [Header("Circle/Aura target settings")]
         public float maxRadius;
+
+
+        public Spell()
+        {
+            spellEffects = new List<SpellEffectContainer>();
+        }
     }
 }
 
