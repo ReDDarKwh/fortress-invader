@@ -25,7 +25,7 @@ namespace Scripts.UI
 
         private Spell spell;
 
-        public Guid spellID = Guid.Parse("c8bd0b35-0bbc-49ef-8207-1644917b82f9");
+        public Guid spellID = Guid.Parse("d84013a0-ec83-47e2-9769-6696fdb99c6c");
 
         public string saveFilePrefix = "spells/";
 
@@ -81,11 +81,11 @@ namespace Scripts.UI
             {
                 var effect = (SpellEffect)draggable.data;
 
-                var index = spell.spellEffects.FindIndex(x => x.spellEffect.effectName == effect.effectName);
+                var index = ((List<SpellEffectContainer>)spell.spellEffects).FindIndex(x => x.spellEffect.effectName == effect.effectName);
 
                 if (index == -1)
                 {
-                    spell.spellEffects.Add(
+                    ((List<SpellEffectContainer>)spell.spellEffects).Add(
                         new SpellEffectContainer
                         {
                             spellEffect = effect,
@@ -114,10 +114,10 @@ namespace Scripts.UI
                 draggable.AddDraggableToZone(effectZone);
 
                 var effect = (SpellEffect)draggable.data;
-                var index = spell.spellEffects.FindIndex(x => x.spellEffect.effectName == effect.effectName);
+                var index = ((List<SpellEffectContainer>)spell.spellEffects).FindIndex(x => x.spellEffect.effectName == effect.effectName);
                 if (index != -1)
                 {
-                    spell.spellEffects.RemoveAt(index);
+                    ((List<SpellEffectContainer>)spell.spellEffects).RemoveAt(index);
                 }
             }
             else if (draggable.data is string)
@@ -137,11 +137,23 @@ namespace Scripts.UI
         protected override void BeforeClose()
         {
             //Save();
+
+            // clear craftZone;
+            foreach (Transform child in craftZone.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
         private void Save()
         {
             var spellPath = saveFilePrefix + spellID;
-            SaveGame.Save<Spell>(spellPath, spell);
+            SaveGame.Save<SavedSpell>(spellPath, Spell.ToSavedSpell(spell));
+        }
+
+        public void RemoveSpell()
+        {
+            var spellPath = saveFilePrefix + spellID;
+            SaveGame.Delete(spellPath);
         }
 
         protected override void BeforeOpen()
@@ -156,7 +168,7 @@ namespace Scripts.UI
             var spellExists = SaveGame.Exists(spellPath);
 
             spell = spellExists ?
-            SaveGame.Load<Spell>(spellPath) : new Spell();
+            Spell.FromSavedSpell(SaveGame.Load<SavedSpell>(spellPath), effects) : new Spell();
 
             spellNameInput.text = spell.spellName;
 
@@ -164,13 +176,10 @@ namespace Scripts.UI
             {
                 CreateComponent(effectComponentItemPrefab, effectContainer.spellEffect, craftZone, effectContainer.position);
             }
-
-
         }
 
         public void SpellNameChanged(string value)
         {
-
             spell.spellName = value;
             Save();
         }

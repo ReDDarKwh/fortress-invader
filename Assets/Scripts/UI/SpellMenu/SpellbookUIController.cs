@@ -19,6 +19,7 @@ namespace Scripts.UI
         // public SpellEffect spellEffect;
 
         public SpellcraftMenuController spellcraftMenu;
+        public SpellbookMenuController spellbookMenu;
 
         private void CloseMenus(SpellMenu menu)
         {
@@ -27,7 +28,14 @@ namespace Scripts.UI
 
         public void OpenSpellcraftMenu()
         {
+            spellbookMenu.Close();
             spellcraftMenu.Open();
+        }
+
+        public void OpenSpellbookMenu()
+        {
+            spellcraftMenu.Close();
+            spellbookMenu.Open();
         }
 
 

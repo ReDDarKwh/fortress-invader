@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -34,6 +35,8 @@ namespace Scripts.Spells
 
         public bool usesCharacterStateMachine = true;
         public float noiseRadius;
+
+
     }
 
     // public enum SpellEffectType
