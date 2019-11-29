@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BayatGames.SaveGameFree;
 using Scripts.Spells;
+using System.IO;
 
 
 
@@ -42,15 +43,17 @@ namespace Scripts.UI
         // Start is called before the first frame update
         void Start()
         {
-            // spellbook = SaveGame.Exists("spellbook") ?
-            //     SaveGame.Load<List<Spell>>("spellbook") : new List<Spell>();
+            FileInfo[] files = SaveGame.GetFiles("spells");
 
-            // foreach (var spell in spellbook)
-            // {
-            //     var spellElement = Instantiate(spellElementPrefab, spellbookContainerElement.transform)
-            //     .GetComponent<SpellUIElementController>();
-            //     spellElement.spell = spell;
-            // }
+            foreach (var file in files)
+            {
+                var spell = SaveGame.Load<SavedSpell>("spells/" + file.Name);
+                Debug.Log(spell.spellName);
+
+                // var spellElement = Instantiate(spellElementPrefab, spellbookContainerElement.transform)
+                // .GetComponent<SpellUIElementController>();
+                // spellElement.spell = spell;
+            }
 
             // Debug.Log(spellbook);
         }

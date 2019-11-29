@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -165,23 +165,15 @@ MonoBehaviour:
   onDragEnter:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onDragExit:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onDrop:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Scripts.UI.DropEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   onDragFailed:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Scripts.UI.DropFailedEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   droppableDataTypes: []
 --- !u!114 &76429007
 MonoBehaviour:
@@ -201,8 +193,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b6b5fb657eacb6f8abfed8e9f082bd7c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -290,22 +280,22 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300.75
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -85.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 171
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -315,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -325,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -340,32 +330,32 @@ PrefabInstance:
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300.75
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027053282946, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -375,52 +365,52 @@ PrefabInstance:
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -103
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026231319422, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -460,22 +450,22 @@ PrefabInstance:
     - target: {fileID: 3379144026847338309, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026847338309, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -485,22 +475,22 @@ PrefabInstance:
     - target: {fileID: 3379144026741571870, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026741571870, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -559,10 +549,10 @@ RectTransform:
   m_Father: {fileID: 1690125304}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 302.75, y: -25}
+  m_SizeDelta: {x: 605.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91867163
 MonoBehaviour:
@@ -582,8 +572,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -676,8 +664,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d3e1d323d132b2b13883761d089155de, type: 3}
     m_FontSize: 20
@@ -748,10 +734,10 @@ RectTransform:
   m_Father: {fileID: 315412613}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 916.25, y: -261.5}
+  m_SizeDelta: {x: 601.5, y: 513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119789716
 MonoBehaviour:
@@ -794,8 +780,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -848,9 +832,9 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &154611589
 MonoBehaviour:
@@ -897,8 +881,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Scrollbar+ScrollEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &154611590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,8 +899,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -970,10 +950,10 @@ RectTransform:
   m_Father: {fileID: 1561101716}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 661.5, y: -35}
+  m_SizeDelta: {x: 130, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &157081811
 MonoBehaviour:
@@ -1037,8 +1017,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &157081812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,8 +1035,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 22f29dcaf758a618bb86e3fe97f9f0aa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1108,10 +1084,10 @@ RectTransform:
   m_Father: {fileID: 865018879}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 152.5, y: -35}
-  m_SizeDelta: {x: 285, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206891921
 MonoBehaviour:
@@ -1131,8 +1107,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 91186f3c996cac347a598da19050bd5c, type: 3}
     m_FontSize: 40
@@ -1256,13 +1230,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -1288,8 +1258,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1338,10 +1306,10 @@ RectTransform:
   m_Father: {fileID: 865018879}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382, y: -35}
-  m_SizeDelta: {x: 174, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &315412612
 GameObject:
@@ -1378,10 +1346,10 @@ RectTransform:
   m_Father: {fileID: 1587985443}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 619, y: -344}
+  m_SizeDelta: {x: 1222, y: 528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315412614
 MonoBehaviour:
@@ -1469,9 +1437,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: -17}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &345148491
 MonoBehaviour:
@@ -1491,8 +1459,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1660,8 +1626,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -1754,22 +1718,22 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300.75
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -427.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 171
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -1779,7 +1743,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -1789,7 +1753,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -1804,32 +1768,32 @@ PrefabInstance:
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300.75
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027053282946, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -1839,52 +1803,52 @@ PrefabInstance:
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -103
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026231319422, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -1924,22 +1888,22 @@ PrefabInstance:
     - target: {fileID: 3379144026847338309, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026847338309, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -1949,22 +1913,22 @@ PrefabInstance:
     - target: {fileID: 3379144026741571870, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026741571870, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -2012,7 +1976,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2034,8 +1998,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2143,8 +2105,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &802730535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2163,8 +2123,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 22f29dcaf758a618bb86e3fe97f9f0aa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2219,10 +2177,10 @@ RectTransform:
   m_Father: {fileID: 1538374101}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 334.5, y: -45}
-  m_SizeDelta: {x: 653, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865018880
 MonoBehaviour:
@@ -2242,8 +2200,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b9f7db3d6da1a181da970a00434e400b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2375,7 +2331,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 8}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &939878899
 MonoBehaviour:
@@ -2448,7 +2404,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2470,8 +2426,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2556,8 +2510,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d3e1d323d132b2b13883761d089155de, type: 3}
     m_FontSize: 20
@@ -2671,8 +2623,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 1db0d7bbe21fab1cb85beef939013f6b, type: 3}
     m_FontSize: 20
@@ -2729,10 +2679,10 @@ RectTransform:
   m_Father: {fileID: 1690125304}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 302.75, y: -236.5}
+  m_SizeDelta: {x: 605.5, y: 373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137343024
 MonoBehaviour:
@@ -2772,8 +2722,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b6b5fb657eacb6f8abfed8e9f082bd7c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2846,8 +2794,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: cecf9eed885f317a082739d366f0a61d, type: 3}
     m_FontSize: 25
@@ -2913,10 +2859,10 @@ RectTransform:
   m_Father: {fileID: 865018879}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 556, y: -35}
-  m_SizeDelta: {x: 174, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1374519431
 GameObject:
@@ -2950,10 +2896,10 @@ RectTransform:
   m_Father: {fileID: 2028823850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 280.25, y: -35}
+  m_SizeDelta: {x: 540.5, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1374519433
 MonoBehaviour:
@@ -2973,8 +2919,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 91186f3c996cac347a598da19050bd5c, type: 3}
     m_FontSize: 40
@@ -3052,8 +2996,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -3200,8 +3142,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d3e1d323d132b2b13883761d089155de, type: 3}
     m_FontSize: 20
@@ -3243,7 +3183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1538374101
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3283,8 +3223,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 42ab75258333e51d9a65600be4c9fcd6, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3376,10 +3314,10 @@ RectTransform:
   m_Father: {fileID: 2028823850}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1212, y: -35}
+  m_SizeDelta: {x: 661.5, y: 70}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1561101717
 MonoBehaviour:
@@ -3423,7 +3361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1587985443
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3486,8 +3424,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 42ab75258333e51d9a65600be4c9fcd6, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3564,10 +3500,10 @@ RectTransform:
   m_Father: {fileID: 1538374101}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 334.5, y: -323}
-  m_SizeDelta: {x: 653, y: 486}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1604447746
 CanvasRenderer:
@@ -3699,10 +3635,10 @@ RectTransform:
   m_Father: {fileID: 315412613}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 307.75, y: -261.5}
+  m_SizeDelta: {x: 605.5, y: 513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690125305
 MonoBehaviour:
@@ -3722,8 +3658,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c97531b6be49efab1bc4ffb411e8a755, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3938,8 +3872,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c97531b6be49efab1bc4ffb411e8a755, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3987,8 +3919,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2020914228
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,13 +4010,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -4112,8 +4038,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4187,10 +4111,10 @@ RectTransform:
   m_Father: {fileID: 1587985443}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 619, y: -45}
+  m_SizeDelta: {x: 1222, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2028823851
 MonoBehaviour:
@@ -4253,8 +4177,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b9f7db3d6da1a181da970a00434e400b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4306,10 +4228,10 @@ RectTransform:
   m_Father: {fileID: 1561101716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 526.5, y: -35}
+  m_SizeDelta: {x: 130, y: 50}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2036055384
 MonoBehaviour:
@@ -4362,8 +4284,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2036055385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4382,8 +4302,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 22f29dcaf758a618bb86e3fe97f9f0aa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4436,9 +4354,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: -17}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2054305369
 MonoBehaviour:
@@ -4485,8 +4403,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Scrollbar+ScrollEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2054305370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4505,8 +4421,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4557,10 +4471,10 @@ RectTransform:
   m_Father: {fileID: 1690125304}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 302.75, y: -468}
+  m_SizeDelta: {x: 605.5, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066386313
 MonoBehaviour:
@@ -4580,8 +4494,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b6b5fb657eacb6f8abfed8e9f082bd7c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4689,22 +4601,22 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300.75
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -256.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 171
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -4714,7 +4626,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -4724,7 +4636,7 @@ PrefabInstance:
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -4739,82 +4651,82 @@ PrefabInstance:
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300.75
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026397379133, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -103
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 601.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027368520549, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027361616197, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026231319422, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -4854,22 +4766,22 @@ PrefabInstance:
     - target: {fileID: 3379144026847338309, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026847338309, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144025970681557, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
@@ -4879,22 +4791,22 @@ PrefabInstance:
     - target: {fileID: 3379144026741571870, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144026741571870, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379144027708986757, guid: 0a768eb4db10888d3aefaadf1c842c90,
         type: 3}
