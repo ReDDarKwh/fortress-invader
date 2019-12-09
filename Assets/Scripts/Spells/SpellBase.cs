@@ -7,6 +7,8 @@ namespace Scripts.Spells
     {
         public string spellName;
         public SpellTarget spellTarget;
+
+        public Vector2 spellTargetPosition;
         public float createCost;
         public float manaCost;
         [Header("Cost for AI to travel in a area with this spell active")]

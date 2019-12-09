@@ -27,6 +27,7 @@ namespace Scripts.Spells
                 .Select(x => new SavedSpellEffectContainer(x.spellEffect.effectName, x.position))
                 .ToList(),
                 spellTarget = spell.spellTarget,
+                spellTargetPosition = spell.spellTargetPosition,
                 createCost = spell.createCost,
                 manaCost = spell.manaCost,
                 travelCost = spell.travelCost,
@@ -46,8 +47,9 @@ namespace Scripts.Spells
                 {
                     spellEffect = effects[x.item1],
                     position = x.item2
-                }),
+                }).ToList(),
                 spellTarget = spell.spellTarget,
+                spellTargetPosition = spell.spellTargetPosition,
                 createCost = spell.createCost,
                 manaCost = spell.manaCost,
                 travelCost = spell.travelCost,

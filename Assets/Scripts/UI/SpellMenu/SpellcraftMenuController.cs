@@ -17,7 +17,7 @@ namespace Scripts.UI
         public DropZone modifierZone;
         public DropZone craftZone;
         public InputField spellNameInput;
-        public List<SpellEffect> effects;
+        public EffectContainer ec;
 
         public GameObject effectComponentItemPrefab;
 
@@ -25,7 +25,7 @@ namespace Scripts.UI
 
         private Spell spell;
 
-        public Guid spellID = Guid.Parse("d84013a0-ec83-47e2-9769-6696fdb99c6c");
+        public Guid spellID;
 
         public string saveFilePrefix = "spells/";
 
@@ -34,13 +34,6 @@ namespace Scripts.UI
         {
             craftZone.onDragFailed.AddListener(RemoveSpellComponentFromCraftZone);
             craftZone.onDrop.AddListener(AddSpellComponentToCraftZone);
-
-            // add effects
-            CreateComponents(effectComponentItemPrefab, effects, effectZone, Vector3.zero);
-            // add targets
-            CreateComponents(targetComponentItemPrefab, Enum.GetNames(typeof(SpellTarget)), targetZone, Vector3.zero);
-
-            BeforeOpen();
         }
 
         private void CreateComponent(GameObject prefab, object component, DropZone zone, Vector3 position)
@@ -102,6 +95,8 @@ namespace Scripts.UI
             {
                 Enum.TryParse<SpellTarget>((string)draggable.data, out SpellTarget target);
                 spell.spellTarget = target;
+                spell.spellTargetPosition = draggable.GetComponent<RectTransform>().anchoredPosition;
+                RefreshCraftZone();
             }
 
             Save();
@@ -137,13 +132,55 @@ namespace Scripts.UI
         protected override void BeforeClose()
         {
             //Save();
+            ClearCraftZone();
+        }
 
+        private void RefreshCraftZone(){
+            ClearCraftZone();
+            FillCraftZone();
+        }
+
+        private void ClearCraftZone()
+        {
             // clear craftZone;
             foreach (Transform child in craftZone.transform)
             {
                 Destroy(child.gameObject);
             }
+
+            foreach (Transform child in effectZone.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (Transform child in targetZone.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
+
+        private void FillCraftZone()
+        {
+
+            foreach (var effectContainer in spell.spellEffects)
+            {
+                CreateComponent(effectComponentItemPrefab, effectContainer.spellEffect, craftZone, effectContainer.position);
+            }
+
+            if (spell.spellTarget != 0)
+            {
+                CreateComponent(targetComponentItemPrefab, spell.spellTarget.ToString(), craftZone, spell.spellTargetPosition);
+            }
+
+            var usedEffets = spell.spellEffects.Select(x => x.spellEffect);
+            // add effects
+            CreateComponents(effectComponentItemPrefab, ec.effects.Where(x => !usedEffets.Contains(x)), effectZone, Vector3.zero);
+            // add targets
+            CreateComponents(targetComponentItemPrefab, Enum.GetNames(typeof(SpellTarget))
+            .Where(x => x != spell.spellTarget.ToString()), targetZone, Vector3.zero);
+
+        }
+
         private void Save()
         {
             var spellPath = saveFilePrefix + spellID;
@@ -159,7 +196,7 @@ namespace Scripts.UI
         protected override void BeforeOpen()
         {
             // new spell;
-            if (spellID == Guid.Empty)
+            if (spellID == null || spellID == Guid.Empty)
             {
                 spellID = Guid.NewGuid();
             }
@@ -168,14 +205,10 @@ namespace Scripts.UI
             var spellExists = SaveGame.Exists(spellPath);
 
             spell = spellExists ?
-            Spell.FromSavedSpell(SaveGame.Load<SavedSpell>(spellPath), effects) : new Spell();
+            Spell.FromSavedSpell(SaveGame.Load<SavedSpell>(spellPath), ec.effects) : new Spell();
 
             spellNameInput.text = spell.spellName;
-
-            foreach (var effectContainer in spell.spellEffects)
-            {
-                CreateComponent(effectComponentItemPrefab, effectContainer.spellEffect, craftZone, effectContainer.position);
-            }
+            FillCraftZone();
         }
 
         public void SpellNameChanged(string value)

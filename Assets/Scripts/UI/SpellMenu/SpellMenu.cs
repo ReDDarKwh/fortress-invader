@@ -11,6 +11,7 @@ namespace Scripts.UI
     public abstract class SpellMenu : MonoBehaviour
     {
 
+        public SpellbookUIController uiController;
 
         protected abstract void BeforeClose();
 

@@ -140,15 +140,14 @@ public class PlayerHUDController : MonoBehaviour
             minimapElement.gameObject.SetActive(x);
         });
 
-        for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
-        {
-            createSpellSlot(i, playerCharacter.spellCaster.spells[i - 1]);
+        if(playerCharacter.spellCaster.spells != null){
+            for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
+            {
+                createSpellSlot(i, playerCharacter.spellCaster.spells[i - 1]);
+            }
         }
         // create "no spell" slot
         createSpellSlot(0, null);
-
-
-
     }
 
     private IEnumerator UpdateChaosText(float x)

@@ -2096,7 +2096,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1765235882}
         m_MethodName: OpenSpellcraftMenu
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2568,6 +2568,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1055501176
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1765235881}
+    m_Modifications:
+    - target: {fileID: 2994266019515423644, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_Name
+      value: EffectsContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -53.9051
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -114.718445
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -44.57225
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70a6c62c9f65c9d44b7ad538be272fb1, type: 3}
+--- !u!4 &1055501177 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7513783024841175540, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1055501176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1081277833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,6 +3350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0076a72ed7b211abf6f86e531682f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiController: {fileID: 1765235882}
+  spellElementPrefab: {fileID: 8140539437288429631, guid: ea574e2c047a8f2b787c321f9668d290,
+    type: 3}
+  spellbookContainerElement: {fileID: 939878897}
+  ec: {fileID: 1939545251}
 --- !u!224 &1552365802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3379144026299955165, guid: 0a768eb4db10888d3aefaadf1c842c90,
@@ -3453,15 +3533,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f38a318c829f4d84bff76c6130871a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiController: {fileID: 1765235882}
   effectZone: {fileID: 103008335}
   targetZone: {fileID: 1310935531}
   modifierZone: {fileID: 995347190}
   craftZone: {fileID: 76429006}
   spellNameInput: {fileID: 296466754}
-  effects:
-  - {fileID: 11400000, guid: 2526977b42fc6eb45af9c9aec61f7ee3, type: 2}
-  - {fileID: 11400000, guid: 10244577f3c704968a5106e3cead52fd, type: 2}
-  - {fileID: 11400000, guid: 50819ff2f779fd44e970e80eb7c9ac5e, type: 2}
+  ec: {fileID: 1939545251}
   effectComponentItemPrefab: {fileID: 2215705614157356485, guid: 31a41cc5129f5d0ad946b18c7d83ca72,
     type: 3}
   targetComponentItemPrefab: {fileID: 7295709146673716624, guid: 9f346487c9c4f51239cd3f4c57f341a5,
@@ -3791,6 +3869,7 @@ RectTransform:
   m_Children:
   - {fileID: 1538374101}
   - {fileID: 1587985443}
+  - {fileID: 1055501177}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3906,9 +3985,9 @@ MonoBehaviour:
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 25
   m_Viewport: {fileID: 345148490}
   m_HorizontalScrollbar: {fileID: 154611589}
   m_VerticalScrollbar: {fileID: 2054305369}
@@ -3919,6 +3998,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1939545251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811857167283463006, guid: 70a6c62c9f65c9d44b7ad538be272fb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1055501176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2294806a03cd374bb555f7f9cb5bf55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020914228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,7 +4029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2020914229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4397,8 +4488,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 995042508}
   m_HandleRect: {fileID: 995042507}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

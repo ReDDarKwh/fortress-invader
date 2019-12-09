@@ -4,8 +4,7 @@ using UnityEngine;
 using BayatGames.SaveGameFree;
 using Scripts.Spells;
 using System.IO;
-
-
+using System;
 
 namespace Scripts.UI
 {
@@ -14,8 +13,7 @@ namespace Scripts.UI
     public class SpellbookUIController : MonoBehaviour
     {
 
-        // public GameObject spellElementPrefab;
-        // public GameObject spellbookContainerElement;
+
         // public List<Spell> spellbook;
         // public SpellEffect spellEffect;
 
@@ -27,9 +25,10 @@ namespace Scripts.UI
             menu.Close();
         }
 
-        public void OpenSpellcraftMenu()
+        public void OpenSpellcraftMenu(string spellId)
         {
             spellbookMenu.Close();
+            spellcraftMenu.spellID =  String.IsNullOrEmpty(spellId)? Guid.Empty : Guid.Parse(spellId);
             spellcraftMenu.Open();
         }
 
@@ -43,17 +42,6 @@ namespace Scripts.UI
         // Start is called before the first frame update
         void Start()
         {
-            FileInfo[] files = SaveGame.GetFiles("spells");
-
-            foreach (var file in files)
-            {
-                var spell = SaveGame.Load<SavedSpell>("spells/" + file.Name);
-                Debug.Log(spell.spellName);
-
-                // var spellElement = Instantiate(spellElementPrefab, spellbookContainerElement.transform)
-                // .GetComponent<SpellUIElementController>();
-                // spellElement.spell = spell;
-            }
 
             // Debug.Log(spellbook);
         }
