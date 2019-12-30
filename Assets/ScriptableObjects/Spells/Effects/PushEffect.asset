@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46b9e75b50c62a043ae8cf6ba1f003f2, type: 3}
-  m_Name: FlameEffect
+  m_Name: PushEffect
   m_EditorClassIdentifier: 
-  effectName: Flame
-  circleEffect: {fileID: 1479791270519732, guid: 8fed2531256570741b8b7b14ae472c8b,
-    type: 3}
+  effectName: Push
+  circleEffect: {fileID: 0}
   missileEffect: {fileID: 0}
-  duration: 2000
-  intervalTime: 2
-  emissionChance: 0.5
+  duration: 0
+  intervalTime: 0
+  emissionChance: 1
   emitOnStart: 1
   effectEntryStates:
-  - {fileID: 11400000, guid: 4e5ea01ba8198bd4282f7b717def2485, type: 2}
+  - {fileID: 11400000, guid: c4a490958c2d19543a07c584ab352119, type: 2}
   effectEntryEvents: []
   usesCharacterStateMachine: 1
   noiseRadius: 0

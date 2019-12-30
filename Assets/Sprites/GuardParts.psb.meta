@@ -1,68 +1,189 @@
 fileFormatVersion: 2
 guid: c012dce861cac02418ba4128aa14ba7f
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: GuardParts_GO/GuardParts_GO
-    100020: GuardParts_GO/GuardParts_GO/ArmLeft
-    100022: GuardParts_GO/GuardParts_GO/ArmRight
-    100024: GuardParts_GO/GuardParts_GO/bone_1
-    100026: GuardParts_GO/GuardParts_GO/bone_1/bone_2
-    100028: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3
-    100030: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3/bone_4
-    100032: GuardParts_GO/GuardParts_GO/bone_1/bone_5
-    100034: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6
-    100036: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6/bone_7
-    100038: GuardParts_GO/GuardParts_GO/bone_1/bone_8
-    100042: GuardParts_GO/GuardParts_GO/ForearmLeft
-    100044: GuardParts_GO/GuardParts_GO/ForearmRight
-    100046: GuardParts_GO/GuardParts_GO/HandLeft
-    100048: GuardParts_GO/GuardParts_GO/HandRight
-    100050: GuardParts_GO/GuardParts_GO/Head
-    100052: GuardParts_GO/GuardParts_GO/Torso
-    400000: GuardParts_GO/GuardParts_GO/Transform
-    400020: GuardParts_GO/GuardParts_GO/ArmLeft/Transform
-    400022: GuardParts_GO/GuardParts_GO/ArmRight/Transform
-    400024: GuardParts_GO/GuardParts_GO/bone_1/Transform
-    400026: GuardParts_GO/GuardParts_GO/bone_1/bone_2/Transform
-    400028: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3/Transform
-    400030: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3/bone_4/Transform
-    400032: GuardParts_GO/GuardParts_GO/bone_1/bone_5/Transform
-    400034: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6/Transform
-    400036: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6/bone_7/Transform
-    400038: GuardParts_GO/GuardParts_GO/bone_1/bone_8/Transform
-    400042: GuardParts_GO/GuardParts_GO/ForearmLeft/Transform
-    400044: GuardParts_GO/GuardParts_GO/ForearmRight/Transform
-    400046: GuardParts_GO/GuardParts_GO/HandLeft/Transform
-    400048: GuardParts_GO/GuardParts_GO/HandRight/Transform
-    400050: GuardParts_GO/GuardParts_GO/Head/Transform
-    400052: GuardParts_GO/GuardParts_GO/Torso/Transform
-    2800000: GuardParts
-    11400018: GuardParts_GO/GuardParts_GO/ArmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400020: GuardParts_GO/GuardParts_GO/ArmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400024: GuardParts_GO/GuardParts_GO/ForearmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400026: GuardParts_GO/GuardParts_GO/ForearmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400028: GuardParts_GO/GuardParts_GO/HandLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400030: GuardParts_GO/GuardParts_GO/HandRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400032: GuardParts_GO/GuardParts_GO/Head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400034: GuardParts_GO/GuardParts_GO/Torso/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200018: GuardParts_GO/GuardParts_GO/ArmLeft/SpriteRenderer
-    21200020: GuardParts_GO/GuardParts_GO/ArmRight/SpriteRenderer
-    21200024: GuardParts_GO/GuardParts_GO/ForearmLeft/SpriteRenderer
-    21200026: GuardParts_GO/GuardParts_GO/ForearmRight/SpriteRenderer
-    21200028: GuardParts_GO/GuardParts_GO/HandLeft/SpriteRenderer
-    21200030: GuardParts_GO/GuardParts_GO/HandRight/SpriteRenderer
-    21200032: GuardParts_GO/GuardParts_GO/Head/SpriteRenderer
-    21200034: GuardParts_GO/GuardParts_GO/Torso/SpriteRenderer
-    21300018: ForearmRight
-    21300020: ForearmLeft
-    21300022: ArmRight
-    21300024: ArmLeft
-    21300028: HandRight
-    21300030: HandLeft
-    21300032: Head
-    21300034: Torso
-    100100000: GuardParts_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: GuardParts_GO/GuardParts_GO
+  - first:
+      1: 100020
+    second: GuardParts_GO/GuardParts_GO/ArmLeft
+  - first:
+      1: 100022
+    second: GuardParts_GO/GuardParts_GO/ArmRight
+  - first:
+      1: 100024
+    second: GuardParts_GO/GuardParts_GO/bone_1
+  - first:
+      1: 100026
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_2
+  - first:
+      1: 100028
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3
+  - first:
+      1: 100030
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3/bone_4
+  - first:
+      1: 100032
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_5
+  - first:
+      1: 100034
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6
+  - first:
+      1: 100036
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6/bone_7
+  - first:
+      1: 100038
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_8
+  - first:
+      1: 100042
+    second: GuardParts_GO/GuardParts_GO/ForearmLeft
+  - first:
+      1: 100044
+    second: GuardParts_GO/GuardParts_GO/ForearmRight
+  - first:
+      1: 100046
+    second: GuardParts_GO/GuardParts_GO/HandLeft
+  - first:
+      1: 100048
+    second: GuardParts_GO/GuardParts_GO/HandRight
+  - first:
+      1: 100050
+    second: GuardParts_GO/GuardParts_GO/Head
+  - first:
+      1: 100052
+    second: GuardParts_GO/GuardParts_GO/Torso
+  - first:
+      4: 400000
+    second: GuardParts_GO/GuardParts_GO/Transform
+  - first:
+      4: 400020
+    second: GuardParts_GO/GuardParts_GO/ArmLeft/Transform
+  - first:
+      4: 400022
+    second: GuardParts_GO/GuardParts_GO/ArmRight/Transform
+  - first:
+      4: 400024
+    second: GuardParts_GO/GuardParts_GO/bone_1/Transform
+  - first:
+      4: 400026
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400028
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3/Transform
+  - first:
+      4: 400030
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_2/bone_3/bone_4/Transform
+  - first:
+      4: 400032
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_5/Transform
+  - first:
+      4: 400034
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6/Transform
+  - first:
+      4: 400036
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_5/bone_6/bone_7/Transform
+  - first:
+      4: 400038
+    second: GuardParts_GO/GuardParts_GO/bone_1/bone_8/Transform
+  - first:
+      4: 400042
+    second: GuardParts_GO/GuardParts_GO/ForearmLeft/Transform
+  - first:
+      4: 400044
+    second: GuardParts_GO/GuardParts_GO/ForearmRight/Transform
+  - first:
+      4: 400046
+    second: GuardParts_GO/GuardParts_GO/HandLeft/Transform
+  - first:
+      4: 400048
+    second: GuardParts_GO/GuardParts_GO/HandRight/Transform
+  - first:
+      4: 400050
+    second: GuardParts_GO/GuardParts_GO/Head/Transform
+  - first:
+      4: 400052
+    second: GuardParts_GO/GuardParts_GO/Torso/Transform
+  - first:
+      28: 2800000
+    second: GuardParts
+  - first:
+      114: 11400018
+    second: GuardParts_GO/GuardParts_GO/ArmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400020
+    second: GuardParts_GO/GuardParts_GO/ArmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400024
+    second: GuardParts_GO/GuardParts_GO/ForearmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400026
+    second: GuardParts_GO/GuardParts_GO/ForearmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400028
+    second: GuardParts_GO/GuardParts_GO/HandLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400030
+    second: GuardParts_GO/GuardParts_GO/HandRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400032
+    second: GuardParts_GO/GuardParts_GO/Head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400034
+    second: GuardParts_GO/GuardParts_GO/Torso/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200018
+    second: GuardParts_GO/GuardParts_GO/ArmLeft/SpriteRenderer
+  - first:
+      212: 21200020
+    second: GuardParts_GO/GuardParts_GO/ArmRight/SpriteRenderer
+  - first:
+      212: 21200024
+    second: GuardParts_GO/GuardParts_GO/ForearmLeft/SpriteRenderer
+  - first:
+      212: 21200026
+    second: GuardParts_GO/GuardParts_GO/ForearmRight/SpriteRenderer
+  - first:
+      212: 21200028
+    second: GuardParts_GO/GuardParts_GO/HandLeft/SpriteRenderer
+  - first:
+      212: 21200030
+    second: GuardParts_GO/GuardParts_GO/HandRight/SpriteRenderer
+  - first:
+      212: 21200032
+    second: GuardParts_GO/GuardParts_GO/Head/SpriteRenderer
+  - first:
+      212: 21200034
+    second: GuardParts_GO/GuardParts_GO/Torso/SpriteRenderer
+  - first:
+      213: 21300018
+    second: ForearmRight
+  - first:
+      213: 21300020
+    second: ForearmLeft
+  - first:
+      213: 21300022
+    second: ArmRight
+  - first:
+      213: 21300024
+    second: ArmLeft
+  - first:
+      213: 21300028
+    second: HandRight
+  - first:
+      213: 21300030
+    second: HandLeft
+  - first:
+      213: 21300032
+    second: Head
+  - first:
+      213: 21300034
+    second: Torso
+  - first:
+      1001: 100100000
+    second: GuardParts_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -133,6 +254,7 @@ ScriptedImporter:
       width: 512
       height: 512
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,6 +278,7 @@ ScriptedImporter:
       width: 38
       height: 59
     spriteID: 914d7fc75d65d024e9f9de3cc565027a
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 15.882782, y: 52.647934, z: 0}
@@ -528,6 +651,7 @@ ScriptedImporter:
       width: 38
       height: 59
     spriteID: bf97196b1a19dad40bb9dfd395c0b1fc
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 14.117554, y: 4.909424, z: 0}
@@ -911,6 +1035,7 @@ ScriptedImporter:
       width: 46
       height: 72
     spriteID: 02d068780d1c78f48ad45f259035f546
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 28.61081, y: 59.214294, z: 0}
@@ -1343,6 +1468,7 @@ ScriptedImporter:
       width: 46
       height: 72
     spriteID: ebe033fe31c2ba644af080bbbc6a050c
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 27.075378, y: 14.777313, z: 0}
@@ -1764,6 +1890,7 @@ ScriptedImporter:
       width: 35
       height: 43
     spriteID: 357fabbf20c84f744af5b0a349171c39
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 14.873367, y: 34.577698, z: 0}
@@ -2105,6 +2232,7 @@ ScriptedImporter:
       width: 35
       height: 43
     spriteID: 0daaf73705a3a674d9f9309610be2e4d
+    internalID: 0
     spriteBone:
     - name: bone_7
       position: {x: 14.889847, y: 10.954285, z: 0}
@@ -2446,6 +2574,7 @@ ScriptedImporter:
       width: 89
       height: 61
     spriteID: 748a5b9a4a0a51840858a22dc7eb25f7
+    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 33.97461, y: 29.897827, z: 0}
@@ -2828,6 +2957,7 @@ ScriptedImporter:
       width: 84
       height: 158
     spriteID: c1a180b1b1f5d9a43b7fbb1cc2ee968e
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 43.792725, y: 78.92313, z: 1}
@@ -3287,6 +3417,10 @@ ScriptedImporter:
   importedTextureWidth: 256
   importedTextureHeight: 256
   documentSize: {x: 512, y: 512}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 256
   textureActualHeight: 256
   spritePackingTag: 
@@ -3400,6 +3534,8 @@ ScriptedImporter:
         height: 123
       spriteId: 2e9392f5f927f714886c5f314fd889e9
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 232
         y: 94
@@ -3407,6 +3543,8 @@ ScriptedImporter:
         height: 59
       spriteId: 914d7fc75d65d024e9f9de3cc565027a
       bones: 02000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 231
         y: 354
@@ -3414,6 +3552,8 @@ ScriptedImporter:
         height: 59
       spriteId: bf97196b1a19dad40bb9dfd395c0b1fc
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 230
         y: 132
@@ -3421,6 +3561,8 @@ ScriptedImporter:
         height: 72
       spriteId: 02d068780d1c78f48ad45f259035f546
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 230
         y: 303
@@ -3428,6 +3570,8 @@ ScriptedImporter:
         height: 72
       spriteId: ebe033fe31c2ba644af080bbbc6a050c
       bones: 04000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 240
         y: 66
@@ -3435,6 +3579,8 @@ ScriptedImporter:
         height: 43
       spriteId: 357fabbf20c84f744af5b0a349171c39
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 240
         y: 399
@@ -3442,6 +3588,8 @@ ScriptedImporter:
         height: 43
       spriteId: 0daaf73705a3a674d9f9309610be2e4d
       bones: 06000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 224
         y: 226
@@ -3449,6 +3597,8 @@ ScriptedImporter:
         height: 61
       spriteId: 748a5b9a4a0a51840858a22dc7eb25f7
       bones: 07000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 211
         y: 177
@@ -3456,23 +3606,28 @@ ScriptedImporter:
         height: 158
       spriteId: c1a180b1b1f5d9a43b7fbb1cc2ee968e
       bones: 00000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
+    characterGroups: []
   boneGOs:
-  - go: {fileID: 100024, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: -2169224455266256476, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 0
-  - go: {fileID: 100026, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: 6637922899272274217, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 1
-  - go: {fileID: 100028, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: -8589251807395392149, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 2
-  - go: {fileID: 100030, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: 2586750731028253725, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 3
-  - go: {fileID: 100032, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: 8768483247183618249, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 4
-  - go: {fileID: 100034, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: -1975965094185658439, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 5
-  - go: {fileID: 100036, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: 3345777741589597523, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 6
-  - go: {fileID: 100038, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
+  - go: {fileID: 6165673972226151384, guid: c012dce861cac02418ba4128aa14ba7f, type: 3}
     index: 7
-  firstCreate: 0
   generateGOHierarchy: 0
+  textureAssetName: GuardParts Texture
+  prefabAssetName: GuardParts Prefab
+  spriteLibAssetName: GuardParts Sprite Lib

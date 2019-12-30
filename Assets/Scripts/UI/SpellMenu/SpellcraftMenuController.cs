@@ -135,7 +135,8 @@ namespace Scripts.UI
             ClearCraftZone();
         }
 
-        private void RefreshCraftZone(){
+        private void RefreshCraftZone()
+        {
             ClearCraftZone();
             FillCraftZone();
         }
@@ -176,8 +177,10 @@ namespace Scripts.UI
             // add effects
             CreateComponents(effectComponentItemPrefab, ec.effects.Where(x => !usedEffets.Contains(x)), effectZone, Vector3.zero);
             // add targets
-            CreateComponents(targetComponentItemPrefab, Enum.GetNames(typeof(SpellTarget))
-            .Where(x => x != spell.spellTarget.ToString()), targetZone, Vector3.zero);
+            CreateComponents(targetComponentItemPrefab,
+            Enum.GetNames(typeof(SpellTarget)).Where(x => x!= "NULL")
+            .Where(x => x != spell.spellTarget.ToString()), targetZone, Vector3.zero
+           );
 
         }
 

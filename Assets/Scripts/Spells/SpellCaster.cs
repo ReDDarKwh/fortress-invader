@@ -17,8 +17,7 @@ namespace Scripts.Spells
         public ReactiveProperty<Spell> selectedSpell = new ReactiveProperty<Spell>();
 
         public List<Spell> spells;
-
-
+       
 
         public GameObject missileTargetPrefab;
         public GameObject circleTargetPrefab;

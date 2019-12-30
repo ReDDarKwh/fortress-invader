@@ -1,40 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5921834205814093303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4760294453471234741}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2cb76e8f877fb647855bc006c2d93b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathFindingTargetRadius: 3
-  pathMoveSpeed: 3
---- !u!1001 &5428390921428305461
+--- !u!1001 &8575560779681135437
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 673976840835746944, guid: bf738f2482c0118419dc851c50de25ce,
+    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
-      propertyPath: m_Name
-      value: OfficerGuard
+      propertyPath: stateMachineGraphs.Array.size
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
+      propertyPath: stateMachineGraphs.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ce1e8a24d87f793438d775fa8c03df6a,
+        type: 2}
+    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
+        type: 3}
+      propertyPath: entryState
+      value: 
+      objectReference: {fileID: 11400000, guid: 54010845aa3f83844969e77d59fe5567,
+        type: 2}
     - target: {fileID: 671238189163152852, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -89.20947
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 671238189163152852, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -120.8281
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 671238189163152852, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
@@ -81,93 +79,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 633315769219650204, guid: bf738f2482c0118419dc851c50de25ce,
+    - target: {fileID: 673976840835746944, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
-      propertyPath: role
-      value: "Officer\x13"
+      propertyPath: m_Name
+      value: OfficerGuard
       objectReference: {fileID: 0}
-    - target: {fileID: 633315769219650204, guid: bf738f2482c0118419dc851c50de25ce,
+    - target: {fileID: 1157977984016214932, guid: bf738f2482c0118419dc851c50de25ce,
         type: 3}
-      propertyPath: difficultyRating
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: stateMachineGraphs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: entryState
-      value: 
-      objectReference: {fileID: 11400000, guid: 54010845aa3f83844969e77d59fe5567,
-        type: 2}
-    - target: {fileID: 633604959377423230, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: stateMachineGraphs.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: ce1e8a24d87f793438d775fa8c03df6a,
-        type: 2}
-    - target: {fileID: 5949155286415463161, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.3645082
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155286415463161, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.93120015
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155286922466060, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.16895027
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155287141296265, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.56669265
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155287141296265, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.82392937
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155288285171921, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.65121067
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155288285171921, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.75889707
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155286846293914, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.8987789
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155286846293914, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.43840227
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155287585486485, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.86074525
-      objectReference: {fileID: 0}
-    - target: {fileID: 5949155287585486485, guid: bf738f2482c0118419dc851c50de25ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.50903594
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf738f2482c0118419dc851c50de25ce, type: 3}
---- !u!1 &4760294453471234741 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 673976840835746944, guid: bf738f2482c0118419dc851c50de25ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 5428390921428305461}
-  m_PrefabAsset: {fileID: 0}

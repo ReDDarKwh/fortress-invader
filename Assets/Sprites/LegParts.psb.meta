@@ -1,13 +1,24 @@
 fileFormatVersion: 2
 guid: f4c152447b6e31d45b872c935b1f9c62
 ScriptedImporter:
-  fileIDToRecycleName:
-    2800000: LegParts
-    21300000: RightLeg
-    21300002: LeftLeg
-    21300004: RightFoot
-    21300006: LeftFoot
+  internalIDToNameTable:
+  - first:
+      28: 2800000
+    second: LegParts
+  - first:
+      213: 21300000
+    second: RightLeg
+  - first:
+      213: 21300002
+    second: LeftLeg
+  - first:
+      213: 21300004
+    second: RightFoot
+  - first:
+      213: 21300006
+    second: LeftFoot
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -78,6 +89,7 @@ ScriptedImporter:
       width: 512
       height: 512
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -100,6 +112,7 @@ ScriptedImporter:
       width: 69
       height: 44
     spriteID: ba65568ed36193b479c8a147fd0401b8
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -121,6 +134,7 @@ ScriptedImporter:
       width: 69
       height: 44
     spriteID: ab488142033a1534fae1640691ec4427
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,6 +156,7 @@ ScriptedImporter:
       width: 71
       height: 37
     spriteID: 53498f3707ac23343925e566e3457b4a
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -163,6 +178,7 @@ ScriptedImporter:
       width: 71
       height: 37
     spriteID: 4e8ed465c1d34e746a2ce7f12ab628aa
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -185,6 +201,7 @@ ScriptedImporter:
       width: 69
       height: 44
     spriteID: bd63890529eb46e4eae5f4e3cbb3a32a
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 18.528809, y: 21.319641, z: 0}
@@ -542,6 +559,7 @@ ScriptedImporter:
       width: 69
       height: 44
     spriteID: 2576de6b87f22c542a0f91f62b5d4ba2
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 16.542633, y: 22.566437, z: 0}
@@ -899,6 +917,7 @@ ScriptedImporter:
       width: 71
       height: 37
     spriteID: acf757cddcae4af46ba8eda7b1f68ded
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 20.617584, y: 17.319641, z: 0}
@@ -1271,6 +1290,7 @@ ScriptedImporter:
       width: 71
       height: 37
     spriteID: ff9de4f2af11aef49ad877596539653b
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 24.251862, y: 18.904419, z: 0}
@@ -1649,6 +1669,10 @@ ScriptedImporter:
   importedTextureWidth: 128
   importedTextureHeight: 256
   documentSize: {x: 512, y: 512}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 128
   textureActualHeight: 256
   spritePackingTag: 
@@ -1742,6 +1766,8 @@ ScriptedImporter:
         height: 44
       spriteId: bd63890529eb46e4eae5f4e3cbb3a32a
       bones: 0200000003000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 244
         y: 282
@@ -1749,6 +1775,8 @@ ScriptedImporter:
         height: 44
       spriteId: 2576de6b87f22c542a0f91f62b5d4ba2
       bones: 0000000001000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 277
         y: 227
@@ -1756,6 +1784,8 @@ ScriptedImporter:
         height: 37
       spriteId: acf757cddcae4af46ba8eda7b1f68ded
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 278
         y: 285
@@ -1763,7 +1793,12 @@ ScriptedImporter:
         height: 37
       spriteId: ff9de4f2af11aef49ad877596539653b
       bones: 01000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
+    characterGroups: []
   boneGOs: []
-  firstCreate: 0
   generateGOHierarchy: 0
+  textureAssetName: LegParts Texture
+  prefabAssetName: LegParts Prefab
+  spriteLibAssetName: LegParts Sprite Lib

@@ -52,9 +52,9 @@ namespace Scripts.Spells
                 spellTargetPosition = spell.spellTargetPosition,
                 createCost = spell.createCost,
                 manaCost = spell.manaCost,
-                travelCost = spell.travelCost,
+                travelCost = 10,//spell.travelCost,
                 maxRadius = spell.maxRadius,
-                maxTargets = spell.maxTargets
+                maxTargets = 10//spell.maxTargets
             };
         }
         public Spell()

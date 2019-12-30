@@ -56,6 +56,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 673444314370398222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -143,8 +144,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 88d412ad0e017ee4cb45c58aa7a46c6c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -154,6 +153,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &673522754717306690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1515,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 1
     mode: 0
     timeMode: 0
@@ -1632,7 +1633,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -2443,8 +2444,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -4794,7 +4848,7 @@ ParticleSystem:
 --- !u!199 &836983971057843098
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4818,6 +4872,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4912,7 +4967,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 673526786116636136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -4921,8 +4976,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -4932,6 +4985,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &633680737498213840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6305,6 +6359,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 1
     mode: 0
     timeMode: 0
@@ -6422,7 +6477,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -7233,8 +7288,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -9584,7 +9692,7 @@ ParticleSystem:
 --- !u!199 &836071852538257894
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9608,6 +9716,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -11003,6 +11112,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 0
     mode: 0
     timeMode: 0
@@ -11120,7 +11230,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -11931,8 +12041,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -14282,7 +14445,7 @@ ParticleSystem:
 --- !u!199 &837039947817703114
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -14306,6 +14469,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -14405,6 +14569,7 @@ GameObject:
   - component: {fileID: 633604959377423230}
   - component: {fileID: 633767703150014484}
   - component: {fileID: 580919497555956514}
+  - component: {fileID: 1157977984016214932}
   m_Layer: 12
   m_Name: Guard
   m_TagString: Untagged
@@ -14595,6 +14760,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1157977984016214932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673976840835746944}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2cb76e8f877fb647855bc006c2d93b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFindingTargetRadius: 3
+  pathMoveSpeed: 3
 --- !u!1 &673990472753127628
 GameObject:
   m_ObjectHideFlags: 0
@@ -14654,6 +14833,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -14733,8 +14913,6 @@ MonoBehaviour:
     onStateEnter:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls:
@@ -14749,13 +14927,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
 --- !u!1 &674019138063204874
 GameObject:
   m_ObjectHideFlags: 0
@@ -14816,7 +14990,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &632981326560959954
 MonoBehaviour:
@@ -14827,7 +15001,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674019138063204874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
@@ -14849,7 +15023,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674019138063204874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
@@ -14927,7 +15101,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674029734300790614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -14936,8 +15110,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300002, guid: de97a64e42b0a204692f484611bc2e7c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
@@ -14947,6 +15119,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &674086730712399736
 GameObject:
   m_ObjectHideFlags: 0
@@ -15005,7 +15178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674086730712399736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -15014,8 +15187,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300002, guid: de97a64e42b0a204692f484611bc2e7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -15025,6 +15196,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &633770972092193168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15102,18 +15274,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
   - state: {fileID: 11400000, guid: 7682891acbe619244b83af223d13a046, type: 2}
     onStateEnter:
       m_PersistentCalls:
@@ -15129,18 +15295,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
   - state: {fileID: 11400000, guid: 2932f37b16962454caaea574dc6faeda, type: 2}
     onStateEnter:
       m_PersistentCalls:
@@ -15156,18 +15316,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
 --- !u!1 &674142911230219760
 GameObject:
   m_ObjectHideFlags: 0
@@ -15227,7 +15381,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674142911230219760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -15236,8 +15390,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300004, guid: de97a64e42b0a204692f484611bc2e7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -15247,6 +15399,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &633192008238179848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15324,18 +15477,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
 --- !u!1 &674252124110391934
 GameObject:
   m_ObjectHideFlags: 0
@@ -15395,7 +15542,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674252124110391934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -15404,8 +15551,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: de97a64e42b0a204692f484611bc2e7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -15415,6 +15560,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &633814586104225554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15493,8 +15639,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls:
@@ -15509,13 +15653,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
 --- !u!1 &674350762264798112
 GameObject:
   m_ObjectHideFlags: 0
@@ -16876,6 +17016,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 0
     mode: 0
     timeMode: 0
@@ -16993,7 +17134,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -17804,8 +17945,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -20155,7 +20349,7 @@ ParticleSystem:
 --- !u!199 &837065036964201960
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -20179,6 +20373,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -20268,7 +20463,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674392532516002668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -20277,8 +20472,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 88d412ad0e017ee4cb45c58aa7a46c6c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
@@ -20288,6 +20481,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &674950878771372066
 GameObject:
   m_ObjectHideFlags: 0
@@ -21708,6 +21902,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 0
     mode: 0
     timeMode: 0
@@ -21825,7 +22020,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -22636,8 +22831,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -24992,7 +25240,7 @@ ParticleSystem:
 --- !u!199 &836205741066143376
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -25016,6 +25264,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25105,7 +25354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 674961039277371226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -25114,8 +25363,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300006, guid: de97a64e42b0a204692f484611bc2e7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -25125,6 +25372,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3671382978281758185
 GameObject:
   m_ObjectHideFlags: 0
@@ -25181,6 +25429,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25219,7 +25468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4606591235255561370
 Transform:
   m_ObjectHideFlags: 0
@@ -25293,7 +25542,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5804238098096686960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -25302,8 +25551,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 2e1fd7ff67e8ac39babc1e8039bd246e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -25313,6 +25560,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &1289258192162629054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25390,8 +25638,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateLeave:
       m_PersistentCalls:
         m_Calls:
@@ -25406,13 +25652,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     onStateUpdate:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: StateMachineEventWithActiveLinking, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
 --- !u!1 &5949155286307096224
 GameObject:
   m_ObjectHideFlags: 0
@@ -25531,6 +25773,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25543,7 +25786,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300022, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: -1603360465371776395, guid: e0caa915f4d231c45873be76de79a3f1,
+    type: 3}
   m_Color: {r: 0.71300006, g: 0, b: 0.13775373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25572,6 +25816,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.2567962, y: 0.08869366, z: 0}
     m_Extent: {x: 0.46005085, y: 0.2856485, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155286452562038
 GameObject:
   m_ObjectHideFlags: 0
@@ -25629,6 +25874,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25641,7 +25887,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300034, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: 8401392331531929456, guid: e0caa915f4d231c45873be76de79a3f1,
+    type: 3}
   m_Color: {r: 0.71300006, g: 0, b: 0.13775373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25670,6 +25917,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: -0.016152263, y: -0.0012503266, z: 0}
     m_Extent: {x: 0.52501965, y: 0.9852023, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155286669814252
 GameObject:
   m_ObjectHideFlags: 0
@@ -25727,6 +25975,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25739,7 +25988,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300024, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: -5999061415965779000, guid: e0caa915f4d231c45873be76de79a3f1,
+    type: 3}
   m_Color: {r: 0.71300006, g: 0, b: 0.13775373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25768,6 +26018,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.16428617, y: -0.09586227, z: 0}
     m_Extent: {x: 0.45431912, y: 0.29093668, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155286727892806
 GameObject:
   m_ObjectHideFlags: 0
@@ -25824,6 +26075,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25836,7 +26088,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300002, guid: f4c152447b6e31d45b872c935b1f9c62, type: 3}
+  m_Sprite: {fileID: 7403792464810623621, guid: f4c152447b6e31d45b872c935b1f9c62,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25903,6 +26156,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -25915,7 +26169,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300002, guid: f4c152447b6e31d45b872c935b1f9c62, type: 3}
+  m_Sprite: {fileID: 5935237010252722042, guid: f4c152447b6e31d45b872c935b1f9c62,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26074,6 +26329,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26086,7 +26342,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300030, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: 535391093507968093, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
   m_Color: {r: 0.39288896, g: 0.5925564, b: 0.764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26115,6 +26371,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.12957601, y: -0.1534821, z: 0}
     m_Extent: {x: 0.26822057, y: 0.21925291, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155286937929902
 GameObject:
   m_ObjectHideFlags: 0
@@ -26224,6 +26481,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26236,7 +26494,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300028, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: -5300462284327851482, guid: e0caa915f4d231c45873be76de79a3f1,
+    type: 3}
   m_Color: {r: 0.39288896, g: 0.5925564, b: 0.764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26265,6 +26524,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.15491082, y: 0.1082527, z: 0}
     m_Extent: {x: 0.27071252, y: 0.21991947, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155287141296266
 GameObject:
   m_ObjectHideFlags: 0
@@ -26403,6 +26663,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26415,7 +26676,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300032, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: -1032690124746374016, guid: e0caa915f4d231c45873be76de79a3f1,
+    type: 3}
   m_Color: {r: 0.39288896, g: 0.5925564, b: 0.764151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26444,6 +26706,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.12782261, y: 0.004098743, z: 0}
     m_Extent: {x: 0.5529261, y: 0.3781739, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155287450305511
 GameObject:
   m_ObjectHideFlags: 0
@@ -26563,6 +26826,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26575,7 +26839,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300018, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: 2722635668971560817, guid: e0caa915f4d231c45873be76de79a3f1,
+    type: 3}
   m_Color: {r: 0.71300006, g: 0, b: 0.13775373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26604,6 +26869,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.25494054, y: 0.09387596, z: 0}
     m_Extent: {x: 0.37245554, y: 0.23491874, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155287664555744
 GameObject:
   m_ObjectHideFlags: 0
@@ -26661,6 +26927,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26673,7 +26940,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300020, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  m_Sprite: {fileID: 753282003493239653, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
   m_Color: {r: 0.71300006, g: 0, b: 0.13775373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26702,6 +26969,7 @@ MonoBehaviour:
   m_Bounds:
     m_Center: {x: 0.23666063, y: -0.119441986, z: 0}
     m_Extent: {x: 0.37299883, y: 0.24075434, z: 0}
+  m_UseBatching: 1
 --- !u!1 &5949155287705360295
 GameObject:
   m_ObjectHideFlags: 0
@@ -26758,6 +27026,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26770,7 +27039,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300006, guid: f4c152447b6e31d45b872c935b1f9c62, type: 3}
+  m_Sprite: {fileID: -2488815821764695095, guid: f4c152447b6e31d45b872c935b1f9c62,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26900,6 +27170,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26912,7 +27183,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300006, guid: f4c152447b6e31d45b872c935b1f9c62, type: 3}
+  m_Sprite: {fileID: 3714212407777201618, guid: f4c152447b6e31d45b872c935b1f9c62,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -27030,7 +27302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ConstrainRotation: 1
-  m_RestoreDefaultPose: 1
+  m_SolveFromDefaultPose: 1
   m_Weight: 1
   m_Chain:
     m_EffectorTransform: {fileID: 5949155287585486485}
@@ -27218,7 +27490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ConstrainRotation: 1
-  m_RestoreDefaultPose: 1
+  m_SolveFromDefaultPose: 1
   m_Weight: 1
   m_Chain:
     m_EffectorTransform: {fileID: 5949155286846293914}

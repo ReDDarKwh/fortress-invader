@@ -5,6 +5,8 @@ using UnityEngine;
 using UniRx;
 using System.Linq;
 using System;
+using BayatGames.SaveGameFree;
+using System.IO;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpellCaster))]
@@ -17,6 +19,8 @@ public class PlayerCharacter : MonoBehaviour
     private Vector2 playerToMouse;
 
     public SpellCaster spellCaster;
+
+     public EffectContainer ec;
 
     public Character character;
 
@@ -56,6 +60,18 @@ public class PlayerCharacter : MonoBehaviour
         camAnimator = cam.GetComponent<Animator>();
 
         SharedSceneController.Instance.levelChanger.MenuExited += handleMenuExited;
+
+        FetchSpells();
+    }
+
+
+    void FetchSpells()
+    {
+        FileInfo[] files = SaveGame.GetFiles("spells");
+        spellCaster.spells = files.Select(f =>
+        {
+            return new { spell = SaveGame.Load<SavedSpell>("spells/" + f.Name), id = f.Name };
+        }).OrderBy(x => x.spell.spellName).Select(x => Spell.FromSavedSpell(x.spell, ec.effects)).ToList();
     }
 
 

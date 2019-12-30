@@ -1,73 +1,204 @@
 fileFormatVersion: 2
 guid: e0caa915f4d231c45873be76de79a3f1
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: WizardParts_GO/WizardParts_GO
-    100020: WizardParts_GO/WizardParts_GO/bone_1
-    100022: WizardParts_GO/WizardParts_GO/bone_1/bone_2
-    100024: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3
-    100026: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3/bone_4
-    100028: WizardParts_GO/WizardParts_GO/bone_1/bone_5
-    100030: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6
-    100032: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6/bone_7
-    100034: WizardParts_GO/WizardParts_GO/bone_1/bone_8
-    100036: WizardParts_GO/WizardParts_GO/ArmLeft
-    100038: WizardParts_GO/WizardParts_GO/ArmRight
-    100040: WizardParts_GO/WizardParts_GO/Book
-    100042: WizardParts_GO/WizardParts_GO/ForearmLeft
-    100044: WizardParts_GO/WizardParts_GO/ForearmRight
-    100046: WizardParts_GO/WizardParts_GO/HandLeft
-    100048: WizardParts_GO/WizardParts_GO/HandRight
-    100050: WizardParts_GO/WizardParts_GO/Head
-    100052: WizardParts_GO/WizardParts_GO/Torso
-    400000: WizardParts_GO/WizardParts_GO/Transform
-    400020: WizardParts_GO/WizardParts_GO/bone_1/Transform
-    400022: WizardParts_GO/WizardParts_GO/bone_1/bone_2/Transform
-    400024: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3/Transform
-    400026: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3/bone_4/Transform
-    400028: WizardParts_GO/WizardParts_GO/bone_1/bone_5/Transform
-    400030: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6/Transform
-    400032: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6/bone_7/Transform
-    400034: WizardParts_GO/WizardParts_GO/bone_1/bone_8/Transform
-    400036: WizardParts_GO/WizardParts_GO/ArmLeft/Transform
-    400038: WizardParts_GO/WizardParts_GO/ArmRight/Transform
-    400040: WizardParts_GO/WizardParts_GO/Book/Transform
-    400042: WizardParts_GO/WizardParts_GO/ForearmLeft/Transform
-    400044: WizardParts_GO/WizardParts_GO/ForearmRight/Transform
-    400046: WizardParts_GO/WizardParts_GO/HandLeft/Transform
-    400048: WizardParts_GO/WizardParts_GO/HandRight/Transform
-    400050: WizardParts_GO/WizardParts_GO/Head/Transform
-    400052: WizardParts_GO/WizardParts_GO/Torso/Transform
-    2800000: WizardParts
-    11400018: WizardParts_GO/WizardParts_GO/ArmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400020: WizardParts_GO/WizardParts_GO/ArmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400022: WizardParts_GO/WizardParts_GO/Book/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400024: WizardParts_GO/WizardParts_GO/ForearmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400026: WizardParts_GO/WizardParts_GO/ForearmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400028: WizardParts_GO/WizardParts_GO/HandLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400030: WizardParts_GO/WizardParts_GO/HandRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400032: WizardParts_GO/WizardParts_GO/Head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400034: WizardParts_GO/WizardParts_GO/Torso/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200018: WizardParts_GO/WizardParts_GO/ArmLeft/SpriteRenderer
-    21200020: WizardParts_GO/WizardParts_GO/ArmRight/SpriteRenderer
-    21200022: WizardParts_GO/WizardParts_GO/Book/SpriteRenderer
-    21200024: WizardParts_GO/WizardParts_GO/ForearmLeft/SpriteRenderer
-    21200026: WizardParts_GO/WizardParts_GO/ForearmRight/SpriteRenderer
-    21200028: WizardParts_GO/WizardParts_GO/HandLeft/SpriteRenderer
-    21200030: WizardParts_GO/WizardParts_GO/HandRight/SpriteRenderer
-    21200032: WizardParts_GO/WizardParts_GO/Head/SpriteRenderer
-    21200034: WizardParts_GO/WizardParts_GO/Torso/SpriteRenderer
-    21300018: ForearmRight
-    21300020: ForearmLeft
-    21300022: ArmRight
-    21300024: ArmLeft
-    21300026: Book
-    21300028: HandRight
-    21300030: HandLeft
-    21300032: Head
-    21300034: Torso
-    100100000: WizardParts_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: WizardParts_GO/WizardParts_GO
+  - first:
+      1: 100020
+    second: WizardParts_GO/WizardParts_GO/bone_1
+  - first:
+      1: 100022
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_2
+  - first:
+      1: 100024
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3
+  - first:
+      1: 100026
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3/bone_4
+  - first:
+      1: 100028
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_5
+  - first:
+      1: 100030
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6
+  - first:
+      1: 100032
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6/bone_7
+  - first:
+      1: 100034
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_8
+  - first:
+      1: 100036
+    second: WizardParts_GO/WizardParts_GO/ArmLeft
+  - first:
+      1: 100038
+    second: WizardParts_GO/WizardParts_GO/ArmRight
+  - first:
+      1: 100040
+    second: WizardParts_GO/WizardParts_GO/Book
+  - first:
+      1: 100042
+    second: WizardParts_GO/WizardParts_GO/ForearmLeft
+  - first:
+      1: 100044
+    second: WizardParts_GO/WizardParts_GO/ForearmRight
+  - first:
+      1: 100046
+    second: WizardParts_GO/WizardParts_GO/HandLeft
+  - first:
+      1: 100048
+    second: WizardParts_GO/WizardParts_GO/HandRight
+  - first:
+      1: 100050
+    second: WizardParts_GO/WizardParts_GO/Head
+  - first:
+      1: 100052
+    second: WizardParts_GO/WizardParts_GO/Torso
+  - first:
+      4: 400000
+    second: WizardParts_GO/WizardParts_GO/Transform
+  - first:
+      4: 400020
+    second: WizardParts_GO/WizardParts_GO/bone_1/Transform
+  - first:
+      4: 400022
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_2/Transform
+  - first:
+      4: 400024
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3/Transform
+  - first:
+      4: 400026
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_2/bone_3/bone_4/Transform
+  - first:
+      4: 400028
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_5/Transform
+  - first:
+      4: 400030
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6/Transform
+  - first:
+      4: 400032
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_5/bone_6/bone_7/Transform
+  - first:
+      4: 400034
+    second: WizardParts_GO/WizardParts_GO/bone_1/bone_8/Transform
+  - first:
+      4: 400036
+    second: WizardParts_GO/WizardParts_GO/ArmLeft/Transform
+  - first:
+      4: 400038
+    second: WizardParts_GO/WizardParts_GO/ArmRight/Transform
+  - first:
+      4: 400040
+    second: WizardParts_GO/WizardParts_GO/Book/Transform
+  - first:
+      4: 400042
+    second: WizardParts_GO/WizardParts_GO/ForearmLeft/Transform
+  - first:
+      4: 400044
+    second: WizardParts_GO/WizardParts_GO/ForearmRight/Transform
+  - first:
+      4: 400046
+    second: WizardParts_GO/WizardParts_GO/HandLeft/Transform
+  - first:
+      4: 400048
+    second: WizardParts_GO/WizardParts_GO/HandRight/Transform
+  - first:
+      4: 400050
+    second: WizardParts_GO/WizardParts_GO/Head/Transform
+  - first:
+      4: 400052
+    second: WizardParts_GO/WizardParts_GO/Torso/Transform
+  - first:
+      28: 2800000
+    second: WizardParts
+  - first:
+      114: 11400018
+    second: WizardParts_GO/WizardParts_GO/ArmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400020
+    second: WizardParts_GO/WizardParts_GO/ArmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400022
+    second: WizardParts_GO/WizardParts_GO/Book/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400024
+    second: WizardParts_GO/WizardParts_GO/ForearmLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400026
+    second: WizardParts_GO/WizardParts_GO/ForearmRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400028
+    second: WizardParts_GO/WizardParts_GO/HandLeft/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400030
+    second: WizardParts_GO/WizardParts_GO/HandRight/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400032
+    second: WizardParts_GO/WizardParts_GO/Head/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400034
+    second: WizardParts_GO/WizardParts_GO/Torso/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200018
+    second: WizardParts_GO/WizardParts_GO/ArmLeft/SpriteRenderer
+  - first:
+      212: 21200020
+    second: WizardParts_GO/WizardParts_GO/ArmRight/SpriteRenderer
+  - first:
+      212: 21200022
+    second: WizardParts_GO/WizardParts_GO/Book/SpriteRenderer
+  - first:
+      212: 21200024
+    second: WizardParts_GO/WizardParts_GO/ForearmLeft/SpriteRenderer
+  - first:
+      212: 21200026
+    second: WizardParts_GO/WizardParts_GO/ForearmRight/SpriteRenderer
+  - first:
+      212: 21200028
+    second: WizardParts_GO/WizardParts_GO/HandLeft/SpriteRenderer
+  - first:
+      212: 21200030
+    second: WizardParts_GO/WizardParts_GO/HandRight/SpriteRenderer
+  - first:
+      212: 21200032
+    second: WizardParts_GO/WizardParts_GO/Head/SpriteRenderer
+  - first:
+      212: 21200034
+    second: WizardParts_GO/WizardParts_GO/Torso/SpriteRenderer
+  - first:
+      213: 21300018
+    second: ForearmRight
+  - first:
+      213: 21300020
+    second: ForearmLeft
+  - first:
+      213: 21300022
+    second: ArmRight
+  - first:
+      213: 21300024
+    second: ArmLeft
+  - first:
+      213: 21300026
+    second: Book
+  - first:
+      213: 21300028
+    second: HandRight
+  - first:
+      213: 21300030
+    second: HandLeft
+  - first:
+      213: 21300032
+    second: Head
+  - first:
+      213: 21300034
+    second: Torso
+  - first:
+      1001: 100100000
+    second: WizardParts_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -138,6 +269,7 @@ ScriptedImporter:
       width: 512
       height: 512
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,6 +293,7 @@ ScriptedImporter:
       width: 38
       height: 59
     spriteID: 914d7fc75d65d024e9f9de3cc565027a
+    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 15.882782, y: 52.647934, z: 0}
@@ -533,6 +666,7 @@ ScriptedImporter:
       width: 38
       height: 59
     spriteID: bf97196b1a19dad40bb9dfd395c0b1fc
+    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 14.117554, y: 4.909424, z: 0}
@@ -916,6 +1050,7 @@ ScriptedImporter:
       width: 46
       height: 72
     spriteID: 02d068780d1c78f48ad45f259035f546
+    internalID: 0
     spriteBone:
     - name: bone_2
       position: {x: 28.61081, y: 59.214294, z: 0}
@@ -1348,6 +1483,7 @@ ScriptedImporter:
       width: 46
       height: 72
     spriteID: ebe033fe31c2ba644af080bbbc6a050c
+    internalID: 0
     spriteBone:
     - name: bone_5
       position: {x: 27.075378, y: 14.777313, z: 0}
@@ -1769,6 +1905,7 @@ ScriptedImporter:
       width: 139
       height: 123
     spriteID: 2e9392f5f927f714886c5f314fd889e9
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 66.87337, y: 83.57768, z: 0}
@@ -2275,6 +2412,7 @@ ScriptedImporter:
       width: 35
       height: 43
     spriteID: 357fabbf20c84f744af5b0a349171c39
+    internalID: 0
     spriteBone:
     - name: bone_4
       position: {x: 14.873367, y: 34.577698, z: 0}
@@ -2616,6 +2754,7 @@ ScriptedImporter:
       width: 35
       height: 43
     spriteID: 0daaf73705a3a674d9f9309610be2e4d
+    internalID: 0
     spriteBone:
     - name: bone_7
       position: {x: 14.889847, y: 10.954285, z: 0}
@@ -2957,6 +3096,7 @@ ScriptedImporter:
       width: 89
       height: 61
     spriteID: 748a5b9a4a0a51840858a22dc7eb25f7
+    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 33.97461, y: 29.897827, z: 0}
@@ -3339,6 +3479,7 @@ ScriptedImporter:
       width: 84
       height: 158
     spriteID: c1a180b1b1f5d9a43b7fbb1cc2ee968e
+    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 43.792725, y: 78.92313, z: 1}
@@ -3798,6 +3939,10 @@ ScriptedImporter:
   importedTextureWidth: 256
   importedTextureHeight: 512
   documentSize: {x: 512, y: 512}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
   textureActualWidth: 256
   textureActualHeight: 512
   spritePackingTag: 
@@ -3918,6 +4063,8 @@ ScriptedImporter:
         height: 123
       spriteId: 2e9392f5f927f714886c5f314fd889e9
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 232
         y: 94
@@ -3925,6 +4072,8 @@ ScriptedImporter:
         height: 59
       spriteId: 914d7fc75d65d024e9f9de3cc565027a
       bones: 02000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 231
         y: 354
@@ -3932,6 +4081,8 @@ ScriptedImporter:
         height: 59
       spriteId: bf97196b1a19dad40bb9dfd395c0b1fc
       bones: 05000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 230
         y: 132
@@ -3939,6 +4090,8 @@ ScriptedImporter:
         height: 72
       spriteId: 02d068780d1c78f48ad45f259035f546
       bones: 01000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 230
         y: 303
@@ -3946,6 +4099,8 @@ ScriptedImporter:
         height: 72
       spriteId: ebe033fe31c2ba644af080bbbc6a050c
       bones: 04000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 240
         y: 66
@@ -3953,6 +4108,8 @@ ScriptedImporter:
         height: 43
       spriteId: 357fabbf20c84f744af5b0a349171c39
       bones: 03000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 240
         y: 399
@@ -3960,6 +4117,8 @@ ScriptedImporter:
         height: 43
       spriteId: 0daaf73705a3a674d9f9309610be2e4d
       bones: 06000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 224
         y: 226
@@ -3967,6 +4126,8 @@ ScriptedImporter:
         height: 61
       spriteId: 748a5b9a4a0a51840858a22dc7eb25f7
       bones: 07000000
+      parentGroup: 0
+      order: 0
     - spritePosition:
         x: 211
         y: 177
@@ -3974,23 +4135,28 @@ ScriptedImporter:
         height: 158
       spriteId: c1a180b1b1f5d9a43b7fbb1cc2ee968e
       bones: 00000000
+      parentGroup: 0
+      order: 0
     dimension: {x: 0, y: 0}
+    characterGroups: []
   boneGOs:
-  - go: {fileID: 100020, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: 4356815839488893644, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 0
-  - go: {fileID: 100022, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: 8390814981078772869, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 1
-  - go: {fileID: 100024, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: -7885817694053476445, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 2
-  - go: {fileID: 100026, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: -5076754569659076098, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 3
-  - go: {fileID: 100028, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: 4239856038037801664, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 4
-  - go: {fileID: 100030, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: -3024700224544487151, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 5
-  - go: {fileID: 100032, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: 4452553915448042398, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 6
-  - go: {fileID: 100034, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
+  - go: {fileID: 8445726839931752277, guid: e0caa915f4d231c45873be76de79a3f1, type: 3}
     index: 7
-  firstCreate: 0
   generateGOHierarchy: 0
+  textureAssetName: WizardParts Texture
+  prefabAssetName: WizardParts Prefab
+  spriteLibAssetName: WizardParts Sprite Lib
