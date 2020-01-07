@@ -14,12 +14,16 @@ public class FortressMenuController : MonoBehaviour
     public GameObject missionContentGameObject;
     public ToggleGroup missionToggleGroup;
 
+
     public void CloseMenu()
     {
         SharedSceneController.Instance.levelChanger.ExitMenu();
 
         var selectedIndex = SharedSceneController
             .Instance.missionController.missions.Value.FindIndex(x => x.selected);
+
+        SharedSceneController.Instance.player.FetchSpells();
+         SharedSceneController.Instance.playerHUD.RefreshSpells();
 
         // selected mission changed
         if (SharedSceneController.Instance.missionController.selectedMission.Value !=
@@ -69,9 +73,6 @@ public class FortressMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Menu"))
-        {
-            CloseMenu();
-        }
+        
     }
 }

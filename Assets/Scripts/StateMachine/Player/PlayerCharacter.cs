@@ -65,7 +65,7 @@ public class PlayerCharacter : MonoBehaviour
     }
 
 
-    void FetchSpells()
+    public void FetchSpells()
     {
         FileInfo[] files = SaveGame.GetFiles("spells");
         spellCaster.spells = files.Select(f =>

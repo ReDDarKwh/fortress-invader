@@ -245,6 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionController: {fileID: 18869393}
   levelChanger: {fileID: 2054505079}
+  player: {fileID: 1819705936}
+  playerHUD: {fileID: 1914348094}
 --- !u!4 &18869395
 Transform:
   m_ObjectHideFlags: 0
@@ -6630,6 +6632,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 774310595977506256, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.580905
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506256, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.81397134
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506258, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.19079606
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506258, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9816297
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506262, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.76225734
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506262, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.64727414
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506264, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5231218
+      objectReference: {fileID: 0}
+    - target: {fileID: 774310595977506264, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.85225797
+      objectReference: {fileID: 0}
+    - target: {fileID: 3534808063717653904, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3724343189913647466, guid: c4b4274a65ca80e4b96e49ffcfff53e7,
         type: 3}
       propertyPath: m_Name

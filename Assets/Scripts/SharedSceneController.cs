@@ -10,6 +10,8 @@ public class SharedSceneController : MonoBehaviour
     public static SharedSceneController Instance;
     public MissionsController missionController;
     public LevelChanger levelChanger;
+    public PlayerCharacter player;
+    public PlayerHUDController playerHUD;
 
     void Awake()
     {

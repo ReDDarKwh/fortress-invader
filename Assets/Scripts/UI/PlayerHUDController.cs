@@ -37,7 +37,6 @@ public class PlayerHUDController : MonoBehaviour
     public GameObject spellSelectionImage;
 
 
-
     public Text timerText;
 
     public GameObject currentMissionElement;
@@ -140,7 +139,20 @@ public class PlayerHUDController : MonoBehaviour
             minimapElement.gameObject.SetActive(x);
         });
 
-        if(playerCharacter.spellCaster.spells != null){
+        RefreshSpells();
+    }
+
+
+    internal void RefreshSpells()
+    {
+
+        foreach (Transform child in spellsBar.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        if (playerCharacter.spellCaster.spells != null)
+        {
             for (var i = 1; i <= playerCharacter.spellCaster.spells.Count; i++)
             {
                 createSpellSlot(i, playerCharacter.spellCaster.spells[i - 1]);
@@ -149,6 +161,7 @@ public class PlayerHUDController : MonoBehaviour
         // create "no spell" slot
         createSpellSlot(0, null);
     }
+
 
     private IEnumerator UpdateChaosText(float x)
     {
